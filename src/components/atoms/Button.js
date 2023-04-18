@@ -10,7 +10,6 @@ const Container = styled.Pressable`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 23px;
 `;
 
 const Title = styled.Text`
@@ -18,10 +17,10 @@ const Title = styled.Text`
   font-size: 16px;
 `;
 
-const Button = ({ title, onPress, light = false }) => {
+const Button = ({ title, onPress, light = false, ...Props }) => {
   return (
-    <Container onPress={onPress} light={light}>
-      <Title light={light}>{title}</Title>
+    <Container onPress={onPress} light={light} {...Props}>
+      <Title light={light}>{title} </Title>
     </Container>
   );
 };

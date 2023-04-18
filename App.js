@@ -1,6 +1,6 @@
 import react from "react";
-import LoginScreen from "./src/components/screens/LoginScreen";
+import MainNavigator from "./navigators/MainNavigator";
 
 export default function App() {
-  return <LoginScreen />;
+  return <MainNavigator />;
 }

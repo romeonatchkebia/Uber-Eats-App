@@ -6,6 +6,7 @@ const windowWidth = Dimensions.get("screen").width;
 const windowHeight = Dimensions.get("screen").height;
 
 const MainWrapper = styled.KeyboardAvoidingView`
+  background-color: #ffffff;
   display: flex;
   height: 100%;
 `;
@@ -21,9 +22,12 @@ const Container = styled.SafeAreaView`
   justify-content: center;
 `;
 
-const Screen = ({ children }) => {
+const Screen = ({ children, ...props }) => {
   return (
-    <MainWrapper behavior={Platform.OS === "ios" ? "padding" : "height"}>
+    <MainWrapper
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      {...props}
+    >
       <ImageBackground>
         <Container>{children}</Container>
       </ImageBackground>
