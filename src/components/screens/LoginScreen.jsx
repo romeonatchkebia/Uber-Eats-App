@@ -1,24 +1,31 @@
-import react from "react";
+import react, { useState } from "react";
 import styled from "styled-components";
 
 import Button from "../atoms/Button";
 import Screen from "../atoms/Screen";
 import TextViewer from "../atoms/TextViewer";
 import ImageViewer from "../atoms/ImageViewer";
+import TextInput from "../atoms/TextInput";
+import * as ROUTES from "../../constants/Routs";
 
 const loginScreenImage = require("../Images/loginScreenImage.png");
 
-const Container = styled(Screen)``;
-
-const SignInBtn = styled(Button)`
-  height: 52px;
-`;
-const GetStartedBtn = styled(Button)`
-  margin-bottom: 23px;
+const Container = styled(Screen)`
+  margin-top: -30px;
 `;
 
-const SignGoogle = styled(TextViewer)`
-  margin-top: 38px;
+const LogIn = styled(Button)`
+  margin-bottom: 10px;
+`;
+
+const ForgotPass = styled(Button)`
+  background-color: #ffffff;
+  margin-top: 70px;
+`;
+const CreateAccount = styled(Button)`
+  background-color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: -50px;
 `;
 
 const LoginScreImage = styled(ImageViewer)`
@@ -26,17 +33,63 @@ const LoginScreImage = styled(ImageViewer)`
   margin-bottom: 54px;
 `;
 
-const LoginScreen = ({ navigation }) => {
+const UserName = styled(TextInput)``;
+
+const Password = styled(TextInput)``;
+
+const LoginScreen = ({ navigation, route }) => {
+  const [userNameLogIn, setUserNameLogIn] = useState("");
+  const [passwordLogIn, setPasswordLogIn] = useState("");
+  const [showError, setShowError] = useState(false);
+
+  function handleLogIn() {
+    if (!route.params) {
+      setShowError(true);
+    } else if (
+      userNameLogIn === route.params.nameOfUser &&
+      passwordLogIn === route.params.passwordOfUser
+    ) {
+      navigation.navigate(ROUTES.BOTTOM_TAB_NAV);
+      setShowError(false);
+      setUserNameLogIn("");
+      setPasswordLogIn("");
+    } else {
+      setShowError(true);
+    }
+  }
+
   return (
     <Container>
-      <SignInBtn title="Sign in with email" light />
-      <SignGoogle text="Sign in with google" visible={true} />
       <LoginScreImage source={loginScreenImage} />
-      <GetStartedBtn
-        title="Get Started"
-        onPress={() => navigation.navigate("Authorization")}
+      <UserName
+        placeholder="UserName"
+        value={userNameLogIn}
+        onChange={(e) => setUserNameLogIn(e.nativeEvent.text)}
       />
-      <Button title="Skip" />
+      <Password
+        placeholder="Password"
+        value={passwordLogIn}
+        onChange={(e) => setPasswordLogIn(e.nativeEvent.text)}
+      />
+      <LogIn title="Log In" onPress={handleLogIn} />
+      {showError && (
+        <TextViewer
+          style={{ color: "red", marginTop: 15 }}
+          text="Username or password is not correct"
+          visible={true}
+        />
+      )}
+      <ForgotPass title="Forgot Password?" black />
+      <CreateAccount
+        title="Create New Account"
+        onPress={() => {
+          navigation.navigate(ROUTES.CREATENEWACCOUNT_SCREEN);
+          setShowError(false);
+          setUserNameLogIn("");
+          setPasswordLogIn("");
+        }}
+        black
+      />
     </Container>
   );
 };

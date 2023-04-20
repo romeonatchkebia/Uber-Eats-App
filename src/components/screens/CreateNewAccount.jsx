@@ -5,6 +5,7 @@ import styled from "styled-components";
 import TextInput from "../atoms/TextInput";
 import Button from "../atoms/Button";
 import TextViewer from "../atoms/TextViewer";
+import * as ROUTES from "../../constants/Routs";
 
 const Container = styled(Screen)`
   margin-top: -80px;
@@ -20,14 +21,14 @@ const EnterBtn = styled(Button)`
   height: 50px;
 `;
 
-function AutorizationScreen({ navigation }) {
+function CreateNewAccount({ navigation }) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
 
   function handleConfirm() {
     if (userName !== "" && password !== "") {
-      navigation.navigate("SignIn", {
+      navigation.navigate(ROUTES.LOGIN_SCREEN, {
         nameOfUser: userName,
         passwordOfUser: password,
       });
@@ -60,4 +61,4 @@ function AutorizationScreen({ navigation }) {
   );
 }
 
-export default AutorizationScreen;
+export default CreateNewAccount;

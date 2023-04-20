@@ -1,36 +1,37 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as ROUTES from "../src/constants/Routs";
 
 import LoginScreen from "../src/components/screens/LoginScreen";
-import AutorizationScreen from "../src/components/screens/AutorizationScreen";
-import SignInScreen from "../src/components/screens/SignInScreen";
-import HomeScreen from "../src/components/screens/HomeScreen";
+import CreateNewAccount from "../src/components/screens/CreateNewAccount";
+import ForgotPassword from "../src/components/screens/ForgotPassword";
+import BottomTabNav from "./BottomTabNav";
 
 const Stack = createNativeStackNavigator();
 
-function MainNavigator() {
+function AuthNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator>
         <Stack.Screen
-          name="Login"
+          name={ROUTES.LOGIN_SCREEN}
           component={LoginScreen}
           options={{ title: "Log In", headerShown: false }}
         />
         <Stack.Screen
-          name="Authorization"
-          component={AutorizationScreen}
+          name={ROUTES.CREATENEWACCOUNT_SCREEN}
+          component={CreateNewAccount}
           options={{ title: "Authorization", headerShown: true }}
         />
         <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{ title: "Sign In", headerShown: true }}
+          name={ROUTES.FORGOT_PASSWORD_SCREEN}
+          component={ForgotPassword}
+          options={{ title: "Forgot Password", headerShown: true }}
         />
         <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
+          name={ROUTES.BOTTOM_TAB_NAV}
+          component={BottomTabNav}
           options={{ title: "Home", headerShown: true }}
         />
       </Stack.Navigator>
@@ -38,4 +39,4 @@ function MainNavigator() {
   );
 }
 
-export default MainNavigator;
+export default AuthNavigator;

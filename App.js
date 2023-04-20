@@ -1,6 +1,6 @@
 import react from "react";
-import MainNavigator from "./navigators/MainNavigator";
+import AuthNavigator from "./navigators/AuthNavigator";
 
 export default function App() {
-  return <MainNavigator />;
+  return <AuthNavigator />;
 }

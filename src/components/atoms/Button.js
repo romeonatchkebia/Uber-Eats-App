@@ -13,14 +13,24 @@ const Container = styled.Pressable`
 `;
 
 const Title = styled.Text`
-  color: ${({ light }) => (light ? "#55837D" : "#FFFFFF")};
-  font-size: 16px;
+  font-size: 20px;
+  color: ${({ light, black }) => {
+    if (light) {
+      return "#55837d";
+    } else if (black) {
+      return "#000000";
+    } else {
+      return "#ffffff";
+    }
+  }};
 `;
 
-const Button = ({ title, onPress, light = false, ...Props }) => {
+const Button = ({ title, onPress, light = false, black = false, ...props }) => {
   return (
-    <Container onPress={onPress} light={light} {...Props}>
-      <Title light={light}>{title} </Title>
+    <Container onPress={onPress} light={light} {...props}>
+      <Title light={light} black={black}>
+        {title}
+      </Title>
     </Container>
   );
 };
