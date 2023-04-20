@@ -3,15 +3,30 @@ import React from "react";
 
 import * as ROUTES from "../../constants/Routs";
 import Button from "../atoms/Button";
+import styled from "styled-components";
+import Screen from "../atoms/Screen";
+
+const Container = styled(Screen)``;
+
+const GoToDetails = styled(Button)``;
+
+const LogOut = styled(Button)`
+  margin-top: 50px;
+  margin-bottom: 100px;
+`;
 
 const Settings = ({ navigation }) => {
   return (
-    <View>
-      <Button
+    <Container>
+      <GoToDetails
         title="Go To Details"
         onPress={() => navigation.navigate(ROUTES.SETTINGS_DETAILS)}
       />
-    </View>
+      <LogOut
+        title="Log Out"
+        onPress={() => navigation.navigate(ROUTES.LOGIN_SCREEN)}
+      />
+    </Container>
   );
 };
 

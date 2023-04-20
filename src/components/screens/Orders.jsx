@@ -1,10 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const Orders = ({ navigations }) => {
+const Orders = ({ navigation }) => {
   return (
     <View>
-      <Text>Orders</Text>
+      <Text></Text>
     </View>
   );
 };

@@ -8,7 +8,7 @@ export const FORGOT_PASSWORD_SCREEN = "ForgotPassword";
 export const BOTTOM_TAB_NAV = "BottomTabNav";
 export const HOMESCREEN_SCREEN = "HomeScreen";
 export const ORDERS_SCREEN = "Orders";
-export const SHOP_SCREEN = "Shop";
+export const NOTIFICATIONS_SCREEN = "Notifications";
 export const SETTINGS_SCREEN = "Settings";
 
 // Settings Navigator Screens

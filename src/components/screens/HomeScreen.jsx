@@ -5,14 +5,16 @@ import Screen from "../atoms/Screen";
 import styled from "styled-components";
 import TextViewer from "../atoms/TextViewer";
 
-const Conatiner = styled(Screen)`
-  margin-top: -80px;
+const Conatiner = styled(Screen)``;
+
+const WelcomeText = styled(TextViewer)`
+  margin-bottom: 200px;
 `;
 
 function HomeScreen() {
   return (
     <Conatiner>
-      <TextViewer
+      <WelcomeText
         text="You Sign In Successfully"
         visible={true}
         style={{ fontSize: 30 }}

@@ -32,7 +32,7 @@ function AuthNavigator() {
         <Stack.Screen
           name={ROUTES.BOTTOM_TAB_NAV}
           component={BottomTabNav}
-          options={{ title: "Home", headerShown: true }}
+          options={{ title: "Home", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
