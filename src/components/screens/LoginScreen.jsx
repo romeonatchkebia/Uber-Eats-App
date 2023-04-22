@@ -49,7 +49,7 @@ const LoginScreen = ({ navigation, route }) => {
       userNameLogIn === route.params.nameOfUser &&
       passwordLogIn === route.params.passwordOfUser
     ) {
-      navigation.navigate(ROUTES.BOTTOM_TAB_NAV);
+      navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
       setShowError(false);
       setUserNameLogIn("");
       setPasswordLogIn("");

@@ -6,6 +6,7 @@ export const FORGOT_PASSWORD_SCREEN = "ForgotPassword";
 
 // Home Navigation Screens
 export const BOTTOM_TAB_NAV = "BottomTabNav";
+export const DRAWER_NAVIGATOR = "DrawerNavigator";
 export const HOMESCREEN_SCREEN = "HomeScreen";
 export const ORDERS_SCREEN = "Orders";
 export const NOTIFICATIONS_SCREEN = "Notifications";

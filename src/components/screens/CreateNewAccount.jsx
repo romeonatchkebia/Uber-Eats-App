@@ -7,9 +7,7 @@ import Button from "../atoms/Button";
 import TextViewer from "../atoms/TextViewer";
 import * as ROUTES from "../../constants/Routs";
 
-const Container = styled(Screen)`
-  margin-top: -80px;
-`;
+const Container = styled(Screen)``;
 
 const UserName = styled(TextInput)``;
 
