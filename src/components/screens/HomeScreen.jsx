@@ -1,91 +1,74 @@
 import React from "react";
-import { StyleSheet, FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 
 import styled from "styled-components";
-import TextViewer from "../atoms/TextViewer";
-import ImageViewer from "../atoms/ImageViewer";
 import Screen from "../atoms/Screen";
+import MainCard from "../organisms/MainCard";
 
 const Data = [
   {
     id: 1,
-    url: require("../Images/hat.webp"),
-    title: "hat",
+    url: require("../Images/mainCardImage.png"),
+    title: "Adenine Kitchen",
+    price: "0.29",
+    deliveryTime: "10-25",
+    rating: 4.3,
+    promoOrdersNum: "9",
+    promoOrdersPrice: "23",
   },
   {
     id: 2,
-    url: require("../Images/shoes.jpg"),
-    title: "shoes",
+    url: require("../Images/mainCardImage1.png"),
+    title: "Cardinal Chips",
+    price: "0.49",
+    deliveryTime: "20-45",
+    rating: 4.6,
   },
   {
     id: 3,
-    url: require("../Images/shirt.webp"),
-    title: "shirt",
+    url: require("../Images/mainCardImage2.png"),
+    title: "Cardinal Chips",
+    price: "0.49",
+    deliveryTime: "20-45",
+    rating: 4.6,
   },
   {
     id: 4,
-    url: require("../Images/teusers.jpg"),
-    title: "trausers",
-  },
-  {
-    id: 5,
-    url: require("../Images/hat.webp"),
-    title: "hat",
-  },
-  {
-    id: 6,
-    url: require("../Images/shoes.jpg"),
-    title: "shoes",
-  },
-  {
-    id: 7,
-    url: require("../Images/shirt.webp"),
-    title: "shirt",
+    url: require("../Images/mainCardImage3.png"),
+    title: "Cardinal Chips",
+    price: "0.49",
+    deliveryTime: "20-45",
+    rating: 4.6,
   },
 ];
 
-const Container = styled(Screen)``;
+const Container = styled(Screen)`
+  background: #e5e5e5;
+  padding-top: 12px;
+`;
 
-const Item = ({ title, source }) => {
-  return (
-    <View style={styles.renderView}>
-      <TextViewer style={styles.titleText} text={title} visible={true} />
-      <ImageViewer style={styles.cardImage} source={source} />
-    </View>
-  );
-};
+const HomeCard = styled(MainCard)``;
 
 function HomeScreen() {
   return (
     <Container>
       <FlatList
         data={Data}
-        renderItem={({ item }) => <Item title={item.title} source={item.url} />}
+        renderItem={({ item }) => (
+          <HomeCard
+            title={item.title}
+            source={item.url}
+            price={item.price}
+            deliveryTime={item.deliveryTime}
+            rating={item.rating}
+            promoOrdersNum={item.promoOrdersNum}
+            promoOrdersPrice={item.promoOrdersPrice}
+          />
+        )}
         keyExtractor={(item) => item.id}
       />
     </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  cardImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 100,
-  },
-  titleText: {
-    color: "white",
-    fontSize: 30,
-    marginBottom: 10,
-  },
-  renderView: {
-    alignItems: "center",
-    backgroundColor: "#59c1e3",
-    padding: 20,
-    marginBottom: 20,
-    width: 250,
-    borderRadius: 15,
-  },
-});
 
 export default HomeScreen;

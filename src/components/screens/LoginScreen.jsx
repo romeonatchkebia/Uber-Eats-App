@@ -42,21 +42,21 @@ const LoginScreen = ({ navigation, route }) => {
   const [passwordLogIn, setPasswordLogIn] = useState("");
   const [showError, setShowError] = useState(false);
 
-  function handleLogIn() {
-    if (!route.params) {
-      setShowError(true);
-    } else if (
-      userNameLogIn === route.params.nameOfUser &&
-      passwordLogIn === route.params.passwordOfUser
-    ) {
-      navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
-      setShowError(false);
-      setUserNameLogIn("");
-      setPasswordLogIn("");
-    } else {
-      setShowError(true);
-    }
-  }
+  // function handleLogIn() {
+  //   if (!route.params) {
+  //     setShowError(true);
+  //   } else if (
+  //     userNameLogIn === route.params.nameOfUser &&
+  //     passwordLogIn === route.params.passwordOfUser
+  //   ) {
+  //     navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
+  //     setShowError(false);
+  //     setUserNameLogIn("");
+  //     setPasswordLogIn("");
+  //   } else {
+  //     setShowError(true);
+  //   }
+  // }
 
   return (
     <Container>
@@ -71,12 +71,14 @@ const LoginScreen = ({ navigation, route }) => {
         value={passwordLogIn}
         onChange={(e) => setPasswordLogIn(e.nativeEvent.text)}
       />
-      <LogIn title="Log In" onPress={handleLogIn} />
+      <LogIn
+        title="Log In"
+        onPress={() => navigation.navigate(ROUTES.DRAWER_NAVIGATOR)}
+      />
       {showError && (
         <TextViewer
           style={{ color: "red", marginTop: 15 }}
           text="Username or password is not correct"
-          visible={true}
         />
       )}
       <ForgotPass title="Forgot Password?" black />

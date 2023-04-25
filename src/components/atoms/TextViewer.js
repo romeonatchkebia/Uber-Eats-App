@@ -6,7 +6,7 @@ const Text = styled.Text`
   font-size: 20px;
 `;
 
-const TextViewer = ({ text, visible, ...props }) => {
+const TextViewer = ({ text, visible = true, ...props }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
