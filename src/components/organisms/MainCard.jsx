@@ -87,13 +87,6 @@ const LikeBtnPress = styled.Pressable`
 
 const LikeBtn = styled(ImageViewer)``;
 
-const LikeBtnActive = styled(ImageViewer)`
-  width: 25px;
-  height: 25px;
-  margin-top: -2px;
-  margin-right: -1px;
-`;
-
 const MainCard = ({
   title,
   source,
@@ -116,19 +109,15 @@ const MainCard = ({
     }
   }
 
+  const likeImage = isLike
+    ? require("../Images/heart-filled.png")
+    : require("../Images/heart.png");
+
   return (
     <CardView>
       <CardImage source={source} />
       <LikeBtnPress onPress={handleLike}>
-        {() => {
-          if (isLike) {
-            return (
-              <LikeBtnActive source={require("../Images/heart-filled.png")} />
-            );
-          } else {
-            return <LikeBtn source={require("../Images/heart.png")} />;
-          }
-        }}
+        <LikeBtn source={likeImage} />
       </LikeBtnPress>
 
       <TitleRatingView>
