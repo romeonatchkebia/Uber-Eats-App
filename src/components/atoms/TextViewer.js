@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const Text = styled.Text`
-  color: #71908d;
   font-size: 20px;
 `;
 

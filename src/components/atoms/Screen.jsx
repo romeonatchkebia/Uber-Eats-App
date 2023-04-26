@@ -19,7 +19,7 @@ const ImageBackground = styled.ImageBackground`
 const Container = styled.SafeAreaView`
   flex: 1;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 `;
 
 const Screen = ({ children, ...props }) => {

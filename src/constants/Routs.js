@@ -9,6 +9,7 @@ export const BOTTOM_TAB_NAV = "BottomTabNav";
 export const DRAWER_NAVIGATOR = "DrawerNavigator";
 export const HOMESCREEN_SCREEN = "HomeScreen";
 export const ORDERS_SCREEN = "Orders";
+export const LANDING_SCREEN = "LandingScreen";
 export const NOTIFICATIONS_SCREEN = "Notifications";
 export const SETTINGS_SCREEN = "Settings";
 

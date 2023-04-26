@@ -10,9 +10,7 @@ import * as ROUTES from "../../constants/Routs";
 
 const loginScreenImage = require("../Images/loginScreenImage.png");
 
-const Container = styled(Screen)`
-  margin-top: -30px;
-`;
+const Container = styled(Screen)``;
 
 const LogIn = styled(Button)`
   margin-bottom: 10px;
@@ -29,13 +27,17 @@ const CreateAccount = styled(Button)`
 `;
 
 const LoginScreImage = styled(ImageViewer)`
-  margin-top: 40px;
+  margin-top: 100px;
   margin-bottom: 54px;
 `;
 
-const UserName = styled(TextInput)``;
+const UserName = styled(TextInput)`
+  margin-bottom: 10px;
+`;
 
-const Password = styled(TextInput)``;
+const Password = styled(TextInput)`
+  margin-bottom: 20px;
+`;
 
 const LoginScreen = ({ navigation, route }) => {
   const [userNameLogIn, setUserNameLogIn] = useState("");

@@ -130,15 +130,18 @@ const MainCard = ({
           }
         }}
       </LikeBtnPress>
+
       <TitleRatingView>
         <CardTitle text={title} />
         <CardRatingView>
           <CardRating text={ratingValue.toFixed(1)} />
         </CardRatingView>
       </TitleRatingView>
+
       {price && deliveryTime && (
-        <CardSubTitle text={`$${price} Delivery Fee | ${deliveryTime}`} />
+        <CardSubTitle text={`$${price} Delivery Fee • ${deliveryTime}`} />
       )}
+
       {promoOrdersNum && promoOrdersPrice && (
         <PromotionView>
           <PromotionText

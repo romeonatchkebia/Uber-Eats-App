@@ -6,6 +6,7 @@ import HomeScreen from "../src/components/screens/HomeScreen";
 import Orders from "../src/components/screens/Orders";
 import SettingNavigator from "./SettingNavigator";
 import Notifications from "../src/components/screens/Notifications";
+import LandingScreen from "../src/components/screens/LandingScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,8 @@ function BottomTabNav() {
             icon = focused ? "notifications" : "notifications-outline";
           } else if (route.name === ROUTES.SETTINGS_NAVIGATOR) {
             icon = focused ? "settings" : "settings-outline";
+          } else if (route.name === ROUTES.LANDING_SCREEN) {
+            icon = focused ? "map" : "map-outline";
           }
           return <Icon name={icon} size={25} color={color} />;
         },
@@ -36,6 +39,7 @@ function BottomTabNav() {
         options={{ title: "Home" }}
       />
       <Tab.Screen name={ROUTES.ORDERS_SCREEN} component={Orders} />
+
       <Tab.Screen
         name={ROUTES.NOTIFICATIONS_SCREEN}
         component={Notifications}

@@ -6,7 +6,6 @@ const InputText = styled.TextInput`
   height: 60px;
   width: 250px;
   border-radius: 10px;
-  margin-bottom: 20px;
   font-size: 20px;
   padding: 20px;
 `;

@@ -8,17 +8,17 @@ import styled from "styled-components";
 import { ImageBackground } from "react-native";
 
 import ImageViewer from "../atoms/ImageViewer";
-import * as Images from "../../constants/Images";
+import * as IMAGES from "../../constants/Images";
 
 const CustomDrawer = ({ ...props }) => {
   return (
     <DrawerContentScrollView {...props}>
       <ImageBackground
-        source={Images.drawerBackgroundImage}
+        source={IMAGES.drawerBackgroundImage}
         style={{ height: 150 }}
       >
         <ImageViewer
-          source={Images.drawerProfileImage}
+          source={IMAGES.drawerProfileImage}
           style={styles.profileImg}
         />
       </ImageBackground>

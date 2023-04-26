@@ -10,6 +10,7 @@ import Notifications from "../src/components/screens/Notifications";
 import SettingNavigator from "./SettingNavigator";
 import BottomTabNav from "./BottomTabNav";
 import CustomDrawer from "../src/components/organisms/CustomDrawer";
+import LandingScreen from "../src/components/screens/LandingScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +31,8 @@ function DrawerNavigator() {
             icon = focused ? "notifications" : "notifications-outline";
           } else if (route.name === ROUTES.SETTINGS_NAVIGATOR) {
             icon = focused ? "settings" : "settings-outline";
+          } else if (route.name === ROUTES.LANDING_SCREEN) {
+            icon = focused ? "map" : "map-outline";
           }
           return <Icon name={icon} size={25} color={color} />;
         },
@@ -41,6 +44,13 @@ function DrawerNavigator() {
         options={{ title: "Home", headerShown: false }}
       />
       <Drawer.Screen name={ROUTES.ORDERS_SCREEN} component={Orders} />
+
+      <Drawer.Screen
+        name={ROUTES.LANDING_SCREEN}
+        component={LandingScreen}
+        options={{ headerShown: false }}
+      />
+
       <Drawer.Screen
         name={ROUTES.NOTIFICATIONS_SCREEN}
         component={Notifications}
