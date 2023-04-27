@@ -8,6 +8,7 @@ const CardView = styled.Pressable`
   background: #f6f6f6;
   padding: 12px;
   position: relative;
+  min-height: 235px;
 `;
 
 const CardImage = styled(ImageViewer)``;
@@ -95,6 +96,7 @@ const MainCard = ({
   rating,
   promoOrdersNum,
   promoOrdersPrice,
+  distance,
 }) => {
   const [isLike, setIsLike] = useState(false);
   const [ratingValue, setRatingValue] = useState(rating);
@@ -127,8 +129,11 @@ const MainCard = ({
         </CardRatingView>
       </TitleRatingView>
 
-      {price && deliveryTime && (
+      {price && (
         <CardSubTitle text={`$${price} Delivery Fee • ${deliveryTime}`} />
+      )}
+      {distance && (
+        <CardSubTitle text={`${deliveryTime} min • ${distance}mi`} />
       )}
 
       {promoOrdersNum && promoOrdersPrice && (

@@ -36,7 +36,7 @@ function BottomTabNav() {
       <Tab.Screen
         name={ROUTES.HOMESCREEN_SCREEN}
         component={HomeScreen}
-        options={{ title: "Home" }}
+        options={{ title: "Home", headerShown: false }}
       />
       <Tab.Screen name={ROUTES.ORDERS_SCREEN} component={Orders} />
 
