@@ -39,7 +39,6 @@ const CardRatingView = styled.View`
   padding: 3px 5px;
   margin-top: 5px;
   width: 28px;
-  margin-right: 28px;
 `;
 
 const CardRating = styled(TextViewer)`
@@ -83,13 +82,13 @@ const PromotionText = styled(TextViewer)`
 
 const LikeBtnPress = styled.Pressable`
   position: absolute;
-  right: 58px;
+  right: 32px;
   top: 36px;
 `;
 
 const LikeBtn = styled(ImageViewer)``;
 
-const MainCard = ({
+const HorizontalListCard = ({
   title,
   source,
   deliveryTime,
@@ -149,4 +148,4 @@ const MainCard = ({
   );
 };
 
-export default MainCard;
+export default HorizontalListCard;

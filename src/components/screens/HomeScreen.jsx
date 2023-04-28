@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, SectionList } from "react-native";
 import * as Progress from "react-native-progress";
 
 import styled from "styled-components";
@@ -9,8 +9,9 @@ import CtgrButton from "../atoms/CtgrButton";
 import ImageViewer from "../atoms/ImageViewer";
 import TextViewer from "../atoms/TextViewer";
 import * as IMAGES from "../../constants/Images";
+import HorizontalListCard from "../organisms/HorizontalListCard";
 
-const deliveryList = [
+const oldDeliveryList = [
   {
     id: 1,
     url: require("../Images/mainCardImage.png"),
@@ -48,88 +49,14 @@ const deliveryList = [
     rating: 4.6,
   },
 ];
-const pickUpList = [
-  {
-    id: 1,
-    url: require("../Images/pickup-image1.png"),
-    title: "Pickup",
-    deliveryTime: "10-25",
-    price: 0.35,
-    rating: 4.3,
-    promoOrdersNum: "9",
-    promoOrdersPrice: "23",
-    distance: 2.5,
-  },
-  {
-    id: 2,
-    url: require("../Images/mainCardImage2.png"),
-    title: "Pickup",
-    deliveryTime: "20-45",
-    price: 0.25,
-    rating: 4.6,
-    distance: 4.7,
-  },
-  {
-    id: 3,
-    url: require("../Images/pickup-image3.png"),
-    title: "Pickup",
-    deliveryTime: "20-45",
-    price: 0.75,
-    rating: 4.6,
-    distance: 1.3,
-  },
-  {
-    id: 4,
-    url: require("../Images/pickup-image4.png"),
-    title: "Pickup",
-    deliveryTime: "20-45",
-    price: 0.43,
-    rating: 4.6,
-    distance: 1.7,
-  },
-];
-const dineInList = [
-  {
-    id: 1,
-    url: require("../Images/mainCardImage.png"),
-    title: "Dine-in",
-    price: "0.29",
-    deliveryTime: "10-25",
-    rating: 4.3,
-    promoOrdersNum: "9",
-    promoOrdersPrice: "23",
-  },
-  {
-    id: 2,
-    url: require("../Images/mainCardImage1.png"),
-    title: "Dine-in",
-    price: "0.49",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-  {
-    id: 3,
-    url: require("../Images/mainCardImage2.png"),
-    title: "Dine-in",
-    price: "0.49",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-  {
-    id: 4,
-    url: require("../Images/mainCardImage3.png"),
-    title: "Dine-in",
-    price: "0.49",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-];
 
 const Container = styled(Screen)`
   background: #f6f6f6;
 `;
 
-const HomeCard = styled(MainCard)``;
+const HomeCard = styled(MainCard)`
+  margin-left: 25px;
+`;
 
 // category and filter buttons
 const CtgrFilterBtnView = styled.View``;
@@ -160,7 +87,7 @@ const FilterText = styled(TextViewer)`
   font-weight: 500;
   font-size: 17px;
   line-height: 23px;
-  padding-left: 30%;
+  padding-left: 28%;
 `;
 
 const IconView = styled.View`
@@ -169,6 +96,7 @@ const IconView = styled.View`
 
 const FilterIcon = styled(ImageViewer)``;
 
+// Filter button
 const FilterBtnPress = styled.Pressable``;
 
 const FilterBtn = styled(ImageViewer)`
@@ -176,15 +104,440 @@ const FilterBtn = styled(ImageViewer)`
   height: 25px;
 `;
 
+// loading spinner
 const SpinnerView = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
 `;
 
+// SectionList component
+const SectionTitle = styled(TextViewer)`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 37px;
+`;
+
+const pickUpList = [
+  {
+    id: 1,
+    data: [
+      {
+        id: 2,
+        url: require("../Images/pickup-image1.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 3.2,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+        distance: 0.56,
+      },
+
+      {
+        id: 3,
+        url: require("../Images/pickup-image2.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.5,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+        distance: 0.76,
+      },
+      {
+        id: 4,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 2.7,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+        distance: 5.76,
+      },
+    ],
+    sectionTitle: "Main dishes",
+  },
+  {
+    id: 5,
+    data: [
+      {
+        id: 6,
+        url: require("../Images/pickup-image4.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.4,
+      },
+
+      {
+        id: 7,
+        url: require("../Images/pickup-image1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.8,
+      },
+
+      {
+        id: 8,
+        url: require("../Images/pickup-image2.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 4.6,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+    sectionTitle: "Sides",
+  },
+  {
+    id: 9,
+    data: [
+      {
+        id: 10,
+        url: require("../Images/pickup-image3.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+
+      {
+        id: 11,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 2.2,
+      },
+      {
+        id: 12,
+        url: require("../Images/pickup-image4.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 1.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+    sectionTitle: "Drinks",
+  },
+  {
+    id: 13,
+    data: [
+      {
+        id: 14,
+        url: require("../Images/pickup-image2.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+
+      {
+        id: 15,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 16,
+        url: require("../Images/pickup-image3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+    sectionTitle: "Desserts",
+  },
+];
+
+const dineInList = [
+  {
+    id: 1,
+    data: [
+      {
+        id: 2,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.3,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+      },
+
+      {
+        id: 3,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.3,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+      },
+      {
+        id: 4,
+        url: require("../Images/mainCardImage.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.3,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+      },
+    ],
+    sectionTitle: "Main dishes",
+  },
+  {
+    id: 5,
+    data: [
+      {
+        id: 6,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+
+      {
+        id: 7,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+
+      {
+        id: 8,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+    sectionTitle: "Sides",
+  },
+  {
+    id: 9,
+    data: [
+      {
+        id: 10,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+
+      {
+        id: 11,
+        url: require("../Images/mainCardImage.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+      },
+      {
+        id: 12,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+    sectionTitle: "Drinks",
+  },
+  {
+    id: 13,
+    data: [
+      {
+        id: 14,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+
+      {
+        id: 15,
+        url: require("../Images/mainCardImage.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 16,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+    sectionTitle: "Desserts",
+  },
+];
+const deliveryList = [
+  {
+    data: [
+      {
+        id: 2,
+        url: require("../Images/mainCardImage.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.7,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+      },
+
+      {
+        id: 3,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.4,
+      },
+      {
+        id: 4,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.3,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+      },
+    ],
+    sectionTitle: "Main dishes",
+  },
+  {
+    data: [
+      {
+        id: 6,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 2.6,
+      },
+
+      {
+        id: 7,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+
+      {
+        id: 8,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.8,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+    sectionTitle: "Sides",
+  },
+  {
+    data: [
+      {
+        id: 10,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+
+      {
+        id: 11,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+      },
+      {
+        id: 12,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+    sectionTitle: "Drinks",
+  },
+  {
+    data: [
+      {
+        id: 14,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+
+      {
+        id: 15,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 16,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+    sectionTitle: "Desserts",
+  },
+];
+
 function HomeScreen() {
   const [category, setCategory] = useState(0);
-  const [data, setData] = useState([]);
+  const [alldata, setAllData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -197,11 +550,11 @@ function HomeScreen() {
 
   function fetchData() {
     if (category === 0) {
-      setData(deliveryList);
+      setAllData(deliveryList);
     } else if (category === 1) {
-      setData(pickUpList);
+      setAllData(pickUpList);
     } else {
-      setData(dineInList);
+      setAllData(dineInList);
     }
   }
 
@@ -248,21 +601,55 @@ function HomeScreen() {
               </FilterBtnPress>
             </FilterView>
           </CtgrFilterBtnView>
-          <FlatList
-            data={data}
-            renderItem={({ item }) => (
-              <HomeCard
-                title={item.title}
-                source={item.url}
-                price={category === 0 ? item.price : ""}
-                deliveryTime={item.deliveryTime}
-                rating={item.rating}
-                promoOrdersNum={category === 0 ? item.promoOrdersNum : ""}
-                promoOrdersPrice={item.promoOrdersPrice}
-                distance={item.distance}
-              />
-            )}
+
+          <SectionList
+            sections={alldata}
             keyExtractor={(item) => item.id}
+            stickySectionHeadersEnabled={false}
+            renderSectionHeader={({ section }) => (
+              <>
+                <SectionTitle
+                  text={section.sectionTitle}
+                  style={{ marginLeft: 12 }}
+                />
+                <FlatList
+                  data={section.data}
+                  renderItem={({ item }) => {
+                    return (
+                      <HorizontalListCard
+                        title={item.title}
+                        source={item.url}
+                        price={category === 0 ? item.price : ""}
+                        deliveryTime={item.deliveryTime}
+                        rating={item.rating}
+                        promoOrdersNum={
+                          category === 0 ? item.promoOrdersNum : ""
+                        }
+                        promoOrdersPrice={item.promoOrdersPrice}
+                        distance={item.distance}
+                        sectionTitle={item.sectionTitle}
+                      />
+                    );
+                  }}
+                  horizontal
+                />
+              </>
+            )}
+            renderItem={({ item }) => {
+              return (
+                <HomeCard
+                  title={item.title}
+                  source={item.url}
+                  price={category === 0 ? item.price : ""}
+                  deliveryTime={item.deliveryTime}
+                  rating={item.rating}
+                  promoOrdersNum={category === 0 ? item.promoOrdersNum : ""}
+                  promoOrdersPrice={item.promoOrdersPrice}
+                  distance={item.distance}
+                  sectionTitle={item.sectionTitle}
+                />
+              );
+            }}
           />
         </>
       )}
