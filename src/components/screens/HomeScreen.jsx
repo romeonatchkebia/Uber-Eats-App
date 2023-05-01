@@ -9,6 +9,7 @@ import CtgrButton from "../atoms/CtgrButton";
 import ImageViewer from "../atoms/ImageViewer";
 import TextViewer from "../atoms/TextViewer";
 import * as IMAGES from "../../constants/Images";
+import * as ROUTES from "../../constants/Routs";
 import HorizontalListCard from "../organisms/HorizontalListCard";
 
 const oldDeliveryList = [
@@ -117,6 +118,8 @@ const SectionTitle = styled(TextViewer)`
   font-weight: 700;
   font-size: 25px;
   line-height: 37px;
+  padding-left: 21px;
+  margin-top: 20px;
 `;
 
 const pickUpList = [
@@ -535,7 +538,7 @@ const deliveryList = [
   },
 ];
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   const [category, setCategory] = useState(0);
   const [alldata, setAllData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -628,6 +631,7 @@ function HomeScreen() {
                         promoOrdersPrice={item.promoOrdersPrice}
                         distance={item.distance}
                         sectionTitle={item.sectionTitle}
+                        onPress={() => console.log("works")}
                       />
                     );
                   }}
@@ -647,6 +651,9 @@ function HomeScreen() {
                   promoOrdersPrice={item.promoOrdersPrice}
                   distance={item.distance}
                   sectionTitle={item.sectionTitle}
+                  onPress={() =>
+                    navigation.navigate(ROUTES.RESTAURANT_DETAILS_SCREEN, item)
+                  }
                 />
               );
             }}

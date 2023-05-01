@@ -8,10 +8,13 @@ const CardView = styled.Pressable`
   background: #f6f6f6;
   padding: 12px;
   position: relative;
-  min-height: 235px;
+  margin-left: 23px;
 `;
 
-const CardImage = styled(ImageViewer)``;
+const CardImage = styled(ImageViewer)`
+  width: 305px;
+  height: 132px;
+`;
 
 const TitleRatingView = styled.View`
   display: flex;
@@ -66,7 +69,7 @@ const PromotionView = styled.View`
   border-bottom-right-radius: 75px;
   background: #34a853;
   height: 25px;
-  width: 235px;
+  width: 66%;
   position: absolute;
   top: 33px;
   left: 12px;
@@ -82,7 +85,7 @@ const PromotionText = styled(TextViewer)`
 
 const LikeBtnPress = styled.Pressable`
   position: absolute;
-  right: 32px;
+  right: 28px;
   top: 36px;
 `;
 
@@ -97,6 +100,7 @@ const HorizontalListCard = ({
   promoOrdersNum,
   promoOrdersPrice,
   distance,
+  onPress,
   ...props
 }) => {
   const [isLike, setIsLike] = useState(false);
@@ -117,7 +121,7 @@ const HorizontalListCard = ({
     : require("../Images/heart.png");
 
   return (
-    <CardView {...props}>
+    <CardView {...props} onPress={onPress}>
       <CardImage source={source} />
       <LikeBtnPress onPress={handleLike}>
         <LikeBtn source={likeImage} />

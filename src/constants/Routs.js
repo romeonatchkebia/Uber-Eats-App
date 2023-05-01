@@ -3,6 +3,7 @@
 export const LOGIN_SCREEN = "LoginScreen";
 export const CREATENEWACCOUNT_SCREEN = "Authorization";
 export const FORGOT_PASSWORD_SCREEN = "ForgotPassword";
+export const RESTAURANT_DETAILS_SCREEN = "RestaurantDetails";
 
 // Home Navigation Screens
 export const BOTTOM_TAB_NAV = "BottomTabNav";

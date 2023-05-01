@@ -10,7 +10,9 @@ import * as ROUTES from "../../constants/Routs";
 
 const loginScreenImage = require("../Images/loginScreenImage.png");
 
-const Container = styled(Screen)``;
+const Container = styled(Screen)`
+  align-items: center;
+`;
 
 const LogIn = styled(Button)`
   margin-bottom: 10px;

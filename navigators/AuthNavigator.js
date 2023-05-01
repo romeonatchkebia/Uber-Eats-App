@@ -7,6 +7,7 @@ import LoginScreen from "../src/components/screens/LoginScreen";
 import CreateNewAccount from "../src/components/screens/CreateNewAccount";
 import ForgotPassword from "../src/components/screens/ForgotPassword";
 import DrawerNavigator from "./DrawerNavigator";
+import RestaurantDetails from "../src/components/screens/RestaurantDetails";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,11 @@ function AuthNavigator() {
           name={ROUTES.DRAWER_NAVIGATOR}
           component={DrawerNavigator}
           options={{ title: "Home" }}
+        />
+        <Stack.Screen
+          name={ROUTES.RESTAURANT_DETAILS_SCREEN}
+          component={RestaurantDetails}
+          options={{ title: "Restaurant" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

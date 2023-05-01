@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React from "react";
 
 import * as ROUTES from "../../constants/Routs";
@@ -6,13 +5,17 @@ import Button from "../atoms/Button";
 import styled from "styled-components";
 import Screen from "../atoms/Screen";
 
-const Container = styled(Screen)``;
+const Container = styled(Screen)`
+  align-items: center;
+  justify-content: center;
+`;
 
-const GoToDetails = styled(Button)``;
+const GoToDetails = styled(Button)`
+  margin-top: -50%;
+`;
 
 const LogOut = styled(Button)`
-  margin-top: 50px;
-  margin-bottom: 100px;
+  margin-top: 10%;
 `;
 
 const Settings = ({ navigation }) => {

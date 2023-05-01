@@ -18,18 +18,13 @@ const ImageBackground = styled.ImageBackground`
 
 const Container = styled.SafeAreaView`
   flex: 1;
-  align-items: center;
-  /* justify-content: center; */
 `;
 
 const Screen = ({ children, ...props }) => {
   return (
-    <MainWrapper
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      {...props}
-    >
+    <MainWrapper behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <ImageBackground>
-        <Container>{children}</Container>
+        <Container {...props}>{children}</Container>
       </ImageBackground>
     </MainWrapper>
   );

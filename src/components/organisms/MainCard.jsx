@@ -8,7 +8,6 @@ const CardView = styled.Pressable`
   background: #f6f6f6;
   padding: 12px;
   position: relative;
-  min-height: 235px;
 `;
 
 const CardImage = styled(ImageViewer)``;
@@ -67,7 +66,7 @@ const PromotionView = styled.View`
   border-bottom-right-radius: 75px;
   background: #34a853;
   height: 25px;
-  width: 235px;
+  width: 62%;
   position: absolute;
   top: 33px;
   left: 12px;
@@ -98,6 +97,7 @@ const MainCard = ({
   promoOrdersNum,
   promoOrdersPrice,
   distance,
+  onPress,
   ...props
 }) => {
   const [isLike, setIsLike] = useState(false);
@@ -118,7 +118,7 @@ const MainCard = ({
     : require("../Images/heart.png");
 
   return (
-    <CardView {...props}>
+    <CardView {...props} onPress={onPress}>
       <CardImage source={source} />
       <LikeBtnPress onPress={handleLike}>
         <LikeBtn source={likeImage} />
