@@ -10,3 +10,8 @@ export const UKFlag = require("../components/Images/great-britain-flag.png");
 //Icons for HomeScreen
 export const Slider = require("../components/Images/slider.png");
 export const FilterTextIcon = require("../components/Images/dawn.png");
+
+export const Convenience = require("../components/Images/convenience.png");
+export const Alcohol = require("../components/Images/alcohol.png");
+export const PetSupplies = require("../components/Images/pet_supplies.png");
+export const More = require("../components/Images/Menu.png");

@@ -1,5 +1,6 @@
 import React from "react";
 import { Platform, Dimensions } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components";
 
 const windowWidth = Dimensions.get("screen").width;

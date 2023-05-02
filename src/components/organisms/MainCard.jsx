@@ -127,7 +127,7 @@ const MainCard = ({
       <TitleRatingView>
         <CardTitle text={title} />
         <CardRatingView>
-          <CardRating text={ratingValue.toFixed(1)} />
+          {ratingValue && <CardRating text={ratingValue.toFixed(1)} />}
         </CardRatingView>
       </TitleRatingView>
 
