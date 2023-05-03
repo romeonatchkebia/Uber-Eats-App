@@ -1,12 +1,12 @@
 import react, { useState } from "react";
 import styled from "styled-components";
 
-import Button from "../atoms/Button";
 import Screen from "../atoms/Screen";
 import TextViewer from "../atoms/TextViewer";
 import ImageViewer from "../atoms/ImageViewer";
 import TextInput from "../atoms/TextInput";
 import * as ROUTES from "../../constants/Routs";
+import Buttons from "../atoms/Buttons";
 
 const loginScreenImage = require("../Images/loginScreenImage.png");
 
@@ -14,15 +14,15 @@ const Container = styled(Screen)`
   align-items: center;
 `;
 
-const LogIn = styled(Button)`
+const LogIn = styled(Buttons)`
   margin-bottom: 10px;
 `;
 
-const ForgotPass = styled(Button)`
+const ForgotPass = styled(Buttons)`
   background-color: #ffffff;
   margin-top: 70px;
 `;
-const CreateAccount = styled(Button)`
+const CreateAccount = styled(Buttons)`
   background-color: #ffffff;
   margin-top: 20px;
   margin-bottom: -50px;

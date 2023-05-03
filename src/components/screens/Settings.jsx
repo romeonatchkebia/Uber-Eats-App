@@ -1,20 +1,20 @@
 import React from "react";
 
 import * as ROUTES from "../../constants/Routs";
-import Button from "../atoms/Button";
 import styled from "styled-components";
 import Screen from "../atoms/Screen";
+import Buttons from "../atoms/Buttons";
 
 const Container = styled(Screen)`
   align-items: center;
   justify-content: center;
 `;
 
-const GoToDetails = styled(Button)`
+const GoToDetails = styled(Buttons)`
   margin-top: -50%;
 `;
 
-const LogOut = styled(Button)`
+const LogOut = styled(Buttons)`
   margin-top: 10%;
 `;
 

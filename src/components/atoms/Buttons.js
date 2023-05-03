@@ -25,7 +25,13 @@ const Title = styled.Text`
   }};
 `;
 
-const Button = ({ title, onPress, light = false, black = false, ...props }) => {
+const Buttons = ({
+  title,
+  onPress,
+  light = false,
+  black = false,
+  ...props
+}) => {
   return (
     <Container onPress={onPress} light={light} {...props}>
       <Title light={light} black={black}>
@@ -35,4 +41,4 @@ const Button = ({ title, onPress, light = false, black = false, ...props }) => {
   );
 };
 
-export default Button;
+export default Buttons;

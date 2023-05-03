@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Screen from "../atoms/Screen";
 import styled from "styled-components";
 import TextInput from "../atoms/TextInput";
-import Button from "../atoms/Button";
 import TextViewer from "../atoms/TextViewer";
 import * as ROUTES from "../../constants/Routs";
+import Buttons from "../atoms/Buttons";
 
 const Container = styled(Screen)``;
 
@@ -15,7 +15,7 @@ const Password = styled(TextInput)`
   margin-bottom: 50px;
 `;
 
-const EnterBtn = styled(Button)`
+const EnterBtn = styled(Buttons)`
   height: 50px;
 `;
 
