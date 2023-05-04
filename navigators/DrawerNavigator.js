@@ -3,14 +3,13 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import * as ROUTES from "../src/constants/Routs";
-import * as COLORS from "../src/constants/Colors";
 
-import Orders from "../src/components/screens/Orders";
 import Notifications from "../src/components/screens/Notifications";
 import SettingNavigator from "./SettingNavigator";
 import BottomTabNav from "./BottomTabNav";
 import CustomDrawer from "../src/components/organisms/CustomDrawer";
 import LandingScreen from "../src/components/screens/LandingScreen";
+import Browse from "../src/components/screens/Browse";
 
 const Drawer = createDrawerNavigator();
 
@@ -25,7 +24,7 @@ function DrawerNavigator() {
 
           if (route.name === ROUTES.BOTTOM_TAB_NAV) {
             icon = focused ? "home" : "home-outline";
-          } else if (route.name === ROUTES.ORDERS_SCREEN) {
+          } else if (route.name === ROUTES.BROWSE_SCREEN) {
             icon = focused ? "card" : "card-outline";
           } else if (route.name === ROUTES.NOTIFICATIONS_SCREEN) {
             icon = focused ? "notifications" : "notifications-outline";
@@ -43,7 +42,7 @@ function DrawerNavigator() {
         component={BottomTabNav}
         options={{ title: "Home", headerShown: false }}
       />
-      <Drawer.Screen name={ROUTES.ORDERS_SCREEN} component={Orders} />
+      <Drawer.Screen name={ROUTES.BROWSE_SCREEN} component={Browse} />
 
       <Drawer.Screen
         name={ROUTES.LANDING_SCREEN}

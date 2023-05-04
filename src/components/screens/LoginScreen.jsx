@@ -6,9 +6,9 @@ import TextViewer from "../atoms/TextViewer";
 import ImageViewer from "../atoms/ImageViewer";
 import TextInput from "../atoms/TextInput";
 import * as ROUTES from "../../constants/Routs";
-import Buttons from "../atoms/Buttons";
+import * as IMAGES from "../../constants/Images";
 
-const loginScreenImage = require("../Images/loginScreenImage.png");
+import Buttons from "../atoms/Buttons";
 
 const Container = styled(Screen)`
   align-items: center;
@@ -64,7 +64,7 @@ const LoginScreen = ({ navigation, route }) => {
 
   return (
     <Container>
-      <LoginScreImage source={loginScreenImage} />
+      <LoginScreImage source={IMAGES.LOGINSCREENIMAGE} />
       <UserName
         placeholder="UserName"
         value={userNameLogIn}

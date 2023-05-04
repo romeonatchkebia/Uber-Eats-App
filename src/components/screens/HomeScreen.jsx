@@ -1,26 +1,26 @@
 import React, { useEffect, useRef, useState, Text } from "react";
-import { Button, FlatList, ScrollView, SectionList } from "react-native";
+import { FlatList, SectionList } from "react-native";
 import * as Progress from "react-native-progress";
 import { Portal } from "react-native-portalize";
 import BottomSheet from "../atoms/BottomSheet";
 import styled from "styled-components";
 
 import Screen from "../atoms/Screen";
-import MainCard from "../organisms/MainCard";
+import MainCard from "../molecules/cards/MainCard";
 import CtgrButton from "../atoms/CtgrButton";
 import ImageViewer from "../atoms/ImageViewer";
 import TextViewer from "../atoms/TextViewer";
-import Buttons from "../atoms/Buttons";
 
 import * as IMAGES from "../../constants/Images";
 import * as ROUTES from "../../constants/Routs";
+import * as COLORS from "../../constants/Colors";
 
-import HorizontalListCard from "../organisms/HorizontalListCard";
-import CategoryCard from "../molecules/CategoryCard";
+import HorizontalListCard from "../molecules/cards/HorizontalListCard";
+import CategoryCard from "../molecules/cards/CategoryCard";
 import SectionDevider from "../atoms/SectionDevider";
-import CategoryCardForFooter from "../molecules/CategoryCardForFooter";
-import ThreeObjectCardForHomeScreen from "../molecules/ThreeObjectCardForHomeScreen";
-import HomeScreenBottomCard from "../molecules/HomeScreenBottomCard";
+import CategoryCardForFooter from "../molecules/cards/CategoryCardForFooter";
+import ThreeObjectCardForHomeScreen from "../molecules/cards/ThreeObjectCardForHomeScreen";
+import HomeScreenBottomCard from "../molecules/cards/HomeScreenBottomCard";
 
 const oldDeliveryList = [
   {
@@ -62,7 +62,7 @@ const oldDeliveryList = [
 ];
 
 const Container = styled(Screen)`
-  background: #f6f6f6;
+  background: ${COLORS.SCREEN_BACKGROUND};
 `;
 
 const HomeCard = styled(MainCard)`
@@ -149,7 +149,7 @@ const SeeAllBtnView = styled.Pressable`
 const SeeAllBtn = styled.Text`
   font-style: normal;
   font-weight: 500;
-  font-size: 16.5519px;
+  font-size: 17px;
   line-height: 21px;
   color: ${({ secTitle }) =>
     secTitle == "" ||
@@ -538,7 +538,7 @@ const dineInList = [
       },
       {
         id: 38,
-        url: require("../Images/cocke.png"),
+        url: require("../Images/coc.png"),
         title: "Peach Slices",
         price: "10.00",
       },
@@ -893,7 +893,7 @@ const pickUpList = [
       },
       {
         id: 38,
-        url: require("../Images/cocke.png"),
+        url: require("../Images/coc.png"),
         title: "Peach Slices",
         price: "10.00",
       },
@@ -1247,7 +1247,7 @@ const deliveryList = [
       },
       {
         id: 38,
-        url: require("../Images/cocke.png"),
+        url: require("../Images/coc.png"),
         title: "Peach Slices",
         price: "10.00",
       },

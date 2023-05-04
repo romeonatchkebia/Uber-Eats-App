@@ -15,3 +15,16 @@ export const Convenience = require("../components/Images/convenience.png");
 export const Alcohol = require("../components/Images/alcohol.png");
 export const PetSupplies = require("../components/Images/pet_supplies.png");
 export const More = require("../components/Images/Menu.png");
+
+// HorizontalListCard, MainCard
+export const HeartFilled = require("../components/Images/heart-filled.png");
+export const Heart = require("../components/Images/heart.png");
+
+// RestaurantDetails
+export const RestDetailsVector = require("../components/Images/restDetailsVector.png");
+export const GroupImage = require("../components/Images/Group.png");
+export const StarIcon = require("../components/Images/RatingStar.png");
+
+// LoginScreen Image
+
+export const LOGINSCREENIMAGE = require("../components/Images/loginScreenImage.png");

@@ -4,7 +4,6 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import styled from "styled-components";
 import { ImageBackground } from "react-native";
 
 import ImageViewer from "../atoms/ImageViewer";

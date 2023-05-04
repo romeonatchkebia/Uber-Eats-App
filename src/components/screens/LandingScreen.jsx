@@ -8,6 +8,7 @@ import ImageViewer from "../atoms/ImageViewer";
 import TextViewer from "../atoms/TextViewer";
 import TextInput from "../atoms/TextInput";
 import * as IMAGES from "../../constants/Images";
+import * as COLORS from "../../constants/Colors";
 
 const Container = styled(Screen)``;
 

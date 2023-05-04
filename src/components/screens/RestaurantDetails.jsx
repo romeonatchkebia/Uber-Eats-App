@@ -4,11 +4,12 @@ import styled from "styled-components";
 import Screen from "../atoms/Screen";
 import { v4 as uuidv4 } from "uuid";
 import * as Progress from "react-native-progress";
+import * as IMAGES from "../../constants/Images";
 
-import RestDetailsCard from "../organisms/RestDetailsCard";
+import RestDetailsCard from "../molecules/cards/RestDetailsCard";
 import TextViewer from "../atoms/TextViewer";
 import DeliveryPickupBtns from "../atoms/DeliveryPickupBtns";
-import RestDetailsPopularCard from "../molecules/RestDetailsPopularCard";
+import RestDetailsPopularCard from "../molecules/cards/RestDetailsPopularCard";
 
 const SpinnerView = styled.View`
   flex: 1;
@@ -65,8 +66,6 @@ const RightArrow = styled.Image`
   margin-right: 20px;
 `;
 
-const rightArrow = require("../Images/restDetailsVector.png");
-
 const ButtonsViewContainer = styled.View`
   margin-top: 18px;
   justify-content: center;
@@ -74,8 +73,6 @@ const ButtonsViewContainer = styled.View`
 `;
 
 const GroupOrderView = styled.View``;
-
-const groupImage = require("../Images/Group.png");
 
 const GroupImage = styled.Image``;
 
@@ -119,8 +116,6 @@ const SectionTitle = styled.Text`
   margin-bottom: 18px;
   margin-top: 23px;
 `;
-
-const starIcon = require("../Images/RatingStar.png");
 
 const BottomSaveView = styled.View`
   align-items: center;
@@ -337,7 +332,7 @@ const RestaurantDetails = ({ navigation, route }) => {
 
               <RestInfoView>
                 <View style={{ marginRight: 3 }}>
-                  <Image source={starIcon} />
+                  <Image source={IMAGES.StarIcon} />
                 </View>
                 <RestInfo>
                   {rest.rating}({calcRating(rest.ratingQuantity)}) •{" "}
@@ -350,14 +345,14 @@ const RestaurantDetails = ({ navigation, route }) => {
             </InfoContainer>
 
             <RightContainer>
-              <RightArrow source={rightArrow} />
+              <RightArrow source={IMAGES.RightArrow} />
             </RightContainer>
           </HeaderContainer>
 
           <ButtonsViewContainer>
             <GroupOrderView>
               <GroupOrderBtn>
-                <GroupImage source={groupImage} />
+                <GroupImage source={IMAGES.GroupImage} />
                 <GroupOrderBtnText>Group order</GroupOrderBtnText>
               </GroupOrderBtn>
             </GroupOrderView>

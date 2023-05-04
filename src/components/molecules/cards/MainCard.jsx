@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
 import styled from "styled-components";
-import TextViewer from "../atoms/TextViewer";
-import ImageViewer from "../atoms/ImageViewer";
+import TextViewer from "../../atoms/TextViewer";
+import ImageViewer from "../../atoms/ImageViewer";
+import * as IMAGES from "../../../constants/Images";
 
 const CardView = styled.Pressable`
   background: #f6f6f6;
@@ -113,9 +114,7 @@ const MainCard = ({
     }
   }
 
-  const likeImage = isLike
-    ? require("../Images/heart-filled.png")
-    : require("../Images/heart.png");
+  const likeImage = isLike ? IMAGES.HeartFilled : IMAGES.Heart;
 
   return (
     <CardView {...props} onPress={onPress}>

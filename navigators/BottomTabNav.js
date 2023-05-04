@@ -3,10 +3,10 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import * as ROUTES from "../src/constants/Routs";
 import HomeScreen from "../src/components/screens/HomeScreen";
-import Orders from "../src/components/screens/Orders";
 import SettingNavigator from "./SettingNavigator";
 import Notifications from "../src/components/screens/Notifications";
 import LandingScreen from "../src/components/screens/LandingScreen";
+import Browse from "../src/components/screens/Browse";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +20,7 @@ function BottomTabNav() {
 
           if (route.name === ROUTES.HOMESCREEN_SCREEN) {
             icon = focused ? "home" : "home-outline";
-          } else if (route.name === ROUTES.ORDERS_SCREEN) {
+          } else if (route.name === ROUTES.BROWSE_SCREEN) {
             icon = focused ? "card" : "card-outline";
           } else if (route.name === ROUTES.NOTIFICATIONS_SCREEN) {
             icon = focused ? "notifications" : "notifications-outline";
@@ -38,7 +38,11 @@ function BottomTabNav() {
         component={HomeScreen}
         options={{ title: "Home", headerShown: false }}
       />
-      <Tab.Screen name={ROUTES.ORDERS_SCREEN} component={Orders} />
+      <Tab.Screen
+        name={ROUTES.BROWSE_SCREEN}
+        component={Browse}
+        options={{ headerShown: false }}
+      />
 
       <Tab.Screen
         name={ROUTES.NOTIFICATIONS_SCREEN}

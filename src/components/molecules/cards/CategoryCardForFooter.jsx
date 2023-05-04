@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 import styled from "styled-components";
-import ImageViewer from "../atoms/ImageViewer";
+import ImageViewer from "../../atoms/ImageViewer";
 
 const Container = styled.View`
   display: flex;

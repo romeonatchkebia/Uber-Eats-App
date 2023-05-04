@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import TextViewer from "../atoms/TextViewer";
-import ImageViewer from "../atoms/ImageViewer";
+import TextViewer from "../../atoms/TextViewer";
+import ImageViewer from "../../atoms/ImageViewer";
 
 const Container = styled.View`
   flex-direction: row;
