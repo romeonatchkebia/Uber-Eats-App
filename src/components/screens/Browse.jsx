@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Pressable } from "react-native";
 import { Octicons } from "@expo/vector-icons";
 import { ScrollView } from "react-native";
 
@@ -7,7 +6,6 @@ import styled from "styled-components";
 import Screen from "../atoms/Screen";
 import TextViewer from "../atoms/TextViewer";
 import BrowseCard from "../molecules/cards/BrowseCard";
-import SearchComponent from "../atoms/SearchComponent";
 
 const Container = styled(Screen)``;
 
@@ -30,6 +28,9 @@ const InputText = styled.TextInput`
 
 const BrowseCardView = styled.View`
   border: 1px solid #e8e8e8;
+  background-color: #e8e8e8;
+  border-radius: 20px;
+  height: 180px;
 `;
 
 // categories and cards
@@ -184,9 +185,18 @@ const Browse = ({ navigation }) => {
 
   const holeList = [...topTitles, ...allTitles];
 
+  useEffect(() => {
+    const item = holeList.find((item) => item.title === input);
+
+    if (item) {
+      setShowSearch(true);
+      setImage(item);
+    }
+  }, [input]);
+
   const handleInputChange = (text) => {
     setInput(text);
-    if (text === "") {
+    if (text !== input) {
       setShowSearch(false);
     }
   };
@@ -196,25 +206,21 @@ const Browse = ({ navigation }) => {
       <ScrollView>
         <SearchComponentView>
           <SearchContainer>
-            <Pressable
-              onPress={() => {
-                const item = holeList.find((item) => item.title === input);
-                if (item) {
-                  setShowSearch(true);
-                  setImage(item);
-                }
-              }}
-            >
-              <Octicons name="search" size={25} color="black" />
-            </Pressable>
+            <Octicons name="search" size={25} color="black" />
+
             <InputText
               placeholder="Food, shopping, drinks, etc"
               value={input}
               onChangeText={handleInputChange}
             ></InputText>
           </SearchContainer>
-          {showSearch && <BrowseCard title={input} imgUrl={img.imgUrl} />}
+          {showSearch && (
+            <BrowseCardView>
+              <BrowseCard title={input} imgUrl={img.imgUrl} />
+            </BrowseCardView>
+          )}
         </SearchComponentView>
+
         <TopCategories text="Top Categories" />
         <InnerContainer>
           {topCategoriesList.map((item) => {
@@ -228,6 +234,7 @@ const Browse = ({ navigation }) => {
             );
           })}
         </InnerContainer>
+
         <AllCategories text="All Categories" />
         <InnerContainer>
           {allCategoriesList.map((item) => {

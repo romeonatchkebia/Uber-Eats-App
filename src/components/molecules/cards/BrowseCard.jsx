@@ -12,6 +12,7 @@ const BrowseImage = styled(ImageViewer)``;
 
 const TitleView = styled.View`
   border: 1px solid #e8e8e8;
+  background-color: #ffffff;
   width: 166px;
 `;
 
