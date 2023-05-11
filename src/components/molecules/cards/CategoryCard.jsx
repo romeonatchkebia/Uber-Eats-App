@@ -4,9 +4,6 @@ import styled from "styled-components";
 
 const Container = styled.Pressable`
   align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 90px;
 `;
 
 const Wrapper = styled.View`

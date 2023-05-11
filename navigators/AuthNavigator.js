@@ -9,6 +9,8 @@ import CreateNewAccount from "../src/components/screens/CreateNewAccount";
 import ForgotPassword from "../src/components/screens/ForgotPassword";
 import DrawerNavigator from "./DrawerNavigator";
 import RestaurantDetails from "../src/components/screens/RestaurantDetails";
+import Deals from "../src/components/screens/Deals";
+import Baskets from "../src/components/screens/Baskets";
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +43,16 @@ function AuthNavigator() {
             name={ROUTES.RESTAURANT_DETAILS_SCREEN}
             component={RestaurantDetails}
             options={{ title: "Restaurant" }}
+          />
+          <Stack.Screen
+            name={ROUTES.DEALS_SCREEN}
+            component={Deals}
+            options={{ title: "Deals" }}
+          />
+          <Stack.Screen
+            name={ROUTES.BASKETS_SCREEN}
+            component={Baskets}
+            options={{ title: "Bastkets" }}
           />
         </Stack.Navigator>
       </Host>

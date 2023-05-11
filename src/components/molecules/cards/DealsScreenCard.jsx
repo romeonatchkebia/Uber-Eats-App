@@ -38,7 +38,7 @@ const CardRatingView = styled.View`
   justify-content: center;
   padding: 3px 5px;
   margin-top: 5px;
-  margin-right: 8px;
+  width: 28px;
 `;
 
 const CardRating = styled(TextViewer)`
@@ -82,13 +82,13 @@ const PromotionText = styled(TextViewer)`
 
 const LikeBtnPress = styled.Pressable`
   position: absolute;
-  right: 38px;
+  right: 34px;
   top: 36px;
 `;
 
 const LikeBtn = styled(ImageViewer)``;
 
-const MainCard = ({
+const DealsScreenCard = ({
   title,
   source,
   deliveryTime,
@@ -147,4 +147,4 @@ const MainCard = ({
   );
 };
 
-export default MainCard;
+export default DealsScreenCard;

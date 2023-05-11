@@ -66,7 +66,7 @@ const Container = styled(Screen)`
 `;
 
 const HomeCard = styled(MainCard)`
-  margin-left: 25px;
+  margin-left: 8px;
 `;
 
 // category and filter buttons
@@ -175,6 +175,8 @@ const BottomSheetCardDiv = styled.View`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   margin: 10px;
 `;
 

@@ -5,8 +5,8 @@ import * as ROUTES from "../src/constants/Routs";
 import HomeScreen from "../src/components/screens/HomeScreen";
 import SettingNavigator from "./SettingNavigator";
 import Notifications from "../src/components/screens/Notifications";
-import LandingScreen from "../src/components/screens/LandingScreen";
 import Browse from "../src/components/screens/Browse";
+import Baskets from "../src/components/screens/Baskets";
 
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +28,8 @@ function BottomTabNav() {
             icon = focused ? "settings" : "settings-outline";
           } else if (route.name === ROUTES.LANDING_SCREEN) {
             icon = focused ? "map" : "map-outline";
+          } else if (route.name === ROUTES.BASKETS_SCREEN) {
+            icon = focused ? "cart" : "cart-outline";
           }
           return <Icon name={icon} size={25} color={color} />;
         },
@@ -43,7 +45,11 @@ function BottomTabNav() {
         component={Browse}
         options={{ headerShown: false }}
       />
-
+      <Tab.Screen
+        name={ROUTES.BASKETS_SCREEN}
+        component={Baskets}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen
         name={ROUTES.NOTIFICATIONS_SCREEN}
         component={Notifications}

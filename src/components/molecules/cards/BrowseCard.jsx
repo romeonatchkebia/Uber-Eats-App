@@ -13,6 +13,9 @@ const BrowseImage = styled(ImageViewer)``;
 const TitleView = styled.View`
   border: 1px solid #e8e8e8;
   background-color: #ffffff;
+  border-end-end-radius: 10px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   width: 166px;
 `;
 

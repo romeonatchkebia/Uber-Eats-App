@@ -10,6 +10,7 @@ import RestDetailsCard from "../molecules/cards/RestDetailsCard";
 import TextViewer from "../atoms/TextViewer";
 import DeliveryPickupBtns from "../atoms/DeliveryPickupBtns";
 import RestDetailsPopularCard from "../molecules/cards/RestDetailsPopularCard";
+import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 
 const SpinnerView = styled.View`
   flex: 1;
@@ -70,32 +71,6 @@ const ButtonsViewContainer = styled.View`
   margin-top: 18px;
   justify-content: center;
   gap: 18px;
-`;
-
-const GroupOrderView = styled.View``;
-
-const GroupImage = styled.Image``;
-
-const GroupOrderBtn = styled.Pressable`
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: #eeeeee;
-  flex-direction: row;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  border-radius: 40px;
-  height: 50px;
-  width: 40%;
-`;
-
-const GroupOrderBtnText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: #000000;
 `;
 
 const SwitcherContainer = styled.View`
@@ -350,12 +325,7 @@ const RestaurantDetails = ({ navigation, route }) => {
           </HeaderContainer>
 
           <ButtonsViewContainer>
-            <GroupOrderView>
-              <GroupOrderBtn>
-                <GroupImage source={IMAGES.GroupImage} />
-                <GroupOrderBtnText>Group order</GroupOrderBtnText>
-              </GroupOrderBtn>
-            </GroupOrderView>
+            <GreyBtnWithIcon title="Group order" img={IMAGES.GroupImage} />
             <SwitcherContainer>
               {btns.map((btn) => {
                 return (

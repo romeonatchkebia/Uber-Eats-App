@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Screen from "../atoms/Screen";
 import TextViewer from "../atoms/TextViewer";
 import BrowseCard from "../molecules/cards/BrowseCard";
+import * as ROUTES from "../../constants/Routs";
 
 const Container = styled(Screen)``;
 
@@ -70,112 +71,116 @@ const SearchComponentView = styled.View`
   padding-left: 25px;
 `;
 
-const topCategoriesList = [
-  {
-    id: 0,
-    title: "Breakfast & brunch",
-    imgUrl: require("../Images/browseScreen/topCategories/breakfast-brunch.png"),
-  },
-  {
-    id: 1,
-    title: "Coffe & Tea",
-    imgUrl: require("../Images/browseScreen/topCategories/coffeTea.png"),
-  },
-  {
-    id: 2,
-    title: "Deals",
-    imgUrl: require("../Images/browseScreen/topCategories/Deals.png"),
-  },
-  {
-    id: 3,
-    title: "Restaurant Rewards",
-    imgUrl: require("../Images/browseScreen/topCategories/RestaurantRewards.png"),
-  },
-  {
-    id: 4,
-    title: "Best Overall",
-    imgUrl: require("../Images/browseScreen/topCategories/bestOverall.png"),
-  },
-  {
-    id: 5,
-    title: "Shipped free",
-    imgUrl: require("../Images/browseScreen/topCategories/shippedFree.png"),
-  },
-];
-const allCategoriesList = [
-  {
-    id: 0,
-    title: "Mexican",
-    imgUrl: require("../Images/browseScreen/allCategories/Mexican.png"),
-  },
-  {
-    id: 1,
-    title: "Fast Food",
-    imgUrl: require("../Images/browseScreen/allCategories/Fastfood.png"),
-  },
-  {
-    id: 2,
-    title: "Healthy",
-    imgUrl: require("../Images/browseScreen/allCategories/Healthy.png"),
-  },
-  {
-    id: 3,
-    title: "Pizza",
-    imgUrl: require("../Images/browseScreen/allCategories/Pizza.png"),
-  },
-  {
-    id: 4,
-    title: "Asian",
-    imgUrl: require("../Images/browseScreen/allCategories/Asian.png"),
-  },
-  {
-    id: 5,
-    title: "Bakery",
-    imgUrl: require("../Images/browseScreen/allCategories/Bakery.png"),
-  },
-  {
-    id: 6,
-    title: "Sandwich",
-    imgUrl: require("../Images/browseScreen/allCategories/Sandwich.png"),
-  },
-  {
-    id: 7,
-    title: "Sushi",
-    imgUrl: require("../Images/browseScreen/allCategories/Sushi.png"),
-  },
-  {
-    id: 8,
-    title: "Korean",
-    imgUrl: require("../Images/browseScreen/allCategories/korean.png"),
-  },
-  {
-    id: 9,
-    title: "Vietnamese",
-    imgUrl: require("../Images/browseScreen/allCategories/Vietnamese.png"),
-  },
-  {
-    id: 10,
-    title: "Vegan",
-    imgUrl: require("../Images/browseScreen/allCategories/Vegan.png"),
-  },
-  {
-    id: 11,
-    title: "Bubble Tea",
-    imgUrl: require("../Images/browseScreen/allCategories/BubbleTea.png"),
-  },
-  {
-    id: 12,
-    title: "Juice & Smothies",
-    imgUrl: require("../Images/browseScreen/allCategories/Juice.png"),
-  },
-  {
-    id: 13,
-    title: "Fast Food",
-    imgUrl: require("../Images/browseScreen/allCategories/Burgers.png"),
-  },
-];
-
 const Browse = ({ navigation }) => {
+  const topCategoriesList = [
+    {
+      id: 0,
+      title: "Breakfast & brunch",
+      imgUrl: require("../Images/browseScreen/topCategories/breakfast-brunch.png"),
+    },
+    {
+      id: 1,
+      title: "Coffe & Tea",
+      imgUrl: require("../Images/browseScreen/topCategories/coffeTea.png"),
+    },
+    {
+      id: 2,
+      title: "Deals",
+      imgUrl: require("../Images/browseScreen/topCategories/Deals.png"),
+      onPress: () =>
+        navigation.navigate(ROUTES.DEALS_SCREEN, { offer: "offer" }),
+    },
+    {
+      id: 3,
+      title: "Restaurant Rewards",
+      imgUrl: require("../Images/browseScreen/topCategories/RestaurantRewards.png"),
+      onPress: () =>
+        navigation.navigate(ROUTES.DEALS_SCREEN, { reward: "reward" }),
+    },
+    {
+      id: 4,
+      title: "Best Overall",
+      imgUrl: require("../Images/browseScreen/topCategories/bestOverall.png"),
+    },
+    {
+      id: 5,
+      title: "Shipped free",
+      imgUrl: require("../Images/browseScreen/topCategories/shippedFree.png"),
+    },
+  ];
+  const allCategoriesList = [
+    {
+      id: 0,
+      title: "Mexican",
+      imgUrl: require("../Images/browseScreen/allCategories/Mexican.png"),
+    },
+    {
+      id: 1,
+      title: "Fast Food",
+      imgUrl: require("../Images/browseScreen/allCategories/Fastfood.png"),
+    },
+    {
+      id: 2,
+      title: "Healthy",
+      imgUrl: require("../Images/browseScreen/allCategories/Healthy.png"),
+    },
+    {
+      id: 3,
+      title: "Pizza",
+      imgUrl: require("../Images/browseScreen/allCategories/Pizza.png"),
+    },
+    {
+      id: 4,
+      title: "Asian",
+      imgUrl: require("../Images/browseScreen/allCategories/Asian.png"),
+    },
+    {
+      id: 5,
+      title: "Bakery",
+      imgUrl: require("../Images/browseScreen/allCategories/Bakery.png"),
+    },
+    {
+      id: 6,
+      title: "Sandwich",
+      imgUrl: require("../Images/browseScreen/allCategories/Sandwich.png"),
+    },
+    {
+      id: 7,
+      title: "Sushi",
+      imgUrl: require("../Images/browseScreen/allCategories/Sushi.png"),
+    },
+    {
+      id: 8,
+      title: "Korean",
+      imgUrl: require("../Images/browseScreen/allCategories/korean.png"),
+    },
+    {
+      id: 9,
+      title: "Vietnamese",
+      imgUrl: require("../Images/browseScreen/allCategories/Vietnamese.png"),
+    },
+    {
+      id: 10,
+      title: "Vegan",
+      imgUrl: require("../Images/browseScreen/allCategories/Vegan.png"),
+    },
+    {
+      id: 11,
+      title: "Bubble Tea",
+      imgUrl: require("../Images/browseScreen/allCategories/BubbleTea.png"),
+    },
+    {
+      id: 12,
+      title: "Juice & Smothies",
+      imgUrl: require("../Images/browseScreen/allCategories/Juice.png"),
+    },
+    {
+      id: 13,
+      title: "Fast Food",
+      imgUrl: require("../Images/browseScreen/allCategories/Burgers.png"),
+    },
+  ];
+
   const [input, setInput] = useState("");
   const [showSearch, setShowSearch] = useState(false);
   const [img, setImage] = useState({});
@@ -215,9 +220,9 @@ const Browse = ({ navigation }) => {
             ></InputText>
           </SearchContainer>
           {showSearch && (
-            <BrowseCardView>
-              <BrowseCard title={input} imgUrl={img.imgUrl} />
-            </BrowseCardView>
+            // <BrowseCardView>
+            <BrowseCard title={input} imgUrl={img.imgUrl} />
+            // </BrowseCardV
           )}
         </SearchComponentView>
 
@@ -229,7 +234,7 @@ const Browse = ({ navigation }) => {
                 title={item.title}
                 imgUrl={item.imgUrl}
                 key={item.id}
-                onPress={() => console.log(item.title)}
+                onPress={item.onPress}
               />
             );
           })}

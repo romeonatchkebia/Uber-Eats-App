@@ -21,10 +21,15 @@ export const HeartFilled = require("../components/Images/heart-filled.png");
 export const Heart = require("../components/Images/heart.png");
 
 // RestaurantDetails
-export const RestDetailsVector = require("../components/Images/restDetailsVector.png");
+export const RightArrow = require("../components/Images/restDetailsVector.png");
 export const GroupImage = require("../components/Images/Group.png");
 export const StarIcon = require("../components/Images/RatingStar.png");
 
 // LoginScreen Image
 
 export const LOGINSCREENIMAGE = require("../components/Images/loginScreenImage.png");
+
+// Basket screen image
+
+export const BasketMain = require("../components/Images/Basket.png");
+export const OrderBtnIcon = require("../components/Images/GroupForOrderBtn.png");

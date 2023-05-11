@@ -42,7 +42,11 @@ function DrawerNavigator() {
         component={BottomTabNav}
         options={{ title: "Home", headerShown: false }}
       />
-      <Drawer.Screen name={ROUTES.BROWSE_SCREEN} component={Browse} />
+      <Drawer.Screen
+        name={ROUTES.BROWSE_SCREEN}
+        component={Browse}
+        options={{ headerShown: false }}
+      />
 
       <Drawer.Screen
         name={ROUTES.LANDING_SCREEN}
