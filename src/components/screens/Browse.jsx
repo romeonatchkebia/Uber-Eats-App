@@ -28,10 +28,11 @@ const InputText = styled.TextInput`
 `;
 
 const BrowseCardView = styled.View`
-  border: 1px solid #e8e8e8;
-  background-color: #e8e8e8;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
   border-radius: 20px;
-  height: 180px;
+  margin-top: 10px;
 `;
 
 // categories and cards
@@ -183,7 +184,7 @@ const Browse = ({ navigation }) => {
 
   const [input, setInput] = useState("");
   const [showSearch, setShowSearch] = useState(false);
-  const [img, setImage] = useState({});
+  const [searchResult, setSearchResult] = useState([]);
 
   const topTitles = topCategoriesList.map((item) => item);
   const allTitles = allCategoriesList.map((item) => item);
@@ -191,11 +192,11 @@ const Browse = ({ navigation }) => {
   const holeList = [...topTitles, ...allTitles];
 
   useEffect(() => {
-    const item = holeList.find((item) => item.title === input);
+    const item = holeList.filter((item) => item.title === input);
+    setSearchResult(item);
 
-    if (item) {
+    if (item.length > 0) {
       setShowSearch(true);
-      setImage(item);
     }
   }, [input]);
 
@@ -219,11 +220,19 @@ const Browse = ({ navigation }) => {
               onChangeText={handleInputChange}
             ></InputText>
           </SearchContainer>
-          {showSearch && (
-            // <BrowseCardView>
-            <BrowseCard title={input} imgUrl={img.imgUrl} />
-            // </BrowseCardV
-          )}
+          <BrowseCardView>
+            {showSearch &&
+              searchResult.map((item) => {
+                return (
+                  <BrowseCard
+                    key={item.id}
+                    title={item.title}
+                    imgUrl={item.imgUrl}
+                    onPress={item.onPress}
+                  />
+                );
+              })}
+          </BrowseCardView>
         </SearchComponentView>
 
         <TopCategories text="Top Categories" />
