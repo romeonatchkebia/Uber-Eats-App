@@ -6,8 +6,8 @@ const Container = styled.View`
   height: 10px;
 `;
 
-const SectionDevider = () => {
-  return <Container></Container>;
+const SectionDevider = ({ ...props }) => {
+  return <Container {...props}></Container>;
 };
 
 export default SectionDevider;

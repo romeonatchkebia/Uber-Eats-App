@@ -3,9 +3,9 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import * as ROUTES from "../src/constants/Routs";
 import HomeScreen from "../src/components/screens/HomeScreen";
-import SettingNavigator from "./SettingNavigator";
-import Notifications from "../src/components/screens/Notifications";
+import Account from "../src/components/screens/Account";
 import Browse from "../src/components/screens/Browse";
+import Grocery from "../src/components/screens/Grocery";
 import Baskets from "../src/components/screens/Baskets";
 
 const Tab = createBottomTabNavigator();
@@ -21,11 +21,11 @@ function BottomTabNav() {
           if (route.name === ROUTES.HOMESCREEN_SCREEN) {
             icon = focused ? "home" : "home-outline";
           } else if (route.name === ROUTES.BROWSE_SCREEN) {
-            icon = focused ? "card" : "card-outline";
-          } else if (route.name === ROUTES.NOTIFICATIONS_SCREEN) {
-            icon = focused ? "notifications" : "notifications-outline";
-          } else if (route.name === ROUTES.SETTINGS_NAVIGATOR) {
-            icon = focused ? "settings" : "settings-outline";
+            icon = focused ? "search-circle" : "search-circle-outline";
+          } else if (route.name === ROUTES.GROCERY_SCREEN) {
+            icon = focused ? "basket" : "basket-outline";
+          } else if (route.name === ROUTES.ACCOUNT_SCREEN) {
+            icon = focused ? "person" : "person-outline";
           } else if (route.name === ROUTES.LANDING_SCREEN) {
             icon = focused ? "map" : "map-outline";
           } else if (route.name === ROUTES.BASKETS_SCREEN) {
@@ -46,18 +46,19 @@ function BottomTabNav() {
         options={{ headerShown: false }}
       />
       <Tab.Screen
+        name={ROUTES.GROCERY_SCREEN}
+        component={Grocery}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
         name={ROUTES.BASKETS_SCREEN}
         component={Baskets}
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name={ROUTES.NOTIFICATIONS_SCREEN}
-        component={Notifications}
-      />
-      <Tab.Screen
-        name={ROUTES.SETTINGS_NAVIGATOR}
-        component={SettingNavigator}
-        options={{ title: "Settings" }}
+        name={ROUTES.ACCOUNT_SCREEN}
+        component={Account}
+        options={{ headerShown: false }}
       />
     </Tab.Navigator>
   );

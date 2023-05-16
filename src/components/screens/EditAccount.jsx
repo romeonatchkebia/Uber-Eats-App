@@ -24,16 +24,16 @@ const EnterBtn = styled(Buttons)`
   height: 50px;
 `;
 
-function CreateNewAccount({ navigation }) {
+function EditAccount({ navigation }) {
   const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [lastName, setLastName] = useState("");
   const [showError, setShowError] = useState(false);
 
   function handleConfirm() {
-    if (userName !== "" && password !== "") {
-      navigation.navigate(ROUTES.LOGIN_SCREEN, {
-        nameOfUser: userName,
-        passwordOfUser: password,
+    if (userName !== "" && lastName !== "") {
+      navigation.navigate(ROUTES.SETTINGS_SCREEN, {
+        nameUser: userName,
+        lastNameUser: lastName,
       });
     } else {
       setShowError(true);
@@ -43,14 +43,14 @@ function CreateNewAccount({ navigation }) {
   return (
     <Container>
       <UserName
-        placeholder="UserName"
+        placeholder="Name"
         value={userName}
         onChange={(e) => setUserName(e.nativeEvent.text)}
       />
       <Password
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.nativeEvent.text)}
+        placeholder="Last Name"
+        value={lastName}
+        onChange={(e) => setLastName(e.nativeEvent.text)}
       />
       <EnterBtn title="Confirm" onPress={handleConfirm} />
       {showError && (
@@ -64,4 +64,4 @@ function CreateNewAccount({ navigation }) {
   );
 }
 
-export default CreateNewAccount;
+export default EditAccount;

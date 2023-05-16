@@ -1,4 +1,3 @@
-import { View, Text } from "react-native";
 import React from "react";
 import styled from "styled-components";
 
@@ -28,9 +27,9 @@ const BtnText = styled.Text`
   color: #000000;
 `;
 
-const GreyBtnWithIcon = ({ title, img, ...props }) => {
+const GreyBtnWithIcon = ({ title, img, onPress, ...props }) => {
   return (
-    <Button {...props}>
+    <Button {...props} onPress={onPress}>
       <BtnImage source={img} />
       <BtnText>{title}</BtnText>
     </Button>

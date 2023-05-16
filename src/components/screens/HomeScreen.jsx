@@ -22,45 +22,6 @@ import CategoryCardForFooter from "../molecules/cards/CategoryCardForFooter";
 import ThreeObjectCardForHomeScreen from "../molecules/cards/ThreeObjectCardForHomeScreen";
 import HomeScreenBottomCard from "../molecules/cards/HomeScreenBottomCard";
 
-const oldDeliveryList = [
-  {
-    id: 1,
-    url: require("../Images/mainCardImage.png"),
-    title: "Adenine Kitchen",
-    price: "0.29",
-    deliveryTime: "10-25",
-    rating: 4.3,
-    promoOrdersNum: "9",
-    promoOrdersPrice: "23",
-  },
-  {
-    id: 2,
-    url: require("../Images/mainCardImage1.png"),
-    title: "Cardinal Chips",
-    price: "0.49",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-  {
-    id: 3,
-    url: require("../Images/mainCardImage2.png"),
-    title: "Cardinal Chips",
-    price: "0.55",
-    deliveryTime: "20-45",
-    rating: 4.6,
-    promoOrdersNum: "3",
-    promoOrdersPrice: "7",
-  },
-  {
-    id: 4,
-    url: require("../Images/mainCardImage3.png"),
-    title: "Cardinal Chips",
-    price: "0.25",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-];
-
 const Container = styled(Screen)`
   background: ${COLORS.SCREEN_BACKGROUND};
 `;

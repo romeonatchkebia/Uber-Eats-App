@@ -10,14 +10,16 @@ export const BOTTOM_TAB_NAV = "BottomTabNav";
 export const DRAWER_NAVIGATOR = "DrawerNavigator";
 export const HOMESCREEN_SCREEN = "HomeScreen";
 export const BROWSE_SCREEN = "Browse";
+export const GROCERY_SCREEN = "Grocery";
 export const LANDING_SCREEN = "LandingScreen";
-export const NOTIFICATIONS_SCREEN = "Notifications";
+export const ACCOUNT_SCREEN = "Account";
 export const SETTINGS_SCREEN = "Settings";
 export const BASKETS_SCREEN = "Baskets";
 
 // Settings Navigator Screens
 export const SETTINGS_DETAILS = "SettingDetails";
 export const SETTINGS_NAVIGATOR = "SttingNavigator";
+export const EDITACCOUNT_SCREEN = "AdditAccount";
 
 // Deals Screen
 export const DEALS_SCREEN = "Deals";

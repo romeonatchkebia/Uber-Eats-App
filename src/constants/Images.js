@@ -33,3 +33,13 @@ export const LOGINSCREENIMAGE = require("../components/Images/loginScreenImage.p
 
 export const BasketMain = require("../components/Images/Basket.png");
 export const OrderBtnIcon = require("../components/Images/GroupForOrderBtn.png");
+
+// Account screen image
+
+export const AccountProfileImage = require("../components/Images/accountScreen/profilePicture.png");
+
+// Settings screen image
+
+export const LeftArrow = require("../components/Images/SettingsScreen/leftArrow.png");
+export const Home = require("../components/Images/SettingsScreen/Home.png");
+export const Work = require("../components/Images/SettingsScreen/Work.png");

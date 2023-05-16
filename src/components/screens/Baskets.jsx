@@ -90,7 +90,11 @@ const Baskets = () => {
   return (
     <Container>
       <View style={{ alignItems: "flex-end", width: "100%" }}>
-        <OrderBtn title="Orders" img={IMAGES.OrderBtnIcon} />
+        <OrderBtn
+          title="Orders"
+          img={IMAGES.OrderBtnIcon}
+          onPress={() => setAddItems(true)}
+        />
       </View>
       <View style={{ alignItems: "flex-start", width: "100%" }}>
         <CartText>Cart</CartText>
@@ -115,11 +119,7 @@ const Baskets = () => {
             Once you add items from a restaurant or store, your basket will
             appear here
           </Decription>
-          <StartShopBtn
-            title="Start Shopping"
-            black
-            onPress={() => setAddItems(true)}
-          />
+          <StartShopBtn title="Start Shopping" black />
         </>
       )}
     </Container>

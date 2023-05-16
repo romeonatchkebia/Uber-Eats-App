@@ -192,7 +192,11 @@ const Browse = ({ navigation }) => {
   const holeList = [...topTitles, ...allTitles];
 
   useEffect(() => {
-    const item = holeList.filter((item) => item.title === input);
+    const item = holeList.filter(
+      (item) =>
+        item.title.toLowerCase().replace(/\s/g, "") ===
+        input.toLowerCase().replace(/\s/g, "")
+    );
     setSearchResult(item);
 
     if (item.length > 0) {

@@ -11,11 +11,17 @@ import DrawerNavigator from "./DrawerNavigator";
 import RestaurantDetails from "../src/components/screens/RestaurantDetails";
 import Deals from "../src/components/screens/Deals";
 import Baskets from "../src/components/screens/Baskets";
+import SettingNavigator from "./SettingNavigator";
+import EditAccount from "../src/components/screens/EditAccount";
+import FontContext from "../src/components/atoms/FontContext";
 
 const Stack = createNativeStackNavigator();
 
 function AuthNavigator() {
+  const { fontFamily } = React.useContext(FontContext);
+
   return (
+    // <Text style={{ fontFamily }}>
     <NavigationContainer>
       <Host>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -52,11 +58,22 @@ function AuthNavigator() {
           <Stack.Screen
             name={ROUTES.BASKETS_SCREEN}
             component={Baskets}
-            options={{ title: "Bastkets" }}
+            options={{ title: "Baskets" }}
+          />
+          <Stack.Screen
+            name={ROUTES.EDITACCOUNT_SCREEN}
+            component={EditAccount}
+            options={{ title: "Edit Account" }}
+          />
+          <Stack.Screen
+            name={ROUTES.SETTINGS_NAVIGATOR}
+            component={SettingNavigator}
+            options={{ title: "Baskets" }}
           />
         </Stack.Navigator>
       </Host>
     </NavigationContainer>
+    // </Text>
   );
 }
 

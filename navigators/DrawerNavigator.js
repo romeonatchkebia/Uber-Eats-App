@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 import * as ROUTES from "../src/constants/Routs";
 
-import Notifications from "../src/components/screens/Notifications";
+import Account from "../src/components/screens/Account";
 import SettingNavigator from "./SettingNavigator";
 import BottomTabNav from "./BottomTabNav";
 import CustomDrawer from "../src/components/organisms/CustomDrawer";
@@ -26,7 +26,7 @@ function DrawerNavigator() {
             icon = focused ? "home" : "home-outline";
           } else if (route.name === ROUTES.BROWSE_SCREEN) {
             icon = focused ? "card" : "card-outline";
-          } else if (route.name === ROUTES.NOTIFICATIONS_SCREEN) {
+          } else if (route.name === ROUTES.ACCOUNT_SCREEN) {
             icon = focused ? "notifications" : "notifications-outline";
           } else if (route.name === ROUTES.SETTINGS_NAVIGATOR) {
             icon = focused ? "settings" : "settings-outline";
@@ -42,11 +42,6 @@ function DrawerNavigator() {
         component={BottomTabNav}
         options={{ title: "Home", headerShown: false }}
       />
-      <Drawer.Screen
-        name={ROUTES.BROWSE_SCREEN}
-        component={Browse}
-        options={{ headerShown: false }}
-      />
 
       <Drawer.Screen
         name={ROUTES.LANDING_SCREEN}
@@ -55,13 +50,9 @@ function DrawerNavigator() {
       />
 
       <Drawer.Screen
-        name={ROUTES.NOTIFICATIONS_SCREEN}
-        component={Notifications}
-      />
-      <Drawer.Screen
         name={ROUTES.SETTINGS_NAVIGATOR}
         component={SettingNavigator}
-        options={{ title: "Settings" }}
+        options={{ headerShown: false }}
       />
     </Drawer.Navigator>
   );
