@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import NewText from "./NewText";
+
 const Container = styled.Pressable`
   width: 98px;
   height: 38px;
@@ -12,10 +14,7 @@ const Container = styled.Pressable`
   padding: 8px 20px;
 `;
 
-const Title = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
+const Title = styled(NewText)`
   line-height: 20px;
   ${({ black }) => (black ? `color : #ffffff` : `color : #000000`)};
 `;
@@ -23,7 +22,9 @@ const Title = styled.Text`
 const CtgrButton = ({ title, onPress, black = false, ...props }) => {
   return (
     <Container onPress={onPress} black={black} {...props}>
-      <Title black={black}>{title}</Title>
+      <Title font="medium" black={black} onPress={onPress}>
+        {title}
+      </Title>
     </Container>
   );
 };

@@ -4,8 +4,8 @@ import { ScrollView } from "react-native";
 
 import styled from "styled-components";
 import Screen from "../atoms/Screen";
-import TextViewer from "../atoms/TextViewer";
 import BrowseCard from "../molecules/cards/BrowseCard";
+import NewText from "../atoms/NewText";
 import * as ROUTES from "../../constants/Routs";
 
 const Container = styled(Screen)``;
@@ -43,23 +43,13 @@ const InnerContainer = styled.View`
   justify-content: space-evenly;
 `;
 
-const TopCategories = styled(TextViewer)`
-  color: #000000;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
+const TopCategories = styled(NewText)`
   margin-top: 10px;
   margin-bottom: 12px;
   margin-left: 30px;
 `;
 
-const AllCategories = styled(TextViewer)`
-  color: #000000;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
+const AllCategories = styled(NewText)`
   margin-top: 6px;
   margin-bottom: 16px;
   margin-left: 30px;
@@ -239,7 +229,9 @@ const Browse = ({ navigation }) => {
           </BrowseCardView>
         </SearchComponentView>
 
-        <TopCategories text="Top Categories" />
+        <TopCategories font="medium" size="xlarge">
+          Top Categories
+        </TopCategories>
         <InnerContainer>
           {topCategoriesList.map((item) => {
             return (
@@ -253,7 +245,9 @@ const Browse = ({ navigation }) => {
           })}
         </InnerContainer>
 
-        <AllCategories text="All Categories" />
+        <AllCategories font="medium" size="xlarge">
+          All Categories
+        </AllCategories>
         <InnerContainer>
           {allCategoriesList.map((item) => {
             return (

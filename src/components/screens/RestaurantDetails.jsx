@@ -1,13 +1,14 @@
-import { View, Text, Image, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
+import { View, Image, ScrollView } from "react-native";
 import styled from "styled-components";
-import Screen from "../atoms/Screen";
 import { v4 as uuidv4 } from "uuid";
+
+import Screen from "../atoms/Screen";
+import NewText from "../atoms/NewText";
 import * as Progress from "react-native-progress";
 import * as IMAGES from "../../constants/Images";
 
 import RestDetailsCard from "../molecules/cards/RestDetailsCard";
-import TextViewer from "../atoms/TextViewer";
 import DeliveryPickupBtns from "../atoms/DeliveryPickupBtns";
 import RestDetailsPopularCard from "../molecules/cards/RestDetailsPopularCard";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
@@ -32,10 +33,7 @@ const InfoContainer = styled.View`
   width: 80%;
 `;
 
-const RestTiTle = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
+const RestTiTle = styled(NewText)`
   line-height: 36px;
 `;
 
@@ -43,19 +41,12 @@ const RestInfoView = styled.View`
   flex-direction: row;
 `;
 
-const RestInfo = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+const RestInfo = styled(NewText)`
   line-height: 20px;
 `;
 
-const WorkingInfo = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+const WorkingInfo = styled(NewText)`
   line-height: 20px;
-  color: #545454;
 `;
 
 const RightContainer = styled.Pressable`
@@ -83,10 +74,7 @@ const SwitcherContainer = styled.View`
 
 const SectionContainer = styled.View``;
 
-const SectionTitle = styled.Text`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
+const SectionTitle = styled(NewText)`
   line-height: 36px;
   margin-bottom: 18px;
   margin-top: 23px;
@@ -99,13 +87,9 @@ const BottomSaveView = styled.View`
   margin-top: 30px;
 `;
 
-const SaveText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
+const SaveText = styled(NewText)`
   line-height: 20px;
   text-align: center;
-  color: #4ba457;
 `;
 
 const data = {
@@ -303,20 +287,24 @@ const RestaurantDetails = ({ navigation, route }) => {
         <ScrollView>
           <HeaderContainer>
             <InfoContainer>
-              <RestTiTle text={rest.name} style={{ marginTop: 30 }} />
+              <RestTiTle font="bold" size="xlarge" style={{ marginTop: 30 }}>
+                {rest.name}
+              </RestTiTle>
 
               <RestInfoView>
                 <View style={{ marginRight: 3 }}>
                   <Image source={IMAGES.StarIcon} />
                 </View>
-                <RestInfo>
+                <RestInfo font="medium" size="medium">
                   {rest.rating}({calcRating(rest.ratingQuantity)}) •{" "}
                   {rest.category} • $$
                 </RestInfo>
               </RestInfoView>
 
-              <WorkingInfo>{rest.workingHours}</WorkingInfo>
-              <WorkingInfo>Tap for hours info and more </WorkingInfo>
+              <WorkingInfo color="grey">{rest.workingHours}</WorkingInfo>
+              <WorkingInfo color="grey">
+                Tap for hours info and more{" "}
+              </WorkingInfo>
             </InfoContainer>
 
             <RightContainer>
@@ -347,7 +335,9 @@ const RestaurantDetails = ({ navigation, route }) => {
           </ButtonsViewContainer>
 
           <SectionContainer>
-            <SectionTitle>Most Popular</SectionTitle>
+            <SectionTitle font="bold" size="xlarge">
+              Most Popular
+            </SectionTitle>
             {data.mostPopular.map((item) => {
               return (
                 <RestDetailsCard
@@ -449,7 +439,9 @@ const RestaurantDetails = ({ navigation, route }) => {
             />
           </InfoContainer>
           <BottomSaveView>
-            <SaveText>Save US$25. Conditions Applay.</SaveText>
+            <SaveText font="medium" size="medium" color="grey">
+              Save US$25. Conditions Applay.
+            </SaveText>
           </BottomSaveView>
         </ScrollView>
       )}

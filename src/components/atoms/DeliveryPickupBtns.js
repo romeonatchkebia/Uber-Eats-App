@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
 import React from "react";
 import styled from "styled-components";
+
+import NewText from "./NewText";
 
 const Btn = styled.Pressable`
   align-items: center;
@@ -15,19 +16,13 @@ const Btn = styled.Pressable`
   width: 50%;
 `;
 
-const BtnText = styled.Text`
+const BtnText = styled(NewText)`
   ${({ black }) => (black ? `color : #000000` : "")};
-  font-style: normal;
-  font-weight: 500;
   line-height: 20px;
 `;
 
-const TimeText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
+const TimeText = styled(NewText)`
   line-height: 20px;
-  color: #6b6b6b;
 `;
 
 const DeliveryPickupBtns = ({
@@ -40,8 +35,10 @@ const DeliveryPickupBtns = ({
 }) => {
   return (
     <Btn onPress={onPress} black={black} {...props}>
-      <BtnText black={black}>{title}</BtnText>
-      <TimeText>
+      <BtnText font="medium" black={black}>
+        {title}
+      </BtnText>
+      <TimeText font="medium" color="grey">
         {Time} min {Distance}mi
       </TimeText>
     </Btn>

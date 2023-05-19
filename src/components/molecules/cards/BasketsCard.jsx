@@ -1,8 +1,8 @@
-import { View, Text } from "react-native";
 import React from "react";
 import styled from "styled-components";
 
 import * as IMAGES from "../../../constants/Images";
+import NewText from "../../atoms/NewText";
 
 const Container = styled.View`
   align-items: center;
@@ -18,28 +18,11 @@ const TextCont = styled.View`
   width: 70%;
 `;
 
-const Title = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-`;
+const Title = styled(NewText)``;
 
-const SubTitle = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #6b6b6b;
-`;
+const SubTitle = styled(NewText)``;
 
-const Desc = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #6b6b6b;
-`;
+const Desc = styled(NewText)``;
 
 const RightArrow = styled.Image``;
 
@@ -48,9 +31,13 @@ const BasketsCard = ({ title, price, desc, imgUrl, ...props }) => {
     <Container {...props}>
       <CardImage source={imgUrl} />
       <TextCont>
-        <Title>{title}</Title>
-        <SubTitle>1 Item • US${price}</SubTitle>
-        <Desc numberOfLines={2}>{desc}</Desc>
+        <Title size="medium" font="medium">
+          {title}
+        </Title>
+        <SubTitle color="grey">1 Item • US${price}</SubTitle>
+        <Desc numberOfLines={2} color="grey">
+          {desc}
+        </Desc>
       </TextCont>
       <RightArrow source={IMAGES.RightArrow} />
     </Container>

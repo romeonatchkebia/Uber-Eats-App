@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 import styled from "styled-components";
-import TextViewer from "../../atoms/TextViewer";
 import ImageViewer from "../../atoms/ImageViewer";
 import * as IMAGES from "../../../constants/Images";
+import NewText from "../../atoms/NewText";
 
 const CardView = styled.Pressable`
   background: #f6f6f6;
@@ -19,12 +19,7 @@ const TitleRatingView = styled.View`
   justify-content: space-between;
 `;
 
-const CardTitle = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #000000;
+const CardTitle = styled(NewText)`
   margin-top: 8px;
 `;
 
@@ -41,22 +36,11 @@ const CardRatingView = styled.View`
   width: 28px;
 `;
 
-const CardRating = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
+const CardRating = styled(NewText)`
   text-align: center;
-  color: #000000;
 `;
 
-const CardSubTitle = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #6b6b6b;
-`;
+const CardSubTitle = styled(NewText)``;
 
 const PromotionView = styled.View`
   display: flex;
@@ -72,13 +56,7 @@ const PromotionView = styled.View`
   left: 12px;
 `;
 
-const PromotionText = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: #ffffff;
-`;
+const PromotionText = styled(NewText)``;
 
 const LikeBtnPress = styled.Pressable`
   position: absolute;
@@ -123,24 +101,29 @@ const DealsScreenCard = ({
       </LikeBtnPress>
 
       <TitleRatingView>
-        <CardTitle text={title} />
+        <CardTitle size="medium" font="medium">
+          {title}
+        </CardTitle>
         <CardRatingView>
-          {ratingValue && <CardRating text={ratingValue.toFixed(1)} />}
+          {ratingValue && (
+            <CardRating size="small">{ratingValue.toFixed(1)} </CardRating>
+          )}
         </CardRatingView>
       </TitleRatingView>
 
       {price && (
-        <CardSubTitle text={`$${price} Delivery Fee • ${deliveryTime}`} />
+        <CardSubTitle color="grey">{`$${price} Delivery Fee • ${deliveryTime}`}</CardSubTitle>
       )}
       {distance && (
-        <CardSubTitle text={`${deliveryTime} min • ${distance}mi`} />
+        <CardSubTitle color="grey">{`${deliveryTime} min • ${distance}mi`}</CardSubTitle>
       )}
 
       {promoOrdersNum && promoOrdersPrice && (
         <PromotionView>
           <PromotionText
-            text={`${promoOrdersNum} ordrs until $${promoOrdersPrice} reward`}
-          />
+            color="white"
+            font="medium"
+          >{`${promoOrdersNum} ordrs until $${promoOrdersPrice} reward`}</PromotionText>
         </PromotionView>
       )}
     </CardView>

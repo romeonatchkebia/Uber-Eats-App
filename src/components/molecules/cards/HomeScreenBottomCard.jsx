@@ -1,6 +1,7 @@
-import { View, Text } from "react-native";
 import React from "react";
 import styled from "styled-components";
+
+import NewText from "../../atoms/NewText";
 
 const Container = styled.View`
   background: #f6f6f6;
@@ -15,33 +16,16 @@ const BrowseBtn = styled.Pressable`
   margin-bottom: 25px;
 `;
 
-const BrowseBtnTitle = styled.Text`
-  color: #000000;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 20px;
-`;
+const BrowseBtnTitle = styled(NewText)``;
 
 const SeeAllRestBtn = styled.Pressable`
   align-items: center;
   margin-bottom: 40px;
 `;
 
-const SeeAllRestBtnText = styled.Text`
-  color: #6b6b6b;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-`;
+const SeeAllRestBtnText = styled(NewText)``;
 
-const UberDecription = styled.Text`
-  color: #000000;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
+const UberDecription = styled(NewText)`
   margin-bottom: 100px;
 `;
 
@@ -49,10 +33,10 @@ const HomeScreenBottomCard = () => {
   return (
     <Container>
       <BrowseBtn>
-        <BrowseBtnTitle>BROWSE OR SEARCH</BrowseBtnTitle>
+        <BrowseBtnTitle size="medium">BROWSE OR SEARCH</BrowseBtnTitle>
       </BrowseBtn>
       <SeeAllRestBtn>
-        <SeeAllRestBtnText>SEE ALL RESTAURANTS</SeeAllRestBtnText>
+        <SeeAllRestBtnText color="grey">SEE ALL RESTAURANTS</SeeAllRestBtnText>
       </SeeAllRestBtn>
       <UberDecription>
         Uber is paid by merchants for marketing and promotion, which influences

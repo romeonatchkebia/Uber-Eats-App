@@ -1,5 +1,4 @@
-import { View, Text } from "react-native";
-import React, { useRef } from "react";
+import React from "react";
 import { Modalize } from "react-native-modalize";
 import styled from "styled-components";
 styled;

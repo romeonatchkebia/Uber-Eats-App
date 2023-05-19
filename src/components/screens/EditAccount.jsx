@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Screen from "../atoms/Screen";
 import styled from "styled-components";
 import TextInput from "../atoms/TextInput";
-import TextViewer from "../atoms/TextViewer";
-import * as ROUTES from "../../constants/Routs";
 import Buttons from "../atoms/Buttons";
+import NewText from "../atoms/NewText";
+import * as ROUTES from "../../constants/Routs";
 
 const Container = styled(Screen)`
   align-items: center;
@@ -22,6 +22,10 @@ const Password = styled(TextInput)`
 
 const EnterBtn = styled(Buttons)`
   height: 50px;
+`;
+
+const ErrorText = styled(NewText)`
+  margin-top: 15px;
 `;
 
 function EditAccount({ navigation }) {
@@ -54,11 +58,9 @@ function EditAccount({ navigation }) {
       />
       <EnterBtn title="Confirm" onPress={handleConfirm} />
       {showError && (
-        <TextViewer
-          style={{ color: "red", marginTop: 15 }}
-          text="Username or password cannot be empty"
-          visible={true}
-        />
+        <ErrorText color="red" visible={true}>
+          Username or password cannot be empty
+        </ErrorText>
       )}
     </Container>
   );

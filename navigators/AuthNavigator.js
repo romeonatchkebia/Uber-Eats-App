@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as ROUTES from "../src/constants/Routs";
@@ -13,15 +14,11 @@ import Deals from "../src/components/screens/Deals";
 import Baskets from "../src/components/screens/Baskets";
 import SettingNavigator from "./SettingNavigator";
 import EditAccount from "../src/components/screens/EditAccount";
-import FontContext from "../src/components/atoms/FontContext";
 
 const Stack = createNativeStackNavigator();
 
 function AuthNavigator() {
-  const { fontFamily } = React.useContext(FontContext);
-
   return (
-    // <Text style={{ fontFamily }}>
     <NavigationContainer>
       <Host>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -73,7 +70,6 @@ function AuthNavigator() {
         </Stack.Navigator>
       </Host>
     </NavigationContainer>
-    // </Text>
   );
 }
 

@@ -2,6 +2,8 @@ import { View, Text } from "react-native";
 import React from "react";
 import styled from "styled-components";
 
+import NewText from "../../atoms/NewText";
+
 const Container = styled.Pressable`
   align-items: center;
   flex-direction: row;
@@ -15,13 +17,15 @@ const Icon = styled.Image`
   height: 25px;
 `;
 
-const Title = styled.Text``;
+const Title = styled(NewText)``;
 
 const AccountCard = ({ title, imgUrl, onPress, ...props }) => {
   return (
     <Container onPress={onPress} {...props}>
       <Icon source={imgUrl} />
-      <Title {...props}>{title}</Title>
+      <Title onPress={onPress} font="medium" {...props}>
+        {title}
+      </Title>
     </Container>
   );
 };

@@ -1,7 +1,8 @@
-import { View, Text } from "react-native";
 import React from "react";
 import styled from "styled-components";
+
 import ImageViewer from "../../atoms/ImageViewer";
+import NewText from "../../atoms/NewText";
 
 const Container = styled.View`
   display: flex;
@@ -15,20 +16,16 @@ const Container = styled.View`
   margin: 12px;
 `;
 
-const Title = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #000000;
-`;
+const Title = styled(NewText)``;
 
 const CtgryImage = styled(ImageViewer)``;
 
 const CategoryCardForFooter = ({ imgUrl, title }) => {
   return (
     <Container>
-      <Title>{title}</Title>
+      <Title size="medium" font="medium">
+        {title}
+      </Title>
       <CtgryImage source={imgUrl} />
     </Container>
   );

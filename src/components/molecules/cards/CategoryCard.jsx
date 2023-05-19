@@ -1,6 +1,8 @@
-import { View, Text, Image } from "react-native";
+import { Image } from "react-native";
 import React from "react";
 import styled from "styled-components";
+
+import NewText from "../../atoms/NewText";
 
 const Container = styled.Pressable`
   align-items: center;
@@ -18,11 +20,7 @@ const ImageView = styled.View`
   height: 75px;
 `;
 
-const CardTitle = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14.4829px;
-  line-height: 21px;
+const CardTitle = styled(NewText)`
   text-align: center;
   color: #000000;
 `;
@@ -35,7 +33,7 @@ const CategoryCard = ({ imgUrl, title, onPress, ...props }) => {
           <Image source={imgUrl} />
         </ImageView>
       </Wrapper>
-      <CardTitle>{title}</CardTitle>
+      <CardTitle font="medium">{title}</CardTitle>
     </Container>
   );
 };

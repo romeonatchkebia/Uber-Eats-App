@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import TextViewer from "../../atoms/TextViewer";
+
 import ImageViewer from "../../atoms/ImageViewer";
+import NewText from "../../atoms/NewText";
 
 const Container = styled.View`
   flex-direction: row;
@@ -25,35 +26,19 @@ const Promo = styled.View`
   margin-top: 8px;
 `;
 
-const PromoText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+const PromoText = styled(NewText)`
   text-align: center;
-  color: #ffffff;
 `;
 
 const RightContainer = styled.View``;
 
-const Title = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-`;
+const Title = styled(NewText)``;
 
-const Desc = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #545454;
-`;
+const Desc = styled(NewText)``;
 
 const CardImage = styled(ImageViewer)``;
 
-const PriceText = styled.Text``;
+const PriceText = styled(NewText)``;
 
 const Popular = styled.View`
   justify-content: center;
@@ -66,13 +51,8 @@ const Popular = styled.View`
   margin-top: 8px;
 `;
 
-const PopularText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+const PopularText = styled(NewText)`
   text-align: center;
-  color: #ffffff;
 `;
 
 const RestDetailsPopularCard = ({
@@ -88,18 +68,30 @@ const RestDetailsPopularCard = ({
   return (
     <Container {...props}>
       <LeftContainer img={img}>
-        {title && <Title text={title} />}
+        {title && (
+          <Title font="medium" size="medium">
+            {title}{" "}
+          </Title>
+        )}
         {price && <PriceText>US${price}</PriceText>}
-        {desc && <Desc text={desc} numberOfLines={3} />}
+        {desc && (
+          <Desc color="grey" numberOfLines={3}>
+            {desc}
+          </Desc>
+        )}
 
         {promo && (
           <Promo>
-            <PromoText>Promo</PromoText>
+            <PromoText font="medium" color="white">
+              Promo
+            </PromoText>
           </Promo>
         )}
         {popular && (
           <Popular>
-            <PopularText>Popular</PopularText>
+            <PopularText font="medium" color="white">
+              Popular
+            </PopularText>
           </Popular>
         )}
       </LeftContainer>

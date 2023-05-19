@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Pressable } from "react-native";
+import { View, FlatList, Pressable } from "react-native";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -8,6 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Screen from "../atoms/Screen";
 import SectionDevider from "../atoms/SectionDevider";
 import DealsScreenCard from "../molecules/cards/DealsScreenCard";
+import NewText from "../atoms/NewText";
 import * as COLORS from "../../constants/Colors";
 import * as ROUTES from "../../constants/Routs";
 
@@ -24,12 +25,8 @@ const HeaderView = styled.View`
   margin-bottom: 20px;
 `;
 
-const DealsHeader = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-  color: #000000;
+const DealsHeader = styled(NewText)`
+  margin-left: -20px;
 `;
 
 // buttons
@@ -54,13 +51,7 @@ const Offers = styled.Pressable`
   width: 50%;
 `;
 
-const OfferText = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000000;
-`;
+const OfferText = styled(NewText)``;
 
 // Rewards
 const Rewards = styled.Pressable`
@@ -68,13 +59,7 @@ const Rewards = styled.Pressable`
   width: 50%;
 `;
 
-const RewardsText = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000000;
-`;
+const RewardsText = styled(NewText)``;
 
 // title and cards
 
@@ -82,11 +67,7 @@ const BodyContainer = styled.View`
   align-items: center;
 `;
 
-const SectionTitle = styled.Text`
-  color: #000000;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
+const SectionTitle = styled(NewText)`
   line-height: 36px;
   margin-left: 35px;
   margin-top: 10px;
@@ -176,7 +157,7 @@ const Deals = ({ navigation, route }) => {
         <Pressable onPress={() => navigation.navigate(ROUTES.BROWSE_SCREEN)}>
           <Feather name="arrow-left" size={24} color="black" />
         </Pressable>
-        <DealsHeader>Deals</DealsHeader>
+        <DealsHeader size="xlarge">Deals</DealsHeader>
       </HeaderView>
       <BtnsContainer>
         <Offers onPress={() => setType(0)}>
@@ -188,7 +169,7 @@ const Deals = ({ navigation, route }) => {
             }}
           >
             <Ionicons name="pricetag-sharp" size={24} color="black" />
-            <OfferText>Offers</OfferText>
+            <OfferText size="large">Offers</OfferText>
           </View>
           {type === 0 && <BtnBottomBorder />}
         </Offers>
@@ -201,14 +182,16 @@ const Deals = ({ navigation, route }) => {
             }}
           >
             <MaterialIcons name="stars" size={26} color="black" />
-            <RewardsText>Rewards</RewardsText>
+            <RewardsText size="large">Rewards</RewardsText>
           </View>
           {type === 1 && <BtnBottomBorder />}
         </Rewards>
       </BtnsContainer>
       <SectionDevider />
       {type === 1 ? (
-        <SectionTitle>Earn restaurant rewards</SectionTitle>
+        <SectionTitle font="medium" size="xlarge">
+          Earn restaurant rewards
+        </SectionTitle>
       ) : (
         <SectionTitle style={{ height: 36 }}></SectionTitle>
       )}

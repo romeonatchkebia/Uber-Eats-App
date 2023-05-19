@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-
 import DropDownPicker from "react-native-dropdown-picker";
 
 import Screen from "../atoms/Screen";
 import styled from "styled-components";
 import ImageViewer from "../atoms/ImageViewer";
-import TextViewer from "../atoms/TextViewer";
 import TextInput from "../atoms/TextInput";
+import NewText from "../atoms/NewText";
 import * as IMAGES from "../../constants/Images";
-import * as COLORS from "../../constants/Colors";
 
 const Container = styled(Screen)``;
 
@@ -17,10 +15,7 @@ const LandImage = styled(ImageViewer)`
   height: 610px;
 `;
 
-const LandText = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 24px;
+const LandText = styled(NewText)`
   line-height: 36px;
   margin-top: 20px;
 `;
@@ -73,7 +68,9 @@ const LandingScreen = () => {
   return (
     <Container>
       <LandImage source={require("../Images/landingScreen.png")} />
-      <LandText text="Use your uber account to get started" />
+      <LandText size="xlarge" font="medium">
+        Use your uber account to get started
+      </LandText>
       <DropInput>
         <DropContainer>
           <DropDownPicker

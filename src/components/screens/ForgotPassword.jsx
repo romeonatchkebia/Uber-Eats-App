@@ -1,10 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
+import NewText from "../atoms/NewText";
+
 const ForgotPassword = () => {
   return (
     <View>
-      <Text>ForgotPassword</Text>
+      <NewText>ForgotPassword</NewText>
     </View>
   );
 };

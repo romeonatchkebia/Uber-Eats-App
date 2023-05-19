@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, Text } from "react";
-import { FlatList, SectionList } from "react-native";
+import { FlatList, SectionList, View } from "react-native";
 import * as Progress from "react-native-progress";
 import { Portal } from "react-native-portalize";
 import BottomSheet from "../atoms/BottomSheet";
@@ -9,7 +9,7 @@ import Screen from "../atoms/Screen";
 import MainCard from "../molecules/cards/MainCard";
 import CtgrButton from "../atoms/CtgrButton";
 import ImageViewer from "../atoms/ImageViewer";
-import TextViewer from "../atoms/TextViewer";
+import NewText from "../atoms/NewText";
 
 import * as IMAGES from "../../constants/Images";
 import * as ROUTES from "../../constants/Routs";
@@ -54,10 +54,7 @@ const FilterTextPress = styled.Pressable`
   gap: 5px;
 `;
 
-const FilterText = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 17px;
+const FilterText = styled(NewText)`
   line-height: 23px;
   padding-left: 28%;
 `;
@@ -107,23 +104,11 @@ const SeeAllBtnView = styled.Pressable`
   margin-right: 30px;
 `;
 
-const SeeAllBtn = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 17px;
+const SeeAllBtn = styled(NewText)`
   line-height: 21px;
-  color: ${({ secTitle }) =>
-    secTitle == "" ||
-    secTitle == "French groceries" ||
-    secTitle == "Sweet treats"
-      ? "#f6f6f6"
-      : "#000000"};
 `;
 
-const SectionTitle = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
+const SectionTitle = styled(NewText)`
   line-height: 37px;
   padding-left: 21px;
   margin-bottom: 10px;
@@ -134,21 +119,15 @@ const SectionTitle = styled(TextViewer)`
 
 const BottomSheetCardDiv = styled.View`
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 10px;
   margin: 10px;
 `;
 
-const BottomSheetTitle = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-  text-align: center;
+const BottomSheetTitle = styled(NewText)`
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  text-align: center;
   width: 100%;
 `;
 
@@ -187,7 +166,7 @@ const dineInList = [
         rating: 4.4,
       },
     ],
-    sectionTitle: "",
+    sectionTitle: false,
   },
   {
     horizontalData: [
@@ -236,7 +215,7 @@ const dineInList = [
         promoOrdersPrice: "7",
       },
     ],
-    sectionTitle: "",
+    sectionTitle: false,
   },
   {
     categoryData: [
@@ -542,7 +521,7 @@ const pickUpList = [
         rating: 4.4,
       },
     ],
-    sectionTitle: "",
+    sectionTitle: false,
   },
   {
     horizontalData: [
@@ -591,7 +570,7 @@ const pickUpList = [
         promoOrdersPrice: "7",
       },
     ],
-    sectionTitle: "",
+    sectionTitle: false,
   },
   {
     categoryData: [
@@ -896,7 +875,7 @@ const deliveryList = [
         rating: 4.4,
       },
     ],
-    sectionTitle: "",
+    sectionTitle: false,
   },
   {
     horizontalData: [
@@ -945,7 +924,7 @@ const deliveryList = [
         promoOrdersPrice: "7",
       },
     ],
-    sectionTitle: "",
+    sectionTitle: false,
   },
   {
     categoryData: [
@@ -1390,7 +1369,9 @@ function HomeScreen({ navigation }) {
             </CtgrView>
             <FilterView>
               <FilterTextPress>
-                <FilterText text="Now • London Hall" />
+                <FilterText font="medium" size="large">
+                  Now • London Hall
+                </FilterText>
                 <IconView>
                   <FilterIcon source={IMAGES.FilterTextIcon} />
                 </IconView>
@@ -1421,9 +1402,19 @@ function HomeScreen({ navigation }) {
               renderSectionHeader={({ section }) => (
                 <>
                   <SectionTitleView>
-                    <SectionTitle text={section.sectionTitle} />
+                    <SectionTitle size="xlarge" font="bold">
+                      {section.sectionTitle}
+                    </SectionTitle>
                     <SeeAllBtnView>
-                      <SeeAllBtn secTitle={section.sectionTitle}>
+                      <SeeAllBtn
+                        font="medium"
+                        size="medium"
+                        secTitle={
+                          section.sectionTitle
+                            ? (visible = true)
+                            : (visible = false)
+                        }
+                      >
                         See All
                       </SeeAllBtn>
                     </SeeAllBtnView>
@@ -1528,16 +1519,27 @@ function HomeScreen({ navigation }) {
       <Portal>
         <BottomSheet bottomSheetRef={categorySheetRef} modalHeight={700}>
           <BottomSheetCardDiv>
-            <BottomSheetTitle>All categories</BottomSheetTitle>
-            {ctgryListItems.map((item) => {
-              return (
-                <AllCategoryCard
-                  key={item.id}
-                  title={item.title}
-                  imgUrl={item.imgUrl}
-                />
-              );
-            })}
+            <View>
+              <BottomSheetTitle size="large">All categories</BottomSheetTitle>
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                gap: 10,
+              }}
+            >
+              {ctgryListItems.map((item) => {
+                return (
+                  <AllCategoryCard
+                    key={item.id}
+                    title={item.title}
+                    imgUrl={item.imgUrl}
+                  />
+                );
+              })}
+            </View>
           </BottomSheetCardDiv>
         </BottomSheet>
       </Portal>

@@ -1,8 +1,8 @@
-import react, { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import Screen from "../atoms/Screen";
-import TextViewer from "../atoms/TextViewer";
+import NewText from "../atoms/NewText";
 import ImageViewer from "../atoms/ImageViewer";
 import TextInput from "../atoms/TextInput";
 import * as ROUTES from "../../constants/Routs";
@@ -41,7 +41,7 @@ const Password = styled(TextInput)`
   margin-bottom: 20px;
 `;
 
-const LoginScreen = ({ navigation, route }) => {
+const LoginScreen = ({ navigation }) => {
   const [userNameLogIn, setUserNameLogIn] = useState("");
   const [passwordLogIn, setPasswordLogIn] = useState("");
   const [showError, setShowError] = useState(false);
@@ -80,10 +80,9 @@ const LoginScreen = ({ navigation, route }) => {
         onPress={() => navigation.navigate(ROUTES.DRAWER_NAVIGATOR)}
       />
       {showError && (
-        <TextViewer
-          style={{ color: "red", marginTop: 15 }}
-          text="Username or password is not correct"
-        />
+        <NewText color="red" style={{ marginTop: 15 }}>
+          Username or password is not correct
+        </NewText>
       )}
       <ForgotPass title="Forgot Password?" black />
       <CreateAccount

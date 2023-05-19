@@ -7,6 +7,7 @@ import * as IMAGES from "../../constants/Images";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 import CtgrButton from "../atoms/CtgrButton";
 import BasketsCard from "../molecules/cards/BasketsCard";
+import NewText from "../atoms/NewText";
 
 const Container = styled(Screen)`
   align-items: center;
@@ -17,12 +18,7 @@ const OrderBtn = styled(GreyBtnWithIcon)`
   width: 30%;
 `;
 
-const CartText = styled.Text`
-  font-style: normal;
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 44px;
-`;
+const CartText = styled(NewText)``;
 
 const ImageSource = IMAGES.BasketMain;
 
@@ -30,19 +26,9 @@ const MainImage = styled.Image`
   margin-top: 100px;
 `;
 
-const Title = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 28px;
-`;
+const Title = styled(NewText)``;
 
-const Decription = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  color: #545454;
-  line-height: 24px;
+const Decription = styled(NewText)`
   text-align: center;
   margin-top: 12px;
 `;
@@ -97,7 +83,9 @@ const Baskets = () => {
         />
       </View>
       <View style={{ alignItems: "flex-start", width: "100%" }}>
-        <CartText>Cart</CartText>
+        <CartText size="xxlarge" font="bold">
+          Cart
+        </CartText>
       </View>
       {addItems ? (
         data.map((item) => {
@@ -114,8 +102,10 @@ const Baskets = () => {
       ) : (
         <>
           <MainImage source={ImageSource} />
-          <Title>Add items to start a basket</Title>
-          <Decription>
+          <Title font="medium" size="xlarge">
+            Add items to start a basket
+          </Title>
+          <Decription color="grey" size="medium">
             Once you add items from a restaurant or store, your basket will
             appear here
           </Decription>

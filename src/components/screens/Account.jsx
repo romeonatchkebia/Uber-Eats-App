@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 
 import styled from "styled-components";
 import Screen from "../atoms/Screen";
 import AccountCard from "../molecules/cards/AccountCard";
+import NewText from "../atoms/NewText";
 
 import * as IMAGES from "../../constants/Images";
 import * as ROUTES from "../../constants/Routs";
@@ -25,20 +26,12 @@ const ProfileView = styled.View`
 const ProfileFoto = styled.Image`
   width: 46px;
   height: 46px;
+  border-radius: 100px;
 `;
 
-const ProfileName = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 22px;
-`;
+const ProfileName = styled(NewText)``;
 
-const AboutText = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
+const AboutText = styled(NewText)`
   margin-left: 25px;
   margin-top: 20px;
 `;
@@ -93,18 +86,39 @@ const data = [
   },
 ];
 
-const Account = ({ navigation }) => {
+const Account = ({ navigation, route }) => {
+  const [image, setImage] = useState(false);
+  const [nameState, setNameState] = useState(false);
+
   function handlePress(str) {
     navigation.navigate(str, { reward: "reward" });
   }
+
+  useEffect(() => {
+    if (route.params !== undefined) {
+      setNameState(true);
+      setImage(true);
+    } else {
+      setNameState(false);
+    }
+  }, [route.params]);
 
   return (
     <Container>
       <ScrollView>
         <ProfileView>
-          <ProfileFoto source={IMAGES.AccountProfileImage} />
-          <ProfileName>John Doe</ProfileName>
+          <ProfileFoto
+            source={image ? route.params.image : IMAGES.AccountProfileImage}
+          />
+          {nameState ? (
+            <ProfileName size="large">
+              {route.params.name} {route.params.lastName}
+            </ProfileName>
+          ) : (
+            <ProfileName>John Doe</ProfileName>
+          )}
         </ProfileView>
+
         {data.map((item) => {
           return (
             <AccountCard
@@ -115,7 +129,7 @@ const Account = ({ navigation }) => {
             />
           );
         })}
-        <AboutText>About</AboutText>
+        <AboutText size="small">About</AboutText>
       </ScrollView>
     </Container>
   );

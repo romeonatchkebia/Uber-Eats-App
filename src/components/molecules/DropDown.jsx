@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-
-import DropDownPicker from "react-native-dropdown-picker";
-
 import styled from "styled-components";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const DropContainer = styled.View`
   width: 150px;

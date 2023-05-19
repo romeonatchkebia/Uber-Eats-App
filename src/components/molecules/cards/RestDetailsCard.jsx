@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import TextViewer from "../../atoms/TextViewer";
+
 import ImageViewer from "../../atoms/ImageViewer";
+import NewText from "../../atoms/NewText";
 
 const Container = styled.View`
   flex-direction: row;
@@ -25,38 +26,15 @@ const Promo = styled.View`
   margin-top: 8px;
 `;
 
-const PromoText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+const PromoText = styled(NewText)`
   text-align: center;
-  color: #ffffff;
 `;
 
 const RightContainer = styled.View``;
 
-const Title = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-`;
+const Title = styled(NewText)``;
 
-const SubTitle = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-`;
-
-const Desc = styled(TextViewer)`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: #545454;
-`;
+const Desc = styled(NewText)``;
 
 const CardImage = styled(ImageViewer)``;
 
@@ -66,15 +44,9 @@ const TextWrapper = styled.View`
   flex-direction: row;
 `;
 
-const SoldoutText = styled.Text`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  color: rgba(84, 84, 84, 0.5);
-`;
+const SoldoutText = styled(NewText)``;
 
-const PriceText = styled.Text``;
+const PriceText = styled(NewText)``;
 
 const RestDetailsCard = ({
   title,
@@ -89,12 +61,16 @@ const RestDetailsCard = ({
   return (
     <Container {...props}>
       <LeftContainer img={img}>
-        {title && <Title text={title} />}
+        {title && (
+          <Title size="medium" font="medium">
+            {title}
+          </Title>
+        )}
 
         {price && itemQuantity < 21 ? (
           <SoldoutView>
             <TextWrapper>
-              <SoldoutText>Sold out • </SoldoutText>
+              <SoldoutText color="grey">Sold out • </SoldoutText>
               <PriceText>US${price}</PriceText>
             </TextWrapper>
             <SoldoutText>Must be 21 to purchase</SoldoutText>
@@ -102,13 +78,17 @@ const RestDetailsCard = ({
         ) : (
           <>
             <PriceText>US${price}</PriceText>
-            <Desc text={desc} numberOfLines={3} />
+            <Desc color="grey" numberOfLines={3}>
+              {desc}
+            </Desc>
           </>
         )}
 
         {promo && (
           <Promo>
-            <PromoText>Promo</PromoText>
+            <PromoText font="medium" color="white">
+              Promo
+            </PromoText>
           </Promo>
         )}
       </LeftContainer>

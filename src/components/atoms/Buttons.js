@@ -1,40 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
+import NewText from "./NewText";
+
 const Container = styled.Pressable`
   width: 250px;
   height: 45px;
   background-color: #54924f;
-  background-color: ${({ light }) => (light ? "#C7DAC5" : "#54924f")};
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const Title = styled.Text`
-  font-size: 20px;
-  color: ${({ light, black }) => {
-    if (light) {
-      return "#55837d";
-    } else if (black) {
-      return "#000000";
-    } else {
-      return "#ffffff";
-    }
-  }};
-`;
+const Title = styled(NewText)``;
 
-const Buttons = ({
-  title,
-  onPress,
-  light = false,
-  black = false,
-  ...props
-}) => {
+const Buttons = ({ title, onPress, ...props }) => {
   return (
-    <Container onPress={onPress} light={light} {...props}>
-      <Title light={light} black={black}>
+    <Container onPress={onPress} {...props}>
+      <Title onPress={onPress} color="white" size="large">
         {title}
       </Title>
     </Container>

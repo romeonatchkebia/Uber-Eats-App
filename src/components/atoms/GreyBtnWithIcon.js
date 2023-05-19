@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import NewText from "./NewText";
+
 const BtnImage = styled.Image`
   margin-right: -10px;
 `;
@@ -19,19 +21,15 @@ const Button = styled.Pressable`
   width: 40%;
 `;
 
-const BtnText = styled.Text`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
+const BtnText = styled(NewText)`
   line-height: 20px;
-  color: #000000;
 `;
 
 const GreyBtnWithIcon = ({ title, img, onPress, ...props }) => {
   return (
     <Button {...props} onPress={onPress}>
       <BtnImage source={img} />
-      <BtnText>{title}</BtnText>
+      <BtnText font="medium">{title}</BtnText>
     </Button>
   );
 };

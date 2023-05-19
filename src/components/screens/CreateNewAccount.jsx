@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 import Screen from "../atoms/Screen";
-import styled from "styled-components";
 import TextInput from "../atoms/TextInput";
-import TextViewer from "../atoms/TextViewer";
-import * as ROUTES from "../../constants/Routs";
 import Buttons from "../atoms/Buttons";
+import * as ROUTES from "../../constants/Routs";
 
 const Container = styled(Screen)`
   align-items: center;
