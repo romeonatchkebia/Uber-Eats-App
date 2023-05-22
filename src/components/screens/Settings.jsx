@@ -3,7 +3,7 @@ import { Image, View } from "react-native";
 import styled from "styled-components";
 
 import Screen from "../atoms/Screen";
-import ImgPicker from "../atoms/ImgPicker";
+import ImgPicker from "../molecules/ImgPicker";
 import NewText from "../atoms/NewText";
 import AccountCard from "../molecules/cards/AccountCard";
 import * as ROUTES from "../../constants/Routs";
@@ -141,13 +141,10 @@ const Settings = ({ navigation, route }) => {
 
         {!nameState && <UserName>John Doe</UserName>}
 
-        <EditAccount>
-          <AdditAccountText
-            font="medium"
-            size="medium"
-            color="green"
-            onPress={() => navigation.navigate(ROUTES.EDITACCOUNT_SCREEN)}
-          >
+        <EditAccount
+          onPress={() => navigation.navigate(ROUTES.EDITACCOUNT_SCREEN)}
+        >
+          <AdditAccountText font="medium" size="medium" color="green">
             EDIT ACCOUNT
           </AdditAccountText>
         </EditAccount>

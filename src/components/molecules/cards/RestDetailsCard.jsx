@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ImageViewer from "../../atoms/ImageViewer";
 import NewText from "../../atoms/NewText";
 
-const Container = styled.View`
+const Container = styled.Pressable`
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -56,10 +56,11 @@ const RestDetailsCard = ({
   promo,
   itemQuantity,
   popular,
+  onPress,
   ...props
 }) => {
   return (
-    <Container {...props}>
+    <Container onPress={onPress} {...props}>
       <LeftContainer img={img}>
         {title && (
           <Title size="medium" font="medium">

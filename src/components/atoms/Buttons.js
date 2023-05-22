@@ -18,7 +18,7 @@ const Title = styled(NewText)``;
 const Buttons = ({ title, onPress, ...props }) => {
   return (
     <Container onPress={onPress} {...props}>
-      <Title onPress={onPress} color="white" size="large">
+      <Title color="white" size="large">
         {title}
       </Title>
     </Container>

@@ -7,6 +7,7 @@ import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 import * as Progress from "react-native-progress";
 import * as IMAGES from "../../constants/Images";
+import * as ROUTES from "../../constants/Routs";
 
 import RestDetailsCard from "../molecules/cards/RestDetailsCard";
 import DeliveryPickupBtns from "../atoms/DeliveryPickupBtns";
@@ -20,7 +21,7 @@ const SpinnerView = styled.View`
 `;
 
 const Container = styled(Screen)`
-  margin: 20px;
+  margin: 15px;
 `;
 
 const HeaderContainer = styled.View`
@@ -274,7 +275,6 @@ const RestaurantDetails = ({ navigation, route }) => {
     }
   }
 
-  const itemFromHome = route.params;
   const rest = data.restaurant;
 
   return (
@@ -347,6 +347,12 @@ const RestaurantDetails = ({ navigation, route }) => {
                   desc={item.desc}
                   key={uuidv4()}
                   promo={item.promo}
+                  onPress={() =>
+                    navigation.navigate(ROUTES.ORDER_SELECTION_SCREEN, {
+                      ...item,
+                      restName: data.restaurant.name,
+                    })
+                  }
                 />
               );
             })}

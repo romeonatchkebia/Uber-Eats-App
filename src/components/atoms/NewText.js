@@ -10,7 +10,7 @@ const CustomText = styled.Text`
       case "medium":
         return "uber-medium";
       default:
-        return "dms-regular";
+        return "uber-regular";
     }
   }};
   font-size: ${({ size }) => {
@@ -62,11 +62,15 @@ const NewText = ({
 
   if (show) {
     return (
-      <Pressable onPress={onPress}>
-        <CustomText font={font} size={size} color={color} {...props}>
-          {children}
-        </CustomText>
-      </Pressable>
+      <CustomText
+        font={font}
+        size={size}
+        color={color}
+        onPress={onPress}
+        {...props}
+      >
+        {children}
+      </CustomText>
     );
   } else {
     return null;

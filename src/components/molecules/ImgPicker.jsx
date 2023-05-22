@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import * as ImagePicker from "expo-image-picker";
 
-import NewText from "./NewText";
+import NewText from "../atoms/NewText";
 
 const Container = styled.Pressable``;
 
@@ -35,8 +35,8 @@ const ImgPicker = ({ title, callback }) => {
   };
 
   return (
-    <Container>
-      <NewText onPress={onPressHandler}>{title}</NewText>
+    <Container onPress={onPressHandler}>
+      <NewText>{title}</NewText>
     </Container>
   );
 };

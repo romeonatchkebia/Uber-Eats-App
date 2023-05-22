@@ -22,7 +22,7 @@ const Title = styled(NewText)`
 const CtgrButton = ({ title, onPress, black = false, ...props }) => {
   return (
     <Container onPress={onPress} black={black} {...props}>
-      <Title font="medium" black={black} onPress={onPress}>
+      <Title font="medium" black={black}>
         {title}
       </Title>
     </Container>
