@@ -35,7 +35,7 @@ const Decription = styled(NewText)`
 
 const StartShopBtn = styled(CtgrButton)`
   margin-top: 38px;
-  width: 40%;
+  width: 45%;
   height: 45px;
 `;
 

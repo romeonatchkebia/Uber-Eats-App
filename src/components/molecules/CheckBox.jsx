@@ -21,7 +21,7 @@ const LeftInner = styled.View`
 const RightView = styled.View`
   align-items: center;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 10px;
 `;
 

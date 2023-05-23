@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Image, ScrollView } from "react-native";
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 
 import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
@@ -95,6 +94,7 @@ const SaveText = styled(NewText)`
 
 const data = {
   restaurant: {
+    id: 0,
     name: "Lanespan Pizza & Pub (Emerville)",
     rating: 4.6,
     ratingQuantity: 300,
@@ -107,6 +107,7 @@ const data = {
   },
 
   bottomRestName: {
+    id: 1,
     restTitle: "Alcohol - Beer (Must be 21 to Purchase)",
     title: "Russian River Plinty Bottle",
     price: "21.00",
@@ -115,24 +116,28 @@ const data = {
 
   mostPopular: [
     {
+      id: 2,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasasa dsa sadsa da sd asdasdasdas dasdas das das ",
       img: require("../Images/pizza.png"),
     },
     {
+      id: 3,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasdasdas das das dasdasdas dasd asd asdsadsa ",
       img: require("../Images/pizza.png"),
     },
     {
+      id: 4,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
       img: require("../Images/pizza.png"),
     },
     {
+      id: 5,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
@@ -141,21 +146,25 @@ const data = {
   ],
   pickedForYou: [
     {
+      id: 6,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
     },
     {
+      id: 7,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
     },
     {
+      id: 8,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
     },
     {
+      id: 9,
       title: "Rus River Plinty Bottle",
       price: "10.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
@@ -164,27 +173,32 @@ const data = {
   ],
   ourSpecialPizaa: [
     {
+      id: 10,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
     },
     {
+      id: 11,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
     },
     {
+      id: 12,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
     },
     {
+      id: 13,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
     },
   ],
   starters: {
+    id: 14,
     title: "Garlic knots",
     desc: "Priced by add-ons",
     popular: true,
@@ -192,12 +206,14 @@ const data = {
   },
   salads: [
     {
+      id: 15,
       title: "Little Cesar Salad",
       price: "18.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
       popular: true,
     },
     {
+      id: 16,
       title: "Rocket Salad",
       price: "10.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
@@ -205,24 +221,28 @@ const data = {
   ],
   ourSpecialPizza: [
     {
+      id: 17,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasasa dsa sadsa da sd asdasdasdas dasdas das das ",
       img: require("../Images/pizza.png"),
     },
     {
+      id: 18,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasdasdas das das dasdasdas dasd asd asdsadsa ",
       img: require("../Images/pizza.png"),
     },
     {
+      id: 19,
       title: "McMshroom pizza",
       price: "21.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
       img: require("../Images/pizza.png"),
     },
     {
+      id: 20,
       title: "Happy bithday Pizza",
       price: "21.00",
       desc: "dasdasdasdas dasd as da sd asd sadasdas da sdasdasdasdas das d asdasdasdas",
@@ -231,17 +251,20 @@ const data = {
   ],
   mischelaneous: [
     {
+      id: 21,
       title: "Little Cesar Salad",
       price: "18.00",
       popular: true,
     },
     {
+      id: 22,
       title: "Rocket Salad",
       price: "10.00",
       popular: true,
     },
     {
-      title: "Rocket Salad",
+      id: 23,
+      title: "Great Salad",
       price: "10.00",
     },
   ],
@@ -265,6 +288,7 @@ const RestaurantDetails = ({ navigation, route }) => {
   const btns = [
     { title: "Delivery", value: 0 },
     { title: "Pickup", value: 1 },
+    { title: "Dine-in", value: 2 },
   ];
 
   function calcRating(num) {
@@ -326,7 +350,7 @@ const RestaurantDetails = ({ navigation, route }) => {
                     }
                     title={btn.title}
                     onPress={() => handlePress(btn.value)}
-                    key={btn.value}
+                    key={btn.title}
                     black={btn.value === category ? true : false}
                   />
                 );
@@ -345,7 +369,7 @@ const RestaurantDetails = ({ navigation, route }) => {
                   price={item.price}
                   img={item.img}
                   desc={item.desc}
-                  key={uuidv4()}
+                  key={item.id}
                   promo={item.promo}
                   onPress={() =>
                     navigation.navigate(ROUTES.ORDER_SELECTION_SCREEN, {
@@ -366,7 +390,7 @@ const RestaurantDetails = ({ navigation, route }) => {
                   title={item.title}
                   price={item.price}
                   desc={item.desc}
-                  key={uuidv4()}
+                  key={item.id}
                   itemQuantity={item.itemQuantity}
                 />
               );
@@ -381,6 +405,7 @@ const RestaurantDetails = ({ navigation, route }) => {
                 desc={data.starters.desc}
                 img={data.starters.img}
                 popular={data.starters.popular}
+                key={data.starters.id}
               />
             }
           </SectionContainer>
@@ -393,7 +418,7 @@ const RestaurantDetails = ({ navigation, route }) => {
                   title={item.title}
                   price={item.price}
                   desc={item.desc}
-                  key={uuidv4()}
+                  key={item.id}
                   popular={item.popular}
                 />
               );
@@ -409,7 +434,7 @@ const RestaurantDetails = ({ navigation, route }) => {
                   price={item.price}
                   img={item.img}
                   desc={item.desc}
-                  key={uuidv4()}
+                  key={item.id}
                   popular={item.popular}
                 />
               );
@@ -425,7 +450,7 @@ const RestaurantDetails = ({ navigation, route }) => {
                   price={item.price}
                   img={item.img}
                   desc={item.desc}
-                  key={uuidv4()}
+                  key={item.id}
                   popular={item.popular}
                 />
               );
@@ -441,7 +466,7 @@ const RestaurantDetails = ({ navigation, route }) => {
               title={data.bottomRestName.title}
               price={data.bottomRestName.price}
               desc={data.bottomRestName.desc}
-              key={uuidv4()}
+              key={data.bottomRestName.id}
             />
           </InfoContainer>
           <BottomSaveView>

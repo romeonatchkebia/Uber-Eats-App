@@ -248,7 +248,7 @@ const Browse = ({ navigation }) => {
         <AllCategories font="medium" size="xlarge">
           All Categories
         </AllCategories>
-        <InnerContainer>
+        <InnerContainer style={{ paddingBottom: 80 }}>
           {allCategoriesList.map((item) => {
             return (
               <BrowseCard

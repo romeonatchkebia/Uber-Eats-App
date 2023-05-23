@@ -28,6 +28,7 @@ const Container = styled(Screen)`
 
 const HomeCard = styled(MainCard)`
   margin-left: 8px;
+  margin-right: 8px;
 `;
 
 // category and filter buttons
@@ -85,7 +86,7 @@ const SpinnerView = styled.View`
 const CategoryContainer = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
-
+  gap: 5px;
   margin-right: 20px;
   margin-left: 25px;
   margin-top: 20px;
@@ -1527,7 +1528,6 @@ function HomeScreen({ navigation }) {
                 flexDirection: "row",
                 flexWrap: "wrap",
                 justifyContent: "center",
-                gap: 10,
               }}
             >
               {ctgryListItems.map((item) => {

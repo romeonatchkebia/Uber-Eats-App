@@ -10,6 +10,8 @@ import NewText from "../atoms/NewText";
 import SectionDevider from "../atoms/SectionDevider";
 import RadioLabel from "../molecules/RadioLabel";
 import CheckBox from "../molecules/CheckBox";
+import MyComponent from "../atoms/MyComponent";
+import RadioComponent from "../molecules/RadioComponent";
 
 const Container = styled(Screen)``;
 
@@ -118,63 +120,80 @@ const LineThroughText = styled(NewText)`
 const sauce = [
   {
     id: 0,
+    isChecked: false,
     value: 1,
     label: "Mariana Sauce",
+    price: 0,
   },
   {
     id: 1,
-    value: 1,
+    isChecked: false,
+    value: 2,
     label: "Garlicky Sauce",
+    price: 0,
   },
   {
     id: 2,
-    value: 1,
+    isChecked: false,
+    value: 3,
     label: "Pesto Sauce",
+    price: 0,
   },
   {
     id: 3,
-    value: 1,
+    isChecked: false,
+    value: 4,
     label: "BBQ Sauce",
+    price: 0,
   },
   {
     id: 4,
-    value: 1,
+    isChecked: false,
+    value: 5,
     label: "Buffalo Sauce",
+    price: 0,
   },
 ];
 const size = [
   {
     id: 5,
-    value: 1,
+    value: 6,
+    isChecked: false,
     label: "Small 10'' (6 Slices)",
+    price: 0,
   },
   {
     id: 6,
-    value: 1,
+    value: 7,
+    isChecked: false,
     label: "Medium 12'' (8 Slices)",
     price: "4.00",
   },
   {
     id: 7,
-    value: 1,
+    value: 8,
+    isChecked: false,
     label: "Large 14'' (8 Slices)",
     price: "10.00",
   },
   {
     id: 8,
-    value: 1,
+    value: 9,
+    isChecked: false,
     label: "Extra large 16'' (12 Slices)",
     price: "15.00",
   },
   {
     id: 9,
-    value: 1,
+    value: 10,
+    isChecked: false,
     label: "Super 20'' (12 Slices)",
     price: "18.00",
   },
   {
     id: 10,
-    value: 1,
+    value: 11,
+    isChecked: false,
     label: "24''",
     price: "25.00",
   },
@@ -182,18 +201,22 @@ const size = [
 const crust = [
   {
     id: 11,
-    value: 1,
+    value: 12,
+    isChecked: false,
     label: "Regular Crust",
+    price: 0,
   },
   {
     id: 12,
-    value: 1,
+    value: 13,
+    isChecked: false,
     label: "Corn Skinny Crust",
     price: "4.00",
   },
   {
     id: 13,
-    value: 1,
+    value: 14,
+    isChecked: false,
     label: "Thick Pun Crust",
     price: "10.00",
   },
@@ -243,24 +266,24 @@ const freqBroughtTo = [
 ];
 
 const OrderSelection = ({ navigation, route }) => {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [sum, setSum] = useState(0);
   const [itemPrice, setItemPrice] = useState(0);
 
   const { restName, price, desc } = route.params;
 
   function handleIncrement() {
-    setCount(count + 1);
+    setCount(Number(count) + 1);
   }
 
   function handleDecrement() {
     if (count > 0) {
-      setCount(count - 1);
+      setCount(Number(count) - 1);
     }
   }
 
   useEffect(() => {
-    setSum(count * 8.495 + itemPrice);
+    setSum(Number(count) * 8.495 + Number(itemPrice));
   }, [count, itemPrice]);
 
   return (
@@ -312,17 +335,7 @@ const OrderSelection = ({ navigation, route }) => {
           </TitleView>
 
           <RadioView>
-            {sauce.map((item) => {
-              return (
-                <RadioLabel
-                  key={item.id}
-                  label={item.label}
-                  price={item.price}
-                  id={item.id}
-                  setItemPrice={setItemPrice}
-                />
-              );
-            })}
+            <RadioComponent arr={sauce} setItemPrice={setItemPrice} />
           </RadioView>
         </View>
 
@@ -362,17 +375,7 @@ const OrderSelection = ({ navigation, route }) => {
           </TitleView>
 
           <RadioView>
-            {size.map((item) => {
-              return (
-                <RadioLabel
-                  key={item.id}
-                  label={item.label}
-                  price={item.price}
-                  id={item.id}
-                  setItemPrice={setItemPrice}
-                />
-              );
-            })}
+            <RadioComponent arr={size} setItemPrice={setItemPrice} />
           </RadioView>
         </View>
 
@@ -389,17 +392,7 @@ const OrderSelection = ({ navigation, route }) => {
           </TitleView>
 
           <RadioView>
-            {crust.map((item) => {
-              return (
-                <RadioLabel
-                  key={item.id}
-                  label={item.label}
-                  price={item.price}
-                  id={item.id}
-                  setItemPrice={setItemPrice}
-                />
-              );
-            })}
+            <RadioComponent arr={crust} setItemPrice={setItemPrice} />
           </RadioView>
         </View>
 

@@ -21,44 +21,21 @@ const LeftInner = styled.View`
 const RightView = styled.View`
   align-items: center;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 10px;
 `;
 
 const Label = styled(NewText)``;
 const Price = styled(NewText)``;
 
-const RadioLabel = ({
-  // checked,
-  id,
-  price,
-  subTitle,
-  label,
-  arry,
-  handlePrice,
-  setItemPrice,
-  handleRadioBtn,
-}) => {
-  const [checked, setChecked] = useState(false);
-
-  function handlePrice() {
-    if (checked) {
-      setItemPrice((prev) => prev - Number(price));
-    } else if (!checked) {
-      setItemPrice((prev) => prev + Number(price));
-    }
-  }
-
+const RadioLabel = ({ price, subTitle, label, checked, onPress }) => {
   return (
     <Container>
       <LeftView>
         <RadioButton
           value={checked}
           status={checked === true ? "checked" : "unchecked"}
-          onPress={() => {
-            setChecked(!checked);
-            handlePrice();
-          }}
+          onPress={onPress}
         />
         <LeftInner>
           {label && (

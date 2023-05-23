@@ -6,6 +6,7 @@ import NewText from "../../atoms/NewText";
 
 const Container = styled.Pressable`
   align-items: center;
+  margin-right: 3px;
 `;
 
 const Wrapper = styled.View`
