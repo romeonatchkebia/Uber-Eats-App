@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Checkbox } from "react-native-paper";
 import styled from "styled-components";
+import Checkbox from "expo-checkbox";
 
 import NewText from "../atoms/NewText";
 
@@ -10,12 +10,12 @@ const Container = styled.Pressable`
 `;
 
 const LeftView = styled.View`
-  align-items: center;
   flex-direction: row;
 `;
 
 const LeftInner = styled.View`
   margin-bottom: 10px;
+  margin-left: 10px;
 `;
 
 const RightView = styled.View`
@@ -28,7 +28,7 @@ const RightView = styled.View`
 const Label = styled(NewText)``;
 const Price = styled(NewText)``;
 
-const CheckBox = ({ price, subTitle, label, setItemPrice }) => {
+const CheckComponent = ({ price, subTitle, label, setItemPrice }) => {
   const [checked, setChecked] = useState(false);
 
   function handlePrice() {
@@ -43,9 +43,9 @@ const CheckBox = ({ price, subTitle, label, setItemPrice }) => {
     <Container>
       <LeftView>
         <Checkbox
+          color="black"
           value={checked}
-          status={checked === true ? "checked" : "unchecked"}
-          onPress={() => {
+          onValueChange={() => {
             setChecked(!checked);
             handlePrice();
           }}
@@ -70,4 +70,4 @@ const CheckBox = ({ price, subTitle, label, setItemPrice }) => {
   );
 };
 
-export default CheckBox;
+export default CheckComponent;

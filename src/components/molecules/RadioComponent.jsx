@@ -24,8 +24,6 @@ const RightView = styled.View`
 const RadioComponent = ({ arr, setItemPrice }) => {
   const [value, setValue] = useState();
 
-  console.log(value);
-
   useEffect(() => {
     arr.forEach((item) => {
       if (item.value === value) {

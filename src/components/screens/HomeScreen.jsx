@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, Text } from "react";
-import { FlatList, SectionList, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { FlatList, SectionList, View, Platform } from "react-native";
 import * as Progress from "react-native-progress";
 import { Portal } from "react-native-portalize";
 import BottomSheet from "../atoms/BottomSheet";
@@ -26,10 +26,7 @@ const Container = styled(Screen)`
   background: ${COLORS.SCREEN_BACKGROUND};
 `;
 
-const HomeCard = styled(MainCard)`
-  margin-left: 8px;
-  margin-right: 8px;
-`;
+const HomeCard = styled(MainCard)``;
 
 // category and filter buttons
 const CtgrFilterBtnView = styled.View``;

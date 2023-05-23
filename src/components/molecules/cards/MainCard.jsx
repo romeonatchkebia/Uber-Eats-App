@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-
+import { Platform } from "react-native";
 import styled from "styled-components";
 import ImageViewer from "../../atoms/ImageViewer";
-import * as IMAGES from "../../../constants/Images";
 import NewText from "../../atoms/NewText";
+import * as IMAGES from "../../../constants/Images";
 
 const CardView = styled.Pressable`
   background: #f6f6f6;
-  padding: 12px;
+  align-items: center;
   position: relative;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 const CardImage = styled(ImageViewer)``;
@@ -16,7 +18,11 @@ const CardImage = styled(ImageViewer)``;
 const TitleRatingView = styled.View`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  width: ${Platform.OS === "ios" ? 90 : 100}%;
+  padding-right: ${Platform.OS === "ios" ? 0 : 5}px;
+  padding-left: ${Platform.OS === "ios" ? 0 : 5}px;
 `;
 
 const CardTitle = styled(NewText)`
@@ -33,11 +39,15 @@ const CardRatingView = styled.View`
   justify-content: center;
   padding: 3px 5px;
   margin-top: 5px;
-  margin-right: 8px;
 `;
 
 const CardRating = styled(NewText)`
   text-align: center;
+`;
+
+const SubtitleView = styled.View`
+  width: ${Platform.OS === "ios" ? 90 : 100}%;
+  padding-left: ${Platform.OS === "ios" ? 0 : 5}px;
 `;
 
 const CardSubTitle = styled(NewText)``;
@@ -52,8 +62,8 @@ const PromotionView = styled.View`
   height: 25px;
   width: 62%;
   position: absolute;
+  left: ${Platform.OS === "ios" ? 19 : 3}px;
   top: 33px;
-  left: 12px;
 `;
 
 const PromotionText = styled(NewText)``;
@@ -96,6 +106,7 @@ const MainCard = ({
   return (
     <CardView {...props} onPress={onPress}>
       <CardImage source={source} />
+
       <LikeBtnPress onPress={handleLike}>
         <LikeBtn source={likeImage} />
       </LikeBtnPress>
@@ -104,6 +115,7 @@ const MainCard = ({
         <CardTitle size="medium" font="medium">
           {title}
         </CardTitle>
+
         <CardRatingView>
           {ratingValue && (
             <CardRating size="small">{ratingValue.toFixed(1)}</CardRating>
@@ -111,12 +123,14 @@ const MainCard = ({
         </CardRatingView>
       </TitleRatingView>
 
-      {price && (
-        <CardSubTitle color="grey">{`$${price} Delivery Fee • ${deliveryTime}`}</CardSubTitle>
-      )}
-      {distance && (
-        <CardSubTitle color="grey">{`${deliveryTime} min • ${distance}mi`}</CardSubTitle>
-      )}
+      <SubtitleView>
+        {price && (
+          <CardSubTitle color="grey">{`$${price} Delivery Fee • ${deliveryTime}`}</CardSubTitle>
+        )}
+        {distance && (
+          <CardSubTitle color="grey">{`${deliveryTime} min • ${distance}mi`}</CardSubTitle>
+        )}
+      </SubtitleView>
 
       {promoOrdersNum && promoOrdersPrice && (
         <PromotionView>
