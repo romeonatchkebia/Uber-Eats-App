@@ -9,6 +9,7 @@ import * as ROUTES from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
 
 import Buttons from "../atoms/Buttons";
+import Test from "../atoms/Test";
 
 const Container = styled(Screen)`
   align-items: center;

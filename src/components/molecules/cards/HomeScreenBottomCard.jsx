@@ -5,6 +5,7 @@ import NewText from "../../atoms/NewText";
 
 const Container = styled.View`
   background: #f6f6f6;
+  padding: 15px;
 `;
 
 const BrowseBtn = styled.Pressable`

@@ -27,7 +27,7 @@ const RadioComponent = ({ arr, setItemPrice }) => {
   useEffect(() => {
     arr.forEach((item) => {
       if (item.value === value) {
-        setItemPrice(() => Number(item.price));
+        setItemPrice(() => parseFloat(item.price));
       }
     });
   }, [value]);

@@ -12,8 +12,8 @@ const Container = styled.View`
   background: #eeeeee;
   border-radius: 8px;
   height: 70px;
-  width: 167px;
-  margin: 12px;
+  width: 43%;
+  margin: 10px 0 10px 18px;
 `;
 
 const Title = styled(NewText)``;

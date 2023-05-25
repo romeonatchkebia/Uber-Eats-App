@@ -33,9 +33,9 @@ const CheckComponent = ({ price, subTitle, label, setItemPrice }) => {
 
   function handlePrice() {
     if (checked) {
-      setItemPrice((prev) => prev - Number(price));
+      setItemPrice((prev) => prev - parseFloat(price));
     } else if (!checked) {
-      setItemPrice((prev) => prev + Number(price));
+      setItemPrice((prev) => prev + parseFloat(price));
     }
   }
 

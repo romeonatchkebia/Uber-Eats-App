@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FlatList, SectionList, View, Platform } from "react-native";
+import { FlatList, SectionList, View, ScrollView } from "react-native";
 import * as Progress from "react-native-progress";
 import { Portal } from "react-native-portalize";
 import BottomSheet from "../atoms/BottomSheet";
@@ -96,6 +96,7 @@ const SectionTitleView = styled.View`
   align-items: center;
   justify-content: space-between;
   margin-right: 10px;
+  margin-top: 10px;
 `;
 
 const SeeAllBtnView = styled.Pressable`
@@ -111,6 +112,10 @@ const SectionTitle = styled(NewText)`
   padding-left: 21px;
   margin-bottom: 10px;
   margin-left: 12px;
+`;
+
+const Devider = styled(SectionDevider)`
+  height: 8px;
 `;
 
 //BottomSheet styles
@@ -137,368 +142,11 @@ const AllCategoryCard = styled(CategoryCard)`
 
 const FooterCategoryView = styled.View`
   align-items: center;
-  padding: 10px;
 `;
-
-//sectionList HomeCard alternative
-
-const dineInList = [
-  {
-    data: [
-      {
-        id: 1,
-        url: require("../Images/mainCardImage.png"),
-        title: "Adenine Kitchen",
-        price: "0.29",
-        deliveryTime: "10-25",
-        rating: 4.7,
-        promoOrdersNum: "9",
-        promoOrdersPrice: "23",
-      },
-      {
-        id: 2,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Adenine Kitchen",
-        price: "0.29",
-        deliveryTime: "10-25",
-        rating: 4.4,
-      },
-    ],
-    sectionTitle: false,
-  },
-  {
-    horizontalData: [
-      {
-        id: 3,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 2.6,
-      },
-      {
-        id: 4,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 3.6,
-      },
-    ],
-    data: [
-      {
-        id: 5,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 2.6,
-      },
-      {
-        id: 6,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 3.6,
-      },
-      {
-        id: 7,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 3.8,
-        promoOrdersNum: "3",
-        promoOrdersPrice: "7",
-      },
-    ],
-    sectionTitle: false,
-  },
-  {
-    categoryData: [
-      {
-        id: 8,
-        url: require("../Images/carribean.png"),
-        title: "Carribean",
-      },
-      {
-        id: 9,
-        url: require("../Images/asian.png"),
-        title: "Asian",
-      },
-      {
-        id: 10,
-        url: require("../Images/burger.png"),
-        title: "Burger",
-      },
-      {
-        id: 11,
-        url: require("../Images/indian.png"),
-        title: "Indian",
-      },
-    ],
-    horizontalData: [
-      {
-        id: 12,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 2.6,
-      },
-      {
-        id: 13,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 3.6,
-      },
-    ],
-    data: [
-      {
-        id: 14,
-        url: require("../Images/mainCardImage2.png"),
-        title: "Cardinal Chips",
-        price: "0.55",
-        deliveryTime: "20-45",
-        rating: 4.2,
-        promoOrdersNum: "3",
-        promoOrdersPrice: "7",
-      },
-      {
-        id: 15,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.55",
-        deliveryTime: "20-45",
-        rating: 4.2,
-      },
-      {
-        id: 16,
-        url: require("../Images/mainCardImage2.png"),
-        title: "Cardinal Chips",
-        price: "0.55",
-        deliveryTime: "20-45",
-        rating: 4.2,
-        promoOrdersNum: "3",
-        promoOrdersPrice: "7",
-      },
-      {
-        id: 17,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.55",
-        deliveryTime: "20-45",
-        rating: 4.2,
-        promoOrdersNum: "3",
-        promoOrdersPrice: "7",
-      },
-    ],
-    sectionTitle: "Popular near you",
-  },
-  {
-    horizontalData: [
-      {
-        id: 18,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 2.6,
-      },
-      {
-        id: 19,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 3.6,
-      },
-    ],
-    data: [
-      {
-        id: 20,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-      {
-        id: 21,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-      {
-        id: 22,
-        url: require("../Images/mainCardImage2.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-    ],
-    sectionTitle: "Today's offers",
-  },
-  {
-    horizontalData: [
-      {
-        id: 23,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 2.6,
-      },
-      {
-        id: 24,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 3.6,
-      },
-    ],
-    data: [
-      {
-        id: 25,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-      {
-        id: 26,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-      {
-        id: 27,
-        url: require("../Images/mainCardImage2.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-    ],
-    sectionTitle: "Quick eats",
-  },
-  {
-    horizontalData: [
-      {
-        id: 28,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 2.6,
-      },
-      {
-        id: 29,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.49",
-        deliveryTime: "20-45",
-        rating: 3.6,
-      },
-    ],
-    data: [
-      {
-        id: 30,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-      {
-        id: 31,
-        url: require("../Images/mainCardImage1.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-    ],
-    sectionTitle: "Rewards for you",
-  },
-  {
-    horizontalData: [
-      {
-        id: 32,
-        url: require("../Images/pineaple.png"),
-        title: "Organic Pineaple",
-        price: "9.00",
-      },
-      {
-        id: 33,
-        url: require("../Images/Sauce.png"),
-        title: "Stir Fry Sauce",
-        price: "13.64",
-      },
-      {
-        id: 34,
-        url: require("../Images/peach-slices.png"),
-        title: "Peach Slices",
-        price: "10.00",
-      },
-    ],
-    data: [],
-    sectionTitle: "French groceries",
-  },
-  {
-    categoryData: [
-      {
-        id: 35,
-        title: "Cardinal Chips",
-        price: "0.49",
-      },
-    ],
-    horizontalData: [
-      {
-        id: 36,
-        url: require("../Images/champain.png"),
-        title: "Organic Pineaple",
-        price: "9.00",
-      },
-      {
-        id: 37,
-        url: require("../Images/fanta.png"),
-        title: "Stir Fry Sauce",
-        price: "13.64",
-      },
-      {
-        id: 38,
-        url: require("../Images/coc.png"),
-        title: "Peach Slices",
-        price: "10.00",
-      },
-    ],
-    data: [
-      {
-        id: 39,
-        url: require("../Images/mainCardImage3.png"),
-        title: "Cardinal Chips",
-        price: "0.25",
-        deliveryTime: "20-45",
-        rating: 4.6,
-      },
-    ],
-    sectionTitle: "Sweet treats",
-  },
-];
 
 const pickUpList = [
   {
+    sectionTitle: false,
     data: [
       {
         id: 1,
@@ -519,9 +167,9 @@ const pickUpList = [
         rating: 4.4,
       },
     ],
-    sectionTitle: false,
   },
   {
+    sectionTitle: false,
     horizontalData: [
       {
         id: 3,
@@ -568,31 +216,9 @@ const pickUpList = [
         promoOrdersPrice: "7",
       },
     ],
-    sectionTitle: false,
   },
   {
-    categoryData: [
-      {
-        id: 8,
-        url: require("../Images/carribean.png"),
-        title: "Carribean",
-      },
-      {
-        id: 9,
-        url: require("../Images/asian.png"),
-        title: "Asian",
-      },
-      {
-        id: 10,
-        url: require("../Images/burger.png"),
-        title: "Burger",
-      },
-      {
-        id: 11,
-        url: require("../Images/indian.png"),
-        title: "Indian",
-      },
-    ],
+    sectionTitle: "Popular near you",
     horizontalData: [
       {
         id: 12,
@@ -651,9 +277,31 @@ const pickUpList = [
         promoOrdersPrice: "7",
       },
     ],
-    sectionTitle: "Popular near you",
+    categoryData: [
+      {
+        id: 8,
+        url: require("../Images/carribean.png"),
+        title: "Carribean",
+      },
+      {
+        id: 9,
+        url: require("../Images/asian.png"),
+        title: "Asian",
+      },
+      {
+        id: 10,
+        url: require("../Images/burger.png"),
+        title: "Burger",
+      },
+      {
+        id: 11,
+        url: require("../Images/indian.png"),
+        title: "Indian",
+      },
+    ],
   },
   {
+    sectionTitle: "Today's offers",
     horizontalData: [
       {
         id: 18,
@@ -698,9 +346,9 @@ const pickUpList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Today's offers",
   },
   {
+    sectionTitle: "Quick eats",
     horizontalData: [
       {
         id: 23,
@@ -745,9 +393,9 @@ const pickUpList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Quick eats",
   },
   {
+    sectionTitle: "Rewards for you",
     horizontalData: [
       {
         id: 28,
@@ -784,63 +432,63 @@ const pickUpList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Rewards for you",
   },
   {
-    horizontalData: [
+    sectionTitle: false,
+    title: "French groceries",
+    data: [
       {
         id: 32,
+        url: require("../Images/mainCardImage.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 33,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+    french: [
+      {
+        id: 34,
         url: require("../Images/pineaple.png"),
         title: "Organic Pineaple",
         price: "9.00",
       },
       {
-        id: 33,
+        id: 35,
         url: require("../Images/Sauce.png"),
         title: "Stir Fry Sauce",
         price: "13.64",
       },
       {
-        id: 34,
+        id: 36,
         url: require("../Images/peach-slices.png"),
         title: "Peach Slices",
         price: "10.00",
       },
     ],
-    data: [],
-    sectionTitle: "French groceries",
   },
   {
-    categoryData: [
-      {
-        id: 35,
-        title: "Cardinal Chips",
-        price: "0.49",
-      },
-    ],
-    horizontalData: [
-      {
-        id: 36,
-        url: require("../Images/champain.png"),
-        title: "Organic Pineaple",
-        price: "9.00",
-      },
+    sectionTitle: false,
+    title: "Sweet treats",
+    data: [
       {
         id: 37,
-        url: require("../Images/fanta.png"),
-        title: "Stir Fry Sauce",
-        price: "13.64",
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
       },
       {
         id: 38,
-        url: require("../Images/coc.png"),
-        title: "Peach Slices",
-        price: "10.00",
-      },
-    ],
-    data: [
-      {
-        id: 39,
         url: require("../Images/mainCardImage3.png"),
         title: "Cardinal Chips",
         price: "0.25",
@@ -848,11 +496,405 @@ const pickUpList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Sweet treats",
+    sweets: [
+      {
+        id: 39,
+        url: require("../Images/champain.png"),
+        title: "Organic Pineaple",
+        price: "9.00",
+      },
+      {
+        id: 40,
+        url: require("../Images/fanta.png"),
+        title: "Stir Fry Sauce",
+        price: "13.64",
+      },
+      {
+        id: 41,
+        url: require("../Images/coc.png"),
+        title: "Peach Slices",
+        price: "10.00",
+      },
+    ],
+  },
+];
+const dineInList = [
+  {
+    sectionTitle: false,
+    data: [
+      {
+        id: 1,
+        url: require("../Images/mainCardImage.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.7,
+        promoOrdersNum: "9",
+        promoOrdersPrice: "23",
+      },
+      {
+        id: 2,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Adenine Kitchen",
+        price: "0.29",
+        deliveryTime: "10-25",
+        rating: 4.4,
+      },
+    ],
+  },
+  {
+    sectionTitle: false,
+    horizontalData: [
+      {
+        id: 3,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 2.6,
+      },
+      {
+        id: 4,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+    ],
+    data: [
+      {
+        id: 5,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 2.6,
+      },
+      {
+        id: 6,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+      {
+        id: 7,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.8,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+  },
+  {
+    sectionTitle: "Popular near you",
+    horizontalData: [
+      {
+        id: 12,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 2.6,
+      },
+      {
+        id: 13,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+    ],
+    data: [
+      {
+        id: 14,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+      {
+        id: 15,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+      },
+      {
+        id: 16,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+      {
+        id: 17,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.55",
+        deliveryTime: "20-45",
+        rating: 4.2,
+        promoOrdersNum: "3",
+        promoOrdersPrice: "7",
+      },
+    ],
+    categoryData: [
+      {
+        id: 8,
+        url: require("../Images/carribean.png"),
+        title: "Carribean",
+      },
+      {
+        id: 9,
+        url: require("../Images/asian.png"),
+        title: "Asian",
+      },
+      {
+        id: 10,
+        url: require("../Images/burger.png"),
+        title: "Burger",
+      },
+      {
+        id: 11,
+        url: require("../Images/indian.png"),
+        title: "Indian",
+      },
+    ],
+  },
+  {
+    sectionTitle: "Today's offers",
+    horizontalData: [
+      {
+        id: 18,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 2.6,
+      },
+      {
+        id: 19,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+    ],
+    data: [
+      {
+        id: 20,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 21,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 22,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+  },
+  {
+    sectionTitle: "Quick eats",
+    horizontalData: [
+      {
+        id: 23,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 2.6,
+      },
+      {
+        id: 24,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+    ],
+    data: [
+      {
+        id: 25,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 26,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 27,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+  },
+  {
+    sectionTitle: "Rewards for you",
+    horizontalData: [
+      {
+        id: 28,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 2.6,
+      },
+      {
+        id: 29,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.49",
+        deliveryTime: "20-45",
+        rating: 3.6,
+      },
+    ],
+    data: [
+      {
+        id: 30,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 31,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+  },
+  {
+    sectionTitle: false,
+    title: "French groceries",
+    data: [
+      {
+        id: 32,
+        url: require("../Images/mainCardImage.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 33,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+    french: [
+      {
+        id: 34,
+        url: require("../Images/pineaple.png"),
+        title: "Organic Pineaple",
+        price: "9.00",
+      },
+      {
+        id: 35,
+        url: require("../Images/Sauce.png"),
+        title: "Stir Fry Sauce",
+        price: "13.64",
+      },
+      {
+        id: 36,
+        url: require("../Images/peach-slices.png"),
+        title: "Peach Slices",
+        price: "10.00",
+      },
+    ],
+  },
+  {
+    sectionTitle: false,
+    title: "Sweet treats",
+    data: [
+      {
+        id: 37,
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 38,
+        url: require("../Images/mainCardImage3.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+    sweets: [
+      {
+        id: 39,
+        url: require("../Images/champain.png"),
+        title: "Organic Pineaple",
+        price: "9.00",
+      },
+      {
+        id: 40,
+        url: require("../Images/fanta.png"),
+        title: "Stir Fry Sauce",
+        price: "13.64",
+      },
+      {
+        id: 41,
+        url: require("../Images/coc.png"),
+        title: "Peach Slices",
+        price: "10.00",
+      },
+    ],
   },
 ];
 const deliveryList = [
   {
+    sectionTitle: false,
     data: [
       {
         id: 1,
@@ -873,9 +915,9 @@ const deliveryList = [
         rating: 4.4,
       },
     ],
-    sectionTitle: false,
   },
   {
+    sectionTitle: false,
     horizontalData: [
       {
         id: 3,
@@ -922,31 +964,9 @@ const deliveryList = [
         promoOrdersPrice: "7",
       },
     ],
-    sectionTitle: false,
   },
   {
-    categoryData: [
-      {
-        id: 8,
-        url: require("../Images/carribean.png"),
-        title: "Carribean",
-      },
-      {
-        id: 9,
-        url: require("../Images/asian.png"),
-        title: "Asian",
-      },
-      {
-        id: 10,
-        url: require("../Images/burger.png"),
-        title: "Burger",
-      },
-      {
-        id: 11,
-        url: require("../Images/indian.png"),
-        title: "Indian",
-      },
-    ],
+    sectionTitle: "Popular near you",
     horizontalData: [
       {
         id: 12,
@@ -1005,9 +1025,31 @@ const deliveryList = [
         promoOrdersPrice: "7",
       },
     ],
-    sectionTitle: "Popular near you",
+    categoryData: [
+      {
+        id: 8,
+        url: require("../Images/carribean.png"),
+        title: "Carribean",
+      },
+      {
+        id: 9,
+        url: require("../Images/asian.png"),
+        title: "Asian",
+      },
+      {
+        id: 10,
+        url: require("../Images/burger.png"),
+        title: "Burger",
+      },
+      {
+        id: 11,
+        url: require("../Images/indian.png"),
+        title: "Indian",
+      },
+    ],
   },
   {
+    sectionTitle: "Today's offers",
     horizontalData: [
       {
         id: 18,
@@ -1052,9 +1094,9 @@ const deliveryList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Today's offers",
   },
   {
+    sectionTitle: "Quick eats",
     horizontalData: [
       {
         id: 23,
@@ -1099,9 +1141,9 @@ const deliveryList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Quick eats",
   },
   {
+    sectionTitle: "Rewards for you",
     horizontalData: [
       {
         id: 28,
@@ -1138,63 +1180,63 @@ const deliveryList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Rewards for you",
   },
   {
-    horizontalData: [
+    sectionTitle: false,
+    title: "French groceries",
+    data: [
       {
         id: 32,
+        url: require("../Images/mainCardImage.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+      {
+        id: 33,
+        url: require("../Images/mainCardImage1.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
+      },
+    ],
+    french: [
+      {
+        id: 34,
         url: require("../Images/pineaple.png"),
         title: "Organic Pineaple",
         price: "9.00",
       },
       {
-        id: 33,
+        id: 35,
         url: require("../Images/Sauce.png"),
         title: "Stir Fry Sauce",
         price: "13.64",
       },
       {
-        id: 34,
+        id: 36,
         url: require("../Images/peach-slices.png"),
         title: "Peach Slices",
         price: "10.00",
       },
     ],
-    data: [],
-    sectionTitle: "French groceries",
   },
   {
-    categoryData: [
-      {
-        id: 35,
-        title: "Cardinal Chips",
-        price: "0.49",
-      },
-    ],
-    horizontalData: [
-      {
-        id: 36,
-        url: require("../Images/champain.png"),
-        title: "Organic Pineaple",
-        price: "9.00",
-      },
+    sectionTitle: false,
+    title: "Sweet treats",
+    data: [
       {
         id: 37,
-        url: require("../Images/fanta.png"),
-        title: "Stir Fry Sauce",
-        price: "13.64",
+        url: require("../Images/mainCardImage2.png"),
+        title: "Cardinal Chips",
+        price: "0.25",
+        deliveryTime: "20-45",
+        rating: 4.6,
       },
       {
         id: 38,
-        url: require("../Images/coc.png"),
-        title: "Peach Slices",
-        price: "10.00",
-      },
-    ],
-    data: [
-      {
-        id: 39,
         url: require("../Images/mainCardImage3.png"),
         title: "Cardinal Chips",
         price: "0.25",
@@ -1202,7 +1244,26 @@ const deliveryList = [
         rating: 4.6,
       },
     ],
-    sectionTitle: "Sweet treats",
+    sweets: [
+      {
+        id: 39,
+        url: require("../Images/champain.png"),
+        title: "Organic Pineaple",
+        price: "9.00",
+      },
+      {
+        id: 40,
+        url: require("../Images/fanta.png"),
+        title: "Stir Fry Sauce",
+        price: "13.64",
+      },
+      {
+        id: 41,
+        url: require("../Images/coc.png"),
+        title: "Peach Slices",
+        price: "10.00",
+      },
+    ],
   },
 ];
 
@@ -1352,77 +1413,79 @@ function HomeScreen({ navigation }) {
         </SpinnerView>
       ) : (
         <>
-          <CtgrFilterBtnView>
-            <CtgrView>
-              {btns.map((btn) => {
-                return (
-                  <CtgrButton
-                    title={btn.title}
-                    onPress={() => handlePress(btn.value)}
-                    key={btn.value}
-                    black={btn.value === category ? true : false}
-                  />
-                );
-              })}
-            </CtgrView>
-            <FilterView>
-              <FilterTextPress>
-                <FilterText font="medium" size="large">
-                  Now • London Hall
-                </FilterText>
-                <IconView>
-                  <FilterIcon source={IMAGES.FilterTextIcon} />
-                </IconView>
-              </FilterTextPress>
-              <FilterBtnPress>
-                <FilterBtn source={IMAGES.Slider} />
-              </FilterBtnPress>
-            </FilterView>
-          </CtgrFilterBtnView>
+          <ScrollView>
+            <CtgrFilterBtnView>
+              <CtgrView>
+                {btns.map((btn) => {
+                  return (
+                    <CtgrButton
+                      title={btn.title}
+                      onPress={() => handlePress(btn.value)}
+                      key={btn.value}
+                      black={btn.value === category ? true : false}
+                    />
+                  );
+                })}
+              </CtgrView>
+              <FilterView>
+                <FilterTextPress>
+                  <FilterText font="medium" size="large">
+                    Now • London Hall
+                  </FilterText>
+                  <IconView>
+                    <FilterIcon source={IMAGES.FilterTextIcon} />
+                  </IconView>
+                </FilterTextPress>
+                <FilterBtnPress>
+                  <FilterBtn source={IMAGES.Slider} />
+                </FilterBtnPress>
+              </FilterView>
+            </CtgrFilterBtnView>
 
-          <CategoryContainer>
-            <CategoryCard title="Convenience" imgUrl={IMAGES.Convenience} />
-            <CategoryCard title="Alcohol" imgUrl={IMAGES.Alcohol} />
-            <CategoryCard title="Pet Supplies" imgUrl={IMAGES.PetSupplies} />
-            <CategoryCard
-              title="More"
-              imgUrl={IMAGES.More}
-              onPress={() => categorySheetRef.current.open()}
-            />
-          </CategoryContainer>
+            <CategoryContainer>
+              <CategoryCard title="Convenience" imgUrl={IMAGES.Convenience} />
+              <CategoryCard title="Alcohol" imgUrl={IMAGES.Alcohol} />
+              <CategoryCard title="Pet Supplies" imgUrl={IMAGES.PetSupplies} />
+              <CategoryCard
+                title="More"
+                imgUrl={IMAGES.More}
+                onPress={() => categorySheetRef.current.open()}
+              />
+            </CategoryContainer>
 
-          <>
             <SectionList
               sections={alldata}
               keyExtractor={(item) => item.id}
-              SectionSeparatorComponent={SectionDevider}
+              SectionSeparatorComponent={Devider}
               stickySectionHeadersEnabled={false}
+              scrollEnabled={false}
               renderSectionHeader={({ section }) => (
                 <>
-                  <SectionTitleView>
-                    <SectionTitle size="xlarge" font="bold">
-                      {section.sectionTitle}
-                    </SectionTitle>
-                    <SeeAllBtnView>
-                      <SeeAllBtn
-                        font="medium"
-                        size="medium"
-                        secTitle={
-                          section.sectionTitle
-                            ? (visible = true)
-                            : (visible = false)
-                        }
-                      >
-                        See All
-                      </SeeAllBtn>
-                    </SeeAllBtnView>
-                  </SectionTitleView>
-                  <FlatList
-                    data={section.horizontalData}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => {
-                      return (
-                        item.rating && (
+                  {section.sectionTitle && (
+                    <SectionTitleView>
+                      <SectionTitle size="xlarge" font="bold">
+                        {section.sectionTitle}
+                      </SectionTitle>
+                      <SeeAllBtnView>
+                        {section.sectionTitle && (
+                          <SeeAllBtn
+                            font="medium"
+                            size="medium"
+                            secTitle={section.sectionTitle}
+                          >
+                            See All
+                          </SeeAllBtn>
+                        )}
+                      </SeeAllBtnView>
+                    </SectionTitleView>
+                  )}
+
+                  {category !== 1 && (
+                    <FlatList
+                      data={section.horizontalData}
+                      keyExtractor={(item) => item.id}
+                      renderItem={({ item }) => {
+                        return (
                           <HorizontalListCard
                             title={item.title}
                             source={item.url}
@@ -1437,28 +1500,11 @@ function HomeScreen({ navigation }) {
                             sectionTitle={item.sectionTitle}
                             onPress={() => console.log("works")}
                           />
-                        )
-                      );
-                    }}
-                    horizontal
-                  />
-                  <FlatList
-                    data={section.horizontalData}
-                    horizontal={false}
-                    numColumns={3}
-                    style={{ marginLeft: 23 }}
-                    renderItem={({ item }) => {
-                      return (
-                        !item.rating && (
-                          <ThreeObjectCardForHomeScreen
-                            title={item.title}
-                            imgUrl={item.url}
-                            subTitle={item.price}
-                          />
-                        )
-                      );
-                    }}
-                  />
+                        );
+                      }}
+                      horizontal
+                    />
+                  )}
                 </>
               )}
               renderItem={({ item }) => {
@@ -1502,18 +1548,73 @@ function HomeScreen({ navigation }) {
                       );
                     }}
                   />
-                  <FlatList
-                    data={section.categoryData}
-                    renderItem={({ item }) => {
-                      return !item.url && <HomeScreenBottomCard />;
-                    }}
-                  />
                 </FooterCategoryView>
               )}
             />
-          </>
+
+            {category !== 1 && (
+              <View>
+                <SectionTitleView>
+                  <SectionTitle size="xlarge" font="bold">
+                    {deliveryList[7].title}
+                  </SectionTitle>
+                  <SeeAllBtnView>
+                    <SeeAllBtn font="medium" size="medium">
+                      See All
+                    </SeeAllBtn>
+                  </SeeAllBtnView>
+                </SectionTitleView>
+                <FlatList
+                  data={deliveryList[7].sweets}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => (
+                    <ThreeObjectCardForHomeScreen
+                      title={item.title}
+                      subTitle={item.price}
+                      imgUrl={item.url}
+                    />
+                  )}
+                  scrollEnabled={false}
+                  numColumns={3}
+                />
+              </View>
+            )}
+
+            {category !== 1 && (
+              <View>
+                <SectionTitleView>
+                  <SectionTitle size="xlarge" font="bold">
+                    {deliveryList[6].title}
+                  </SectionTitle>
+                  <SeeAllBtnView>
+                    <SeeAllBtn font="medium" size="medium">
+                      See All
+                    </SeeAllBtn>
+                  </SeeAllBtnView>
+                </SectionTitleView>
+                <FlatList
+                  data={deliveryList[6].french}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => (
+                    <ThreeObjectCardForHomeScreen
+                      title={item.title}
+                      subTitle={item.price}
+                      imgUrl={item.url}
+                    />
+                  )}
+                  scrollEnabled={false}
+                  numColumns={3}
+                />
+              </View>
+            )}
+
+            <Devider />
+
+            <HomeScreenBottomCard />
+          </ScrollView>
         </>
       )}
+
       <Portal>
         <BottomSheet bottomSheetRef={categorySheetRef} modalHeight={700}>
           <BottomSheetCardDiv>

@@ -11,6 +11,7 @@ import SectionDevider from "../atoms/SectionDevider";
 import CheckComponent from "../molecules/CheckComponent";
 import RadioComponent from "../molecules/RadioComponent";
 import BottomSheet from "../atoms/BottomSheet";
+import Test from "../atoms/Test";
 
 const Container = styled(Screen)``;
 
@@ -283,17 +284,17 @@ const OrderSelection = ({ navigation, route }) => {
   const addedItems = useRef();
 
   function handleIncrement() {
-    setCount(Number(count) + 1);
+    setCount(parseFloat(count) + 1);
   }
 
   function handleDecrement() {
-    if (count > 0) {
-      setCount(Number(count) - 1);
+    if (count > 1) {
+      setCount(parseFloat(count) - 1);
     }
   }
 
   useEffect(() => {
-    setSum(Number(count) * 8.495 + Number(itemPrice));
+    setSum(parseFloat(count) * 8.495 + parseFloat(itemPrice));
   }, [count, itemPrice]);
 
   return (
