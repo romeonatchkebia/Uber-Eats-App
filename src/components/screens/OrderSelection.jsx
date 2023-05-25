@@ -12,9 +12,11 @@ import CheckComponent from "../molecules/CheckComponent";
 import RadioComponent from "../molecules/RadioComponent";
 import BottomSheet from "../atoms/BottomSheet";
 import Test from "../atoms/Test";
+import OrderScreenSheetCard from "../molecules/cards/OrderScreenSheetCard";
 
 const Container = styled(Screen)``;
 
+// Restaurant details
 const RestTiTle = styled(NewText)`
   line-height: 36px;
   margin-top: 8px;
@@ -29,6 +31,7 @@ const OrderDesc = styled(NewText)`
   margin-top: 8px;
 `;
 
+// Promotion
 const PromotionView = styled.View`
   align-items: center;
   background-color: #e9ffef;
@@ -55,6 +58,7 @@ const Devider = styled(SectionDevider)`
   background: #f6f6f6;
 `;
 
+// Radio and check buttons View
 const TitleView = styled.View`
   align-items: center;
   flex-direction: row;
@@ -76,6 +80,7 @@ const Required = styled(NewText)``;
 
 const RadioView = styled.View``;
 
+// Counter buttons
 const Counter = styled.View`
   align-items: center;
   flex-direction: row;
@@ -101,6 +106,7 @@ const Plus = styled.Pressable`
   width: 50px;
 `;
 
+// AddButton View
 const AddButton = styled.Pressable`
   align-items: center;
   background-color: #000000;
@@ -118,20 +124,89 @@ const LineThroughText = styled(NewText)`
   text-decoration: line-through;
 `;
 
-const BottomSheetView = styled.View`
-  height: 700px;
+// BottomSheet
+const BottomSheetView = styled.View``;
+
+const RestTitleView = styled.View`
   align-items: center;
+  flex-direction: row;
   justify-content: center;
+  padding: 15px;
 `;
 
-const PriceView = styled.View`
-  background-color: #47e0e0;
-  border-radius: 20px;
-  padding: 10px 30px;
-  margin-bottom: 10px;
+const TextWrapper = styled.View`
+  align-items: center;
 `;
 
-const TotalPrice = styled(NewText)``;
+const SaveText = styled(NewText)`
+  margin-top: 5px;
+`;
+
+const GroupIcon = styled.View``;
+
+const SheetDevider = styled(SectionDevider)`
+  background: #f6f6f6;
+  height: 3px;
+`;
+
+const DetailsView = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px;
+`;
+
+const NumberView = styled.View`
+  align-items: center;
+  background-color: #eeeeee;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+`;
+
+const Txt = styled(NewText)``;
+
+const TxtView = styled.View``;
+
+const FoodTitle = styled(NewText)``;
+
+const FoodSubTitle = styled(NewText)``;
+
+const RestTitle = styled(NewText)`
+  color: #6b6b6b;
+`;
+
+const PriceWrapper = styled.View`
+  align-items: flex-end;
+`;
+
+const IconPriceView = styled.View`
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+`;
+
+const SubPrice = styled(NewText)`
+  color: #6b6b6b;
+  text-decoration: line-through;
+`;
+
+const RenderView = styled.View``;
+
+const SubTotal = styled(NewText)``;
+const SubtotalPrice = styled(NewText)``;
+
+const Left = styled.View`
+  flex-direction: row;
+  background: #eeeeee;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 20px 10px;
+`;
+
+const Right = styled.View`
+  background: #eeeeee;
+  padding: 20px;
+`;
 
 const sauce = [
   {
@@ -279,6 +354,7 @@ const OrderSelection = ({ navigation, route }) => {
   const [count, setCount] = useState(1);
   const [sum, setSum] = useState(0);
   const [itemPrice, setItemPrice] = useState(0);
+  const [selectedName, setSelectedName] = useState([]);
 
   const { restName, price, desc } = route.params;
   const addedItems = useRef();
@@ -346,7 +422,11 @@ const OrderSelection = ({ navigation, route }) => {
           </TitleView>
 
           <RadioView>
-            <RadioComponent arr={sauce} setItemPrice={setItemPrice} />
+            <RadioComponent
+              arr={sauce}
+              setItemPrice={setItemPrice}
+              setSelectedName={setSelectedName}
+            />
           </RadioView>
         </View>
 
@@ -375,7 +455,9 @@ const OrderSelection = ({ navigation, route }) => {
                   key={item.id}
                   label={item.label}
                   price={item.price}
+                  arr={side}
                   setItemPrice={setItemPrice}
+                  setSelectedName={setSelectedName}
                 />
               );
             })}
@@ -395,7 +477,11 @@ const OrderSelection = ({ navigation, route }) => {
           </TitleView>
 
           <RadioView>
-            <RadioComponent arr={size} setItemPrice={setItemPrice} />
+            <RadioComponent
+              arr={size}
+              setItemPrice={setItemPrice}
+              setSelectedName={setSelectedName}
+            />
           </RadioView>
         </View>
 
@@ -412,7 +498,11 @@ const OrderSelection = ({ navigation, route }) => {
           </TitleView>
 
           <RadioView>
-            <RadioComponent arr={crust} setItemPrice={setItemPrice} />
+            <RadioComponent
+              arr={crust}
+              setItemPrice={setItemPrice}
+              setSelectedName={setSelectedName}
+            />
           </RadioView>
         </View>
 
@@ -441,7 +531,9 @@ const OrderSelection = ({ navigation, route }) => {
                   key={item.id}
                   label={item.label}
                   price={item.price}
+                  arr={adds}
                   setItemPrice={setItemPrice}
+                  setSelectedName={setSelectedName}
                 />
               );
             })}
@@ -471,8 +563,10 @@ const OrderSelection = ({ navigation, route }) => {
                   key={item.id}
                   label={item.label}
                   price={item.price}
+                  arr={freqBroughtTo}
                   subTitle={item.subTitle}
                   setItemPrice={setItemPrice}
+                  setSelectedName={setSelectedName}
                 />
               );
             })}
@@ -507,11 +601,121 @@ const OrderSelection = ({ navigation, route }) => {
 
         <BottomSheet bottomSheetRef={addedItems} modalHeight={700}>
           <BottomSheetView>
-            <PriceView>
-              <TotalPrice size="xxlarge">{sum.toFixed(2)}</TotalPrice>
-            </PriceView>
+            <RestTitleView>
+              <TextWrapper>
+                <RestTiTle font="medium" size="xlarge">
+                  Taco Bell(2255 Telegraph Avenue)
+                </RestTiTle>
+                <SaveText color="green">You're saving US$25</SaveText>
+              </TextWrapper>
 
-            <NewText size="xxlarge">Total price</NewText>
+              <GroupIcon>
+                <Image source={IMAGES.GroupImage} />
+              </GroupIcon>
+            </RestTitleView>
+
+            <SheetDevider />
+
+            <DetailsView>
+              <NumberView>
+                <Txt size="medium" font="medium">
+                  1
+                </Txt>
+              </NumberView>
+              <TxtView>
+                <FoodTitle size="medium" font="medium">
+                  Cantina Crispy Chicken
+                </FoodTitle>
+
+                <FoodSubTitle color="grey">
+                  6 Wings • Side of Celery •
+                </FoodSubTitle>
+
+                <RestTitle font="medium">Ranch Dip</RestTitle>
+              </TxtView>
+
+              <PriceWrapper>
+                <IconPriceView>
+                  <Image source={IMAGES.GreenVector} />
+                  <NewText font="medium" size="medium">
+                    US${sum.toFixed(2)}
+                  </NewText>
+                </IconPriceView>
+
+                <SubPrice font="medium">US$17.49</SubPrice>
+              </PriceWrapper>
+            </DetailsView>
+
+            <RenderView>
+              {selectedName.map((item) => {
+                return (
+                  <OrderScreenSheetCard title={item.label} key={item.id} />
+                );
+              })}
+            </RenderView>
+
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 15,
+              }}
+            >
+              <SubTotal font="medium" size="medium">
+                Subtotal
+              </SubTotal>
+              <SubtotalPrice font="medium" size="medium">
+                US${sum.toFixed(2)}
+              </SubtotalPrice>
+            </View>
+
+            <View
+              style={{
+                flexDirection: "row",
+                padding: 15,
+                justifyContent: "space-between",
+              }}
+            >
+              <Left>
+                <NewText font="medium" size="medium">
+                  Request utensils, etc.
+                </NewText>
+                <CheckComponent />
+              </Left>
+              <Right>
+                <NewText font="medium" size="medium">
+                  Add note
+                </NewText>
+              </Right>
+            </View>
+
+            <Pressable
+              style={{
+                padding: 20,
+                backgroundColor: "black",
+                marginHorizontal: 15,
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <NewText color="white" font="medium" size="medium">
+                Go to Checkout
+              </NewText>
+            </Pressable>
+
+            <Pressable
+              style={{
+                padding: 20,
+                backgroundColor: "#eeeeee",
+                marginHorizontal: 15,
+                alignItems: "center",
+                marginTop: 20,
+              }}
+            >
+              <NewText font="medium" size="medium">
+                Add items
+              </NewText>
+            </Pressable>
           </BottomSheetView>
         </BottomSheet>
       </ScrollView>

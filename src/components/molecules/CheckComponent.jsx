@@ -28,7 +28,14 @@ const RightView = styled.View`
 const Label = styled(NewText)``;
 const Price = styled(NewText)``;
 
-const CheckComponent = ({ price, subTitle, label, setItemPrice }) => {
+const CheckComponent = ({
+  price,
+  subTitle,
+  label,
+  arr,
+  setItemPrice,
+  setSelectedName,
+}) => {
   const [checked, setChecked] = useState(false);
 
   function handlePrice() {
@@ -36,6 +43,18 @@ const CheckComponent = ({ price, subTitle, label, setItemPrice }) => {
       setItemPrice((prev) => prev - parseFloat(price));
     } else if (!checked) {
       setItemPrice((prev) => prev + parseFloat(price));
+    }
+  }
+
+  function handleName() {
+    if (checked) {
+      setSelectedName((prev) => prev.filter((item) => item.label !== label));
+    } else if (!checked) {
+      arr.forEach((item) => {
+        if (item.label === label) {
+          setSelectedName((prev) => [...prev, item]);
+        }
+      });
     }
   }
 
@@ -48,6 +67,7 @@ const CheckComponent = ({ price, subTitle, label, setItemPrice }) => {
           onValueChange={() => {
             setChecked(!checked);
             handlePrice();
+            handleName();
           }}
         />
         <LeftInner>

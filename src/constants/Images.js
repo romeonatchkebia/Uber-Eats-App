@@ -44,3 +44,5 @@ export const Work = require("../components/Images/SettingsScreen/Work.png");
 export const ExclaMark = require("../components/Images/OrderSelectionScreen/Vector.png");
 export const Minus = require("../components/Images/OrderSelectionScreen/DecreaseButton.png");
 export const Plus = require("../components/Images/OrderSelectionScreen/IncreaseButton.png");
+export const GreenVector = require("../components/Images/OrderSelectionScreen/greenVector.png");
+export const AddPlus = require("../components/Images/OrderSelectionScreen/AddButton.png");
