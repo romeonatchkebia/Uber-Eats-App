@@ -15,6 +15,9 @@ import Baskets from "../src/components/screens/Baskets";
 import SettingNavigator from "./SettingNavigator";
 import EditAccount from "../src/components/screens/EditAccount";
 import OrderSelection from "../src/components/screens/OrderSelection";
+import DeliveryDetails from "../src/components/screens/DeliveryDetails";
+import TrackOrder from "../src/components/screens/TrackOrder";
+import Delivered from "../src/components/screens/Delivered";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +57,21 @@ function AuthNavigator() {
             options={{ title: "Order Selection" }}
           />
           <Stack.Screen
+            name={ROUTES.DELIVERY_DETAILS_SCREEN}
+            component={DeliveryDetails}
+            options={{ title: "Delivery Details" }}
+          />
+          <Stack.Screen
+            name={ROUTES.TRACK_ORDER_SCREEN}
+            component={TrackOrder}
+            options={{ title: "Track Order" }}
+          />
+          <Stack.Screen
+            name={ROUTES.DELIVERED_SCREEN}
+            component={Delivered}
+            options={{ title: "Delivered" }}
+          />
+          <Stack.Screen
             name={ROUTES.DEALS_SCREEN}
             component={Deals}
             options={{ title: "Deals" }}
@@ -68,6 +86,7 @@ function AuthNavigator() {
             component={EditAccount}
             options={{ title: "Edit Account" }}
           />
+
           <Stack.Screen
             name={ROUTES.SETTINGS_NAVIGATOR}
             component={SettingNavigator}

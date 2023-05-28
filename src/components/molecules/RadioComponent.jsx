@@ -21,14 +21,14 @@ const RightView = styled.View`
   margin-bottom: 5px;
 `;
 
-const RadioComponent = ({ arr, setItemPrice, setSelectedName }) => {
-  const [value, setValue] = useState();
+const RadioComponent = ({ arr, setItemPrice, setSelectedItem }) => {
+  const [value, setValue] = useState(false);
 
   useEffect(() => {
     arr.forEach((item) => {
       if (item.value === value) {
         setItemPrice(() => parseFloat(item.price));
-        setSelectedName([item]);
+        setSelectedItem([item]);
       }
     });
   }, [value]);

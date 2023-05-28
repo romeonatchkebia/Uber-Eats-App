@@ -46,3 +46,25 @@ export const Minus = require("../components/Images/OrderSelectionScreen/Decrease
 export const Plus = require("../components/Images/OrderSelectionScreen/IncreaseButton.png");
 export const GreenVector = require("../components/Images/OrderSelectionScreen/greenVector.png");
 export const AddPlus = require("../components/Images/OrderSelectionScreen/AddButton.png");
+
+// Delivery Details Screen
+export const Pin = require("../components/Images/OrderSelectionScreen/pin.png");
+export const Person = require("../components/Images/OrderSelectionScreen/Person.png");
+export const SmallPlus = require("../components/Images/OrderSelectionScreen/Plus.png");
+export const Gift = require("../components/Images/OrderSelectionScreen/Gift.png");
+export const Marks = require("../components/Images/OrderSelectionScreen/mark.png");
+export const CreditCard = require("../components/Images/OrderSelectionScreen/CreditCard.png");
+
+// Track Order Screen
+export const Close = require("../components/Images/TrackOrderScreen/Close.png");
+export const Share = require("../components/Images/TrackOrderScreen/Share.png");
+export const ExclaMarkGrey = require("../components/Images/TrackOrderScreen/exclaMarkGrey.png");
+export const Prepare = require("../components/Images/TrackOrderScreen/prepare.png");
+export const BurgerIcon = require("../components/Images/TrackOrderScreen/BurgerIcon.png");
+export const DriverPhoto = require("../components/Images/TrackOrderScreen/DriverPhoto.png");
+export const ProfileIconGreen = require("../components/Images/TrackOrderScreen/ProfileIconGreen.png");
+export const Call = require("../components/Images/TrackOrderScreen/Call.png");
+export const LikeIcon = require("../components/Images/TrackOrderScreen/LikeIcon.png");
+export const Car = require("../components/Images/TrackOrderScreen/Car.png");
+export const PlusWhite = require("../components/Images/TrackOrderScreen/PlusWhite.png");
+export const DeliveryBag = require("../components/Images/TrackOrderScreen/deliverBag.png");

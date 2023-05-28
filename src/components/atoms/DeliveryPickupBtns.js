@@ -35,12 +35,16 @@ const DeliveryPickupBtns = ({
 }) => {
   return (
     <Btn onPress={onPress} black={black} {...props}>
-      <BtnText font="medium" black={black}>
-        {title}
-      </BtnText>
-      <TimeText font="medium" color="grey">
-        {Time} min {Distance}mi
-      </TimeText>
+      {title && (
+        <BtnText font="medium" black={black}>
+          {title}
+        </BtnText>
+      )}
+      {Time && Distance && (
+        <TimeText font="medium" color="grey">
+          {Time} min {Distance}mi
+        </TimeText>
+      )}
     </Btn>
   );
 };

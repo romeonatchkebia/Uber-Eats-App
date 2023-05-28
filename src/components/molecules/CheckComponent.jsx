@@ -34,7 +34,7 @@ const CheckComponent = ({
   label,
   arr,
   setItemPrice,
-  setSelectedName,
+  setSelectedItem,
 }) => {
   const [checked, setChecked] = useState(false);
 
@@ -46,13 +46,13 @@ const CheckComponent = ({
     }
   }
 
-  function handleName() {
+  function handleItem() {
     if (checked) {
-      setSelectedName((prev) => prev.filter((item) => item.label !== label));
+      setSelectedItem((prev) => prev.filter((item) => item.label !== label));
     } else if (!checked) {
       arr.forEach((item) => {
         if (item.label === label) {
-          setSelectedName((prev) => [...prev, item]);
+          setSelectedItem((prev) => [...prev, item]);
         }
       });
     }
@@ -67,7 +67,7 @@ const CheckComponent = ({
           onValueChange={() => {
             setChecked(!checked);
             handlePrice();
-            handleName();
+            handleItem();
           }}
         />
         <LeftInner>

@@ -354,7 +354,8 @@ const OrderSelection = ({ navigation, route }) => {
   const [count, setCount] = useState(1);
   const [sum, setSum] = useState(0);
   const [itemPrice, setItemPrice] = useState(0);
-  const [selectedName, setSelectedName] = useState([]);
+
+  const [selectedItem, setSelectedItem] = useState([]);
 
   const { restName, price, desc } = route.params;
   const addedItems = useRef();
@@ -425,7 +426,7 @@ const OrderSelection = ({ navigation, route }) => {
             <RadioComponent
               arr={sauce}
               setItemPrice={setItemPrice}
-              setSelectedName={setSelectedName}
+              setSelectedItem={setSelectedItem}
             />
           </RadioView>
         </View>
@@ -457,7 +458,7 @@ const OrderSelection = ({ navigation, route }) => {
                   price={item.price}
                   arr={side}
                   setItemPrice={setItemPrice}
-                  setSelectedName={setSelectedName}
+                  setSelectedItem={setSelectedItem}
                 />
               );
             })}
@@ -480,7 +481,7 @@ const OrderSelection = ({ navigation, route }) => {
             <RadioComponent
               arr={size}
               setItemPrice={setItemPrice}
-              setSelectedName={setSelectedName}
+              setSelectedItem={setSelectedItem}
             />
           </RadioView>
         </View>
@@ -501,7 +502,7 @@ const OrderSelection = ({ navigation, route }) => {
             <RadioComponent
               arr={crust}
               setItemPrice={setItemPrice}
-              setSelectedName={setSelectedName}
+              setSelectedItem={setSelectedItem}
             />
           </RadioView>
         </View>
@@ -533,7 +534,7 @@ const OrderSelection = ({ navigation, route }) => {
                   price={item.price}
                   arr={adds}
                   setItemPrice={setItemPrice}
-                  setSelectedName={setSelectedName}
+                  setSelectedItem={setSelectedItem}
                 />
               );
             })}
@@ -566,7 +567,7 @@ const OrderSelection = ({ navigation, route }) => {
                   arr={freqBroughtTo}
                   subTitle={item.subTitle}
                   setItemPrice={setItemPrice}
-                  setSelectedName={setSelectedName}
+                  setSelectedItem={setSelectedItem}
                 />
               );
             })}
@@ -647,7 +648,7 @@ const OrderSelection = ({ navigation, route }) => {
             </DetailsView>
 
             <RenderView>
-              {selectedName.map((item) => {
+              {selectedItem.map((item) => {
                 return (
                   <OrderScreenSheetCard title={item.label} key={item.id} />
                 );
@@ -690,6 +691,7 @@ const OrderSelection = ({ navigation, route }) => {
             </View>
 
             <Pressable
+              onPress={() => navigation.navigate(ROUTS.DELIVERY_DETAILS_SCREEN)}
               style={{
                 padding: 20,
                 backgroundColor: "black",
