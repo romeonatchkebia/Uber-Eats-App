@@ -99,7 +99,7 @@ const Like = styled.View`
   width: 50%;
 `;
 
-const Texts = styled.View`
+const TextsView = styled.View`
   gap: 3px;
 `;
 
@@ -201,7 +201,7 @@ const TrackOrder = ({ navigation }) => {
                 </Like>
               </Images>
 
-              <Texts>
+              <TextsView>
                 <View
                   style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
                 >
@@ -216,7 +216,7 @@ const TrackOrder = ({ navigation }) => {
                   </NewText>
                 </View>
                 <NewText>White Honda Civic</NewText>
-              </Texts>
+              </TextsView>
             </CurierView>
 
             <View
