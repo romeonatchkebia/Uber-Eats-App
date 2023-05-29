@@ -68,3 +68,9 @@ export const LikeIcon = require("../components/Images/TrackOrderScreen/LikeIcon.
 export const Car = require("../components/Images/TrackOrderScreen/Car.png");
 export const PlusWhite = require("../components/Images/TrackOrderScreen/PlusWhite.png");
 export const DeliveryBag = require("../components/Images/TrackOrderScreen/deliverBag.png");
+
+// Grocery Stores Screen
+export const Cart = require("../components/Images/GroceryScreen/Cart.png");
+export const Clock = require("../components/Images/StoreScreen/Clock.png");
+export const DolarCoin = require("../components/Images/StoreScreen/DollarCoin.png");
+export const PlusWithWhiteBack = require("../components/Images/StoreScreen/IncreaseButton.png");

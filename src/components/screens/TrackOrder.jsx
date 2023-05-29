@@ -242,9 +242,10 @@ const TrackOrder = ({ navigation }) => {
                 style={{ borderRadius: 50, width: "25%", height: "70%" }}
               />
             </View>
+
+            <TrackOrderCard />
           </View>
         )}
-        <TrackOrderCard />
       </ScrollView>
     </Container>
   );

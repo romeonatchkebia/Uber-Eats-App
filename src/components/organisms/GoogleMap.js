@@ -16,7 +16,14 @@ const Map = styled(MapView)`
 const GoogleMap = () => {
   return (
     <Container>
-      <Map />
+      <Map
+        initialRegion={{
+          latitude: 41.72,
+          longitude: 44.8,
+          latitudeDelta: 0.09,
+          longitudeDelta: 0.09,
+        }}
+      />
     </Container>
   );
 };

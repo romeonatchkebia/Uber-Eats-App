@@ -20,12 +20,7 @@ const SubTitleTxt = styled(NewText)``;
 
 const AddView = styled.View``;
 
-const DeliveryDetailsCard = ({
-  title,
-  subTitle,
-  green = false,
-  iconSource,
-}) => {
+const DeliveryDetailsCard = ({ title, subTitle, iconSource }) => {
   return (
     <Container>
       <View style={{ flexDirection: "row", gap: 20, alignItems: "center" }}>

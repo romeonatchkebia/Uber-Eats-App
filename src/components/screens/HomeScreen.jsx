@@ -1427,15 +1427,18 @@ function HomeScreen({ navigation }) {
                   );
                 })}
               </CtgrView>
+
               <FilterView>
                 <FilterTextPress>
                   <FilterText font="medium" size="large">
                     Now • London Hall
                   </FilterText>
+
                   <IconView>
                     <FilterIcon source={IMAGES.FilterTextIcon} />
                   </IconView>
                 </FilterTextPress>
+
                 <FilterBtnPress>
                   <FilterBtn source={IMAGES.Slider} />
                 </FilterBtnPress>
@@ -1503,6 +1506,7 @@ function HomeScreen({ navigation }) {
                         );
                       }}
                       horizontal
+                      showsHorizontalScrollIndicator={false}
                     />
                   )}
                 </>
@@ -1558,12 +1562,14 @@ function HomeScreen({ navigation }) {
                   <SectionTitle size="xlarge" font="bold">
                     {deliveryList[7].title}
                   </SectionTitle>
+
                   <SeeAllBtnView>
                     <SeeAllBtn font="medium" size="medium">
                       See All
                     </SeeAllBtn>
                   </SeeAllBtnView>
                 </SectionTitleView>
+
                 <FlatList
                   data={deliveryList[7].sweets}
                   keyExtractor={(item) => item.id}
@@ -1586,12 +1592,14 @@ function HomeScreen({ navigation }) {
                   <SectionTitle size="xlarge" font="bold">
                     {deliveryList[6].title}
                   </SectionTitle>
+
                   <SeeAllBtnView>
                     <SeeAllBtn font="medium" size="medium">
                       See All
                     </SeeAllBtn>
                   </SeeAllBtnView>
                 </SectionTitleView>
+
                 <FlatList
                   data={deliveryList[6].french}
                   keyExtractor={(item) => item.id}
@@ -1621,6 +1629,7 @@ function HomeScreen({ navigation }) {
             <View>
               <BottomSheetTitle size="large">All categories</BottomSheetTitle>
             </View>
+
             <View
               style={{
                 flexDirection: "row",

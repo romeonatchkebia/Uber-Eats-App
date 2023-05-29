@@ -13,7 +13,6 @@ import SectionDevider from "../atoms/SectionDevider";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 import CheckComponent from "../molecules/CheckComponent";
 import BigBlackGreyBtn from "../atoms/BigBlackGreyBtn";
-import Hury from "../molecules/cards/Hury";
 
 const Container = styled(Screen)``;
 
@@ -411,17 +410,16 @@ const DeliveryDetails = ({ navigation, route }) => {
         </View>
         <Devider />
 
-        <View style={{ margin: 20 }}>
+        <View style={{ margin: 15, gap: 20 }}>
           <NewText>
             dadjaskjdhaskjdhasjkdhasjkdhasjkdhasjkdhasjkdhasjkdhajskdhakjshdaskjdhakjshdajskdhaskjdhasjkdhajkshdasjdhsakjdhasjkdasdasjhdgajshgdajhsgdajhsgdjhasgdjashgdajs
           </NewText>
+          <BigBlackGreyBtn
+            onPress={() => navigation.navigate(ROUTS.TRACK_ORDER_SCREEN)}
+            black
+            title="Next • US$10.71"
+          />
         </View>
-
-        <BigBlackGreyBtn
-          onPress={() => navigation.navigate(ROUTS.TRACK_ORDER_SCREEN)}
-          black
-          title="Next • US$10.71"
-        />
       </ScrollView>
     </Container>
   );

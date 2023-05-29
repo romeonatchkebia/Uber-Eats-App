@@ -18,6 +18,10 @@ import OrderSelection from "../src/components/screens/OrderSelection";
 import DeliveryDetails from "../src/components/screens/DeliveryDetails";
 import TrackOrder from "../src/components/screens/TrackOrder";
 import Delivered from "../src/components/screens/Delivered";
+import Store from "../src/components/screens/Store";
+import Featured from "../src/components/screens/Featured";
+import Categories from "../src/components/screens/Categories.jsx";
+import Orders from "../src/components/screens/Orders.jsx";
 
 const Stack = createNativeStackNavigator();
 
@@ -76,6 +80,12 @@ function AuthNavigator() {
             component={Deals}
             options={{ title: "Deals" }}
           />
+          <Stack.Screen
+            name={ROUTES.STORE_SCREEN}
+            component={Store}
+            options={{ title: "Store" }}
+          />
+
           <Stack.Screen
             name={ROUTES.BASKETS_SCREEN}
             component={Baskets}

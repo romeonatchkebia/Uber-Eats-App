@@ -19,11 +19,10 @@ export const LANDING_SCREEN = "LandingScreen";
 export const ACCOUNT_SCREEN = "Account";
 export const SETTINGS_SCREEN = "Settings";
 export const BASKETS_SCREEN = "Baskets";
+export const DEALS_SCREEN = "Deals";
+export const STORE_SCREEN = "Store";
 
 // Settings Navigator Screens
 export const SETTINGS_DETAILS = "SettingDetails";
 export const SETTINGS_NAVIGATOR = "SttingNavigator";
 export const EDITACCOUNT_SCREEN = "AdditAccount";
-
-// Deals Screen
-export const DEALS_SCREEN = "Deals";

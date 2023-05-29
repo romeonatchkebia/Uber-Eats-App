@@ -159,6 +159,7 @@ const Deals = ({ navigation, route }) => {
         </Pressable>
         <DealsHeader size="xlarge">Deals</DealsHeader>
       </HeaderView>
+
       <BtnsContainer>
         <Offers onPress={() => setType(0)}>
           <View
@@ -171,8 +172,10 @@ const Deals = ({ navigation, route }) => {
             <Ionicons name="pricetag-sharp" size={24} color="black" />
             <OfferText size="large">Offers</OfferText>
           </View>
+
           {type === 0 && <BtnBottomBorder />}
         </Offers>
+
         <Rewards onPress={() => setType(1)}>
           <View
             style={{
@@ -187,7 +190,9 @@ const Deals = ({ navigation, route }) => {
           {type === 1 && <BtnBottomBorder />}
         </Rewards>
       </BtnsContainer>
+
       <SectionDevider />
+
       {type === 1 ? (
         <SectionTitle font="medium" size="xlarge">
           Earn restaurant rewards

@@ -6,7 +6,6 @@ import NewText from "./NewText";
 const Container = styled.Pressable`
   align-items: center;
   background-color: black;
-  margin: 0 15px;
   padding: 20px;
 `;
 
