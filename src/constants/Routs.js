@@ -15,12 +15,17 @@ export const TRACK_ORDER_SCREEN = "TrackOrder";
 export const DELIVERED_SCREEN = "Delivered";
 export const BROWSE_SCREEN = "Browse";
 export const GROCERY_SCREEN = "Grocery";
+export const STORE_SCREEN = "Store";
+export const FEATURED_SCREEN = "Featured";
+export const ITEM_DETAILS_SCREEN = "ItemDetails";
+export const NOTE_SCREEN = "Note";
+export const ORDERS_SCREEN = "Orders";
+export const CATEGORIES_SCREEN = "Categories";
 export const LANDING_SCREEN = "LandingScreen";
 export const ACCOUNT_SCREEN = "Account";
 export const SETTINGS_SCREEN = "Settings";
 export const BASKETS_SCREEN = "Baskets";
 export const DEALS_SCREEN = "Deals";
-export const STORE_SCREEN = "Store";
 
 // Settings Navigator Screens
 export const SETTINGS_DETAILS = "SettingDetails";

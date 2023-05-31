@@ -10,7 +10,7 @@ import NewText from "../../atoms/NewText";
 const windowWidth = Dimensions.get("screen").width;
 const windowHeight = Dimensions.get("screen").height;
 
-const Container = styled.View`
+const Container = styled.Pressable`
   width: ${windowWidth / 2.8}px;
   height: ${windowHeight / 4}px;
 `;
@@ -30,9 +30,9 @@ const Price = styled(NewText)``;
 
 const Subtitle = styled(NewText)``;
 
-const FeaturedCard = ({ title, imgUrl, subTitle, price }) => {
+const FeaturedCard = ({ title, imgUrl, subTitle, price, onPress }) => {
   return (
-    <Container>
+    <Container onPress={onPress}>
       <ImageView>
         <Image source={imgUrl} />
 

@@ -4,7 +4,7 @@ import React, { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-import AuthNavigator from "./navigators/AuthNavigator";
+import MainNavigator from "./navigators/MainNavigator";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,5 +27,5 @@ export default function App() {
     return null;
   }
 
-  return <AuthNavigator />;
+  return <MainNavigator />;
 }

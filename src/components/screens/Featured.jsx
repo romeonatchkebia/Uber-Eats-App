@@ -1,11 +1,91 @@
-import { View, Text, SectionList, FlatList } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Pressable, Image, ScrollView, FlatList } from "react-native";
 import styled from "styled-components";
+import * as Progress from "react-native-progress";
+import { Octicons } from "@expo/vector-icons";
 
+import * as ROUTS from "../../constants/Routs";
+import * as IMAGES from "../../constants/Images";
+
+import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 import FeaturedCard from "../molecules/cards/FeaturedCard";
+import CtgrButton from "../atoms/CtgrButton";
 
-const Container = styled.View``;
+const Container = styled(Screen)``;
+
+const Wrapper = styled.View`
+  margin: 0 15px;
+`;
+
+// Header
+const Header = styled.View`
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 28px;
+`;
+
+const Left = styled.View`
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+`;
+
+const Right = styled.View`
+  align-items: center;
+  flex-direction: row;
+  gap: 23px;
+`;
+
+// SearchBar
+const SearchContainer = styled.View`
+  align-items: center;
+  flex-direction: row;
+  background-color: #eeeeee;
+  gap: 15px;
+  height: 60px;
+  padding: 15px;
+  margin-bottom: 15px;
+`;
+
+const InputText = styled.TextInput`
+  font-weight: 500;
+  font-size: 16px;
+`;
+
+// Time and Price
+const TimePrice = styled.View`
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const Time = styled.View`
+  align-items: center;
+  flex-direction: row;
+  gap: 7px;
+`;
+
+const Price = styled.View`
+  align-items: center;
+  flex-direction: row;
+  gap: 7px;
+`;
+
+// Spinner and Category Btns
+const SpinnerView = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CtgrView = styled.View`
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 20px 0;
+`;
 
 const SectionTitleView = styled.View`
   flex-direction: row;
@@ -222,242 +302,344 @@ const FeaturedList = [
   },
 ];
 
-const Featured = () => {
+const Featured = ({ navigation, route }) => {
+  const { restName } = route.params;
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <Container>
-      <>
-        {FeaturedList[0].title && (
-          <SectionTitleView>
-            <SectionTitle size="large" font="medium">
-              {FeaturedList[0].title}
-            </SectionTitle>
+      {isLoading ? (
+        <SpinnerView>
+          <Progress.CircleSnail size={80} color={["red", "green", "blue"]} />
+        </SpinnerView>
+      ) : (
+        <>
+          <ScrollView>
+            <Wrapper>
+              <Header>
+                <Left>
+                  <Pressable
+                    onPress={() => navigation.goBack(ROUTS.HOMESCREEN_SCREEN)}
+                  >
+                    <Image source={IMAGES.LeftArrow} />
+                  </Pressable>
+                  <NewText font="medium" size="xlarge">
+                    {restName}
+                  </NewText>
+                </Left>
 
-            <SeeAllBtnView>
-              {FeaturedList[0].title && (
-                <SeeAllBtn
-                  font="medium"
-                  size="medium"
-                  secTitle={FeaturedList[0].title}
-                >
-                  See All
-                </SeeAllBtn>
-              )}
-            </SeeAllBtnView>
-          </SectionTitleView>
-        )}
+                <Right>
+                  <Image source={IMAGES.Person} />
+                  <Image source={IMAGES.Cart} />
+                </Right>
+              </Header>
 
-        <FlatList
-          data={FeaturedList[0].data}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => {
-            return (
-              <FeaturedCard
-                title={item.title}
-                subTitle={item.subTitle}
-                price={item.price}
-                imgUrl={item.url}
-              />
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </>
+              <SearchContainer>
+                <Octicons name="search" size={25} color="black" />
 
-      <>
-        {FeaturedList[1].title && (
-          <SectionTitleView>
-            <SectionTitle size="large" font="medium">
-              {FeaturedList[1].title}
-            </SectionTitle>
+                <InputText placeholder="Search stores and produ..."></InputText>
+              </SearchContainer>
 
-            <SeeAllBtnView>
-              {FeaturedList[1].title && (
-                <SeeAllBtn
-                  font="medium"
-                  size="medium"
-                  secTitle={FeaturedList[1].title}
-                >
-                  See All
-                </SeeAllBtn>
-              )}
-            </SeeAllBtnView>
-          </SectionTitleView>
-        )}
+              <TimePrice>
+                <Time>
+                  <Image source={IMAGES.Clock} />
+                  <NewText size="medium">In 60 minutes</NewText>
+                </Time>
 
-        <FlatList
-          data={FeaturedList[1].data}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => {
-            return (
-              <FeaturedCard
-                title={item.title}
-                subTitle={item.subTitle}
-                price={item.price}
-                imgUrl={item.url}
-              />
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </>
+                <Price>
+                  <Image source={IMAGES.DolarCoin} />
+                  <NewText size="medium">Pricing and Fees</NewText>
+                </Price>
+              </TimePrice>
 
-      <>
-        {FeaturedList[2].title && (
-          <SectionTitleView>
-            <SectionTitle size="large" font="medium">
-              {FeaturedList[2].title}
-            </SectionTitle>
+              <CtgrView>
+                <CtgrButton title="Featured" black={true} />
+                <CtgrButton
+                  title="Categories"
+                  onPress={() =>
+                    navigation.navigate("Categories", { restName })
+                  }
+                />
+                <CtgrButton
+                  title="Orders"
+                  onPress={() => navigation.navigate("Orders", { restName })}
+                />
+              </CtgrView>
 
-            <SeeAllBtnView>
-              {FeaturedList[2].title && (
-                <SeeAllBtn
-                  font="medium"
-                  size="medium"
-                  secTitle={FeaturedList[2].title}
-                >
-                  See All
-                </SeeAllBtn>
-              )}
-            </SeeAllBtnView>
-          </SectionTitleView>
-        )}
+              <>
+                {FeaturedList[0].title && (
+                  <SectionTitleView>
+                    <SectionTitle size="large" font="medium">
+                      {FeaturedList[0].title}
+                    </SectionTitle>
 
-        <FlatList
-          data={FeaturedList[2].data}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => {
-            return (
-              <FeaturedCard
-                title={item.title}
-                subTitle={item.subTitle}
-                price={item.price}
-                imgUrl={item.url}
-              />
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </>
+                    <SeeAllBtnView>
+                      {FeaturedList[0].title && (
+                        <SeeAllBtn
+                          font="medium"
+                          size="medium"
+                          secTitle={FeaturedList[0].title}
+                        >
+                          See All
+                        </SeeAllBtn>
+                      )}
+                    </SeeAllBtnView>
+                  </SectionTitleView>
+                )}
 
-      <>
-        {FeaturedList[3].title && (
-          <SectionTitleView>
-            <SectionTitle size="large" font="medium">
-              {FeaturedList[3].title}
-            </SectionTitle>
+                <FlatList
+                  data={FeaturedList[0].data}
+                  keyExtractor={(item, index) => item + index}
+                  renderItem={({ item }) => {
+                    return (
+                      <FeaturedCard
+                        title={item.title}
+                        subTitle={item.subTitle}
+                        price={item.price}
+                        imgUrl={item.url}
+                        onPress={() =>
+                          navigation.navigate(ROUTS.ITEM_DETAILS_SCREEN, {
+                            item,
+                          })
+                        }
+                      />
+                    );
+                  }}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
 
-            <SeeAllBtnView>
-              {FeaturedList[3].title && (
-                <SeeAllBtn
-                  font="medium"
-                  size="medium"
-                  secTitle={FeaturedList[3].title}
-                >
-                  See All
-                </SeeAllBtn>
-              )}
-            </SeeAllBtnView>
-          </SectionTitleView>
-        )}
+              <>
+                {FeaturedList[1].title && (
+                  <SectionTitleView>
+                    <SectionTitle size="large" font="medium">
+                      {FeaturedList[1].title}
+                    </SectionTitle>
 
-        <FlatList
-          data={FeaturedList[3].data}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => {
-            return (
-              <FeaturedCard
-                title={item.title}
-                subTitle={item.subTitle}
-                price={item.price}
-                imgUrl={item.url}
-              />
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </>
+                    <SeeAllBtnView>
+                      {FeaturedList[1].title && (
+                        <SeeAllBtn
+                          font="medium"
+                          size="medium"
+                          secTitle={FeaturedList[1].title}
+                        >
+                          See All
+                        </SeeAllBtn>
+                      )}
+                    </SeeAllBtnView>
+                  </SectionTitleView>
+                )}
 
-      <>
-        {FeaturedList[4].title && (
-          <SectionTitleView>
-            <SectionTitle size="large" font="medium">
-              {FeaturedList[4].title}
-            </SectionTitle>
+                <FlatList
+                  data={FeaturedList[1].data}
+                  keyExtractor={(item, index) => item + index}
+                  renderItem={({ item }) => {
+                    return (
+                      <FeaturedCard
+                        title={item.title}
+                        subTitle={item.subTitle}
+                        price={item.price}
+                        imgUrl={item.url}
+                        onPress={() =>
+                          navigation.navigate(ROUTS.ITEM_DETAILS_SCREEN, {
+                            item,
+                          })
+                        }
+                      />
+                    );
+                  }}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
 
-            <SeeAllBtnView>
-              {FeaturedList[4].title && (
-                <SeeAllBtn
-                  font="medium"
-                  size="medium"
-                  secTitle={FeaturedList[4].title}
-                >
-                  See All
-                </SeeAllBtn>
-              )}
-            </SeeAllBtnView>
-          </SectionTitleView>
-        )}
+              <>
+                {FeaturedList[2].title && (
+                  <SectionTitleView>
+                    <SectionTitle size="large" font="medium">
+                      {FeaturedList[2].title}
+                    </SectionTitle>
 
-        <FlatList
-          data={FeaturedList[4].data}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => {
-            return (
-              <FeaturedCard
-                title={item.title}
-                subTitle={item.subTitle}
-                price={item.price}
-                imgUrl={item.url}
-              />
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </>
+                    <SeeAllBtnView>
+                      {FeaturedList[2].title && (
+                        <SeeAllBtn
+                          font="medium"
+                          size="medium"
+                          secTitle={FeaturedList[2].title}
+                        >
+                          See All
+                        </SeeAllBtn>
+                      )}
+                    </SeeAllBtnView>
+                  </SectionTitleView>
+                )}
 
-      <>
-        {FeaturedList[5].title && (
-          <SectionTitleView>
-            <SectionTitle size="large" font="medium">
-              {FeaturedList[5].title}
-            </SectionTitle>
+                <FlatList
+                  data={FeaturedList[2].data}
+                  keyExtractor={(item, index) => item + index}
+                  renderItem={({ item }) => {
+                    return (
+                      <FeaturedCard
+                        title={item.title}
+                        subTitle={item.subTitle}
+                        price={item.price}
+                        imgUrl={item.url}
+                        onPress={() =>
+                          navigation.navigate(ROUTS.ITEM_DETAILS_SCREEN, {
+                            item,
+                          })
+                        }
+                      />
+                    );
+                  }}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
 
-            <SeeAllBtnView>
-              {FeaturedList[5].title && (
-                <SeeAllBtn
-                  font="medium"
-                  size="medium"
-                  secTitle={FeaturedList[5].title}
-                >
-                  See All
-                </SeeAllBtn>
-              )}
-            </SeeAllBtnView>
-          </SectionTitleView>
-        )}
+              <>
+                {FeaturedList[3].title && (
+                  <SectionTitleView>
+                    <SectionTitle size="large" font="medium">
+                      {FeaturedList[3].title}
+                    </SectionTitle>
 
-        <FlatList
-          data={FeaturedList[5].data}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => {
-            return (
-              <FeaturedCard
-                title={item.title}
-                subTitle={item.subTitle}
-                price={item.price}
-                imgUrl={item.url}
-              />
-            );
-          }}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-        />
-      </>
+                    <SeeAllBtnView>
+                      {FeaturedList[3].title && (
+                        <SeeAllBtn
+                          font="medium"
+                          size="medium"
+                          secTitle={FeaturedList[3].title}
+                        >
+                          See All
+                        </SeeAllBtn>
+                      )}
+                    </SeeAllBtnView>
+                  </SectionTitleView>
+                )}
+
+                <FlatList
+                  data={FeaturedList[3].data}
+                  keyExtractor={(item, index) => item + index}
+                  renderItem={({ item }) => {
+                    return (
+                      <FeaturedCard
+                        title={item.title}
+                        subTitle={item.subTitle}
+                        price={item.price}
+                        imgUrl={item.url}
+                        onPress={() =>
+                          navigation.navigate(ROUTS.ITEM_DETAILS_SCREEN, {
+                            item,
+                          })
+                        }
+                      />
+                    );
+                  }}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
+
+              <>
+                {FeaturedList[4].title && (
+                  <SectionTitleView>
+                    <SectionTitle size="large" font="medium">
+                      {FeaturedList[4].title}
+                    </SectionTitle>
+
+                    <SeeAllBtnView>
+                      {FeaturedList[4].title && (
+                        <SeeAllBtn
+                          font="medium"
+                          size="medium"
+                          secTitle={FeaturedList[4].title}
+                        >
+                          See All
+                        </SeeAllBtn>
+                      )}
+                    </SeeAllBtnView>
+                  </SectionTitleView>
+                )}
+
+                <FlatList
+                  data={FeaturedList[4].data}
+                  keyExtractor={(item, index) => item + index}
+                  renderItem={({ item }) => {
+                    return (
+                      <FeaturedCard
+                        title={item.title}
+                        subTitle={item.subTitle}
+                        price={item.price}
+                        imgUrl={item.url}
+                        onPress={() =>
+                          navigation.navigate(ROUTS.ITEM_DETAILS_SCREEN, {
+                            item,
+                          })
+                        }
+                      />
+                    );
+                  }}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
+
+              <>
+                {FeaturedList[5].title && (
+                  <SectionTitleView>
+                    <SectionTitle size="large" font="medium">
+                      {FeaturedList[5].title}
+                    </SectionTitle>
+
+                    <SeeAllBtnView>
+                      {FeaturedList[5].title && (
+                        <SeeAllBtn
+                          font="medium"
+                          size="medium"
+                          secTitle={FeaturedList[5].title}
+                        >
+                          See All
+                        </SeeAllBtn>
+                      )}
+                    </SeeAllBtnView>
+                  </SectionTitleView>
+                )}
+
+                <FlatList
+                  data={FeaturedList[5].data}
+                  keyExtractor={(item, index) => item + index}
+                  renderItem={({ item }) => {
+                    return (
+                      <FeaturedCard
+                        title={item.title}
+                        subTitle={item.subTitle}
+                        price={item.price}
+                        imgUrl={item.url}
+                        onPress={() =>
+                          navigation.navigate(ROUTS.ITEM_DETAILS_SCREEN, {
+                            item,
+                          })
+                        }
+                      />
+                    );
+                  }}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              </>
+            </Wrapper>
+          </ScrollView>
+        </>
+      )}
     </Container>
   );
 };

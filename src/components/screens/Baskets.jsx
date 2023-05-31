@@ -79,7 +79,7 @@ const Baskets = () => {
         <OrderBtn
           title="Orders"
           img={IMAGES.OrderBtnIcon}
-          onPress={() => setAddItems(true)}
+          onPress={() => setAddItems(!addItems)}
         />
       </View>
       <View style={{ alignItems: "flex-start", width: "100%" }}>

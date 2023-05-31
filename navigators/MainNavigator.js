@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as ROUTES from "../src/constants/Routs";
@@ -18,14 +17,16 @@ import OrderSelection from "../src/components/screens/OrderSelection";
 import DeliveryDetails from "../src/components/screens/DeliveryDetails";
 import TrackOrder from "../src/components/screens/TrackOrder";
 import Delivered from "../src/components/screens/Delivered";
-import Store from "../src/components/screens/Store";
+import BottomTabNav from "./BottomTabNav";
+import ItemDetails from "../src/components/screens/ItemDetails";
 import Featured from "../src/components/screens/Featured";
-import Categories from "../src/components/screens/Categories.jsx";
-import Orders from "../src/components/screens/Orders.jsx";
+import Categories from "../src/components/screens/Categories";
+import Orders from "../src/components/screens/Orders";
+import Note from "../src/components/screens/Note";
 
 const Stack = createNativeStackNavigator();
 
-function AuthNavigator() {
+function MainNavigator() {
   return (
     <NavigationContainer>
       <Host>
@@ -36,6 +37,22 @@ function AuthNavigator() {
             options={{ title: "Log In" }}
           />
           <Stack.Screen
+            name={ROUTES.DRAWER_NAVIGATOR}
+            component={DrawerNavigator}
+            options={{ title: "Home" }}
+          />
+          <Stack.Screen
+            name={ROUTES.BOTTOM_TAB_NAV}
+            component={BottomTabNav}
+            options={{ title: "Home", headerShown: false }}
+          />
+          <Stack.Screen
+            name={ROUTES.SETTINGS_NAVIGATOR}
+            component={SettingNavigator}
+            options={{ title: "Settings" }}
+          />
+
+          <Stack.Screen
             name={ROUTES.CREATENEWACCOUNT_SCREEN}
             component={CreateNewAccount}
             options={{ title: "Authorization" }}
@@ -44,11 +61,6 @@ function AuthNavigator() {
             name={ROUTES.FORGOT_PASSWORD_SCREEN}
             component={ForgotPassword}
             options={{ title: "Forgot Password" }}
-          />
-          <Stack.Screen
-            name={ROUTES.DRAWER_NAVIGATOR}
-            component={DrawerNavigator}
-            options={{ title: "Home" }}
           />
           <Stack.Screen
             name={ROUTES.RESTAURANT_DETAILS_SCREEN}
@@ -81,26 +93,39 @@ function AuthNavigator() {
             options={{ title: "Deals" }}
           />
           <Stack.Screen
-            name={ROUTES.STORE_SCREEN}
-            component={Store}
-            options={{ title: "Store" }}
-          />
-
-          <Stack.Screen
             name={ROUTES.BASKETS_SCREEN}
             component={Baskets}
             options={{ title: "Baskets" }}
           />
           <Stack.Screen
+            name={ROUTES.ITEM_DETAILS_SCREEN}
+            component={ItemDetails}
+            options={{ title: "ItemDetails" }}
+          />
+          <Stack.Screen
+            name={ROUTES.NOTE_SCREEN}
+            component={Note}
+            options={{ title: "Note" }}
+          />
+          <Stack.Screen
+            name={ROUTES.FEATURED_SCREEN}
+            component={Featured}
+            options={{ title: "Featured" }}
+          />
+          <Stack.Screen
+            name={ROUTES.CATEGORIES_SCREEN}
+            component={Categories}
+            options={{ title: "Categories" }}
+          />
+          <Stack.Screen
+            name={ROUTES.ORDERS_SCREEN}
+            component={Orders}
+            options={{ title: "Orders" }}
+          />
+          <Stack.Screen
             name={ROUTES.EDITACCOUNT_SCREEN}
             component={EditAccount}
             options={{ title: "Edit Account" }}
-          />
-
-          <Stack.Screen
-            name={ROUTES.SETTINGS_NAVIGATOR}
-            component={SettingNavigator}
-            options={{ title: "Baskets" }}
           />
         </Stack.Navigator>
       </Host>
@@ -108,4 +133,4 @@ function AuthNavigator() {
   );
 }
 
-export default AuthNavigator;
+export default MainNavigator;

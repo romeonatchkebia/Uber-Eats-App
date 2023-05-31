@@ -5,7 +5,7 @@ import * as ROUTES from "../src/constants/Routs";
 import HomeScreen from "../src/components/screens/HomeScreen";
 import Account from "../src/components/screens/Account";
 import Browse from "../src/components/screens/Browse";
-import Grocery from "../src/components/screens/Grocery";
+import Grocery from "../src/components/screens/Grocery.jsx";
 import Baskets from "../src/components/screens/Baskets";
 
 const Tab = createBottomTabNavigator();
