@@ -114,7 +114,11 @@ const Grocery = ({ navigation }) => {
 
           <Right>
             <Image source={IMAGES.Person} />
-            <Image source={IMAGES.Cart} />
+            <Pressable
+              onPress={() => navigation.navigate(ROUTS.ORDER_DETAIlS_SCREEN)}
+            >
+              <Image source={IMAGES.Cart} />
+            </Pressable>
           </Right>
         </Header>
 

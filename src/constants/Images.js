@@ -80,3 +80,5 @@ export const Avocado = require("../components/Images/ItemDetailsScreen/avocado.p
 export const Banana = require("../components/Images/ItemDetailsScreen/banana.png");
 export const SimpleMinus = require("../components/Images/ItemDetailsScreen/simpleMinus.png");
 export const Pen = require("../components/Images/ItemDetailsScreen/pen.png");
+export const SafewaySmall = require("../components/Images/OrderDetailScreen/GroceryStore.png");
+export const BananaSmall = require("../components/Images/OrderDetailScreen/banana.png");

@@ -21,6 +21,7 @@ import SectionDevider from "../atoms/SectionDevider";
 import CategoryCardForFooter from "../molecules/cards/CategoryCardForFooter";
 import ThreeObjectCardForHomeScreen from "../molecules/cards/ThreeObjectCardForHomeScreen";
 import HomeScreenBottomCard from "../molecules/cards/HomeScreenBottomCard";
+import GoogleMap from "../organisms/GoogleMap";
 
 const Container = styled(Screen)`
   background: ${COLORS.SCREEN_BACKGROUND};
@@ -1444,6 +1445,10 @@ function HomeScreen({ navigation }) {
                 </FilterBtnPress>
               </FilterView>
             </CtgrFilterBtnView>
+
+            <View style={{ alignItems: "center" }}>
+              {category === 1 && <GoogleMap />}
+            </View>
 
             <CategoryContainer>
               <CategoryCard title="Convenience" imgUrl={IMAGES.Convenience} />

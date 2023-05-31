@@ -23,6 +23,7 @@ import Featured from "../src/components/screens/Featured";
 import Categories from "../src/components/screens/Categories";
 import Orders from "../src/components/screens/Orders";
 import Note from "../src/components/screens/Note";
+import OrderDetail from "../src/components/screens/OrderDetail";
 
 const Stack = createNativeStackNavigator();
 
@@ -121,6 +122,11 @@ function MainNavigator() {
             name={ROUTES.ORDERS_SCREEN}
             component={Orders}
             options={{ title: "Orders" }}
+          />
+          <Stack.Screen
+            name={ROUTES.ORDER_DETAIlS_SCREEN}
+            component={OrderDetail}
+            options={{ title: "OrderDetail" }}
           />
           <Stack.Screen
             name={ROUTES.EDITACCOUNT_SCREEN}

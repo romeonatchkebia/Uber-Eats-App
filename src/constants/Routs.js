@@ -21,6 +21,7 @@ export const ITEM_DETAILS_SCREEN = "ItemDetails";
 export const NOTE_SCREEN = "Note";
 export const ORDERS_SCREEN = "Orders";
 export const CATEGORIES_SCREEN = "Categories";
+export const ORDER_DETAIlS_SCREEN = "OrderDetails";
 export const LANDING_SCREEN = "LandingScreen";
 export const ACCOUNT_SCREEN = "Account";
 export const SETTINGS_SCREEN = "Settings";
