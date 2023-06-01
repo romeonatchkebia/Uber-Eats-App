@@ -1,29 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Dimensions } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
 import Screen from "../atoms/Screen";
 import styled from "styled-components";
 import ImageViewer from "../atoms/ImageViewer";
-import TextInput from "../atoms/TextInput";
 import NewText from "../atoms/NewText";
 import * as IMAGES from "../../constants/Images";
+
+const windowWidth = Dimensions.get("screen").width;
+const windowHeight = Dimensions.get("screen").height;
 
 const Container = styled(Screen)``;
 
 const LandImage = styled(ImageViewer)`
-  width: 430px;
-  height: 610px;
+  width: ${windowWidth}px;
+  height: ${windowHeight / 1.6}px;
 `;
 
 const LandText = styled(NewText)`
   line-height: 36px;
-  margin-top: 20px;
+  margin: 15px;
 `;
 
 const DropInput = styled.View`
   display: flex;
   align-items: center;
-  background: #f5f5f5;
+  background: #eeeeee;
   flex-direction: row;
   gap: 20px;
   margin-top: 25px;
@@ -31,22 +34,23 @@ const DropInput = styled.View`
   position: relative;
 `;
 
-const LandInput = styled(TextInput)`
-  background: #f5f5f5;
+const LandInput = styled.TextInput`
+  background: #eeeeee;
 `;
 
 const DropContainer = styled.View`
-  width: 140px;
+  width: 40%;
 `;
 
 const Flag = styled(ImageViewer)`
-  width: 50px;
-  height: 50px;
+  width: 15%;
   left: 30px;
   position: absolute;
 `;
 
-const LandingScreen = () => {
+const LandingScreen = ({ navigation }) => {
+  const [input, setInput] = useState([]);
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("United Kindom");
   const [items, setItems] = useState([
@@ -65,12 +69,23 @@ const LandingScreen = () => {
     }
   };
 
+  useEffect(() => {
+    if (input.length === 6) {
+      navigation.navigate("PhoneInput");
+    }
+  }, [input]);
+
+  const handleInputChange = (text) => {
+    setInput(text);
+  };
+
   return (
     <Container>
       <LandImage source={require("../Images/landingScreen.png")} />
       <LandText size="xlarge" font="medium">
         Use your uber account to get started
       </LandText>
+
       <DropInput>
         <DropContainer>
           <DropDownPicker
@@ -80,12 +95,21 @@ const LandingScreen = () => {
             setOpen={setOpen}
             setValue={setValue}
             setItems={setItems}
-            style={{ backgroundColor: "#F5F5F5", borderColor: "#F5F5F5" }}
+            style={{
+              backgroundColor: "#EEEEEE",
+              borderColor: "#EEEEEE",
+              borderRadius: 0,
+            }}
             textStyle={{ paddingLeft: 52 }}
           />
         </DropContainer>
+
         <Flag source={getFlagSource()} />
-        <LandInput placeholder="232 188 7651" />
+
+        <LandInput
+          placeholder="232 188 7651"
+          onChangeText={handleInputChange}
+        ></LandInput>
       </DropInput>
     </Container>
   );

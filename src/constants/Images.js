@@ -82,3 +82,11 @@ export const SimpleMinus = require("../components/Images/ItemDetailsScreen/simpl
 export const Pen = require("../components/Images/ItemDetailsScreen/pen.png");
 export const SafewaySmall = require("../components/Images/OrderDetailScreen/GroceryStore.png");
 export const BananaSmall = require("../components/Images/OrderDetailScreen/banana.png");
+
+// Autorization(PhoneInput, PassInput, PhoneVerification, EmailVerification, Welcome) Screens Images
+
+export const Google = require("../components/Images/Google.png");
+export const Eye = require("../components/Images/eye.png");
+export const RightArrowGrey = require("../components/Images/RightArrowGrey.png");
+export const RightArrowBlack = require("../components/Images/RightArrowBlack.png");
+export const ConfirmVector = require("../components/Images/ConfirmVector.png");

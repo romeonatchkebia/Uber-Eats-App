@@ -214,6 +214,7 @@ const Browse = ({ navigation }) => {
               onChangeText={handleInputChange}
             ></InputText>
           </SearchContainer>
+
           <BrowseCardView>
             {showSearch &&
               searchResult.map((item) => {

@@ -21,9 +21,15 @@ import BottomTabNav from "./BottomTabNav";
 import ItemDetails from "../src/components/screens/ItemDetails";
 import Featured from "../src/components/screens/Featured";
 import Categories from "../src/components/screens/Categories";
-import Orders from "../src/components/screens/Orders";
+import PastOrders from "../src/components/screens/PastOrders";
 import Note from "../src/components/screens/Note";
 import OrderDetail from "../src/components/screens/OrderDetail";
+import PhoneInput from "../src/components/screens/PhoneInput";
+import PassInput from "../src/components/screens/PassInput";
+import PhoneVerification from "../src/components/screens/PhoneVerification";
+import EmailVerification from "../src/components/screens/EmailVerification";
+import Welcome from "../src/components/screens/Welcome";
+import LandingScreen from "../src/components/screens/LandingScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,9 +39,34 @@ function MainNavigator() {
       <Host>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
-            name={ROUTES.LOGIN_SCREEN}
-            component={LoginScreen}
-            options={{ title: "Log In" }}
+            name={ROUTES.LANDING_SCREEN}
+            component={LandingScreen}
+            options={{ title: "Landing" }}
+          />
+          <Stack.Screen
+            name={ROUTES.PHONE_INPUT_SCREEN}
+            component={PhoneInput}
+            options={{ title: "Phone Input" }}
+          />
+          <Stack.Screen
+            name={ROUTES.PASSWORD_INPUT_SCREEN}
+            component={PassInput}
+            options={{ title: "Password Input" }}
+          />
+          <Stack.Screen
+            name={ROUTES.PHONE_VERIFICATION_SCREEN}
+            component={PhoneVerification}
+            options={{ title: "PHone Verification" }}
+          />
+          <Stack.Screen
+            name={ROUTES.EMAIL_VERIFICATION_SCREEN}
+            component={EmailVerification}
+            options={{ title: "Email Verification" }}
+          />
+          <Stack.Screen
+            name={ROUTES.WELCOME_SCREEN}
+            component={Welcome}
+            options={{ title: "Welcome" }}
           />
           <Stack.Screen
             name={ROUTES.DRAWER_NAVIGATOR}
@@ -53,6 +84,11 @@ function MainNavigator() {
             options={{ title: "Settings" }}
           />
 
+          <Stack.Screen
+            name={ROUTES.LOGIN_SCREEN}
+            component={LoginScreen}
+            options={{ title: "Log In" }}
+          />
           <Stack.Screen
             name={ROUTES.CREATENEWACCOUNT_SCREEN}
             component={CreateNewAccount}
@@ -120,8 +156,8 @@ function MainNavigator() {
           />
           <Stack.Screen
             name={ROUTES.ORDERS_SCREEN}
-            component={Orders}
-            options={{ title: "Orders" }}
+            component={PastOrders}
+            options={{ title: "PastOrders" }}
           />
           <Stack.Screen
             name={ROUTES.ORDER_DETAIlS_SCREEN}

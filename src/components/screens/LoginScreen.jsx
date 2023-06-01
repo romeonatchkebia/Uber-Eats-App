@@ -78,7 +78,7 @@ const LoginScreen = ({ navigation }) => {
       />
       <LogIn
         title="Log In"
-        onPress={() => navigation.navigate(ROUTES.BOTTOM_TAB_NAV)}
+        onPress={() => navigation.navigate(ROUTES.DRAWER_NAVIGATOR)}
       />
       {showError && (
         <NewText color="red" style={{ marginTop: 15 }}>

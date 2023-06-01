@@ -93,7 +93,7 @@ const TextView = styled.View`
   gap: 10px;
 `;
 
-const Orders = ({ navigation, route }) => {
+const PastOrders = ({ navigation, route }) => {
   const { restName } = route.params;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -181,4 +181,4 @@ const Orders = ({ navigation, route }) => {
   );
 };
 
-export default Orders;
+export default PastOrders;

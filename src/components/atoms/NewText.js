@@ -32,7 +32,7 @@ const CustomText = styled.Text`
   color: ${({ color }) => {
     switch (color) {
       case "grey":
-        return "#545454;";
+        return "#7F7F7F";
       case "white":
         return "#ffffff";
       case "green":
