@@ -137,12 +137,24 @@ const EmailVerification = ({ navigation }) => {
             <Image source={IMAGES.LeftArrow} />
           </Back>
 
-          <Forward onPress={() => navigation.navigate("Welcome")}>
-            <NewText size="large" font="medium" color="grey">
+          <Forward
+            onPress={() => value.length > 0 && navigation.navigate("Welcome")}
+          >
+            <NewText
+              size="large"
+              font="medium"
+              color={value.length <= 0 ? "grey" : ""}
+            >
               Next
             </NewText>
 
-            <Image source={IMAGES.RightArrowGrey} />
+            <Image
+              source={
+                value.length <= 0
+                  ? IMAGES.RightArrowGrey
+                  : IMAGES.RightArrowBlack
+              }
+            />
           </Forward>
         </BottomView>
       </Wrapper>

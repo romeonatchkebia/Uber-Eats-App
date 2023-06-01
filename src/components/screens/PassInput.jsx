@@ -1,5 +1,5 @@
-import { Image, View } from "react-native";
-import React from "react";
+import { Image, Pressable, View, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import * as IMAGES from "../../constants/Images";
@@ -29,7 +29,7 @@ const Input = styled.View`
   margin: 25px 0;
 `;
 
-const InputText = styled.TextInput`
+const InputText = styled(TextInput)`
   background: #eeeeee;
   font-size: 20px;
   height: 50px;
@@ -75,6 +75,9 @@ const Forward = styled.Pressable`
 `;
 
 const PassInput = ({ navigation }) => {
+  const [input, setInput] = useState([]);
+  const [show, setShow] = useState(false);
+
   const handleInputChange = (text) => {
     setInput(text);
   };
@@ -89,9 +92,12 @@ const PassInput = ({ navigation }) => {
             <InputText
               placeholder="Please enter your password"
               onChangeText={handleInputChange}
+              secureTextEntry={show ? true : false}
             ></InputText>
 
-            <Image source={IMAGES.Eye} />
+            <Pressable onPress={() => setShow(!show)}>
+              <Image source={IMAGES.Eye} />
+            </Pressable>
           </Input>
 
           <Forgot>
@@ -112,12 +118,26 @@ const PassInput = ({ navigation }) => {
             <Image source={IMAGES.LeftArrow} />
           </Back>
 
-          <Forward onPress={() => navigation.navigate("PhoneVerification")}>
-            <NewText size="large" font="medium" color="grey">
+          <Forward
+            onPress={() =>
+              input.length > 0 && navigation.navigate("PhoneVerification")
+            }
+          >
+            <NewText
+              size="large"
+              font="medium"
+              color={input.length <= 0 ? "grey" : ""}
+            >
               Next
             </NewText>
 
-            <Image source={IMAGES.RightArrowGrey} />
+            <Image
+              source={
+                input.length <= 0
+                  ? IMAGES.RightArrowGrey
+                  : IMAGES.RightArrowBlack
+              }
+            />
           </Forward>
         </BottomView>
       </Wrapper>

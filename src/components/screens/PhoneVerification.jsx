@@ -1,5 +1,5 @@
-import { Image, View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import { Image, View, Text, StyleSheet, Pressable } from "react-native";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   CodeField,
@@ -33,14 +33,6 @@ const Input = styled.View`
   justify-content: space-between;
   padding: 0 15px;
   margin: 25px 0;
-`;
-
-const InputText = styled.TextInput`
-  background: #eeeeee;
-  font-size: 20px;
-  height: 50px;
-  width: 85%;
-  padding: 15px 5%;
 `;
 
 const CodeReceive = styled.Pressable`
@@ -84,6 +76,8 @@ const CELL_COUNT = 4;
 
 const PhoneVerification = ({ navigation }) => {
   const [value, setValue] = useState("");
+  const [sendCode, setSendCode] = useState(false);
+  const [second, setSecond] = useState(9);
 
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
 
@@ -91,6 +85,25 @@ const PhoneVerification = ({ navigation }) => {
     value,
     setValue,
   });
+
+  useEffect(() => {
+    let intervalId = null;
+
+    if (sendCode) {
+      intervalId = setInterval(() => {
+        setSecond((prev) => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
+    }
+
+    if (second === 0) {
+      setSendCode(false);
+      clearInterval(intervalId);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [sendCode, second]);
 
   return (
     <Container>
@@ -123,9 +136,18 @@ const PhoneVerification = ({ navigation }) => {
             />
           </Input>
 
-          <CodeReceive>
-            <NewText font="medium" size="medium" color="grey">
-              I haven't recieved a code (0.09)
+          <CodeReceive
+            onPress={() => {
+              setSendCode(!sendCode);
+              setSecond(9);
+            }}
+          >
+            <NewText
+              font="medium"
+              size="medium"
+              color={!sendCode ? "" : "grey"}
+            >
+              I haven't recieved a code ({second})
             </NewText>
           </CodeReceive>
 
@@ -141,12 +163,26 @@ const PhoneVerification = ({ navigation }) => {
             <Image source={IMAGES.LeftArrow} />
           </Back>
 
-          <Forward onPress={() => navigation.navigate("EmailVerification")}>
-            <NewText size="large" font="medium" color="grey">
+          <Forward
+            onPress={() =>
+              value.length > 0 && navigation.navigate("EmailVerification")
+            }
+          >
+            <NewText
+              size="large"
+              font="medium"
+              color={value.length <= 0 ? "grey" : ""}
+            >
               Next
             </NewText>
 
-            <Image source={IMAGES.RightArrowGrey} />
+            <Image
+              source={
+                value.length <= 0
+                  ? IMAGES.RightArrowGrey
+                  : IMAGES.RightArrowBlack
+              }
+            />
           </Forward>
         </BottomView>
       </Wrapper>
