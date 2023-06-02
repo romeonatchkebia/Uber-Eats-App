@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import { Dimensions } from "react-native";
 
 import styled from "styled-components";
 import ImageViewer from "../../atoms/ImageViewer";
 import * as IMAGES from "../../../constants/Images";
 import NewText from "../../atoms/NewText";
 
+const { height, width } = Dimensions.get("screen");
+
 const CardView = styled.Pressable`
   background: #f6f6f6;
-  padding: 12px;
+  padding: 15px;
   position: relative;
-  margin-left: 23px;
 `;
 
 const CardImage = styled(ImageViewer)`
-  width: 305px;
-  height: 132px;
+  width: ${width * 0.78}px;
+  height: ${height * 0.155}px;
 `;
 
 const TitleRatingView = styled.View`
@@ -28,21 +30,16 @@ const CardTitle = styled(NewText)`
 `;
 
 const CardRatingView = styled.View`
-  display: flex;
   align-items: center;
   background: #eeeeee;
   border-radius: 20px;
-  flex-direction: column;
-  height: 27px;
+  height: ${width * 0.08}px;
   justify-content: center;
-  padding: 3px 5px;
   margin-top: 5px;
-  width: 28px;
+  width: ${width * 0.08}px;
 `;
 
-const CardRating = styled(NewText)`
-  text-align: center;
-`;
+const CardRating = styled(NewText)``;
 
 const CardSubTitle = styled(NewText)``;
 
@@ -64,8 +61,8 @@ const PromotionText = styled(NewText)``;
 
 const LikeBtnPress = styled.Pressable`
   position: absolute;
-  right: 28px;
-  top: 36px;
+  right: ${width * 0.07}px;
+  top: ${width * 0.09}px;
 `;
 
 const LikeBtn = styled(ImageViewer)``;

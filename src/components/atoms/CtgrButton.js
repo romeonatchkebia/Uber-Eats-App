@@ -4,8 +4,7 @@ import { Dimensions } from "react-native";
 
 import NewText from "./NewText";
 
-const windowWidth = Dimensions.get("screen").width;
-const windowHeight = Dimensions.get("screen").height;
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   ${({ black }) => (black ? `background - color : #000000` : "")};
@@ -13,13 +12,12 @@ const Container = styled.Pressable`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 20px;
-  width: ${windowWidth / 3.5}px;
-  height: ${windowHeight / 20}px;
+  padding: ${height >= 700 ? `${height * 0.01}px` : `${height * 0.01}px`};
+  width: ${width * 0.3}px;
+  height: ${height * 0.06}px;
 `;
 
 const Title = styled(NewText)`
-  line-height: 20px;
   ${({ black }) => (black ? `color : #ffffff` : `color : #000000`)};
 `;
 

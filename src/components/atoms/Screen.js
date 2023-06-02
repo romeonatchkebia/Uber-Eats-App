@@ -2,8 +2,7 @@ import React from "react";
 import { Platform, Dimensions, StatusBar } from "react-native";
 import styled from "styled-components";
 
-const windowWidth = Dimensions.get("screen").width;
-const windowHeight = Dimensions.get("screen").height;
+const { height, width } = Dimensions.get("screen");
 
 const StatusBarHeight = StatusBar.currentHeight;
 
@@ -14,8 +13,8 @@ const MainWrapper = styled.KeyboardAvoidingView`
 `;
 
 const ImageBackground = styled.ImageBackground`
-  width: ${windowWidth}px;
-  height: ${windowHeight}px;
+  width: ${width}px;
+  height: ${height}px;
 `;
 
 const Container = styled.SafeAreaView`

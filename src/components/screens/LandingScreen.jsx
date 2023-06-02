@@ -8,19 +8,18 @@ import ImageViewer from "../atoms/ImageViewer";
 import NewText from "../atoms/NewText";
 import * as IMAGES from "../../constants/Images";
 
-const windowWidth = Dimensions.get("screen").width;
-const windowHeight = Dimensions.get("screen").height;
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled(Screen)``;
 
 const LandImage = styled(ImageViewer)`
-  width: ${windowWidth}px;
-  height: ${windowHeight / 1.6}px;
+  width: ${width}px;
+  height: ${height >= 700 ? `${height * 0.65}px` : `${height * 0.75}px`};
 `;
 
 const LandText = styled(NewText)`
-  line-height: 36px;
-  margin: 15px;
+  line-height: ${height * 0.04}px;
+  margin: ${height >= 700 ? `${height * 0.01}px` : `${height * 0.03}px`};
 `;
 
 const DropInput = styled.View`
@@ -29,8 +28,8 @@ const DropInput = styled.View`
   background: #eeeeee;
   flex-direction: row;
   gap: 20px;
-  margin-top: 25px;
-  padding-left: 30px;
+  margin-top: ${height >= 700 ? `${height * 0.02}px` : `${height * 0.0002}px`};
+  padding-left: 8%;
   position: relative;
 `;
 
@@ -39,12 +38,12 @@ const LandInput = styled.TextInput`
 `;
 
 const DropContainer = styled.View`
-  width: 40%;
+  width: ${width >= 350 ? `40%` : `48%`};
 `;
 
 const Flag = styled(ImageViewer)`
   width: 15%;
-  left: 30px;
+  left: 5%;
   position: absolute;
 `;
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Pressable } from "react-native";
+import { Dimensions } from "react-native";
 import styled from "styled-components";
+
+const { height, width } = Dimensions.get("screen");
 
 const CustomText = styled.Text`
   font-family: ${({ font }) => {
@@ -16,17 +18,17 @@ const CustomText = styled.Text`
   font-size: ${({ size }) => {
     switch (size) {
       case "small":
-        return "12px";
+        return `${height * 0.015}px`;
       case "medium":
-        return "16px";
+        return `${height * 0.019}px`;
       case "large":
-        return "18px";
+        return `${height * 0.0212}px`;
       case "xlarge":
-        return "24px";
+        return `${height * 0.0289}px`;
       case "xxlarge":
-        return "36px";
+        return `${height * 0.0423}px`;
       default:
-        return "14px";
+        return `${height * 0.017}px`;
     }
   }};
   color: ${({ color }) => {

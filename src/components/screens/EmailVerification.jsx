@@ -1,4 +1,4 @@
-import { Image, View, Text, StyleSheet } from "react-native";
+import { Image, View, Dimensions, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import styled from "styled-components";
 import {
@@ -13,17 +13,18 @@ import * as IMAGES from "../../constants/Images";
 import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)``;
 
 const Wrapper = styled.View`
   flex: 1;
   justify-content: space-between;
-  margin: 15px;
+  margin: ${width * 0.038}px;
 `;
 
 const Title = styled(NewText)`
-  font-size: 20px;
-  line-height: 30px;
+  line-height: ${width * 0.076}px;
   margin-top: 20%;
 `;
 
@@ -35,23 +36,15 @@ const Input = styled.View`
   margin: 25px 0;
 `;
 
-const InputText = styled.TextInput`
-  background: #eeeeee;
-  font-size: 20px;
-  height: 50px;
-  width: 85%;
-  padding: 15px 5%;
-`;
-
 const Tip = styled.View`
-  margin-bottom: 25px;
+  margin-bottom: ${width * 0.063}px;
 `;
 
 const LogIn = styled.Pressable`
   background: #eeeeee;
-  border-radius: 30px;
+  border-radius: ${width * 0.076}px;
   padding: 15px 10px;
-  width: 50%;
+  width: ${width >= 350 ? `52%` : `45%`};
 `;
 
 const BottomView = styled.View`
@@ -62,18 +55,18 @@ const BottomView = styled.View`
 
 const Back = styled.Pressable`
   background: #eeeeee;
-  border-radius: 50px;
-  padding: 20px 20px;
-  width: 18%;
+  border-radius: ${width * 0.13}px;
+  padding: ${height * 0.03}px;
 `;
+
 const Forward = styled.Pressable`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
   background: #eeeeee;
-  border-radius: 30px;
-  padding: 16px 20px;
-  width: 32%;
+  border-radius: ${width * 0.1}px;
+  gap: 10px;
+  padding: ${height * 0.0259}px;
 `;
 
 const CELL_COUNT = 4;
@@ -92,7 +85,7 @@ const EmailVerification = ({ navigation }) => {
     <Container>
       <Wrapper>
         <View>
-          <Title font="medium">
+          <Title font="medium" size="xlarge">
             Enter the 4-digit code sent to you at: Johndoe@email.com
           </Title>
 
@@ -100,7 +93,6 @@ const EmailVerification = ({ navigation }) => {
             <CodeField
               ref={ref}
               {...props}
-              // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
               value={value}
               onChangeText={setValue}
               cellCount={CELL_COUNT}
@@ -164,13 +156,14 @@ const EmailVerification = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   cell: {
-    width: "20%",
-    height: 50,
-    lineHeight: 38,
-    fontSize: 22,
+    width: width * 0.14,
+    height: height * 0.06,
+    lineHeight: width * 0.096,
+    fontSize: width * 0.06,
     borderWidth: 2,
     borderColor: "#00000030",
     textAlign: "center",
+    margin: width * 0.03,
   },
   focusCell: {
     borderColor: "#000",

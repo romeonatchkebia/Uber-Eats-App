@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FlatList, SectionList, View, ScrollView } from "react-native";
+import {
+  FlatList,
+  SectionList,
+  View,
+  ScrollView,
+  Dimensions,
+} from "react-native";
 import * as Progress from "react-native-progress";
 import { Portal } from "react-native-portalize";
 import BottomSheet from "../atoms/BottomSheet";
@@ -23,11 +29,11 @@ import ThreeObjectCardForHomeScreen from "../molecules/cards/ThreeObjectCardForH
 import HomeScreenBottomCard from "../molecules/cards/HomeScreenBottomCard";
 import GoogleMap from "../organisms/GoogleMap";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)`
   background: ${COLORS.SCREEN_BACKGROUND};
 `;
-
-const HomeCard = styled(MainCard)``;
 
 // category and filter buttons
 const CtgrFilterBtnView = styled.View``;
@@ -43,9 +49,7 @@ const FilterView = styled.View`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  width: 355px;
+  margin: 15px;
 `;
 
 const FilterTextPress = styled.Pressable`
@@ -68,8 +72,8 @@ const FilterIcon = styled(ImageViewer)``;
 const FilterBtnPress = styled.Pressable``;
 
 const FilterBtn = styled(ImageViewer)`
-  width: 25px;
-  height: 25px;
+  width: ${width * 0.063}px;
+  height: ${width * 0.063}px;
 `;
 
 // loading spinner
@@ -85,10 +89,32 @@ const CategoryContainer = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
   gap: 5px;
-  margin-right: 20px;
-  margin-left: 25px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: ${width * 0.038}px;
+`;
+
+const WrapCat = styled.View``;
+
+const OuterDiv = styled.View`
+  display: flex;
+  align-items: center;
+  background: rgba(230, 230, 230, 0.4);
+  justify-content: center;
+  height: ${height * 0.085}px;
+  width: ${width * 0.2}px;
+`;
+
+const More = styled.Pressable`
+  display: flex;
+  align-items: center;
+  background: rgba(230, 230, 230, 0.4);
+  height: ${height * 0.085}px;
+  width: ${width * 0.2}px;
+  padding-top: ${width * 0.01}px;
+`;
+
+const CardTitle = styled(NewText)`
+  text-align: center;
+  color: #000000;
 `;
 
 // SectionList component
@@ -96,23 +122,17 @@ const SectionTitleView = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin: 15px;
 `;
 
-const SeeAllBtnView = styled.Pressable`
-  margin-right: 30px;
-`;
+const SeeAllBtnView = styled.Pressable``;
 
 const SeeAllBtn = styled(NewText)`
-  line-height: 21px;
+  line-height: ${height * 0.025}px;
 `;
 
 const SectionTitle = styled(NewText)`
-  line-height: 37px;
-  padding-left: 21px;
-  margin-bottom: 10px;
-  margin-left: 12px;
+  line-height: ${height * 0.044}px;
 `;
 
 const Devider = styled(SectionDevider)`
@@ -133,6 +153,12 @@ const BottomSheetTitle = styled(NewText)`
   margin-bottom: 20px;
   text-align: center;
   width: 100%;
+`;
+
+const RenderView = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const AllCategoryCard = styled(CategoryCard)`
@@ -1451,14 +1477,39 @@ function HomeScreen({ navigation }) {
             </View>
 
             <CategoryContainer>
-              <CategoryCard title="Convenience" imgUrl={IMAGES.Convenience} />
-              <CategoryCard title="Alcohol" imgUrl={IMAGES.Alcohol} />
-              <CategoryCard title="Pet Supplies" imgUrl={IMAGES.PetSupplies} />
-              <CategoryCard
-                title="More"
-                imgUrl={IMAGES.More}
-                onPress={() => categorySheetRef.current.open()}
-              />
+              <WrapCat>
+                <OuterDiv>
+                  <CategoryCard imgUrl={IMAGES.Convenience} />
+                </OuterDiv>
+
+                <CardTitle font="medium">Convenience</CardTitle>
+              </WrapCat>
+
+              <WrapCat>
+                <OuterDiv>
+                  <CategoryCard imgUrl={IMAGES.Alcohol} />
+                </OuterDiv>
+
+                <CardTitle font="medium">Alcohol</CardTitle>
+              </WrapCat>
+
+              <WrapCat>
+                <OuterDiv>
+                  <CategoryCard imgUrl={IMAGES.PetSupplies} />
+                </OuterDiv>
+
+                <CardTitle font="medium">Pet Supplies</CardTitle>
+              </WrapCat>
+
+              <WrapCat>
+                <More onPress={() => categorySheetRef.current.open()}>
+                  <NewText size="xxlarge" font="bold">
+                    ...
+                  </NewText>
+                </More>
+
+                <CardTitle font="medium">More</CardTitle>
+              </WrapCat>
             </CategoryContainer>
 
             <SectionList
@@ -1474,6 +1525,7 @@ function HomeScreen({ navigation }) {
                       <SectionTitle size="xlarge" font="bold">
                         {section.sectionTitle}
                       </SectionTitle>
+
                       <SeeAllBtnView>
                         {section.sectionTitle && (
                           <SeeAllBtn
@@ -1519,7 +1571,7 @@ function HomeScreen({ navigation }) {
               renderItem={({ item }) => {
                 return (
                   item.rating && (
-                    <HomeCard
+                    <MainCard
                       title={item.title}
                       source={item.url}
                       price={category === 0 ? item.price : ""}
@@ -1629,29 +1681,30 @@ function HomeScreen({ navigation }) {
       )}
 
       <Portal>
-        <BottomSheet bottomSheetRef={categorySheetRef} modalHeight={700}>
+        <BottomSheet
+          bottomSheetRef={categorySheetRef}
+          modalHeight={height >= 700 ? 700 : 500}
+        >
           <BottomSheetCardDiv>
-            <View>
-              <BottomSheetTitle size="large">All categories</BottomSheetTitle>
-            </View>
+            <ScrollView>
+              <View>
+                <BottomSheetTitle size="xlarge">
+                  All categories
+                </BottomSheetTitle>
+              </View>
 
-            <View
-              style={{
-                flexDirection: "row",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
-              {ctgryListItems.map((item) => {
-                return (
-                  <AllCategoryCard
-                    key={item.id}
-                    title={item.title}
-                    imgUrl={item.imgUrl}
-                  />
-                );
-              })}
-            </View>
+              <RenderView>
+                {ctgryListItems.map((item) => {
+                  return (
+                    <AllCategoryCard
+                      key={item.id}
+                      title={item.title}
+                      imgUrl={item.imgUrl}
+                    />
+                  );
+                })}
+              </RenderView>
+            </ScrollView>
           </BottomSheetCardDiv>
         </BottomSheet>
       </Portal>

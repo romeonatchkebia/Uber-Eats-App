@@ -1,53 +1,47 @@
 import React, { useState } from "react";
-import { Platform } from "react-native";
+import { Dimensions } from "react-native";
 import styled from "styled-components";
 import ImageViewer from "../../atoms/ImageViewer";
 import NewText from "../../atoms/NewText";
 import * as IMAGES from "../../../constants/Images";
 
+const { height, width } = Dimensions.get("screen");
+
 const CardView = styled.Pressable`
   background: #f6f6f6;
   align-items: center;
   position: relative;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  padding: ${width * 0.038}px;
 `;
 
-const CardImage = styled(ImageViewer)``;
+const CardImage = styled(ImageViewer)`
+  width: ${width * 0.9}px;
+  height: ${height * 0.18}px;
+`;
 
 const TitleRatingView = styled.View`
-  display: flex;
-  flex-direction: row;
   align-items: center;
+  flex-direction: row;
   justify-content: space-between;
-  width: ${Platform.OS === "ios" ? 90 : 100}%;
-  padding-right: ${Platform.OS === "ios" ? 0 : 5}px;
-  padding-left: ${Platform.OS === "ios" ? 0 : 5}px;
+  width: 90%;
 `;
 
-const CardTitle = styled(NewText)`
-  margin-top: 8px;
-`;
+const CardTitle = styled(NewText)``;
 
 const CardRatingView = styled.View`
-  display: flex;
   align-items: center;
   background: #eeeeee;
-  border-radius: 20px;
-  flex-direction: column;
-  height: 27px;
+  border-radius: ${width * 0.05}px;
+  height: ${width * 0.08}px;
   justify-content: center;
-  padding: 3px 5px;
   margin-top: 5px;
+  width: ${width * 0.08}px;
 `;
 
-const CardRating = styled(NewText)`
-  text-align: center;
-`;
+const CardRating = styled(NewText)``;
 
 const SubtitleView = styled.View`
-  width: ${Platform.OS === "ios" ? 90 : 100}%;
-  padding-left: ${Platform.OS === "ios" ? 0 : 5}px;
+  width: 90%;
 `;
 
 const CardSubTitle = styled(NewText)``;
@@ -56,25 +50,28 @@ const PromotionView = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-right-radius: 75px;
-  border-bottom-right-radius: 75px;
+  border-top-right-radius: ${width * 0.19}px;
+  border-bottom-right-radius: ${width * 0.19}px;
   background: #34a853;
-  height: 25px;
+  height: 13%;
   width: 62%;
   position: absolute;
-  left: ${Platform.OS === "ios" ? 19 : 3}px;
-  top: 33px;
+  left: ${width * 0.05}px;
+  top: ${width * 0.084}px;
 `;
 
 const PromotionText = styled(NewText)``;
 
 const LikeBtnPress = styled.Pressable`
   position: absolute;
-  right: 38px;
-  top: 36px;
+  right: ${width * 0.096}px;
+  top: ${width * 0.091}px;
 `;
 
-const LikeBtn = styled(ImageViewer)``;
+const LikeBtn = styled(ImageViewer)`
+  width: ${width * 0.056}px;
+  height: ${width * 0.051}px;
+`;
 
 const MainCard = ({
   title,

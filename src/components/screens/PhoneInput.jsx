@@ -1,4 +1,4 @@
-import { Image } from "react-native";
+import { Image, Dimensions } from "react-native";
 import React, { useState } from "react";
 import styled from "styled-components";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -9,36 +9,36 @@ import * as IMAGES from "../../constants/Images";
 import BigBlackGreyBtn from "../atoms/BigBlackGreyBtn";
 import SectionDevider from "../atoms/SectionDevider";
 
+const { width } = Dimensions.get("screen");
+
 const Container = styled(Screen)``;
 
 const Wrapper = styled.View`
-  margin: 15px;
+  margin: ${width * 0.038}px;
 `;
 
 const Title = styled(NewText)`
-  font-size: 20px;
-  margin-top: 20%;
+  margin-top: 15%;
 `;
 
 const DropInput = styled.View`
   align-items: center;
   flex-direction: row;
   gap: 20px;
-  margin-top: 25px;
-  margin-bottom: 30px;
+  margin-top: ${width * 0.063}px;
+  margin-bottom: ${width * 0.076}px;
   position: relative;
 `;
 
 const InputText = styled.TextInput`
   background: #eeeeee;
-  font-size: 20px;
-  height: 50px;
+  height: ${width * 0.13}px;
   width: 55%;
   padding: 15px 10%;
 `;
 
 const DropContainer = styled.View`
-  width: 40%;
+  width: ${width >= 350 ? `40%` : `48%`};
 `;
 
 const Flag = styled(Image)`
@@ -48,8 +48,8 @@ const Flag = styled(Image)`
 `;
 
 const DescText = styled(NewText)`
-  margin-top: 20px;
-  line-height: 20px;
+  margin-top: ${width * 0.05}px;
+  line-height: ${width * 0.05}px;
 `;
 
 const LineView = styled.View`
@@ -69,8 +69,8 @@ const Google = styled.View`
   align-items: center;
   border: 1px solid #000000;
   flex-direction: row;
-  gap: 70%;
-  padding: 15px;
+  gap: ${width * 0.18}px;
+  padding: ${width * 0.038}px;
 `;
 
 const GoogleText = styled(NewText)``;
@@ -103,7 +103,9 @@ const PhoneInput = ({ navigation }) => {
   return (
     <Container>
       <Wrapper>
-        <Title font="medium">Enter your mobile number</Title>
+        <Title font="medium" size="xlarge">
+          Enter your mobile number
+        </Title>
 
         <DropInput>
           <DropContainer>
@@ -120,6 +122,7 @@ const PhoneInput = ({ navigation }) => {
                 borderRadius: 0,
               }}
               textStyle={{ paddingLeft: 58 }}
+              dropDownDirection="TOP"
             />
           </DropContainer>
 

@@ -369,7 +369,9 @@ const Featured = ({ navigation, route }) => {
                 />
                 <CtgrButton
                   title="Orders"
-                  onPress={() => navigation.navigate("Orders", { restName })}
+                  onPress={() =>
+                    navigation.navigate("PastOrders", { restName })
+                  }
                 />
               </CtgrView>
 

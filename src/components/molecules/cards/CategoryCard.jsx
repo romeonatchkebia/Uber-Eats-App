@@ -1,8 +1,11 @@
-import { Image } from "react-native";
+import { Image, Dimensions } from "react-native";
 import React from "react";
 import styled from "styled-components";
 
 import NewText from "../../atoms/NewText";
+import ImageViewer from "../../atoms/ImageViewer";
+
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   align-items: center;
@@ -17,13 +20,11 @@ const Wrapper = styled.View`
 const ImageView = styled.View`
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 75px;
 `;
 
-const CardTitle = styled(NewText)`
-  text-align: center;
-  color: #000000;
+const CatImage = styled(ImageViewer)`
+  width: ${width * 0.14}px;
+  height: ${height * 0.065}px;
 `;
 
 const CategoryCard = ({ imgUrl, title, onPress, ...props }) => {
@@ -31,10 +32,9 @@ const CategoryCard = ({ imgUrl, title, onPress, ...props }) => {
     <Container onPress={onPress} {...props}>
       <Wrapper>
         <ImageView>
-          <Image source={imgUrl} />
+          <CatImage source={imgUrl} />
         </ImageView>
       </Wrapper>
-      <CardTitle font="medium">{title}</CardTitle>
     </Container>
   );
 };

@@ -230,7 +230,9 @@ const Categories = ({ navigation, route }) => {
                 <CtgrButton title="Categories" black={true} />
                 <CtgrButton
                   title="Orders"
-                  onPress={() => navigation.navigate("Orders", { restName })}
+                  onPress={() =>
+                    navigation.navigate("PastOrders", { restName })
+                  }
                 />
               </CtgrView>
 
