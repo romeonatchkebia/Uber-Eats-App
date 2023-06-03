@@ -23,7 +23,7 @@ const TitleRatingView = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  width: 98%;
 `;
 
 const CardTitle = styled(NewText)``;

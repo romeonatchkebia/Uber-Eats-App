@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Image, ScrollView } from "react-native";
+import { View, Image, ScrollView, Dimensions } from "react-native";
 import styled from "styled-components";
 
 import Screen from "../atoms/Screen";
@@ -12,6 +12,8 @@ import RestDetailsCard from "../molecules/cards/RestDetailsCard";
 import DeliveryPickupBtns from "../atoms/DeliveryPickupBtns";
 import RestDetailsPopularCard from "../molecules/cards/RestDetailsPopularCard";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
+
+const { height, width } = Dimensions.get("screen");
 
 const SpinnerView = styled.View`
   flex: 1;
@@ -305,7 +307,10 @@ const RestaurantDetails = ({ navigation, route }) => {
     <Container>
       {isLoading ? (
         <SpinnerView>
-          <Progress.CircleSnail size={80} color={["red", "green", "blue"]} />
+          <Progress.CircleSnail
+            size={height >= 700 ? 80 : 50}
+            color={["red", "green", "blue"]}
+          />
         </SpinnerView>
       ) : (
         <ScrollView>

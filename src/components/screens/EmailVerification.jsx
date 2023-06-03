@@ -21,6 +21,7 @@ const Wrapper = styled.View`
   flex: 1;
   justify-content: space-between;
   margin: ${width * 0.038}px;
+  padding-bottom: 10%;
 `;
 
 const Title = styled(NewText)`
@@ -44,7 +45,7 @@ const LogIn = styled.Pressable`
   background: #eeeeee;
   border-radius: ${width * 0.076}px;
   padding: 15px 10px;
-  width: ${width >= 350 ? `52%` : `45%`};
+  width: ${width >= 350 ? `55%` : `45%`};
 `;
 
 const BottomView = styled.View`

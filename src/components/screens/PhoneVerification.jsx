@@ -21,6 +21,7 @@ const Wrapper = styled.View`
   flex: 1;
   justify-content: space-between;
   margin: ${width * 0.038}px;
+  padding-bottom: 10%;
 `;
 
 const Title = styled(NewText)`

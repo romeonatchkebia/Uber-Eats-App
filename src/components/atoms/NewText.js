@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, View } from "react-native";
 import styled from "styled-components";
 
-const { height, width } = Dimensions.get("screen");
+const { height } = Dimensions.get("screen");
 
 const CustomText = styled.Text`
   font-family: ${({ font }) => {
@@ -64,15 +64,17 @@ const NewText = ({
 
   if (show) {
     return (
-      <CustomText
-        font={font}
-        size={size}
-        color={color}
-        onPress={onPress}
-        {...props}
-      >
-        {children}
-      </CustomText>
+      <View style={{ flexWrap: "wrap", flexDirection: "row" }}>
+        <CustomText
+          font={font}
+          size={size}
+          color={color}
+          onPress={onPress}
+          {...props}
+        >
+          {children}
+        </CustomText>
+      </View>
     );
   } else {
     return null;

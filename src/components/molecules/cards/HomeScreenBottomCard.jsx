@@ -1,33 +1,36 @@
 import React from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components";
 
 import NewText from "../../atoms/NewText";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled.View`
   background: #f6f6f6;
-  padding: 15px;
+  padding: ${width * 0.038}px;
 `;
 
 const BrowseBtn = styled.Pressable`
   align-items: center;
   border: 1px solid #000000;
   justify-content: center;
-  height: 55px;
-  margin-top: 50px;
-  margin-bottom: 25px;
+  height: ${width * 0.13}px;
+  margin-top: ${width * 0.13}px;
+  margin-bottom: ${width * 0.063}px;
 `;
 
 const BrowseBtnTitle = styled(NewText)``;
 
 const SeeAllRestBtn = styled.Pressable`
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: ${width * 0.1}px;
 `;
 
 const SeeAllRestBtnText = styled(NewText)``;
 
 const UberDecription = styled(NewText)`
-  margin-bottom: 100px;
+  margin-bottom: ${width * 0.25}px;
 `;
 
 const HomeScreenBottomCard = () => {

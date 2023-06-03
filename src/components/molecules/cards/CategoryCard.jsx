@@ -1,15 +1,13 @@
-import { Image, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 import React from "react";
 import styled from "styled-components";
 
-import NewText from "../../atoms/NewText";
 import ImageViewer from "../../atoms/ImageViewer";
 
 const { height, width } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   align-items: center;
-  margin-right: 3px;
 `;
 
 const Wrapper = styled.View`
@@ -27,7 +25,7 @@ const CatImage = styled(ImageViewer)`
   height: ${height * 0.065}px;
 `;
 
-const CategoryCard = ({ imgUrl, title, onPress, ...props }) => {
+const CategoryCard = ({ imgUrl, onPress, ...props }) => {
   return (
     <Container onPress={onPress} {...props}>
       <Wrapper>

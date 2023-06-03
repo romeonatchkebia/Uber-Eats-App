@@ -30,7 +30,6 @@ import HomeScreenBottomCard from "../molecules/cards/HomeScreenBottomCard";
 import GoogleMap from "../organisms/GoogleMap";
 
 const { height, width } = Dimensions.get("screen");
-
 const Container = styled(Screen)`
   background: ${COLORS.SCREEN_BACKGROUND};
 `;
@@ -49,7 +48,7 @@ const FilterView = styled.View`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  margin: 15px;
+  margin: ${width * 0.038}px;
 `;
 
 const FilterTextPress = styled.Pressable`
@@ -58,7 +57,7 @@ const FilterTextPress = styled.Pressable`
 `;
 
 const FilterText = styled(NewText)`
-  line-height: 23px;
+  line-height: ${width * 0.058}px;
   padding-left: 28%;
 `;
 
@@ -96,10 +95,9 @@ const WrapCat = styled.View``;
 
 const OuterDiv = styled.View`
   display: flex;
-  align-items: center;
   background: rgba(230, 230, 230, 0.4);
-  justify-content: center;
   height: ${height * 0.085}px;
+  padding-top: ${width * 0.025}px;
   width: ${width * 0.2}px;
 `;
 
@@ -108,13 +106,12 @@ const More = styled.Pressable`
   align-items: center;
   background: rgba(230, 230, 230, 0.4);
   height: ${height * 0.085}px;
+  padding-top: ${width * 0.015}px;
   width: ${width * 0.2}px;
-  padding-top: ${width * 0.01}px;
 `;
 
 const CardTitle = styled(NewText)`
   text-align: center;
-  color: #000000;
 `;
 
 // SectionList component
@@ -142,10 +139,8 @@ const Devider = styled(SectionDevider)`
 //BottomSheet styles
 
 const BottomSheetCardDiv = styled.View`
-  display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin: 10px;
+  padding-left: ${width * 0.025}px;
 `;
 
 const BottomSheetTitle = styled(NewText)`
@@ -158,11 +153,19 @@ const BottomSheetTitle = styled(NewText)`
 const RenderView = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 
-const AllCategoryCard = styled(CategoryCard)`
-  margin-bottom: 20px;
+const OuterDivForSheet = styled.View`
+  display: flex;
+  background: rgba(230, 230, 230, 0.4);
+  height: ${height * 0.085}px;
+  padding-top: ${width * 0.025}px;
+  width: ${width * 0.2}px;
+  margin: ${width * 0.018}px;
+`;
+
+const SheetCardTitle = styled(NewText)`
+  margin-left: ${width * 0.015}px;
 `;
 
 // sectinList footer category view
@@ -1233,7 +1236,7 @@ const deliveryList = [
       {
         id: 34,
         url: require("../Images/pineaple.png"),
-        title: "Organic Pineaple",
+        title: "Pineaple",
         price: "9.00",
       },
       {
@@ -1275,7 +1278,7 @@ const deliveryList = [
       {
         id: 39,
         url: require("../Images/champain.png"),
-        title: "Organic Pineaple",
+        title: " Sweet Champain sssssssssssssssssss",
         price: "9.00",
       },
       {
@@ -1436,7 +1439,10 @@ function HomeScreen({ navigation }) {
     <Container>
       {isLoading ? (
         <SpinnerView>
-          <Progress.CircleSnail size={80} color={["red", "green", "blue"]} />
+          <Progress.CircleSnail
+            size={height >= 700 ? 80 : 50}
+            color={["red", "green", "blue"]}
+          />
         </SpinnerView>
       ) : (
         <>
@@ -1627,19 +1633,21 @@ function HomeScreen({ navigation }) {
                   </SeeAllBtnView>
                 </SectionTitleView>
 
-                <FlatList
-                  data={deliveryList[7].sweets}
-                  keyExtractor={(item) => item.id}
-                  renderItem={({ item }) => (
-                    <ThreeObjectCardForHomeScreen
-                      title={item.title}
-                      subTitle={item.price}
-                      imgUrl={item.url}
-                    />
-                  )}
-                  scrollEnabled={false}
-                  numColumns={3}
-                />
+                <View>
+                  <FlatList
+                    data={deliveryList[7].sweets}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => (
+                      <ThreeObjectCardForHomeScreen
+                        title={item.title}
+                        subTitle={item.price}
+                        imgUrl={item.url}
+                      />
+                    )}
+                    scrollEnabled={false}
+                    numColumns={3}
+                  />
+                </View>
               </View>
             )}
 
@@ -1683,7 +1691,7 @@ function HomeScreen({ navigation }) {
       <Portal>
         <BottomSheet
           bottomSheetRef={categorySheetRef}
-          modalHeight={height >= 700 ? 700 : 500}
+          modalHeight={height >= 700 ? 660 : 450}
         >
           <BottomSheetCardDiv>
             <ScrollView>
@@ -1696,11 +1704,17 @@ function HomeScreen({ navigation }) {
               <RenderView>
                 {ctgryListItems.map((item) => {
                   return (
-                    <AllCategoryCard
-                      key={item.id}
-                      title={item.title}
-                      imgUrl={item.imgUrl}
-                    />
+                    <View key={item.id}>
+                      <WrapCat>
+                        <OuterDivForSheet>
+                          <CategoryCard imgUrl={item.imgUrl} />
+                        </OuterDivForSheet>
+
+                        <SheetCardTitle font="medium">
+                          {item.title}
+                        </SheetCardTitle>
+                      </WrapCat>
+                    </View>
                   );
                 })}
               </RenderView>

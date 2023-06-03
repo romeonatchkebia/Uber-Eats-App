@@ -32,13 +32,13 @@ const DropInput = styled.View`
 
 const InputText = styled.TextInput`
   background: #eeeeee;
-  height: ${width * 0.13}px;
-  width: 55%;
-  padding: 15px 10%;
+  width: ${width >= 350 ? `50%` : `42%`};
+  height: 100%;
+  padding: 0 10px;
 `;
 
 const DropContainer = styled.View`
-  width: ${width >= 350 ? `40%` : `48%`};
+  width: ${width >= 350 ? `45%` : `50%`};
 `;
 
 const Flag = styled(Image)`

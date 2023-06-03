@@ -72,13 +72,16 @@ const RestDetailsCard = ({
           <SoldoutView>
             <TextWrapper>
               <SoldoutText color="grey">Sold out • </SoldoutText>
+
               <PriceText>US${price}</PriceText>
             </TextWrapper>
+
             <SoldoutText>Must be 21 to purchase</SoldoutText>
           </SoldoutView>
         ) : (
           <>
             <PriceText>US${price}</PriceText>
+
             <Desc color="grey" numberOfLines={3}>
               {desc}
             </Desc>

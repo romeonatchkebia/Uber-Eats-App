@@ -38,7 +38,7 @@ const LandInput = styled.TextInput`
 `;
 
 const DropContainer = styled.View`
-  width: ${width >= 350 ? `40%` : `48%`};
+  width: ${width >= 350 ? `45%` : `50%`};
 `;
 
 const Flag = styled(ImageViewer)`
