@@ -1,25 +1,25 @@
 import React from "react";
 import { Pressable, Image, Dimensions, View } from "react-native";
 import styled from "styled-components";
+import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import * as ROUTS from "../../constants/Routs";
-import * as IMAGES from "../../constants/Images";
 
 import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 import TextInput from "../atoms/TextInput";
 import BigBlackGreyBtn from "../atoms/BigBlackGreyBtn";
 
-const windowWidth = Dimensions.get("screen").width;
-const windowHeight = Dimensions.get("screen").height;
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled(Screen)``;
 
 const Wrapper = styled.View`
   flex: 1;
   justify-content: space-between;
-  margin: 0 15px;
-  padding-bottom: 30px;
+  margin: ${width * 0.038}px;
+  padding-bottom: ${height >= 700 ? "15%" : "0"};
 `;
 
 // Header
@@ -27,28 +27,29 @@ const Header = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: ${height * 0.033}px;
 `;
 
 const Left = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 16px;
+  gap: ${width * 0.04}px;
 `;
 
 const Right = styled.View`
   align-items: center;
   background: #eeeeee;
-  border-radius: 50px;
+  border-radius: ${width * 0.13}px;
   flex-direction: row;
-  gap: 5px;
-  padding: 5px 15px;
+  gap: ${width * 0.013}px;
+  padding: ${width * 0.013}px ${width * 0.038}px;
 `;
 
 const Input = styled(TextInput)`
   border-radius: 0px;
-  width: ${windowWidth / 1.1}px;
-  height: ${windowHeight / 3}px;
+  width: 98%;
+  height: ${height * 0.205}px;
+  font-size: ${width * 0.04}px;
 `;
 
 const Note = ({ navigation }) => {
@@ -61,7 +62,11 @@ const Note = ({ navigation }) => {
               <Pressable
                 onPress={() => navigation.goBack(ROUTS.HOMESCREEN_SCREEN)}
               >
-                <Image source={IMAGES.LeftArrow} />
+                <Feather
+                  name="arrow-left"
+                  size={width >= 350 ? 26 : 18}
+                  color="black"
+                />
               </Pressable>
 
               <NewText font="medium" size="xlarge">
@@ -70,7 +75,8 @@ const Note = ({ navigation }) => {
             </Left>
 
             <Right>
-              <Image source={IMAGES.Cart} />
+              <Ionicons name="cart" size={width >= 350 ? 26 : 18} />
+
               <NewText size="medium">1</NewText>
             </Right>
           </Header>
@@ -79,7 +85,7 @@ const Note = ({ navigation }) => {
 
           <NewText
             color="grey"
-            style={{ marginVertical: 30, paddingHorizontal: 20 }}
+            style={{ marginVertical: height * 0.035, paddingHorizontal: 20 }}
           >
             Your Shopper will try their best to follow your notes and may
             contact you if they need your help making a decision.

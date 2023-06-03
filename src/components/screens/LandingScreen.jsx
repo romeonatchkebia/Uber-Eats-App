@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, Pressable } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
 import Screen from "../atoms/Screen";
@@ -80,7 +80,10 @@ const LandingScreen = ({ navigation }) => {
 
   return (
     <Container>
-      <LandImage source={require("../Images/landingScreen.png")} />
+      <Pressable onPress={() => navigation.navigate("BottomTabNav")}>
+        <LandImage source={require("../Images/landingScreen.png")} />
+      </Pressable>
+
       <LandText size="xlarge" font="medium">
         Use your uber account to get started
       </LandText>

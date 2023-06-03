@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, Image, ScrollView } from "react-native";
+import { Pressable, Image, ScrollView, Dimensions } from "react-native";
 import * as Progress from "react-native-progress";
 import styled from "styled-components";
 import { Octicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 import * as ROUTS from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
@@ -11,10 +13,12 @@ import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 import CtgrButton from "../atoms/CtgrButton";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)``;
 
 const Wrapper = styled.View`
-  margin: 0 15px;
+  margin: ${width * 0.038}px;
 `;
 
 // Header
@@ -22,35 +26,35 @@ const Header = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: ${height * 0.033}px;
 `;
 
 const Left = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 16px;
+  gap: ${width * 0.04}px;
 `;
 
 const Right = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 23px;
+  gap: ${width * 0.06}px;
 `;
 
 // SearchBar
 const SearchContainer = styled.View`
   align-items: center;
-  flex-direction: row;
   background-color: #eeeeee;
-  gap: 15px;
-  height: 60px;
-  padding: 15px;
-  margin-bottom: 15px;
+  flex-direction: row;
+  gap: ${width * 0.038}px;
+  height: ${height * 0.052}px;
+  padding-left: ${width * 0.035}px;
+  margin-bottom: ${width * 0.038}px;
 `;
 
 const InputText = styled.TextInput`
   font-weight: 500;
-  font-size: 16px;
+  font-size: ${width * 0.04}px;
 `;
 
 // Time and Price
@@ -63,13 +67,13 @@ const TimePrice = styled.View`
 const Time = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 7px;
+  gap: ${width * 0.018}px;
 `;
 
 const Price = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 7px;
+  gap: ${width * 0.018}px;
 `;
 
 // Spinner and Category Btns
@@ -83,14 +87,14 @@ const CtgrView = styled.View`
   align-items: center;
   justify-content: space-around;
   flex-direction: row;
-  margin: 20px 0;
+  margin: ${width * 0.05}px 0;
 `;
 
 const TextView = styled.View`
-  height: 100%;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: ${width * 0.025}px;
+  margin-top: ${height * 0.18}px;
 `;
 
 const PastOrders = ({ navigation, route }) => {
@@ -108,7 +112,10 @@ const PastOrders = ({ navigation, route }) => {
     <Container>
       {isLoading ? (
         <SpinnerView>
-          <Progress.CircleSnail size={80} color={["red", "green", "blue"]} />
+          <Progress.CircleSnail
+            size={height >= 700 ? 80 : 50}
+            color={["red", "green", "blue"]}
+          />
         </SpinnerView>
       ) : (
         <>
@@ -119,33 +126,51 @@ const PastOrders = ({ navigation, route }) => {
                   <Pressable
                     onPress={() => navigation.goBack(ROUTS.HOMESCREEN_SCREEN)}
                   >
-                    <Image source={IMAGES.LeftArrow} />
+                    <Feather
+                      name="arrow-left"
+                      size={width >= 350 ? 26 : 18}
+                      color="black"
+                    />
                   </Pressable>
+
                   <NewText font="medium" size="xlarge">
                     {restName}
                   </NewText>
                 </Left>
 
                 <Right>
-                  <Image source={IMAGES.Person} />
-                  <Image source={IMAGES.Cart} />
+                  <Ionicons name="person" size={width >= 350 ? 24 : 16} />
+
+                  <Pressable
+                    onPress={() =>
+                      navigation.navigate(ROUTS.ORDER_DETAIlS_SCREEN)
+                    }
+                  >
+                    <Ionicons name="cart" size={width >= 350 ? 26 : 18} />
+                  </Pressable>
                 </Right>
               </Header>
 
               <SearchContainer>
-                <Octicons name="search" size={25} color="black" />
+                <Octicons
+                  name="search"
+                  size={height >= 700 ? 20 : 14}
+                  color="black"
+                />
 
                 <InputText placeholder="Search stores and produ..."></InputText>
               </SearchContainer>
 
               <TimePrice>
                 <Time>
-                  <Image source={IMAGES.Clock} />
+                  <Ionicons name="time" size={width >= 350 ? 26 : 18} />
+
                   <NewText size="medium">In 60 minutes</NewText>
                 </Time>
 
                 <Price>
-                  <Image source={IMAGES.DolarCoin} />
+                  <Ionicons name="logo-bitcoin" size={width >= 350 ? 26 : 18} />
+
                   <NewText size="medium">Pricing and Fees</NewText>
                 </Price>
               </TimePrice>

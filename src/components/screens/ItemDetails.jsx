@@ -1,6 +1,7 @@
 import { Pressable, Image, Dimensions, View, ScrollView } from "react-native";
 import React from "react";
 import styled from "styled-components";
+import { Ionicons } from "@expo/vector-icons";
 
 import * as ROUTS from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
@@ -9,33 +10,33 @@ import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 import SectionDivider from "../atoms/SectionDevider";
 import ItemDetailsCard from "../molecules/cards/ItemDetailsCard";
+import ImageViewer from "../atoms/ImageViewer";
 
-const windowWidth = Dimensions.get("screen").width;
-const windowHeight = Dimensions.get("screen").height;
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled(Screen)``;
 
 const Wrapper = styled.View`
-  margin: 0 15px;
+  margin: ${width * 0.038}px;
 `;
 
 const Header = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 28px;
+  margin-bottom: ${width * 0.07}px;
 `;
 
 const Left = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 16px;
+  gap: ${width * 0.04}px;
 `;
 
 const Right = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 23px;
+  gap: ${width * 0.058}px;
 `;
 
 const ImageView = styled.View`
@@ -44,8 +45,8 @@ const ImageView = styled.View`
 `;
 
 const ImageSize = styled(Image)`
-  height: ${windowHeight / 4}px;
-  width: ${windowWidth / 1.1}px;
+  height: ${height * 0.235}px;
+  width: ${width * 0.5}px;
 `;
 
 const InformView = styled.View`
@@ -55,22 +56,27 @@ const InformView = styled.View`
 
 const NutritionFacts = styled.View`
   background: #efeff4;
-  padding: 10px;
+  padding: ${width * 0.025}px;
 `;
 
 const Devider = styled(SectionDivider)`
-  height: 3px;
-  margin: 5px 0;
+  height: ${height * 0.0035}px;
+  margin: ${width * 0.013}px 0;
 `;
 
 const Related = styled(NewText)`
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: ${height * 0.025}px;
+  margin-bottom: ${width * 0.025}px;
 `;
 
 const RelatedImages = styled.View`
   flex-direction: row;
-  gap: 10px;
+  gap: ${width * 0.025}px;
+`;
+
+const RelatedImg = styled(ImageViewer)`
+  height: ${height * 0.1}px;
+  width: ${width * 0.224}px;
 `;
 
 const BottomView = styled.View`
@@ -82,23 +88,32 @@ const BottomView = styled.View`
 const Add = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 10px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  gap: ${width * 0.025}px;
+  margin-top: ${height * 0.047}px;
+  margin-bottom: ${height * 0.047}px;
 `;
 
 const Note = styled.Pressable`
   align-items: center;
   flex-direction: row;
-  gap: 10px;
+  gap: ${width * 0.025}px;
 `;
 
 const MinusPlus = styled.View`
   align-items: center;
   flex-direction: row;
-  border: 3px solid lightgray;
-  gap: 40px;
-  padding: 5px 10px;
+  border: ${height * 0.0035}px solid lightgray;
+  gap: ${height * 0.047}px;
+  padding: ${width * 0.013}px ${width * 0.025}px;
+`;
+
+const MinusImg = styled(ImageViewer)`
+  width: ${width * 0.04}px;
+`;
+
+const PlusImg = styled(ImageViewer)`
+  height: ${height * 0.028}px;
+  width: ${width * 0.06}px;
 `;
 
 const nutritionFacts = [
@@ -182,25 +197,29 @@ const ItemDetails = ({ navigation, route }) => {
               <Pressable
                 onPress={() => navigation.goBack(ROUTS.HOMESCREEN_SCREEN)}
               >
-                <Image source={IMAGES.BoldX} />
+                <Ionicons name="close" size={width >= 350 ? 26 : 18} />
               </Pressable>
             </Left>
 
             <Right>
-              <Image source={IMAGES.Cart} />
+              <Ionicons name="cart" size={width >= 350 ? 26 : 18} />
             </Right>
           </Header>
 
           <ImageView>
-            <ImageSize source={item.url} style={{ width: 200 }} />
+            <ImageSize source={item.url} />
           </ImageView>
 
-          <View style={{ gap: 10, marginTop: 20 }}>
+          <View style={{ gap: width * 0.025, marginTop: width * 0.05 }}>
             <NewText font="bold" size="xlarge">
               {item.title}
             </NewText>
 
-            <NewText font="medium" size="medium" style={{ marginVertical: 20 }}>
+            <NewText
+              font="medium"
+              size="medium"
+              style={{ marginVertical: width * 0.05 }}
+            >
               Information
             </NewText>
 
@@ -234,7 +253,11 @@ const ItemDetails = ({ navigation, route }) => {
               </NewText>
             </InformView>
 
-            <NewText font="medium" size="medium" style={{ marginVertical: 20 }}>
+            <NewText
+              font="medium"
+              size="medium"
+              style={{ marginVertical: width * 0.05 }}
+            >
               Nutrition facts
             </NewText>
 
@@ -242,7 +265,7 @@ const ItemDetails = ({ navigation, route }) => {
               <NewText
                 font="medium"
                 size="medium"
-                style={{ marginVertical: 10 }}
+                style={{ marginVertical: width * 0.025 }}
               >
                 Serving Size about {item.subTitle}
               </NewText>
@@ -282,16 +305,16 @@ const ItemDetails = ({ navigation, route }) => {
             </Related>
 
             <RelatedImages>
-              <Image source={IMAGES.Lemon} />
-              <Image source={IMAGES.Banana} />
-              <Image source={IMAGES.Avocado} />
+              <RelatedImg source={IMAGES.Lemon} />
+              <RelatedImg source={IMAGES.Banana} />
+              <RelatedImg source={IMAGES.Avocado} />
             </RelatedImages>
 
             <BottomView>
               <Add>
                 <MinusPlus>
-                  <Image source={IMAGES.SimpleMinus} />
-                  <Image source={IMAGES.AddPlus} />
+                  <MinusImg source={IMAGES.SimpleMinus} />
+                  <PlusImg source={IMAGES.AddPlus} />
                 </MinusPlus>
 
                 <NewText size="medium" font="medium">
@@ -300,7 +323,8 @@ const ItemDetails = ({ navigation, route }) => {
               </Add>
 
               <Note onPress={() => navigation.navigate("Note")}>
-                <Image source={IMAGES.Pen} />
+                <Ionicons name="pencil" size={width >= 350 ? 26 : 18} />
+
                 <NewText size="medium" font="medium">
                   Leave a note
                 </NewText>

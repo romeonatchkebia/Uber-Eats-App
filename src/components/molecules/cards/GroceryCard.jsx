@@ -4,27 +4,26 @@ import styled from "styled-components";
 
 import NewText from "../../atoms/NewText";
 
-const windowWidth = Dimensions.get("screen").width;
-const windowHeight = Dimensions.get("screen").height;
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   align-items: center;
   justify-content: space-around;
   margin: 5px;
-  height: ${windowHeight / 5.5}px;
-  width: ${windowWidth / 2.2}px;
+  height: ${height * 0.185}px;
+  width: ${width * 0.422}px;
 `;
 
 const Logo = styled.View`
-  margin-top: 15px;
+  margin-top: ${width * 0.038}px;
 `;
 
 const TextView = styled.View`
   align-items: center;
   background: rgba(0, 0, 0, 0.45);
-  border-radius: 50px;
+  border-radius: ${width * 0.13}px;
   justify-content: center;
-  padding: 5px 10px;
+  padding: ${width * 0.013}px ${width * 0.025}px;
 `;
 
 const Time = styled(NewText)``;
@@ -47,7 +46,9 @@ const GroceryCard = ({ background, logo, time, onPress }) => {
         </TextView>
       ) : (
         <TextView>
-          <Time color="white">Currently unavailable</Time>
+          <Time color="white" numberOfLines={1}>
+            Currently unavailable
+          </Time>
         </TextView>
       )}
     </Container>
