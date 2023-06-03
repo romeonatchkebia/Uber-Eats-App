@@ -1,29 +1,36 @@
-import { View, Text } from "react-native";
+import { Dimensions } from "react-native";
 import React from "react";
 import styled from "styled-components";
 
 import ImageViewer from "../../atoms/ImageViewer";
 import NewText from "../../atoms/NewText";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled.Pressable`
-  margin-bottom: 20px;
+  margin-bottom: ${height * 0.019}px;
 `;
 
-const BrowseImage = styled(ImageViewer)``;
+const BrowseImage = styled(ImageViewer)`
+  border-top-right-radius: ${width * 0.038}px;
+  border-top-left-radius: ${width * 0.038}px;
+  width: ${width * 0.422}px;
+  height: ${height * 0.115}px;
+`;
 
 const TitleView = styled.Pressable`
+  align-items: center;
   border: 1px solid #e8e8e8;
   background-color: #ffffff;
-  border-end-end-radius: 10px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  width: 166px;
+  border-bottom-left-radius: ${width * 0.038}px;
+  border-bottom-right-radius: ${width * 0.038}px;
+  width: ${width * 0.422}px;
 `;
 
 const Title = styled(NewText)`
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: ${height * 0.012}px;
+  margin-bottom: ${height * 0.012}px;
 `;
 
 const BrowseCard = ({ imgUrl, title, onPress, ...props }) => {

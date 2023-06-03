@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   cell: {
     width: width * 0.14,
     height: height * 0.06,
-    lineHeight: width * 0.096,
+    lineHeight: height * 0.06,
     fontSize: width * 0.06,
     borderWidth: 2,
     borderColor: "#00000030",

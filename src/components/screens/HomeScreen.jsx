@@ -30,6 +30,7 @@ import HomeScreenBottomCard from "../molecules/cards/HomeScreenBottomCard";
 import GoogleMap from "../organisms/GoogleMap";
 
 const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)`
   background: ${COLORS.SCREEN_BACKGROUND};
 `;

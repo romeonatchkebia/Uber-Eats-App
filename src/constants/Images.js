@@ -16,6 +16,10 @@ export const Alcohol = require("../components/Images/alcohol.png");
 export const PetSupplies = require("../components/Images/pet_supplies.png");
 export const More = require("../components/Images/Menu.png");
 
+// Browse Screen
+export const OffersVector = require("../components/Images/browseScreen/OffersVector.png");
+export const RewardsVector = require("../components/Images/browseScreen/RewardsVector.png");
+
 // HorizontalListCard, MainCard
 export const HeartFilled = require("../components/Images/heart-filled.png");
 export const Heart = require("../components/Images/heart.png");

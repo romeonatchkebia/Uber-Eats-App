@@ -41,7 +41,7 @@ const CardRatingView = styled.View`
 const CardRating = styled(NewText)``;
 
 const SubtitleView = styled.View`
-  width: 90%;
+  width: 98%;
 `;
 
 const CardSubTitle = styled(NewText)``;

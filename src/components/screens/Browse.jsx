@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Octicons } from "@expo/vector-icons";
-import { ScrollView } from "react-native";
+import { ScrollView, Dimensions } from "react-native";
 
 import styled from "styled-components";
 import Screen from "../atoms/Screen";
@@ -8,31 +8,38 @@ import BrowseCard from "../molecules/cards/BrowseCard";
 import NewText from "../atoms/NewText";
 import * as ROUTES from "../../constants/Routs";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)``;
+
+const Wrapper = styled.View`
+  margin: ${width * 0.038}px;
+`;
 
 // searchbar
 
 const SearchContainer = styled.View`
+  align-items: center;
   flex-direction: row;
   background-color: #eeeeee;
-  border-radius: 100px;
-  gap: 15px;
-  height: 70px;
-  padding: 20px;
+  border-radius: ${width * 0.25}px;
+  gap: ${width * 0.013}px;
+  height: ${height * 0.052}px;
+  padding-left: ${height * 0.023}px;
 `;
 
 const InputText = styled.TextInput`
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: ${width * 0.041}px;
 `;
 
 const BrowseCardView = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
-  border-radius: 20px;
-  margin-top: 10px;
+  gap: ${width * 0.025}px;
+  border-radius: ${width * 0.05}px;
+  margin-top: ${width * 0.025}px;
 `;
 
 // categories and cards
@@ -44,23 +51,16 @@ const InnerContainer = styled.View`
 `;
 
 const TopCategories = styled(NewText)`
-  margin-top: 10px;
-  margin-bottom: 12px;
-  margin-left: 30px;
+  margin-top: ${height * 0.014}px;
+  margin-bottom: ${height * 0.014}px;
 `;
 
 const AllCategories = styled(NewText)`
-  margin-top: 6px;
-  margin-bottom: 16px;
-  margin-left: 30px;
+  margin-top: ${height * 0.013}px;
+  margin-bottom: ${height * 0.019}px;
 `;
 
-const SearchComponentView = styled.View`
-  padding-right: 25px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 25px;
-`;
+const SearchComponentView = styled.View``;
 
 const Browse = ({ navigation }) => {
   const topCategoriesList = [
@@ -204,63 +204,70 @@ const Browse = ({ navigation }) => {
   return (
     <Container>
       <ScrollView>
-        <SearchComponentView>
-          <SearchContainer>
-            <Octicons name="search" size={25} color="black" />
-
-            <InputText
-              placeholder="Food, shopping, drinks, etc"
-              value={input}
-              onChangeText={handleInputChange}
-            ></InputText>
-          </SearchContainer>
-
-          <BrowseCardView>
-            {showSearch &&
-              searchResult.map((item) => {
-                return (
-                  <BrowseCard
-                    key={item.id}
-                    title={item.title}
-                    imgUrl={item.imgUrl}
-                    onPress={item.onPress}
-                  />
-                );
-              })}
-          </BrowseCardView>
-        </SearchComponentView>
-
-        <TopCategories font="medium" size="xlarge">
-          Top Categories
-        </TopCategories>
-        <InnerContainer>
-          {topCategoriesList.map((item) => {
-            return (
-              <BrowseCard
-                title={item.title}
-                imgUrl={item.imgUrl}
-                key={item.id}
-                onPress={item.onPress}
+        <Wrapper>
+          <SearchComponentView>
+            <SearchContainer>
+              <Octicons
+                name="search"
+                size={height >= 700 ? 20 : 14}
+                color="black"
               />
-            );
-          })}
-        </InnerContainer>
 
-        <AllCategories font="medium" size="xlarge">
-          All Categories
-        </AllCategories>
-        <InnerContainer style={{ paddingBottom: 80 }}>
-          {allCategoriesList.map((item) => {
-            return (
-              <BrowseCard
-                title={item.title}
-                imgUrl={item.imgUrl}
-                key={item.id}
-                onPress={() => console.log(item.title)}
-              />
-            );
-          })}
-        </InnerContainer>
+              <InputText
+                placeholder="Food, shopping, drinks, etc"
+                value={input}
+                onChangeText={handleInputChange}
+              ></InputText>
+            </SearchContainer>
+
+            <BrowseCardView>
+              {showSearch &&
+                searchResult.map((item) => {
+                  return (
+                    <BrowseCard
+                      key={item.id}
+                      title={item.title}
+                      imgUrl={item.imgUrl}
+                      onPress={item.onPress}
+                    />
+                  );
+                })}
+            </BrowseCardView>
+          </SearchComponentView>
+
+          <TopCategories font="medium" size="xlarge">
+            Top Categories
+          </TopCategories>
+          <InnerContainer>
+            {topCategoriesList.map((item) => {
+              return (
+                <BrowseCard
+                  title={item.title}
+                  imgUrl={item.imgUrl}
+                  key={item.id}
+                  onPress={item.onPress}
+                />
+              );
+            })}
+          </InnerContainer>
+
+          <AllCategories font="medium" size="xlarge">
+            All Categories
+          </AllCategories>
+
+          <InnerContainer style={{ paddingBottom: 80 }}>
+            {allCategoriesList.map((item) => {
+              return (
+                <BrowseCard
+                  title={item.title}
+                  imgUrl={item.imgUrl}
+                  key={item.id}
+                  onPress={() => console.log(item.title)}
+                />
+              );
+            })}
+          </InnerContainer>
+        </Wrapper>
       </ScrollView>
     </Container>
   );
