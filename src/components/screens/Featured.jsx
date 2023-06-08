@@ -385,6 +385,7 @@ const Featured = ({ navigation, route }) => {
 
               <CtgrView>
                 <CtgrButton title="Featured" black={true} />
+
                 <CtgrButton
                   title="Categories"
                   onPress={() =>

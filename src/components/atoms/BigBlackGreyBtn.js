@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { Dimensions } from "react-native";
 
 import NewText from "./NewText";
+
+const { height } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   align-items: center;
   background-color: black;
-  padding: 20px;
+  padding: ${height * 0.023}px;
 `;
 
 const BigBlackGreyBtn = ({

@@ -1,29 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { Dimensions } from "react-native";
 
 import NewText from "./NewText";
+
+const { height, width } = Dimensions.get("screen");
 
 const Btn = styled.Pressable`
   align-items: center;
   justify-content: center;
-  border-radius: 40px;
+  border-radius: ${width * 0.1}px;
   ${({ black }) => (black ? `background - color : #ffffff` : "")};
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
   width: 50%;
 `;
 
 const BtnText = styled(NewText)`
   ${({ black }) => (black ? `color : #000000` : "")};
-  line-height: 20px;
 `;
 
-const TimeText = styled(NewText)`
-  line-height: 20px;
-`;
+const TimeText = styled(NewText)``;
 
 const DeliveryPickupBtns = ({
   Time,

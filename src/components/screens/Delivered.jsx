@@ -1,6 +1,7 @@
-import { View, Image } from "react-native";
+import { View, Image, Dimensions } from "react-native";
 import React from "react";
 import styled from "styled-components";
+import { Ionicons } from "@expo/vector-icons";
 
 import NewText from "../atoms/NewText";
 import BigBlackGreyBtn from "../atoms/BigBlackGreyBtn";
@@ -9,6 +10,8 @@ import * as ROUTS from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
 
 import Screen from "../atoms/Screen";
+
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled(Screen)``;
 
@@ -22,12 +25,12 @@ const Close = styled.View``;
 
 const Help = styled.View`
   background: #eeeeee;
-  border-radius: 50px;
-  padding: 7px 16px;
+  border-radius: ${width * 0.13}px;
+  padding: ${height * 0.008}px ${height * 0.018}px;
 `;
 
 const Title = styled(NewText)`
-  margin: 25px 0;
+  margin: ${height * 0.029}px 0;
 `;
 
 const Desc = styled(NewText)``;
@@ -35,14 +38,18 @@ const Desc = styled(NewText)``;
 const Delivered = ({ navigation }) => {
   return (
     <Container>
-      <View style={{ margin: 15 }}>
+      <View style={{ margin: width * 0.038 }}>
         <Header>
           <Close>
-            <Image source={IMAGES.Close} />
+            <Ionicons name="close" size={width >= 350 ? 26 : 18} />
           </Close>
 
           <Help>
-            <NewText font="medium" size="medium" style={{ padding: 5 }}>
+            <NewText
+              font="medium"
+              size="medium"
+              style={{ padding: width * 0.013 }}
+            >
               Help
             </NewText>
           </Help>
@@ -52,7 +59,7 @@ const Delivered = ({ navigation }) => {
           Enjoy your order
         </Title>
 
-        <Desc font="medium" size="medium" style={{ marginTop: 20 }}>
+        <Desc font="medium" size="medium" style={{ marginTop: width * 0.05 }}>
           Jonathan and Subway (Worriors Arena Road) worked their magic for you.
           Take a minute to rate, tip, and say thanks.
         </Desc>
@@ -61,7 +68,7 @@ const Delivered = ({ navigation }) => {
           style={{
             alignItems: "center",
             justifyContent: "center",
-            padding: "30%",
+            padding: height >= 700 ? "35%" : "18%",
           }}
         >
           <Image source={IMAGES.DeliveryBag} />

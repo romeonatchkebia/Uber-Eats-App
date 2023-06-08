@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "react-native-gesture-handler";
+import { Dimensions } from "react-native";
 
 import styled from "styled-components";
 import Screen from "../atoms/Screen";
@@ -10,30 +10,33 @@ import * as IMAGES from "../../constants/Images";
 import * as ROUTES from "../../constants/Routs";
 import * as COLOR from "../../constants/Colors";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)`
   background-color: ${COLOR.SCREEN_BACKGROUND};
 `;
 
+const Wrapper = styled.View`
+  margin: ${width * 0.038}px;
+`;
+
 const ProfileView = styled.View`
   align-items: center;
-  gap: 20px;
+  gap: ${width * 0.05}px;
   flex-direction: row;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 15px;
+  margin: ${height * 0.023}px 0;
 `;
 
 const ProfileFoto = styled.Image`
-  width: 46px;
-  height: 46px;
-  border-radius: 100px;
+  width: ${width * 0.12}px;
+  height: ${height * 0.054}px;
+  border-radius: ${width * 0.13}px;
 `;
 
 const ProfileName = styled(NewText)``;
 
 const AboutText = styled(NewText)`
-  margin-left: 25px;
-  margin-top: 20px;
+  margin-top: ${height * 0.023}px;
 `;
 
 const data = [
@@ -105,7 +108,7 @@ const Account = ({ navigation, route }) => {
 
   return (
     <Container>
-      <ScrollView>
+      <Wrapper>
         <ProfileView>
           <ProfileFoto
             source={image ? route.params.image : IMAGES.AccountProfileImage}
@@ -130,7 +133,7 @@ const Account = ({ navigation, route }) => {
           );
         })}
         <AboutText size="small">About</AboutText>
-      </ScrollView>
+      </Wrapper>
     </Container>
   );
 };

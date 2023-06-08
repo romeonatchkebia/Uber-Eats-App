@@ -1,18 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { Dimensions } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-import * as IMAGES from "../../../constants/Images";
 import NewText from "../../atoms/NewText";
+
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  padding: 10px;
+  padding: ${width * 0.025}px;
   width: 100%;
 `;
 
-const CardImage = styled.Image``;
+const CardImage = styled.Image`
+  width: ${width * 0.18}px;
+  height: ${height * 0.082}px;
+`;
 
 const TextCont = styled.View`
   width: 70%;
@@ -24,22 +30,24 @@ const SubTitle = styled(NewText)``;
 
 const Desc = styled(NewText)``;
 
-const RightArrow = styled.Image``;
-
 const BasketsCard = ({ title, price, desc, imgUrl, ...props }) => {
   return (
     <Container {...props}>
       <CardImage source={imgUrl} />
+
       <TextCont>
         <Title size="medium" font="medium">
           {title}
         </Title>
+
         <SubTitle color="grey">1 Item • US${price}</SubTitle>
+
         <Desc numberOfLines={2} color="grey">
           {desc}
         </Desc>
       </TextCont>
-      <RightArrow source={IMAGES.RightArrow} />
+
+      <Ionicons name="chevron-forward" size={width >= 350 ? 26 : 18} />
     </Container>
   );
 };

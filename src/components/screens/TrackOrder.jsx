@@ -1,7 +1,9 @@
-import { View, Image, ScrollView } from "react-native";
+import { View, Image, ScrollView, Dimensions } from "react-native";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ProgressBar } from "react-native-paper";
+import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 import * as ROUTS from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
@@ -12,6 +14,8 @@ import TrackOrderCard from "../molecules/cards/TrackOrderCard";
 import TextInput from "../atoms/TextInput";
 import GoogleMap from "../organisms/GoogleMap";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
+
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled(Screen)``;
 
@@ -31,22 +35,22 @@ const Close = styled.View``;
 const Right = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 15px;
+  gap: ${width * 0.038}px;
 `;
 
 const Share = styled.View``;
 
 const Help = styled.View`
   background: #eeeeee;
-  border-radius: 50px;
-  padding: 7px 16px;
+  border-radius: ${width * 0.13}px;
+  padding: ${width * 0.018}px ${height * 0.018}px;
 `;
 
 const Arriving = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 7px;
-  margin: 8px 0;
+  gap: ${width * 0.018}px;
+  margin: ${width * 0.02}px 0;
 `;
 
 const ProgressView = styled.View``;
@@ -54,20 +58,51 @@ const ProgressView = styled.View``;
 const Latest = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 7px;
-  margin: 8px 0;
+  gap: ${width * 0.018}px;
+  margin: ${width * 0.02}px 0;
 `;
 
 const Prepare = styled.View`
   align-items: center;
   justify-content: center;
-  margin: 30px 0;
+  margin: ${width * 0.076}px 0;
+`;
+
+const MainImage = styled.Image`
+  width: ${width * 0.73}px;
+  height: ${height * 0.28}px;
 `;
 
 const CurierView = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 20px;
+  gap: ${width * 0.05}px;
+`;
+
+const CarImage = styled.Image`
+  width: ${height * 0.12}px;
+  height: ${height * 0.066}px;
+`;
+
+const DriverImage = styled.Image`
+  width: ${height * 0.082}px;
+  height: ${height * 0.082}px;
+`;
+
+const GreenIcon = styled.Image`
+  width: ${width * 0.04}px;
+  height: ${height * 0.02}px;
+`;
+
+const CallImage = styled.Image`
+  width: ${height * 0.05}px;
+  height: ${height * 0.05}px;
+`;
+
+const Input = styled.TextInput`
+  background: #eeeeee;
+  height: 100%;
+  padding-left: ${width * 0.05}px;
 `;
 
 const Images = styled.View``;
@@ -81,26 +116,26 @@ const ProfilePhoto = styled.View`
 `;
 
 const Car = styled.View`
-  margin-left: 45px;
+  margin-left: ${width * 0.114}px;
 `;
 
 const Like = styled.View`
   align-items: center;
   justify-content: center;
   background-color: white;
-  border-radius: 20px;
+  border-radius: ${width * 0.05}px;
   flex-direction: row;
-  bottom: -18px;
-  left: -6px;
-  gap: 5px;
-  margin-left: 8px;
-  padding: 5px 0;
+  bottom: -${height * 0.02}px;
+  left: -${width * 0.018}px;
+  gap: ${width * 0.013}px;
+  margin-left: ${width * 0.02}px;
+  padding: ${width * 0.013}px 0;
   position: absolute;
   width: 50%;
 `;
 
 const TextsView = styled.View`
-  gap: 3px;
+  gap: ${height * 0.0035}px;
 `;
 
 const TrackOrder = ({ navigation }) => {
@@ -121,17 +156,17 @@ const TrackOrder = ({ navigation }) => {
   return (
     <Container>
       <ScrollView>
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
           <Header>
             <Left>
               <Close>
-                <Image source={IMAGES.Close} />
+                <Ionicons name="close" size={width >= 350 ? 26 : 18} />
               </Close>
             </Left>
 
             <Right>
               <Share>
-                <Image source={IMAGES.Share} />
+                <Feather name="share" size={width >= 350 ? 24 : 16} />
               </Share>
 
               <Help>
@@ -141,7 +176,7 @@ const TrackOrder = ({ navigation }) => {
           </Header>
         </View>
 
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
           {progress === 0 ? (
             <NewText font="medium" size="xlarge">
               Preparing your order...
@@ -172,7 +207,7 @@ const TrackOrder = ({ navigation }) => {
 
           {progress === 0 ? (
             <Prepare>
-              <Image source={IMAGES.Prepare} />
+              <MainImage source={IMAGES.Prepare} />
             </Prepare>
           ) : (
             <GoogleMap />
@@ -182,21 +217,22 @@ const TrackOrder = ({ navigation }) => {
         <View>{progress === 0 && <TrackOrderCard />}</View>
 
         {progress === 0.5 && (
-          <View style={{ margin: 15 }}>
+          <View style={{ margin: width * 0.038 }}>
             <CurierView>
               <Images>
                 <Person>
                   <Car>
-                    <Image source={IMAGES.Car} />
+                    <CarImage source={IMAGES.Car} />
                   </Car>
 
                   <ProfilePhoto>
-                    <Image source={IMAGES.DriverPhoto} />
+                    <DriverImage source={IMAGES.DriverPhoto} />
                   </ProfilePhoto>
                 </Person>
 
                 <Like>
                   <NewText>95%</NewText>
+
                   <Image source={IMAGES.LikeIcon} />
                 </Like>
               </Images>
@@ -205,7 +241,7 @@ const TrackOrder = ({ navigation }) => {
                 <View
                   style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
                 >
-                  <Image source={IMAGES.ProfileIconGreen} />
+                  <GreenIcon source={IMAGES.ProfileIconGreen} />
 
                   <NewText color="green" font="medium" size="medium">
                     Jonathan
@@ -223,29 +259,32 @@ const TrackOrder = ({ navigation }) => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                marginVertical: 20,
+                marginVertical: height * 0.023,
                 justifyContent: "space-between",
               }}
             >
-              <Image source={IMAGES.Call} />
-              <TextInput
+              <CallImage source={IMAGES.Call} />
+
+              <Input
                 placeholder="Send a message"
                 style={{
-                  borderRadius: 50,
-                  width: "55%",
-                  height: "70%",
+                  borderRadius: width * 0.13,
+                  width: " 55%",
+                  // height: height >= 700 ? "70%" : "40%",
                 }}
               />
               <GreyBtnWithIcon
                 title="Tip"
                 img={IMAGES.PlusWhite}
-                style={{ borderRadius: 50, width: "25%", height: "70%" }}
+                style={{
+                  borderRadius: width * 0.13,
+                  width: "25%",
+                }}
               />
             </View>
-
-            <TrackOrderCard />
           </View>
         )}
+        <TrackOrderCard />
       </ScrollView>
     </Container>
   );

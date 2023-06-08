@@ -168,7 +168,7 @@ const Deals = ({ navigation, route }) => {
     <Container>
       <ScrollView>
         <HeaderView>
-          <Pressable onPress={() => navigation.navigate(ROUTES.BROWSE_SCREEN)}>
+          <Pressable onPress={() => navigation.goBack()}>
             <Feather
               name="arrow-left"
               size={width >= 350 ? 26 : 18}

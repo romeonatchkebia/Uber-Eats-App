@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components";
 import RadioForm from "react-native-simple-radio-button";
 
 import NewText from "../atoms/NewText";
+
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   flex-direction: row;
@@ -17,8 +20,8 @@ const LeftView = styled.View`
 const RightView = styled.View`
   align-items: flex-end;
   justify-content: flex-end;
-  gap: 22px;
-  margin-bottom: 5px;
+  gap: ${width * 0.056}px;
+  margin-bottom: ${width * 0.013}px;
 `;
 
 const RadioComponent = ({ arr, setItemPrice, setSelectedItem }) => {
@@ -37,11 +40,11 @@ const RadioComponent = ({ arr, setItemPrice, setSelectedItem }) => {
     <Container>
       <LeftView>
         <RadioForm
-          style={{ gap: 10 }}
+          style={{ gap: width * 0.025 }}
           buttonColor="black"
-          buttonSize={13}
+          buttonSize={height * 0.015}
           selectedButtonColor="black"
-          labelStyle={{ fontSize: 15, marginLeft: 10 }}
+          labelStyle={{ fontSize: width * 0.038, marginLeft: width * 0.025 }}
           radio_props={arr}
           initial={value}
           onPress={(value) => {

@@ -1,4 +1,4 @@
-import { View, Image } from "react-native";
+import { View, Dimensions } from "react-native";
 import React from "react";
 import styled from "styled-components";
 
@@ -8,23 +8,25 @@ import NewText from "../../atoms/NewText";
 import SectionDevider from "../../atoms/SectionDevider";
 import GreyBtnWithIcon from "../../atoms/GreyBtnWithIcon";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled.View``;
 
 const Delivery = styled.View``;
 
 const Devider = styled(SectionDevider)`
-  height: 1px;
+  height: ${width * 0.002}px;
 `;
 
 const Share = styled.View`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  margin: 15px;
+  margin: ${width * 0.038}px;
 `;
 
 const Left = styled.View`
-  gap: 5px;
+  gap: ${width * 0.013}px;
 `;
 
 const GreyBtn = styled(GreyBtnWithIcon)`
@@ -35,12 +37,12 @@ const Summary = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: ${height * 0.012}px;
 `;
 
 const DetailsView = styled.View`
   flex-direction: row;
-  gap: 15px;
+  gap: ${width * 0.038}px;
   margin-top: 20px;
 `;
 
@@ -48,8 +50,8 @@ const NumberView = styled.View`
   align-items: center;
   background-color: #eeeeee;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: ${width * 0.1}px;
+  height: ${height * 0.046}px;
 `;
 
 const Txt = styled(NewText)``;
@@ -64,30 +66,41 @@ const SubTotal = styled(NewText)``;
 
 const SubtotalPrice = styled(NewText)``;
 
+const BurgerImage = styled.Image`
+  width: ${width * 0.23}px;
+  height: ${height * 0.07}px;
+`;
+
 const TrackOrderCard = () => {
   return (
     <Container>
-      <Delivery style={{ margin: 15 }}>
-        <NewText style={{ marginBottom: 15, fontSize: 20 }} font="medium">
+      <Delivery style={{ margin: width * 0.038 }}>
+        <NewText
+          style={{ marginBottom: width * 0.038, fontSize: width * 0.05 }}
+          font="medium"
+        >
           Delivery Details
         </NewText>
 
-        <View style={{ gap: 5, marginVertical: 10 }}>
+        <View style={{ gap: width * 0.013, marginVertical: height * 0.012 }}>
           <NewText color="grey">Address</NewText>
+
           <NewText>Bay Area, San Francisco, California, USA</NewText>
         </View>
 
         <Devider />
 
-        <View style={{ gap: 5, marginVertical: 10 }}>
+        <View style={{ gap: width * 0.013, marginVertical: height * 0.012 }}>
           <NewText color="grey">Type</NewText>
+
           <NewText>Leave at door</NewText>
         </View>
 
         <Devider />
 
-        <View style={{ gap: 5, marginVertical: 10 }}>
+        <View style={{ gap: width * 0.013, marginVertical: height * 0.012 }}>
           <NewText color="grey">Instructions</NewText>
+
           <NewText>
             Please knock to let me know it has arrive and then leave it at the
             doorstep
@@ -96,34 +109,39 @@ const TrackOrderCard = () => {
 
         <Devider />
 
-        <View style={{ gap: 5, marginVertical: 10 }}>
+        <View style={{ gap: width * 0.013, marginVertical: height * 0.012 }}>
           <NewText color="grey">Service</NewText>
+
           <NewText>Standart</NewText>
         </View>
       </Delivery>
 
-      <SectionDevider />
+      <SectionDevider style={{ height: width * 0.013 }} />
 
-      <Share>
+      <Share style={{ margin: width * 0.038 }}>
         <Left>
           <NewText font="medium" size="medium">
             Share this delivery
           </NewText>
+
           <NewText>Let someone follow along</NewText>
         </Left>
+
         <GreyBtn title="Share" img={IMAGES.Share} />
       </Share>
 
-      <SectionDevider />
+      <SectionDevider style={{ height: width * 0.013 }} />
 
-      <View style={{ margin: 15 }}>
+      <View style={{ margin: width * 0.038 }}>
         <Summary>
-          <View style={{ gap: 8 }}>
+          <View style={{ gap: width * 0.013 }}>
             <NewText font="medium" size="large">
               Order summary
             </NewText>
+
             <NewText color="grey">Subway, Warriors Arena Road</NewText>
           </View>
+
           <NewText color="green">view reciept</NewText>
         </Summary>
 
@@ -147,19 +165,20 @@ const TrackOrderCard = () => {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            marginVertical: 20,
+            marginVertical: height * 0.023,
           }}
         >
           <SubTotal size="medium">Total</SubTotal>
+
           <SubtotalPrice size="medium">US$13.18</SubtotalPrice>
         </View>
       </View>
 
-      <SectionDevider />
+      <SectionDevider style={{ height: width * 0.013 }} />
 
       <View
         style={{
-          margin: 15,
+          margin: width * 0.038,
         }}
       >
         <NewText size="large" font="medium" style={{ marginTop: 20 }}>
@@ -169,11 +188,11 @@ const TrackOrderCard = () => {
           style={{
             alignItems: "center",
             flexDirection: "row",
-            marginVertical: 20,
-            gap: 20,
+            marginVertical: height * 0.023,
+            gap: width * 0.05,
           }}
         >
-          <Image source={IMAGES.BurgerIcon} />
+          <BurgerImage source={IMAGES.BurgerIcon} />
           <NewText color="green" size="medium">
             Invite a friend, get $5 off
           </NewText>

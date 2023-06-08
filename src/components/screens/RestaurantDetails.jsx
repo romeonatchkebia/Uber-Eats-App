@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, Image, ScrollView, Dimensions } from "react-native";
 import styled from "styled-components";
+import { Ionicons } from "@expo/vector-icons";
 
 import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
@@ -21,14 +22,16 @@ const SpinnerView = styled.View`
   justify-content: center;
 `;
 
-const Container = styled(Screen)`
-  margin: 15px;
+const Container = styled(Screen)``;
+
+const Wrapper = styled.View`
+  margin: ${width * 0.038}px;
 `;
 
 const HeaderContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: ${height * 0.023}px;
 `;
 
 const InfoContainer = styled.View`
@@ -36,19 +39,20 @@ const InfoContainer = styled.View`
 `;
 
 const RestTiTle = styled(NewText)`
-  line-height: 36px;
+  line-height: ${height * 0.042}px;
 `;
 
 const RestInfoView = styled.View`
+  align-items: center;
   flex-direction: row;
 `;
 
 const RestInfo = styled(NewText)`
-  line-height: 20px;
+  line-height: ${height * 0.023}px;
 `;
 
 const WorkingInfo = styled(NewText)`
-  line-height: 20px;
+  line-height: ${height * 0.023}px;
 `;
 
 const RightContainer = styled.Pressable`
@@ -56,41 +60,40 @@ const RightContainer = styled.Pressable`
 `;
 
 const RightArrow = styled.Image`
-  margin-bottom: 25px;
-  margin-right: 20px;
+  margin-bottom: ${height * 0.029}px;
+  margin-right: ${width * 0.05}px;
 `;
 
 const ButtonsViewContainer = styled.View`
-  margin-top: 18px;
+  margin-top: ${height * 0.023}px;
   justify-content: center;
-  gap: 18px;
+  gap: ${width * 0.05}px;
 `;
 
 const SwitcherContainer = styled.View`
   background-color: #eeeeee;
-  border-radius: 50px;
-  height: 55px;
+  border-radius: ${width * 0.13}px;
+  height: ${height * 0.065}px;
   flex-direction: row;
-  padding: 5px;
+  padding: ${height * 0.006}px;
 `;
 
 const SectionContainer = styled.View``;
 
 const SectionTitle = styled(NewText)`
-  line-height: 36px;
-  margin-bottom: 18px;
-  margin-top: 23px;
+  line-height: ${height * 0.042}px;
+  margin: ${height * 0.023}px 0;
 `;
 
 const BottomSaveView = styled.View`
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 30px;
+  margin-bottom: ${height * 0.023}px;
+  margin-top: ${height * 0.035}px;
 `;
 
 const SaveText = styled(NewText)`
-  line-height: 20px;
+  line-height: ${height * 0.023}px;
   text-align: center;
 `;
 
@@ -203,7 +206,7 @@ const data = {
     id: 14,
     title: "Garlic knots",
     desc: "Priced by add-ons",
-    popular: true,
+    popular: false,
     img: require("../Images/starters-card-image.png"),
   },
   salads: [
@@ -314,171 +317,195 @@ const RestaurantDetails = ({ navigation, route }) => {
         </SpinnerView>
       ) : (
         <ScrollView>
-          <HeaderContainer>
-            <InfoContainer>
-              <RestTiTle font="bold" size="xlarge" style={{ marginTop: 30 }}>
-                {rest.name}
-              </RestTiTle>
+          <Wrapper>
+            <HeaderContainer>
+              <InfoContainer>
+                <RestTiTle
+                  font="bold"
+                  size="xlarge"
+                  style={{ marginTop: height * 0.035 }}
+                >
+                  {rest.name}
+                </RestTiTle>
 
-              <RestInfoView>
-                <View style={{ marginRight: 3 }}>
-                  <Image source={IMAGES.StarIcon} />
-                </View>
-                <RestInfo font="medium" size="medium">
-                  {rest.rating}({calcRating(rest.ratingQuantity)}) •{" "}
-                  {rest.category} • $$
-                </RestInfo>
-              </RestInfoView>
+                <RestInfoView>
+                  <View style={{ marginRight: width * 0.0076 }}>
+                    <Ionicons name="star" size={width >= 350 ? 26 : 18} />
+                  </View>
 
-              <WorkingInfo color="grey">{rest.workingHours}</WorkingInfo>
-              <WorkingInfo color="grey">
-                Tap for hours info and more{" "}
-              </WorkingInfo>
-            </InfoContainer>
+                  <RestInfo font="medium" size="medium">
+                    {rest.rating}({calcRating(rest.ratingQuantity)}) •{" "}
+                    {rest.category} • $$
+                  </RestInfo>
+                </RestInfoView>
 
-            <RightContainer>
-              <RightArrow source={IMAGES.RightArrow} />
-            </RightContainer>
-          </HeaderContainer>
+                <WorkingInfo color="grey">{rest.workingHours}</WorkingInfo>
 
-          <ButtonsViewContainer>
-            <GreyBtnWithIcon title="Group order" img={IMAGES.GroupImage} />
-            <SwitcherContainer>
-              {btns.map((btn) => {
+                <WorkingInfo color="grey">
+                  Tap for hours info and more{" "}
+                </WorkingInfo>
+              </InfoContainer>
+
+              <RightContainer>
+                <Ionicons
+                  name="chevron-forward"
+                  size={width >= 350 ? 26 : 18}
+                />
+              </RightContainer>
+            </HeaderContainer>
+
+            <ButtonsViewContainer>
+              <GreyBtnWithIcon title="Group order" img={IMAGES.GroupImage} />
+
+              <SwitcherContainer>
+                {btns.map((btn) => {
+                  return (
+                    <DeliveryPickupBtns
+                      Time={
+                        btn.value === 0 ? rest.deliveryTime : rest.pickupTime
+                      }
+                      Distance={
+                        btn.value === 0
+                          ? rest.deliveryDistance
+                          : rest.pickupDistance
+                      }
+                      title={btn.title}
+                      onPress={() => handlePress(btn.value)}
+                      key={btn.title}
+                      black={btn.value === category ? true : false}
+                    />
+                  );
+                })}
+              </SwitcherContainer>
+            </ButtonsViewContainer>
+
+            <SectionContainer>
+              <SectionTitle font="bold" size="xlarge">
+                Most Popular
+              </SectionTitle>
+
+              {data.mostPopular.map((item) => {
                 return (
-                  <DeliveryPickupBtns
-                    Time={btn.value === 0 ? rest.deliveryTime : rest.pickupTime}
-                    Distance={
-                      btn.value === 0
-                        ? rest.deliveryDistance
-                        : rest.pickupDistance
+                  <RestDetailsCard
+                    title={item.title}
+                    price={item.price}
+                    img={item.img}
+                    desc={item.desc}
+                    key={item.id}
+                    promo={item.promo}
+                    onPress={() =>
+                      navigation.navigate(ROUTES.ORDER_SELECTION_SCREEN, {
+                        ...item,
+                        restName: data.restaurant.name,
+                      })
                     }
-                    title={btn.title}
-                    onPress={() => handlePress(btn.value)}
-                    key={btn.title}
-                    black={btn.value === category ? true : false}
                   />
                 );
               })}
-            </SwitcherContainer>
-          </ButtonsViewContainer>
+            </SectionContainer>
 
-          <SectionContainer>
-            <SectionTitle font="bold" size="xlarge">
-              Most Popular
-            </SectionTitle>
-            {data.mostPopular.map((item) => {
-              return (
-                <RestDetailsCard
-                  title={item.title}
-                  price={item.price}
-                  img={item.img}
-                  desc={item.desc}
-                  key={item.id}
-                  promo={item.promo}
-                  onPress={() =>
-                    navigation.navigate(ROUTES.ORDER_SELECTION_SCREEN, {
-                      ...item,
-                      restName: data.restaurant.name,
-                    })
-                  }
+            <SectionContainer>
+              <SectionTitle font="bold" size="xlarge">
+                Picked for you
+              </SectionTitle>
+
+              {data.pickedForYou.map((item) => {
+                return (
+                  <RestDetailsCard
+                    title={item.title}
+                    price={item.price}
+                    desc={item.desc}
+                    key={item.id}
+                    itemQuantity={item.itemQuantity}
+                  />
+                );
+              })}
+            </SectionContainer>
+
+            <SectionContainer>
+              <SectionTitle font="bold" size="xlarge">
+                Starters
+              </SectionTitle>
+              {
+                <RestDetailsPopularCard
+                  title={data.starters.title}
+                  desc={data.starters.desc}
+                  img={data.starters.img}
+                  popular={data.starters.popular}
+                  key={data.starters.id}
                 />
-              );
-            })}
-          </SectionContainer>
+              }
+            </SectionContainer>
 
-          <SectionContainer>
-            <SectionTitle>Picked for you</SectionTitle>
-            {data.pickedForYou.map((item) => {
-              return (
-                <RestDetailsCard
-                  title={item.title}
-                  price={item.price}
-                  desc={item.desc}
-                  key={item.id}
-                  itemQuantity={item.itemQuantity}
-                />
-              );
-            })}
-          </SectionContainer>
+            <SectionContainer>
+              <SectionTitle>Salads</SectionTitle>
 
-          <SectionContainer>
-            <SectionTitle>Starters</SectionTitle>
-            {
-              <RestDetailsPopularCard
-                title={data.starters.title}
-                desc={data.starters.desc}
-                img={data.starters.img}
-                popular={data.starters.popular}
-                key={data.starters.id}
+              {data.salads.map((item) => {
+                return (
+                  <RestDetailsPopularCard
+                    title={item.title}
+                    price={item.price}
+                    desc={item.desc}
+                    key={item.id}
+                    popular={item.popular}
+                  />
+                );
+              })}
+            </SectionContainer>
+
+            <SectionContainer>
+              <SectionTitle>Our Special Pizza</SectionTitle>
+
+              {data.ourSpecialPizza.map((item) => {
+                return (
+                  <RestDetailsPopularCard
+                    title={item.title}
+                    price={item.price}
+                    img={item.img}
+                    desc={item.desc}
+                    key={item.id}
+                    popular={item.popular}
+                  />
+                );
+              })}
+            </SectionContainer>
+
+            <SectionContainer>
+              <SectionTitle>Mischelaneous </SectionTitle>
+
+              {data.mischelaneous.map((item) => {
+                return (
+                  <RestDetailsPopularCard
+                    title={item.title}
+                    price={item.price}
+                    img={item.img}
+                    desc={item.desc}
+                    key={item.id}
+                    popular={item.popular}
+                  />
+                );
+              })}
+            </SectionContainer>
+
+            <InfoContainer>
+              <RestTiTle
+                text={data.bottomRestName.restTitle}
+                style={{ marginBottom: 20 }}
               />
-            }
-          </SectionContainer>
+              <RestDetailsCard
+                title={data.bottomRestName.title}
+                price={data.bottomRestName.price}
+                desc={data.bottomRestName.desc}
+                key={data.bottomRestName.id}
+              />
+            </InfoContainer>
 
-          <SectionContainer>
-            <SectionTitle>Salads</SectionTitle>
-            {data.salads.map((item) => {
-              return (
-                <RestDetailsPopularCard
-                  title={item.title}
-                  price={item.price}
-                  desc={item.desc}
-                  key={item.id}
-                  popular={item.popular}
-                />
-              );
-            })}
-          </SectionContainer>
-
-          <SectionContainer>
-            <SectionTitle>Our Special Pizza</SectionTitle>
-            {data.ourSpecialPizza.map((item) => {
-              return (
-                <RestDetailsPopularCard
-                  title={item.title}
-                  price={item.price}
-                  img={item.img}
-                  desc={item.desc}
-                  key={item.id}
-                  popular={item.popular}
-                />
-              );
-            })}
-          </SectionContainer>
-
-          <SectionContainer>
-            <SectionTitle>Mischelaneous </SectionTitle>
-            {data.mischelaneous.map((item) => {
-              return (
-                <RestDetailsPopularCard
-                  title={item.title}
-                  price={item.price}
-                  img={item.img}
-                  desc={item.desc}
-                  key={item.id}
-                  popular={item.popular}
-                />
-              );
-            })}
-          </SectionContainer>
-
-          <InfoContainer>
-            <RestTiTle
-              text={data.bottomRestName.restTitle}
-              style={{ marginBottom: 20 }}
-            />
-            <RestDetailsCard
-              title={data.bottomRestName.title}
-              price={data.bottomRestName.price}
-              desc={data.bottomRestName.desc}
-              key={data.bottomRestName.id}
-            />
-          </InfoContainer>
-          <BottomSaveView>
-            <SaveText font="medium" size="medium" color="grey">
-              Save US$25. Conditions Applay.
-            </SaveText>
-          </BottomSaveView>
+            <BottomSaveView>
+              <SaveText font="medium" size="medium" color="grey">
+                Save US$25. Conditions Applay.
+              </SaveText>
+            </BottomSaveView>
+          </Wrapper>
         </ScrollView>
       )}
     </Container>

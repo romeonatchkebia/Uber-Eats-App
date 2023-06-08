@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+import { Dimensions } from "react-native";
 
 import ImageViewer from "../../atoms/ImageViewer";
 import NewText from "../../atoms/NewText";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled.Pressable`
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: ${height * 0.023}px;
   width: 100%;
 `;
 
@@ -19,11 +22,11 @@ const Promo = styled.View`
   justify-content: center;
   align-items: center;
   background: #34a853;
-  border-radius: 25px;
-  padding: 5px 8px;
-  width: 60px;
-  height: 30px;
-  margin-top: 8px;
+  border-radius: ${width * 0.063}px;
+  padding: ${height * 0.006}px ${height * 0.009}px;
+  width: ${width >= 350 ? "20%" : "15%"};
+  height: ${height * 0.035}px;
+  margin-top: ${height * 0.009}px;
 `;
 
 const PromoText = styled(NewText)`
@@ -36,7 +39,10 @@ const Title = styled(NewText)``;
 
 const Desc = styled(NewText)``;
 
-const CardImage = styled(ImageViewer)``;
+const CardImage = styled(ImageViewer)`
+  width: ${width * 0.29}px;
+  height: ${height * 0.12}px;
+`;
 
 const SoldoutView = styled.View``;
 

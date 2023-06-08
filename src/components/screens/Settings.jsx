@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Image, View } from "react-native";
+import { View, Dimensions } from "react-native";
 import styled from "styled-components";
+import { Feather } from "@expo/vector-icons";
 
 import Screen from "../atoms/Screen";
 import ImgPicker from "../molecules/ImgPicker";
@@ -10,6 +11,8 @@ import * as ROUTES from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
 import * as COLOR from "../../constants/Colors";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)`
   align-items: center;
   background-color: ${COLOR.SCREEN_BACKGROUND};
@@ -18,87 +21,80 @@ const Container = styled(Screen)`
 const HeaderView = styled.View`
   flex-direction: row;
   align-items: center;
-  gap: 20px;
-  padding-left: 15px;
+  gap: ${width * 0.05}px;
+  padding-left: ${width * 0.038}px;
+  margin-top: ${height * 0.017}px;
   width: 100%;
 `;
 
 const LeftArrow = styled.Pressable``;
 
-const SettingsText = styled(NewText)`
-  line-height: 28px;
-`;
+const SettingsText = styled(NewText)``;
 
 const ProfileView = styled.View`
   align-items: center;
-  margin-top: 35px;
+  margin-top: ${height * 0.041}px;
 `;
 
 const ProfileImage = styled.Image`
-  height: 90px;
-  width: 90px;
-  border-radius: 100px;
+  height: ${height * 0.1}px;
+  width: ${width * 0.23}px;
+  border-radius: ${width * 0.13}px;
 `;
 
 const UserName = styled(NewText)`
-  line-height: 22px;
-  margin-top: 20px;
-  margin-bottom: 15px;
+  line-height: ${height * 0.023}px;
+  margin: ${height * 0.023}px 0;
 `;
 
 const Edit = styled.Pressable`
   align-items: center;
   justify-content: center;
   background-color: #efecec;
-  border-radius: 5px;
+  border-radius: ${width * 0.013}px;
   position: absolute;
-  top: 65px;
-  height: 20px;
-  left: 20px;
-  width: 40px;
+  top: ${height * 0.076}px;
+  height: ${height * 0.023}px;
+  left: ${height * 0.023}px;
+  width: ${width * 0.1}px;
 `;
 
 const EditAccount = styled.Pressable`
-  margin-bottom: 60px;
+  margin-bottom: 18%;
 `;
 
 const AdditAccountText = styled(NewText)`
-  line-height: 20px;
+  line-height: ${height * 0.023}px;
 `;
 
 const SavedPlacesView = styled.View`
   align-items: flex-start;
-  border: 3px solid #e8e8e8;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  border: ${width * 0.0076}px solid #e8e8e8;
+  padding: ${height * 0.023}px 0;
   width: 100%;
 `;
 
 const SavedPlaces = styled(NewText)`
-  line-height: 22px;
-  margin-left: 15px;
-  margin-bottom: 20px;
+  line-height: ${height * 0.023}px;
+  margin-left: ${width * 0.038}px;
+  margin-bottom: ${height * 0.023}px;
 `;
 
 const SavedPlacesCard = styled(AccountCard)`
   align-items: flex-start;
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-left: -0.5px;
+  line-height: ${height * 0.023}px;
 `;
 
 const OtherOptions = styled(NewText)`
-  line-height: 22px;
-  margin-left: 15px;
-  margin-bottom: 30px;
-  margin-top: 40px;
+  line-height: ${height * 0.023}px;
+  padding-left: ${width * 0.038}px;
+  margin: ${height * 0.035}px 0;
 `;
 
 const SignOutText = styled(NewText)`
-  margin-left: 15px;
-  line-height: 24px;
+  margin-left: ${width * 0.038}px;
+  line-height: ${height * 0.023}px;
 `;
 
 const Settings = ({ navigation, route }) => {
@@ -123,8 +119,13 @@ const Settings = ({ navigation, route }) => {
             })
           }
         >
-          <Image source={IMAGES.LeftArrow} />
+          <Feather
+            name="arrow-left"
+            size={width >= 350 ? 26 : 18}
+            color="black"
+          />
         </LeftArrow>
+
         <SettingsText size="xlarge">Settings</SettingsText>
       </HeaderView>
 
@@ -162,6 +163,7 @@ const Settings = ({ navigation, route }) => {
 
       <View style={{ alignItems: "flex-start", width: "100%" }}>
         <OtherOptions size="large">Other Options</OtherOptions>
+
         <SignOutText
           font="medium"
           size="medium"

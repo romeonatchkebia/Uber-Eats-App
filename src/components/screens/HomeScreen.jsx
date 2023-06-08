@@ -42,7 +42,7 @@ const CtgrView = styled.View`
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin-top: 20px;
+  margin-top: ${width * 0.05}px;
 `;
 
 const FilterView = styled.View`
@@ -54,16 +54,16 @@ const FilterView = styled.View`
 
 const FilterTextPress = styled.Pressable`
   flex-direction: row;
-  gap: 5px;
 `;
 
 const FilterText = styled(NewText)`
   line-height: ${width * 0.058}px;
-  padding-left: 28%;
+  padding-left: ${width * 0.26}px;
+  padding-right: ${width * 0.013}px;
 `;
 
 const IconView = styled.View`
-  padding-top: 8px;
+  padding-top: ${height * 0.009}px;
 `;
 
 const FilterIcon = styled(ImageViewer)``;
@@ -120,7 +120,7 @@ const SectionTitleView = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 15px;
+  margin: ${width * 0.038}px;
 `;
 
 const SeeAllBtnView = styled.Pressable``;
@@ -145,8 +145,8 @@ const BottomSheetCardDiv = styled.View`
 `;
 
 const BottomSheetTitle = styled(NewText)`
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: ${height * 0.023}px;
+  margin-bottom: ${height * 0.023}px;
   text-align: center;
   width: 100%;
 `;
@@ -1508,15 +1508,25 @@ function HomeScreen({ navigation }) {
                 <CardTitle font="medium">Pet Supplies</CardTitle>
               </WrapCat>
 
-              <WrapCat>
-                <More onPress={() => categorySheetRef.current.open()}>
-                  <NewText size="xxlarge" font="bold">
-                    ...
-                  </NewText>
-                </More>
+              {category === 0 ? (
+                <WrapCat>
+                  <More onPress={() => categorySheetRef.current.open()}>
+                    <NewText size="xxlarge" font="bold">
+                      ...
+                    </NewText>
+                  </More>
 
-                <CardTitle font="medium">More</CardTitle>
-              </WrapCat>
+                  <CardTitle font="medium">More</CardTitle>
+                </WrapCat>
+              ) : (
+                <WrapCat>
+                  <OuterDiv>
+                    <CategoryCard imgUrl={IMAGES.Convenience} />
+                  </OuterDiv>
+
+                  <CardTitle font="medium">Grocery</CardTitle>
+                </WrapCat>
+              )}
             </CategoryContainer>
 
             <SectionList

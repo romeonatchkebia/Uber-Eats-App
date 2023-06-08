@@ -1,6 +1,7 @@
-import { Image, View, Pressable, ScrollView, Platform } from "react-native";
+import { Image, View, Pressable, ScrollView, Dimensions } from "react-native";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import { Feather } from "@expo/vector-icons";
 
 import * as IMAGES from "../../constants/Images";
 import * as ROUTS from "../../constants/Routs";
@@ -11,48 +12,54 @@ import SectionDevider from "../atoms/SectionDevider";
 import CheckComponent from "../molecules/CheckComponent";
 import RadioComponent from "../molecules/RadioComponent";
 import BottomSheet from "../atoms/BottomSheet";
-import Test from "../atoms/Test";
 import OrderScreenSheetCard from "../molecules/cards/OrderScreenSheetCard";
+
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled(Screen)``;
 
 // Restaurant details
 const RestTiTle = styled(NewText)`
-  line-height: 36px;
-  margin-top: 8px;
+  line-height: ${height * 0.042}px;
+  margin-top: ${height * 0.009}px;
 `;
 
 const OrderPrice = styled(NewText)`
-  margin-top: 8px;
+  margin-top: ${height * 0.009}px;
 `;
 
 const OrderDesc = styled(NewText)`
-  line-height: 20px;
-  margin-top: 8px;
+  line-height: ${height * 0.023}px;
+  margin-top: ${height * 0.009}px;
 `;
 
 // Promotion
 const PromotionView = styled.View`
   align-items: center;
   background-color: #e9ffef;
-  border-radius: 15px;
+  border-radius: ${width * 0.038}px;
   flex-direction: row;
   justify-content: space-around;
-  margin-top: 28px;
-  padding: 8px;
+  margin-top: ${height * 0.033}px;
+  padding: ${height * 0.009}px;
 `;
 
 const TextView = styled.View``;
 
 const PromoTxt = styled(NewText)`
-  margin: 15px 0 10px 0;
+  margin: ${width * 0.038}px 0 ${width * 0.025}px 0;
 `;
 
 const AdviceTxt = styled(NewText)`
-  margin-bottom: 5px;
+  margin-bottom: ${height * 0.006}px;
 `;
 
 const IconView = styled.View``;
+
+const ExclaImage = styled.Image`
+  width: ${width * 0.065}px;
+  height: ${height * 0.029}px;
+`;
 
 const Devider = styled(SectionDevider)`
   background: #f6f6f6;
@@ -63,7 +70,7 @@ const TitleView = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: ${height * 0.023}px;
 `;
 
 const Title = styled(NewText)``;
@@ -71,9 +78,9 @@ const Title = styled(NewText)``;
 const RequiredView = styled.View`
   align-items: center;
   background: #eeeeee;
-  border-radius: 99px;
+  border-radius: ${width * 0.13}px;
   justify-content: center;
-  padding: 5px 6px;
+  padding: ${height * 0.006}px;
 `;
 
 const Required = styled(NewText)``;
@@ -85,25 +92,25 @@ const Counter = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  gap: 25px;
+  gap: ${width * 0.064}px;
 `;
 
 const Minus = styled.Pressable`
   align-items: center;
   justify-content: center;
   background-color: #eeeeee;
-  border-radius: 50px;
-  height: 50px;
-  width: 50px;
+  border-radius: ${width * 0.13}px;
+  height: ${height * 0.06}px;
+  width: ${width * 0.13}px;
 `;
 
 const Plus = styled.Pressable`
   align-items: center;
   justify-content: center;
   background-color: #eeeeee;
-  border-radius: 50px;
-  height: 50px;
-  width: 50px;
+  border-radius: ${width * 0.13}px;
+  height: ${height * 0.06}px;
+  width: ${width * 0.13}px;
 `;
 
 // AddButton View
@@ -112,10 +119,10 @@ const AddButton = styled.Pressable`
   background-color: #000000;
   flex-direction: row;
   justify-content: center;
-  gap: 10px;
-  padding: 20px;
-  margin: 15px;
-  margin-bottom: ${Platform.OS === "ios" ? 0 : 60}px;
+  gap: ${width * 0.025}px;
+  padding: ${height * 0.023}px;
+  margin: ${width * 0.038}px;
+  margin-bottom: 15%;
 `;
 
 const AddBtnText = styled(NewText)``;
@@ -131,7 +138,7 @@ const RestTitleView = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  padding: 15px;
+  padding: ${height * 0.018}px;
 `;
 
 const TextWrapper = styled.View`
@@ -139,28 +146,28 @@ const TextWrapper = styled.View`
 `;
 
 const SaveText = styled(NewText)`
-  margin-top: 5px;
+  margin-top: ${height * 0.006}px;
 `;
 
 const GroupIcon = styled.View``;
 
 const SheetDevider = styled(SectionDevider)`
   background: #f6f6f6;
-  height: 3px;
+  height: ${height * 0.004}px;
 `;
 
 const DetailsView = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: 15px;
+  padding: ${height * 0.018}px;
 `;
 
 const NumberView = styled.View`
   align-items: center;
   background-color: #eeeeee;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: ${width * 0.1}px;
+  height: ${height * 0.05}px;
 `;
 
 const Txt = styled(NewText)``;
@@ -182,7 +189,7 @@ const PriceWrapper = styled.View`
 const IconPriceView = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 5px;
+  gap: ${height * 0.006}px;
 `;
 
 const SubPrice = styled(NewText)`
@@ -199,13 +206,13 @@ const Left = styled.View`
   flex-direction: row;
   background: #eeeeee;
   justify-content: space-between;
-  gap: 25px;
-  padding: 20px 10px;
+  gap: ${width * 0.064}px;
+  padding: ${height * 0.023}px 10px;
 `;
 
 const Right = styled.View`
   background: #eeeeee;
-  padding: 20px;
+  padding: ${height * 0.023}px;
 `;
 
 const sauce = [
@@ -377,11 +384,15 @@ const OrderSelection = ({ navigation, route }) => {
   return (
     <Container>
       <ScrollView>
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
           <Pressable
             onPress={() => navigation.navigate(ROUTS.RESTAURANT_DETAILS_SCREEN)}
           >
-            <Image source={IMAGES.LeftArrow} />
+            <Feather
+              name="arrow-left"
+              size={width >= 350 ? 26 : 18}
+              color="black"
+            />
           </Pressable>
 
           <RestTiTle font="bold" size="xlarge">
@@ -405,18 +416,19 @@ const OrderSelection = ({ navigation, route }) => {
             </TextView>
 
             <IconView>
-              <Image source={IMAGES.ExclaMark} />
+              <ExclaImage source={IMAGES.ExclaMark} />
             </IconView>
           </PromotionView>
         </View>
 
         <Devider />
 
-        <View style={{ margin: 15 }}>
-          <TitleView style={{ marginTop: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
+          <TitleView style={{ marginTop: height * 0.018 }}>
             <Title font="medium" size="large">
               Choose your sauce
             </Title>
+
             <RequiredView>
               <Required color="grey">Required</Required>
             </RequiredView>
@@ -433,13 +445,13 @@ const OrderSelection = ({ navigation, route }) => {
 
         <Devider />
 
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
           <TitleView
             style={{
               flexDirection: "column",
               alignItems: "flex-start",
-              gap: 5,
-              marginTop: 10,
+              gap: width * 0.013,
+              marginTop: height * 0.012,
             }}
           >
             <Title font="medium" size="large">
@@ -449,7 +461,7 @@ const OrderSelection = ({ navigation, route }) => {
             <NewText color="grey">Choose up to 1</NewText>
           </TitleView>
 
-          <RadioView style={{ marginBottom: 20 }}>
+          <RadioView style={{ marginBottom: height * 0.023 }}>
             {side.map((item) => {
               return (
                 <CheckComponent
@@ -467,8 +479,8 @@ const OrderSelection = ({ navigation, route }) => {
 
         <Devider />
 
-        <View style={{ margin: 15 }}>
-          <TitleView style={{ marginTop: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
+          <TitleView style={{ marginTop: height * 0.018 }}>
             <Title font="medium" size="large">
               Choose your size
             </Title>
@@ -488,8 +500,8 @@ const OrderSelection = ({ navigation, route }) => {
 
         <Devider />
 
-        <View style={{ margin: 15 }}>
-          <TitleView style={{ marginTop: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
+          <TitleView style={{ marginTop: height * 0.018 }}>
             <Title font="medium" size="large">
               Choose your crust
             </Title>
@@ -509,13 +521,13 @@ const OrderSelection = ({ navigation, route }) => {
 
         <Devider />
 
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
           <TitleView
             style={{
               flexDirection: "column",
               alignItems: "flex-start",
-              gap: 5,
-              marginTop: 10,
+              gap: width * 0.013,
+              marginTop: height * 0.018,
             }}
           >
             <Title font="medium" size="large">
@@ -543,13 +555,13 @@ const OrderSelection = ({ navigation, route }) => {
 
         <Devider />
 
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
           <TitleView
             style={{
               flexDirection: "column",
               alignItems: "flex-start",
-              gap: 5,
-              marginTop: 10,
+              gap: width * 0.013,
+              marginTop: height * 0.018,
             }}
           >
             <Title font="medium" size="large">
@@ -574,7 +586,7 @@ const OrderSelection = ({ navigation, route }) => {
           </RadioView>
         </View>
 
-        <View style={{ margin: 15 }}>
+        <View style={{ margin: width * 0.038 }}>
           <Counter>
             <Minus onPress={handleDecrement}>
               <NewText size="xxlarge">-</NewText>
@@ -588,7 +600,7 @@ const OrderSelection = ({ navigation, route }) => {
           </Counter>
         </View>
 
-        <Devider style={{ height: 3, marginTop: 10 }} />
+        <Devider style={{ height: 3, marginTop: height * 0.018 }} />
 
         <AddButton onPress={() => addedItems.current.open()}>
           <AddBtnText color="white" size="large" font="medium">
@@ -600,13 +612,17 @@ const OrderSelection = ({ navigation, route }) => {
           </LineThroughText>
         </AddButton>
 
-        <BottomSheet bottomSheetRef={addedItems} modalHeight={700}>
+        <BottomSheet
+          bottomSheetRef={addedItems}
+          modalHeight={height >= 700 ? 700 : 450}
+        >
           <BottomSheetView>
             <RestTitleView>
               <TextWrapper>
                 <RestTiTle font="medium" size="xlarge">
                   Taco Bell(2255 Telegraph Avenue)
                 </RestTiTle>
+
                 <SaveText color="green">You're saving US$25</SaveText>
               </TextWrapper>
 
@@ -623,6 +639,7 @@ const OrderSelection = ({ navigation, route }) => {
                   1
                 </Txt>
               </NumberView>
+
               <TxtView>
                 <FoodTitle size="medium" font="medium">
                   Cantina Crispy Chicken
@@ -638,6 +655,7 @@ const OrderSelection = ({ navigation, route }) => {
               <PriceWrapper>
                 <IconPriceView>
                   <Image source={IMAGES.GreenVector} />
+
                   <NewText font="medium" size="medium">
                     US${sum.toFixed(2)}
                   </NewText>
@@ -659,12 +677,13 @@ const OrderSelection = ({ navigation, route }) => {
               style={{
                 flexDirection: "row",
                 justifyContent: "space-between",
-                padding: 15,
+                padding: height * 0.018,
               }}
             >
               <SubTotal font="medium" size="medium">
                 Subtotal
               </SubTotal>
+
               <SubtotalPrice font="medium" size="medium">
                 US${sum.toFixed(2)}
               </SubtotalPrice>
@@ -673,7 +692,7 @@ const OrderSelection = ({ navigation, route }) => {
             <View
               style={{
                 flexDirection: "row",
-                padding: 15,
+                padding: height * 0.018,
                 justifyContent: "space-between",
               }}
             >
@@ -681,8 +700,10 @@ const OrderSelection = ({ navigation, route }) => {
                 <NewText font="medium" size="medium">
                   Request utensils, etc.
                 </NewText>
+
                 <CheckComponent />
               </Left>
+
               <Right>
                 <NewText font="medium" size="medium">
                   Add note
@@ -693,11 +714,11 @@ const OrderSelection = ({ navigation, route }) => {
             <Pressable
               onPress={() => navigation.navigate(ROUTS.DELIVERY_DETAILS_SCREEN)}
               style={{
-                padding: 20,
+                padding: height * 0.023,
                 backgroundColor: "black",
-                marginHorizontal: 15,
+                marginHorizontal: width * 0.038,
                 alignItems: "center",
-                marginTop: 20,
+                marginTop: height * 0.023,
               }}
             >
               <NewText color="white" font="medium" size="medium">
@@ -707,11 +728,11 @@ const OrderSelection = ({ navigation, route }) => {
 
             <Pressable
               style={{
-                padding: 20,
+                padding: height * 0.023,
                 backgroundColor: "#eeeeee",
-                marginHorizontal: 15,
+                marginHorizontal: width * 0.038,
                 alignItems: "center",
-                marginTop: 20,
+                marginTop: height * 0.023,
               }}
             >
               <NewText font="medium" size="medium">

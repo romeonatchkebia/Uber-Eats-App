@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components";
 import Checkbox from "expo-checkbox";
 
 import NewText from "../atoms/NewText";
+
+const { height, width } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   flex-direction: row;
@@ -14,15 +17,15 @@ const LeftView = styled.View`
 `;
 
 const LeftInner = styled.View`
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin-bottom: ${height * 0.018}px;
+  margin-left: ${height * 0.012}px;
 `;
 
 const RightView = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: ${height * 0.012}px;
 `;
 
 const Label = styled(NewText)``;

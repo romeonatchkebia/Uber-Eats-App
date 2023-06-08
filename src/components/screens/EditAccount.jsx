@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Dimensions } from "react-native";
 
 import Screen from "../atoms/Screen";
 import styled from "styled-components";
@@ -7,25 +8,38 @@ import Buttons from "../atoms/Buttons";
 import NewText from "../atoms/NewText";
 import * as ROUTES from "../../constants/Routs";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled(Screen)`
   align-items: center;
   justify-content: center;
 `;
 
-const UserName = styled(TextInput)`
-  margin-bottom: 10px;
+const Wrapper = styled.View`
+  margin: ${width * 0.038}px;
 `;
 
-const Password = styled(TextInput)`
-  margin-bottom: 50px;
+const UserName = styled.TextInput`
+  background: #eeeeee;
+  border-radius: ${width * 0.038}px;
+  margin-bottom: ${width * 0.025}px;
+  padding: ${width * 0.05}px;
+`;
+
+const Password = styled.TextInput`
+  background: #eeeeee;
+  border-radius: ${width * 0.038}px;
+  margin-bottom: ${width * 0.025}px;
+  padding: ${width * 0.05}px;
+  margin-bottom: ${width * 0.13}px;
 `;
 
 const EnterBtn = styled(Buttons)`
-  height: 50px;
+  height: ${width * 0.13}px;
 `;
 
 const ErrorText = styled(NewText)`
-  margin-top: 15px;
+  margin-top: ${width * 0.038}px;
 `;
 
 function EditAccount({ navigation }) {
@@ -46,22 +60,24 @@ function EditAccount({ navigation }) {
 
   return (
     <Container>
-      <UserName
-        placeholder="Name"
-        value={userName}
-        onChange={(e) => setUserName(e.nativeEvent.text)}
-      />
-      <Password
-        placeholder="Last Name"
-        value={lastName}
-        onChange={(e) => setLastName(e.nativeEvent.text)}
-      />
-      <EnterBtn title="Confirm" onPress={handleConfirm} />
-      {showError && (
-        <ErrorText color="red" visible={true}>
-          Username or password cannot be empty
-        </ErrorText>
-      )}
+      <Wrapper>
+        <UserName
+          placeholder="Name"
+          value={userName}
+          onChange={(e) => setUserName(e.nativeEvent.text)}
+        />
+        <Password
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.nativeEvent.text)}
+        />
+        <EnterBtn title="Confirm" onPress={handleConfirm} />
+        {showError && (
+          <ErrorText color="red" visible={true}>
+            Username or password cannot be empty
+          </ErrorText>
+        )}
+      </Wrapper>
     </Container>
   );
 }

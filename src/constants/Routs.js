@@ -36,4 +36,4 @@ export const DEALS_SCREEN = "Deals";
 // Settings Navigator Screens
 export const SETTINGS_DETAILS = "SettingDetails";
 export const SETTINGS_NAVIGATOR = "SttingNavigator";
-export const EDITACCOUNT_SCREEN = "AdditAccount";
+export const EDITACCOUNT_SCREEN = "EditAccount";
