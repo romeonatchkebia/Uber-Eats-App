@@ -10,8 +10,8 @@ const { height, width } = Dimensions.get("screen");
 const Container = styled.View`
   background: #f6f6f6;
   justify-content: center;
-  padding: 10px;
-  gap: 10px;
+  padding: ${height * 0.011}px;
+  gap: ${height * 0.011}px;
   margin: 5px;
   width: ${width * 0.3}px;
 `;

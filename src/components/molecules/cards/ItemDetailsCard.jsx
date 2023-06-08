@@ -1,27 +1,27 @@
-import { Image } from "react-native";
+import { Dimensions } from "react-native";
 import React from "react";
 import styled from "styled-components";
-
-import * as IMAGES from "../../../constants/Images";
 
 import NewText from "../../atoms/NewText";
 import SectionDivider from "../../atoms/SectionDevider";
 
+const { height } = Dimensions.get("screen");
+
 const Container = styled.View`
-  margin: 10px 0;
+  margin: ${height * 0.011}px 0;
 `;
 
 const Wrapper = styled.View`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin-bottom: ${height * 0.011}px;
 `;
 
 const Left = styled.View`
   align-items: center;
   flex-direction: row;
-  gap: 10px;
+  gap: ${height * 0.011}px;
 `;
 
 const Right = styled.View``;

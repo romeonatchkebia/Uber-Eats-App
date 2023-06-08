@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components";
 import DropDownPicker from "react-native-dropdown-picker";
 
+const { width } = Dimensions.get("screen");
+
 const DropContainer = styled.View`
-  width: 150px;
+  width: ${width * 0.381}px;
 `;
 
 const DropDown = () => {

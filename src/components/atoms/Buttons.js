@@ -1,13 +1,16 @@
 import React from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components";
 
 import NewText from "./NewText";
 
+const { height, width } = Dimensions.get("screen");
+
 const Container = styled.Pressable`
-  width: 250px;
-  height: 45px;
+  width: ${width * 0.636}px;
+  height: ${height * 0.0528}px;
   background-color: #54924f;
-  border-radius: 15px;
+  border-radius: ${width * 0.038}px;
   display: flex;
   align-items: center;
   justify-content: center;

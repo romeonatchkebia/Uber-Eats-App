@@ -13,10 +13,10 @@ const Container = styled.View`
   justify-content: space-around;
   align-items: center;
   background: #eeeeee;
-  border-radius: 8px;
+  border-radius: ${height * 0.011}px;
   height: ${height * 0.083}px;
   width: 43%;
-  margin: 10px 0 10px 18px;
+  margin: ${height * 0.011}px 0 ${height * 0.011}px ${height * 0.021}px;
 `;
 
 const Title = styled(NewText)``;

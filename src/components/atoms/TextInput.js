@@ -1,13 +1,16 @@
-import styled from "styled-components";
 import React from "react";
+import { Dimensions } from "react-native";
+import styled from "styled-components";
+
+const { height, width } = Dimensions.get("screen");
 
 const InputText = styled.TextInput`
   background: #eeeeee;
-  height: 60px;
-  width: 250px;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 20px;
+  height: ${height * 0.07}px;
+  width: ${width * 0.636}px;
+  border-radius: ${height * 0.012}px;
+  font-size: ${height * 0.023}px;
+  padding: ${height * 0.023}px;
 `;
 
 function TextInput({ label, placeholder, ...props }) {

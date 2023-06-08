@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
 
 import NewText from "./NewText";
 
-const { height, width } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 const Btn = styled.Pressable`
   align-items: center;

@@ -1,5 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import React from "react";
+import { Dimensions } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -8,6 +9,8 @@ import { ImageBackground } from "react-native";
 
 import ImageViewer from "../atoms/ImageViewer";
 import * as IMAGES from "../../constants/Images";
+
+const { height } = Dimensions.get("screen");
 
 const CustomDrawer = ({ ...props }) => {
   return (
@@ -30,12 +33,12 @@ const CustomDrawer = ({ ...props }) => {
 
 const styles = StyleSheet.create({
   profileImg: {
-    width: 130,
-    height: 130,
-    borderRadius: 70,
+    width: height * 0.153,
+    height: height * 0.153,
+    borderRadius: height * 0.082,
     position: "absolute",
-    left: 65,
-    top: 65,
+    left: height * 0.0763,
+    top: height * 0.0763,
   },
 });
 

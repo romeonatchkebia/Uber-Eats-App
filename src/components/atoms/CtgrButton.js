@@ -9,7 +9,7 @@ const { height } = Dimensions.get("screen");
 const Container = styled.Pressable`
   ${({ black }) => (black ? `background - color : #000000` : "")};
   align-items: center;
-  border-radius: 25px;
+  border-radius: ${height * 0.0293}px;
   justify-content: center;
   height: ${height * 0.05}px;
   width: 30%;
