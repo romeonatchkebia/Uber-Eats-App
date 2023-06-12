@@ -184,6 +184,7 @@ const TrackOrderCard = () => {
         <NewText size="large" font="medium" style={{ marginTop: 20 }}>
           Invite friends
         </NewText>
+
         <View
           style={{
             alignItems: "center",
@@ -193,6 +194,7 @@ const TrackOrderCard = () => {
           }}
         >
           <BurgerImage source={IMAGES.BurgerIcon} />
+
           <NewText color="green" size="medium">
             Invite a friend, get $5 off
           </NewText>

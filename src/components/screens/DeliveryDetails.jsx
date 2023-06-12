@@ -82,7 +82,7 @@ const Schedule = styled.View`
 const DetailsView = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: ${height * 0.018}px;
+  padding: ${height * 0.018}px 0;
 `;
 
 const NumberView = styled.View`
@@ -143,7 +143,7 @@ const Cont = styled.View`
   flex-direction: row;
   justify-content: space-between;
   padding: ${height * 0.012}px ${height * 0.018}px;
-  margin: 0 ${height * 0.018}px ${height * 0.018}px;
+  margin: 0 0 ${height * 0.018}px;
 `;
 
 const TView = styled.View``;
@@ -379,7 +379,7 @@ const DeliveryDetails = ({ navigation, route }) => {
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              padding: height * 0.018,
+              paddingVertical: height * 0.018,
             }}
           >
             <GreyBtnWithIcon title="Add items" img={IMAGES.SmallPlus} />
@@ -388,7 +388,6 @@ const DeliveryDetails = ({ navigation, route }) => {
           <View
             style={{
               flexDirection: "row",
-              padding: height * 0.018,
               justifyContent: "space-between",
             }}
           >

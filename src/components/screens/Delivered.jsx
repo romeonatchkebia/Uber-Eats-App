@@ -21,7 +21,7 @@ const Header = styled.View`
   flex-direction: row;
 `;
 
-const Close = styled.View``;
+const Close = styled.Pressable``;
 
 const Help = styled.View`
   background: #eeeeee;
@@ -40,7 +40,7 @@ const Delivered = ({ navigation }) => {
     <Container>
       <View style={{ margin: width * 0.038 }}>
         <Header>
-          <Close>
+          <Close onPress={() => navigation.navigate("BottomTabNav")}>
             <Ionicons name="close" size={width >= 350 ? 26 : 18} />
           </Close>
 

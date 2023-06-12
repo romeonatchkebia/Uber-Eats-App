@@ -30,7 +30,7 @@ const Left = styled.View`
   justify-content: center;
 `;
 
-const Close = styled.View``;
+const Close = styled.Pressable``;
 
 const Right = styled.View`
   align-items: center;
@@ -139,7 +139,7 @@ const TextsView = styled.View`
 `;
 
 const TrackOrder = ({ navigation }) => {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(0.5);
 
   useEffect(() => {
     if (progress < 1) {
@@ -159,7 +159,7 @@ const TrackOrder = ({ navigation }) => {
         <View style={{ margin: width * 0.038 }}>
           <Header>
             <Left>
-              <Close>
+              <Close onPress={() => navigation.goBack()}>
                 <Ionicons name="close" size={width >= 350 ? 26 : 18} />
               </Close>
             </Left>
@@ -213,8 +213,6 @@ const TrackOrder = ({ navigation }) => {
             <GoogleMap />
           )}
         </View>
-
-        <View>{progress === 0 && <TrackOrderCard />}</View>
 
         {progress === 0.5 && (
           <View style={{ margin: width * 0.038 }}>
