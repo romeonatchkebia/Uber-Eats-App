@@ -5,7 +5,7 @@ styled;
 
 const Container = styled(Modalize)``;
 
-const BottomSheet = ({ bottomSheetRef, children, ...props }) => {
+const BottomSheet = ({ bottomSheetRef, children, onPress, ...props }) => {
   return (
     <Container ref={bottomSheetRef} {...props}>
       {children}

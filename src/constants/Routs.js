@@ -3,6 +3,7 @@
 export const LOGIN_SCREEN = "LoginScreen";
 export const CREATENEWACCOUNT_SCREEN = "Authorization";
 export const FORGOT_PASSWORD_SCREEN = "ForgotPassword";
+export const TEST_SCREEN = "TestScreen";
 
 // Home Navigation Screens
 export const BOTTOM_TAB_NAV = "BottomTabNav";
@@ -35,5 +36,5 @@ export const DEALS_SCREEN = "Deals";
 
 // Settings Navigator Screens
 export const SETTINGS_DETAILS = "SettingDetails";
-export const SETTINGS_NAVIGATOR = "SttingNavigator";
+export const SETTINGS_NAVIGATOR = "SettingNavigator";
 export const EDITACCOUNT_SCREEN = "EditAccount";

@@ -139,9 +139,10 @@ const Devider = styled(SectionDevider)`
 
 //BottomSheet styles
 
-const BottomSheetCardDiv = styled.View`
+const BottomSheetCardDiv = styled.Pressable`
   flex-wrap: wrap;
   padding-left: ${width * 0.025}px;
+  padding-bottom: 10%;
 `;
 
 const BottomSheetTitle = styled(NewText)`
@@ -1702,9 +1703,9 @@ function HomeScreen({ navigation }) {
       <Portal>
         <BottomSheet
           bottomSheetRef={categorySheetRef}
-          modalHeight={height >= 700 ? 660 : 450}
+          adjustToContentHeight={true}
         >
-          <BottomSheetCardDiv>
+          <BottomSheetCardDiv onPress={() => categorySheetRef.current.close()}>
             <ScrollView>
               <View>
                 <BottomSheetTitle size="xlarge">

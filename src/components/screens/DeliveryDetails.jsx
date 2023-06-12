@@ -521,7 +521,9 @@ const DeliveryDetails = ({ navigation, route }) => {
           }}
         >
           <NewText>
-            dadjaskjdhaskjdhasjkdhasjkdhasjkdhasjkdhasjkdhasjkdhajskdhakjshdaskjdhakjshdajskdhaskjdhasjkdhajkshdasjdhsakjdhasjkdasdasjhdgajshgdajhsgdajhsgdjhasgdjashgdajs
+            If you're not around when the curier arrives, they'll leave your
+            order at the door. By placing your order, you agree to take full
+            responsibility for it once it's delivered.
           </NewText>
 
           <BigBlackGreyBtn

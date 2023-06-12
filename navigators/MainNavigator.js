@@ -30,6 +30,7 @@ import PhoneVerification from "../src/components/screens/PhoneVerification";
 import EmailVerification from "../src/components/screens/EmailVerification";
 import Welcome from "../src/components/screens/Welcome";
 import LandingScreen from "../src/components/screens/LandingScreen";
+import TestScreen from "../src/components/screens/TestScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -168,6 +169,11 @@ function MainNavigator() {
             name={ROUTES.EDITACCOUNT_SCREEN}
             component={EditAccount}
             options={{ title: "Edit Account" }}
+          />
+          <Stack.Screen
+            name={ROUTES.TEST_SCREEN}
+            component={TestScreen}
+            options={{ title: "Test" }}
           />
         </Stack.Navigator>
       </Host>

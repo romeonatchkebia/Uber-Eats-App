@@ -8,6 +8,9 @@ import ImageViewer from "../atoms/ImageViewer";
 import NewText from "../atoms/NewText";
 import * as IMAGES from "../../constants/Images";
 
+import { UserInfo } from "../helpers/UserInfo";
+import { UpdateUser, User } from "../../UserProvider";
+
 const { height, width } = Dimensions.get("screen");
 
 const Container = styled(Screen)``;
@@ -68,9 +71,23 @@ const LandingScreen = ({ navigation }) => {
     }
   };
 
-  useEffect(() => {
-    if (input.length === 6) {
+  const updateUser = UpdateUser();
+
+  const userLogin = async () => {
+    const res = await UserInfo();
+
+    if (res) {
+      updateUser(res);
+
       navigation.navigate("PhoneInput");
+    } else {
+      alert("wrong number");
+    }
+  };
+
+  useEffect(() => {
+    if (input.length == 9) {
+      userLogin();
     }
   }, [input]);
 

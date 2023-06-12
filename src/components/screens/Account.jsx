@@ -9,6 +9,7 @@ import NewText from "../atoms/NewText";
 import * as IMAGES from "../../constants/Images";
 import * as ROUTES from "../../constants/Routs";
 import * as COLOR from "../../constants/Colors";
+import { User } from "../../UserProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -97,6 +98,8 @@ const Account = ({ navigation, route }) => {
     navigation.navigate(str, { reward: "reward" });
   }
 
+  const user = User();
+
   useEffect(() => {
     if (route.params !== undefined) {
       setNameState(true);
@@ -111,14 +114,14 @@ const Account = ({ navigation, route }) => {
       <Wrapper>
         <ProfileView>
           <ProfileFoto
-            source={image ? route.params.image : IMAGES.AccountProfileImage}
+            source={image ? route.params.image : IMAGES.UserProfileImage}
           />
           {nameState ? (
             <ProfileName size="large">
               {route.params.name} {route.params.lastName}
             </ProfileName>
           ) : (
-            <ProfileName>John Doe</ProfileName>
+            <ProfileName>{user ? user.userName : ""}</ProfileName>
           )}
         </ProfileView>
 

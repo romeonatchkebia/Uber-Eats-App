@@ -612,10 +612,7 @@ const OrderSelection = ({ navigation, route }) => {
           </LineThroughText>
         </AddButton>
 
-        <BottomSheet
-          bottomSheetRef={addedItems}
-          modalHeight={height >= 700 ? 700 : 450}
-        >
+        <BottomSheet bottomSheetRef={addedItems} adjustToContentHeight={true}>
           <BottomSheetView>
             <RestTitleView>
               <TextWrapper>

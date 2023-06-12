@@ -331,9 +331,7 @@ const Featured = ({ navigation, route }) => {
             <Wrapper>
               <Header>
                 <Left>
-                  <Pressable
-                    onPress={() => navigation.goBack(ROUTS.HOMESCREEN_SCREEN)}
-                  >
+                  <Pressable onPress={() => navigation.goBack()}>
                     <Feather
                       name="arrow-left"
                       size={width >= 350 ? 26 : 18}
@@ -349,11 +347,7 @@ const Featured = ({ navigation, route }) => {
                 <Right>
                   <Ionicons name="person" size={width >= 350 ? 24 : 16} />
 
-                  <Pressable
-                    onPress={() =>
-                      navigation.navigate(ROUTS.ORDER_DETAIlS_SCREEN)
-                    }
-                  >
+                  <Pressable>
                     <Ionicons name="cart" size={width >= 350 ? 26 : 18} />
                   </Pressable>
                 </Right>

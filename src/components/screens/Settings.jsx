@@ -10,6 +10,7 @@ import AccountCard from "../molecules/cards/AccountCard";
 import * as ROUTES from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
 import * as COLOR from "../../constants/Colors";
+import { User } from "../../UserProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -98,8 +99,10 @@ const SignOutText = styled(NewText)`
 `;
 
 const Settings = ({ navigation, route }) => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
   const [nameState, setNameState] = useState(false);
+
+  const user = User();
 
   useEffect(() => {
     if (route.params !== undefined) {
@@ -114,8 +117,8 @@ const Settings = ({ navigation, route }) => {
           onPress={() =>
             navigation.navigate(ROUTES.ACCOUNT_SCREEN, {
               image: image && { uri: image },
-              name: nameState ? route.params.nameUser : "john",
-              lastName: nameState ? route.params.lastNameUser : "Doe",
+              name: nameState ? route.params.nameUser : user.userName,
+              lastName: nameState ? route.params.lastNameUser : "",
             })
           }
         >
@@ -131,7 +134,7 @@ const Settings = ({ navigation, route }) => {
 
       <ProfileView>
         <ProfileImage
-          source={image ? { uri: image } : IMAGES.AccountProfileImage}
+          source={image ? { uri: image } : IMAGES.UserProfileImage}
         />
 
         {nameState && (
@@ -140,7 +143,7 @@ const Settings = ({ navigation, route }) => {
           </UserName>
         )}
 
-        {!nameState && <UserName>John Doe</UserName>}
+        {!nameState && <UserName>{user ? user.userName : ""}</UserName>}
 
         <EditAccount
           onPress={() => navigation.navigate(ROUTES.EDITACCOUNT_SCREEN)}

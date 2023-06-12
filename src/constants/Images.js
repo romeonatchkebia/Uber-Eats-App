@@ -38,6 +38,7 @@ export const OrderBtnIcon = require("../components/Images/GroupForOrderBtn.png")
 
 // Account screen
 export const AccountProfileImage = require("../components/Images/accountScreen/profilePicture.png");
+export const UserProfileImage = require("../components/Images/profile-foto.jpg");
 
 // Settings screen
 export const LeftArrow = require("../components/Images/SettingsScreen/leftArrow.png");

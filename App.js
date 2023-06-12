@@ -1,10 +1,11 @@
-import "react-native-gesture-handler";
-import "react-native-get-random-values";
 import React, { useCallback } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import "react-native-gesture-handler";
+import "react-native-get-random-values";
 
 import MainNavigator from "./navigators/MainNavigator";
+import UserProvider from "./src/UserProvider";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -27,5 +28,9 @@ export default function App() {
     return null;
   }
 
-  return <MainNavigator />;
+  return (
+    <UserProvider>
+      <MainNavigator />
+    </UserProvider>
+  );
 }
