@@ -28,6 +28,7 @@ export const Heart = require("../components/Images/heart.png");
 export const RightArrow = require("../components/Images/restDetailsVector.png");
 export const GroupImage = require("../components/Images/Group.png");
 export const StarIcon = require("../components/Images/RatingStar.png");
+export const RestaurantDetailsPizza = require("../components/Images/RestaurantDetailsMain.png");
 
 // LoginScreen
 export const LOGINSCREENIMAGE = require("../components/Images/loginScreenImage.png");

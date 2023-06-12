@@ -5,7 +5,7 @@ import "react-native-gesture-handler";
 import "react-native-get-random-values";
 
 import MainNavigator from "./navigators/MainNavigator";
-import UserProvider from "./src/UserProvider";
+import UserProvider from "./src/components/helpers/UserProvider";
 
 SplashScreen.preventAutoHideAsync();
 

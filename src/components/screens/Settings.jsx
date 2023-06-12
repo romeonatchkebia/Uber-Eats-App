@@ -10,7 +10,7 @@ import AccountCard from "../molecules/cards/AccountCard";
 import * as ROUTES from "../../constants/Routs";
 import * as IMAGES from "../../constants/Images";
 import * as COLOR from "../../constants/Colors";
-import { User } from "../../UserProvider";
+import { User } from "../helpers/UserProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -171,7 +171,7 @@ const Settings = ({ navigation, route }) => {
           font="medium"
           size="medium"
           color="green"
-          onPress={() => navigation.navigate(ROUTES.LOGIN_SCREEN)}
+          onPress={() => navigation.navigate(ROUTES.LANDING_SCREEN)}
         >
           Sign Out
         </SignOutText>

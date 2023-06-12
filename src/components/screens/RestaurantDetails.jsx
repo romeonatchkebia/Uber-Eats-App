@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Image, ScrollView, Dimensions } from "react-native";
+import { View, ScrollView, Dimensions } from "react-native";
 import styled from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -13,6 +13,7 @@ import RestDetailsCard from "../molecules/cards/RestDetailsCard";
 import DeliveryPickupBtns from "../atoms/DeliveryPickupBtns";
 import RestDetailsPopularCard from "../molecules/cards/RestDetailsPopularCard";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
+import GoogleMap from "../organisms/GoogleMap";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -26,6 +27,17 @@ const Container = styled(Screen)``;
 
 const Wrapper = styled.View`
   margin: ${width * 0.038}px;
+`;
+
+const Pizza = styled.Image`
+  height: ${height / 5}px;
+  margin-bottom: ${width * 0.013}px;
+  width: 100%;
+`;
+
+const Map = styled(GoogleMap)`
+  height: ${height / 4.5}px;
+  width: 100%;
 `;
 
 const HeaderContainer = styled.View`
@@ -59,11 +71,6 @@ const RightContainer = styled.Pressable`
   justify-content: flex-end;
 `;
 
-const RightArrow = styled.Image`
-  margin-bottom: ${height * 0.029}px;
-  margin-right: ${width * 0.05}px;
-`;
-
 const ButtonsViewContainer = styled.View`
   margin-top: ${height * 0.023}px;
   justify-content: center;
@@ -89,7 +96,6 @@ const BottomSaveView = styled.View`
   align-items: center;
   justify-content: center;
   margin-bottom: ${height * 0.023}px;
-  margin-top: ${height * 0.035}px;
 `;
 
 const SaveText = styled(NewText)`
@@ -317,6 +323,10 @@ const RestaurantDetails = ({ navigation, route }) => {
         </SpinnerView>
       ) : (
         <ScrollView>
+          <Pizza source={IMAGES.RestaurantDetailsPizza} />
+
+          <Map />
+
           <Wrapper>
             <HeaderContainer>
               <InfoContainer>
@@ -438,7 +448,9 @@ const RestaurantDetails = ({ navigation, route }) => {
             </SectionContainer>
 
             <SectionContainer>
-              <SectionTitle>Salads</SectionTitle>
+              <SectionTitle font="bold" size="xlarge">
+                Salads
+              </SectionTitle>
 
               {data.salads.map((item) => {
                 return (
@@ -454,7 +466,9 @@ const RestaurantDetails = ({ navigation, route }) => {
             </SectionContainer>
 
             <SectionContainer>
-              <SectionTitle>Our Special Pizza</SectionTitle>
+              <SectionTitle font="bold" size="xlarge">
+                Our Special Pizza
+              </SectionTitle>
 
               {data.ourSpecialPizza.map((item) => {
                 return (
@@ -471,7 +485,9 @@ const RestaurantDetails = ({ navigation, route }) => {
             </SectionContainer>
 
             <SectionContainer>
-              <SectionTitle>Mischelaneous </SectionTitle>
+              <SectionTitle font="bold" size="xlarge">
+                Miscellaneous{" "}
+              </SectionTitle>
 
               {data.mischelaneous.map((item) => {
                 return (
@@ -488,10 +504,10 @@ const RestaurantDetails = ({ navigation, route }) => {
             </SectionContainer>
 
             <InfoContainer>
-              <RestTiTle
-                text={data.bottomRestName.restTitle}
-                style={{ marginBottom: 20 }}
-              />
+              <RestTiTle style={{ marginBottom: 20 }} font="bold" size="xlarge">
+                {data.bottomRestName.restTitle}
+              </RestTiTle>
+
               <RestDetailsCard
                 title={data.bottomRestName.title}
                 price={data.bottomRestName.price}
@@ -501,7 +517,7 @@ const RestaurantDetails = ({ navigation, route }) => {
             </InfoContainer>
 
             <BottomSaveView>
-              <SaveText font="medium" size="medium" color="grey">
+              <SaveText font="medium" size="medium" color="green">
                 Save US$25. Conditions Applay.
               </SaveText>
             </BottomSaveView>

@@ -5,17 +5,16 @@ import styled from "styled-components";
 
 import * as IMAGES from "../../constants/Images";
 
-const windowWidth = Dimensions.get("screen").width;
-const windowHeight = Dimensions.get("screen").height;
+const { width, height } = Dimensions.get("screen");
 
 const Container = styled.View``;
 
 const Map = styled(MapView)`
-  width: ${windowWidth / 1.1}px;
-  height: ${windowHeight / 2}px;
+  width: ${width / 1.1}px;
+  height: ${height / 2}px;
 `;
 
-const GoogleMap = () => {
+const GoogleMap = ({ ...props }) => {
   const [mapRegion, setMapRegion] = useState({
     latitude: 41.71525,
     longitude: 44.79001,
@@ -25,7 +24,7 @@ const GoogleMap = () => {
 
   return (
     <Container>
-      <Map initialRegion={mapRegion}>
+      <Map initialRegion={mapRegion} {...props}>
         <Marker
           title="John"
           description="Your Location"

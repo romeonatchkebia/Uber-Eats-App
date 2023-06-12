@@ -9,7 +9,7 @@ import NewText from "../atoms/NewText";
 import * as IMAGES from "../../constants/Images";
 
 import { UserInfo } from "../helpers/UserInfo";
-import { UpdateUser, User } from "../../UserProvider";
+import { UpdateUser } from "../helpers/UserProvider";
 
 const { height, width } = Dimensions.get("screen");
 

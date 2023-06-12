@@ -11,7 +11,6 @@ import * as IMAGES from "../../constants/Images";
 import NewText from "../atoms/NewText";
 import Screen from "../atoms/Screen";
 import TrackOrderCard from "../molecules/cards/TrackOrderCard";
-import TextInput from "../atoms/TextInput";
 import GoogleMap from "../organisms/GoogleMap";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 
@@ -139,7 +138,7 @@ const TextsView = styled.View`
 `;
 
 const TrackOrder = ({ navigation }) => {
-  const [progress, setProgress] = useState(0.5);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (progress < 1) {
