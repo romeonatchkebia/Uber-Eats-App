@@ -1474,7 +1474,7 @@ function HomeScreen({ navigation }) {
                   </IconView>
                 </FilterTextPress>
 
-                <FilterBtnPress>
+                <FilterBtnPress onPress={() => navigation.navigate("Filters")}>
                   <FilterBtn source={IMAGES.Slider} />
                 </FilterBtnPress>
               </FilterView>

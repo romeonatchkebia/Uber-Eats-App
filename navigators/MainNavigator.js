@@ -31,6 +31,7 @@ import EmailVerification from "../src/components/screens/EmailVerification";
 import Welcome from "../src/components/screens/Welcome";
 import LandingScreen from "../src/components/screens/LandingScreen";
 import TestScreen from "../src/components/screens/TestScreen";
+import Filters from "../src/components/screens/Filters";
 
 const Stack = createNativeStackNavigator();
 
@@ -174,6 +175,11 @@ function MainNavigator() {
             name={ROUTES.TEST_SCREEN}
             component={TestScreen}
             options={{ title: "Test" }}
+          />
+          <Stack.Screen
+            name={ROUTES.FILTERS_SCREEN}
+            component={Filters}
+            options={{ title: "Filters" }}
           />
         </Stack.Navigator>
       </Host>
