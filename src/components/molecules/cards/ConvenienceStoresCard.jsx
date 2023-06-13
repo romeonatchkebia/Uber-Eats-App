@@ -8,9 +8,10 @@ const { height, width } = Dimensions.get("screen");
 
 const Container = styled.Pressable`
   align-items: center;
+  border-radius: ${width * 0.025}px;
   justify-content: space-around;
   margin: ${width * 0.013}px;
-  height: ${height * 0.185}px;
+  height: ${height * 0.235}px;
   width: ${width * 0.422}px;
 `;
 
@@ -28,7 +29,7 @@ const TextView = styled.View`
 
 const Time = styled(NewText)``;
 
-const GroceryCard = ({ background, logo, time, onPress }) => {
+const ConvenienceStoresCard = ({ background, logo, time, onPress }) => {
   return (
     <Container
       onPress={onPress}
@@ -42,7 +43,7 @@ const GroceryCard = ({ background, logo, time, onPress }) => {
 
       {time ? (
         <TextView>
-          <Time color="white">In {time} minutes</Time>
+          <Time color="white">Opens at {time} AM</Time>
         </TextView>
       ) : (
         <TextView>
@@ -55,4 +56,4 @@ const GroceryCard = ({ background, logo, time, onPress }) => {
   );
 };
 
-export default GroceryCard;
+export default ConvenienceStoresCard;

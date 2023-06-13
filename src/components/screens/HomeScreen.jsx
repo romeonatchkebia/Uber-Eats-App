@@ -92,11 +92,11 @@ const CategoryContainer = styled.View`
   margin: ${width * 0.038}px;
 `;
 
-const WrapCat = styled.View``;
+const WrapCat = styled.Pressable``;
 
-const OuterDiv = styled.View`
+const OuterDiv = styled.Pressable`
   display: flex;
-  background: rgba(230, 230, 230, 0.4);
+  background: rgba(205, 203, 203, 0.5);
   height: ${height * 0.085}px;
   padding-top: ${width * 0.025}px;
   width: ${width * 0.2}px;
@@ -105,7 +105,7 @@ const OuterDiv = styled.View`
 const More = styled.Pressable`
   display: flex;
   align-items: center;
-  background: rgba(230, 230, 230, 0.4);
+  background: rgba(205, 203, 203, 0.5);
   height: ${height * 0.085}px;
   padding-top: ${width * 0.015}px;
   width: ${width * 0.2}px;
@@ -159,7 +159,7 @@ const RenderView = styled.View`
 
 const OuterDivForSheet = styled.View`
   display: flex;
-  background: rgba(230, 230, 230, 0.4);
+  background: rgba(205, 203, 203, 0.5);
   height: ${height * 0.085}px;
   padding-top: ${width * 0.025}px;
   width: ${width * 0.2}px;
@@ -1487,7 +1487,10 @@ function HomeScreen({ navigation }) {
             <CategoryContainer>
               <WrapCat>
                 <OuterDiv>
-                  <CategoryCard imgUrl={IMAGES.Convenience} />
+                  <CategoryCard
+                    imgUrl={IMAGES.Convenience}
+                    onPress={() => navigation.navigate("Convenience")}
+                  />
                 </OuterDiv>
 
                 <CardTitle font="medium">Convenience</CardTitle>
