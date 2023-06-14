@@ -96,7 +96,7 @@ const WrapCat = styled.Pressable``;
 
 const OuterDiv = styled.Pressable`
   display: flex;
-  background: rgba(205, 203, 203, 0.5);
+  background: rgba(230, 230, 230, 1);
   height: ${height * 0.085}px;
   padding-top: ${width * 0.025}px;
   width: ${width * 0.2}px;
@@ -105,7 +105,7 @@ const OuterDiv = styled.Pressable`
 const More = styled.Pressable`
   display: flex;
   align-items: center;
-  background: rgba(205, 203, 203, 0.5);
+  background: rgba(230, 230, 230, 1);
   height: ${height * 0.085}px;
   padding-top: ${width * 0.015}px;
   width: ${width * 0.2}px;
@@ -159,7 +159,7 @@ const RenderView = styled.View`
 
 const OuterDivForSheet = styled.View`
   display: flex;
-  background: rgba(205, 203, 203, 0.5);
+  background: rgba(230, 230, 230, 1);
   height: ${height * 0.085}px;
   padding-top: ${width * 0.025}px;
   width: ${width * 0.2}px;
@@ -1464,7 +1464,9 @@ function HomeScreen({ navigation }) {
               </CtgrView>
 
               <FilterView>
-                <FilterTextPress>
+                <FilterTextPress
+                  onPress={() => navigation.navigate("ChangeAddress")}
+                >
                   <FilterText font="medium" size="large">
                     Now • London Hall
                   </FilterText>

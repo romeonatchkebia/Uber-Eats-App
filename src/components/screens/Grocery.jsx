@@ -117,9 +117,7 @@ const Grocery = ({ navigation }) => {
       <Wrapper>
         <Header>
           <Left>
-            <Pressable
-              onPress={() => navigation.goBack(ROUTS.HOMESCREEN_SCREEN)}
-            >
+            <Pressable onPress={() => navigation.goBack()}>
               <Feather
                 name="arrow-left"
                 size={width >= 350 ? 26 : 18}

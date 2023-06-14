@@ -33,6 +33,7 @@ import LandingScreen from "../src/components/screens/LandingScreen";
 import TestScreen from "../src/components/screens/TestScreen";
 import Filters from "../src/components/screens/Filters";
 import Convenience from "../src/components/screens/Convenience";
+import ChangeAddress from "../src/components/screens/ChangeAddress";
 
 const Stack = createNativeStackNavigator();
 
@@ -186,6 +187,11 @@ function MainNavigator() {
             name={ROUTES.CONVENIENCE_SCREEN}
             component={Convenience}
             options={{ title: "Convenience" }}
+          />
+          <Stack.Screen
+            name={ROUTES.CHANGEADDRESS_SCREEN}
+            component={ChangeAddress}
+            options={{ title: "ChangeAddress" }}
           />
         </Stack.Navigator>
       </Host>
