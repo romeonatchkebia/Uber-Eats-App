@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { View, ScrollView, Dimensions } from "react-native";
 import styled from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
@@ -29,6 +31,44 @@ const Container = styled(Screen)``;
 const Wrapper = styled.View`
   margin: ${width * 0.038}px;
 `;
+
+const Navigation = styled.View`
+  flex-direction: row;
+  top: ${width * 0.05}px;
+  justify-content: space-between;
+  padding: ${width * 0.038}px;
+  position: absolute;
+  width: 100%;
+`;
+
+const BackArrow = styled.Pressable`
+  align-items: center;
+  background: #ffffff;
+  border-radius: ${width * 0.13}px;
+  flex-direction: row;
+  justify-content: center;
+  padding: ${width * 0.025}px;
+`;
+
+const Heart = styled.View`
+  align-items: center;
+  background: #ffffff;
+  border-radius: ${width * 0.13}px;
+  flex-direction: row;
+  justify-content: center;
+  padding: ${width * 0.025}px;
+`;
+
+const Dots = styled.View`
+  align-items: center;
+  background: #ffffff;
+  border-radius: ${width * 0.13}px;
+  flex-direction: row;
+  justify-content: center;
+  padding: ${width * 0.025}px;
+`;
+
+const MainImageView = styled.View``;
 
 const Pizza = styled.Image`
   height: ${height / 5}px;
@@ -93,7 +133,7 @@ const SectionTitle = styled(NewText)`
   margin: ${height * 0.023}px 0;
 `;
 
-const BottomSaveView = styled.View`
+const BottomSaveView = styled.Pressable`
   align-items: center;
   justify-content: center;
   margin-bottom: ${height * 0.023}px;
@@ -148,7 +188,37 @@ const RestaurantDetails = ({ navigation, route }) => {
         </SpinnerView>
       ) : (
         <ScrollView>
-          <Pizza source={IMAGES.RestaurantDetailsPizza} />
+          <MainImageView>
+            <Pizza source={IMAGES.RestaurantDetailsPizza} />
+
+            <Navigation>
+              <BackArrow onPress={() => navigation.goBack()}>
+                <Feather
+                  name="arrow-left"
+                  size={width >= 350 ? 26 : 18}
+                  color="black"
+                />
+              </BackArrow>
+
+              <View style={{ flexDirection: "row", gap: width * 0.038 }}>
+                <Heart>
+                  <Ionicons
+                    name="heart-outline"
+                    size={width >= 350 ? 26 : 18}
+                    color="black"
+                  />
+                </Heart>
+
+                <Dots>
+                  <MaterialCommunityIcons
+                    name="dots-horizontal"
+                    size={width >= 350 ? 26 : 18}
+                    color="black"
+                  />
+                </Dots>
+              </View>
+            </Navigation>
+          </MainImageView>
 
           <Map />
 
@@ -341,7 +411,7 @@ const RestaurantDetails = ({ navigation, route }) => {
               />
             </InfoContainer>
 
-            <BottomSaveView>
+            <BottomSaveView onPress={() => navigation.navigate("Promotions")}>
               <SaveText font="medium" size="medium" color="green">
                 Save US$25. Conditions Applay.
               </SaveText>

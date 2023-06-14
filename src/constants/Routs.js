@@ -36,6 +36,7 @@ export const DEALS_SCREEN = "Deals";
 export const FILTERS_SCREEN = "Filters";
 export const CONVENIENCE_SCREEN = "Convenience";
 export const CHANGEADDRESS_SCREEN = "ChangeAddress";
+export const PROMOTIONS_SCREEN = "Promotions";
 
 // Settings Navigator Screens
 export const SETTINGS_DETAILS = "SettingDetails";

@@ -34,6 +34,7 @@ import TestScreen from "../src/components/screens/TestScreen";
 import Filters from "../src/components/screens/Filters";
 import Convenience from "../src/components/screens/Convenience";
 import ChangeAddress from "../src/components/screens/ChangeAddress";
+import Promotions from "../src/components/screens/Promotions";
 
 const Stack = createNativeStackNavigator();
 
@@ -192,6 +193,11 @@ function MainNavigator() {
             name={ROUTES.CHANGEADDRESS_SCREEN}
             component={ChangeAddress}
             options={{ title: "ChangeAddress" }}
+          />
+          <Stack.Screen
+            name={ROUTES.PROMOTIONS_SCREEN}
+            component={Promotions}
+            options={{ title: "Promotions" }}
           />
         </Stack.Navigator>
       </Host>
