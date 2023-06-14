@@ -10,6 +10,7 @@ import * as IMAGES from "../../constants/Images";
 import * as ROUTES from "../../constants/Routs";
 import * as COLOR from "../../constants/Colors";
 import { User } from "../helpers/UserProvider";
+import { accounData } from "../../data/appData";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -40,57 +41,9 @@ const AboutText = styled(NewText)`
   margin-top: ${height * 0.023}px;
 `;
 
-const data = [
-  {
-    id: 0,
-    title: "Orders",
-    icon: require("../Images/accountScreen/OrdersIcon.png"),
-  },
-  {
-    id: 1,
-    title: "Your favourites",
-    icon: require("../Images/accountScreen/FavouritesIcon.png"),
-  },
-  {
-    id: 2,
-    title: "Restaurant Rewards",
-    icon: require("../Images/accountScreen/RewardsIcon.png"),
-    value: ROUTES.DEALS_SCREEN,
-  },
-  {
-    id: 3,
-    title: "Wallet",
-    icon: require("../Images/accountScreen/WalletIcon.png"),
-  },
-  {
-    id: 4,
-    title: "Send a gift",
-    icon: require("../Images/accountScreen/GiftIcon.png"),
-  },
-  {
-    id: 5,
-    title: "Help",
-    icon: require("../Images/accountScreen/HelpIcon.png"),
-  },
-  {
-    id: 6,
-    title: "Promotions",
-    icon: require("../Images/accountScreen/PromotionsIcon.png"),
-  },
-  {
-    id: 7,
-    title: "Deliver with Uber",
-    icon: require("../Images/accountScreen/Union.png"),
-  },
-  {
-    id: 8,
-    title: "Settings",
-    icon: require("../Images/accountScreen/SettingsIcon.png"),
-    value: ROUTES.SETTINGS_NAVIGATOR,
-  },
-];
-
 const Account = ({ navigation, route }) => {
+  const [data, setData] = useState(accounData);
+
   const [image, setImage] = useState(false);
   const [nameState, setNameState] = useState(false);
 

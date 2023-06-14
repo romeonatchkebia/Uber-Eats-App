@@ -24,7 +24,7 @@ const AccountCard = ({ title, imgUrl, onPress, ...props }) => {
   return (
     <Container onPress={onPress} {...props}>
       <Icon source={imgUrl} />
-      <Title onPress={onPress} font="medium" {...props}>
+      <Title font="medium" {...props}>
         {title}
       </Title>
     </Container>

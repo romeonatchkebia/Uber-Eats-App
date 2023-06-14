@@ -1,5 +1,5 @@
 import { FlatList, Pressable, Dimensions, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Octicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
@@ -10,6 +10,7 @@ import * as ROUTS from "../../constants/Routs";
 import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 import GroceryCard from "../molecules/cards/GroceryCard";
+import { groceryStores } from "../../data/appData";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -66,52 +67,9 @@ const SanFranTitle = styled(NewText)``;
 
 const JohnList = styled(NewText)``;
 
-const stores = [
-  {
-    id: 0,
-    title: "Safeway",
-    logo: require("../Images/GroceryScreen/Safewaylogo.png"),
-    background: "#F60000",
-    time: 60,
-  },
-  {
-    id: 1,
-    title: "Andronico's",
-    logo: require("../Images/GroceryScreen/Andronico.png"),
-    background: "#77A240",
-    time: 60,
-  },
-  {
-    id: 2,
-    title: "5Elements",
-    logo: require("../Images/GroceryScreen/5elementlogo.png"),
-    background: "#E4AE3C",
-    time: 60,
-  },
-  {
-    id: 3,
-    title: "GroceryOutlet",
-    logo: require("../Images/GroceryScreen/Groceryoutletlogo.png"),
-    background: "#B71234",
-    time: 60,
-  },
-  {
-    id: 4,
-    title: "Cardenas",
-    logo: require("../Images/GroceryScreen/Cardenaslogo.png"),
-    background: "#AB0920",
-    time: 60,
-  },
-  {
-    id: 5,
-    title: "Smart&Finals",
-    logo: require("../Images/GroceryScreen/Andronico.png"),
-    background: "#D2202F",
-    time: false,
-  },
-];
-
 const Grocery = ({ navigation }) => {
+  const [stores, setStores] = useState(groceryStores);
+
   return (
     <Container>
       <Wrapper>

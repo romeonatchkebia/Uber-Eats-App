@@ -94,10 +94,6 @@ const GreyText = styled.View`
   margin-top: ${width * 0.038}px;
 `;
 
-const BottomWrapper = styled.View`
-  margin: ${width * 0.038}px;
-`;
-
 const OrderDetail = ({ navigation }) => {
   return (
     <Container>

@@ -12,6 +12,7 @@ import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
 import CtgrButton from "../atoms/CtgrButton";
 import CategoriesScreenCard from "../molecules/cards/CategoriesScreenCard";
+import { categories } from "../../data/appData";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -90,85 +91,9 @@ const CtgrView = styled.View`
   margin: ${width * 0.05}px 0;
 `;
 
-const categories = [
-  {
-    id: 0,
-    title: "Fruits & vegetables",
-    imgUrl: require("../Images/categoriesScreen/banana.png"),
-  },
-  {
-    id: 1,
-    title: "Beverages",
-    imgUrl: require("../Images/categoriesScreen/beverages.png"),
-  },
-  {
-    id: 2,
-    title: "Fruits & vegetables",
-    imgUrl: require("../Images/categoriesScreen/banana.png"),
-  },
-  {
-    id: 3,
-    title: "Pantry & Groceries",
-    imgUrl: require("../Images/categoriesScreen/pantry.png"),
-  },
-  {
-    id: 4,
-    title: "Snacks",
-    imgUrl: require("../Images/categoriesScreen/snack.png"),
-  },
-  {
-    id: 5,
-    title: "Meat, Seafood & Plant-Bas...",
-    imgUrl: require("../Images/categoriesScreen/meat.png"),
-  },
-  {
-    id: 6,
-    title: "Cheese",
-    imgUrl: require("../Images/categoriesScreen/cheese.png"),
-  },
-  {
-    id: 7,
-    title: "Bread",
-    imgUrl: require("../Images/categoriesScreen/bread.png"),
-  },
-  {
-    id: 8,
-    title: "Milk",
-    imgUrl: require("../Images/categoriesScreen/milk.png"),
-  },
-  {
-    id: 9,
-    title: "Canned Products",
-    imgUrl: require("../Images/categoriesScreen/canned.png"),
-  },
-  {
-    id: 10,
-    title: "Home",
-    imgUrl: require("../Images/categoriesScreen/home.png"),
-  },
-  {
-    id: 11,
-    title: "Breakfast",
-    imgUrl: require("../Images/categoriesScreen/breakfast.png"),
-  },
-  {
-    id: 12,
-    title: "Sweets & Chocolates",
-    imgUrl: require("../Images/categoriesScreen/sweets.png"),
-  },
-  {
-    id: 13,
-    title: "Yogurt",
-    imgUrl: require("../Images/categoriesScreen/yogurt.png"),
-  },
-  {
-    id: 14,
-    title: "Prepared Foods",
-    imgUrl: require("../Images/categoriesScreen/prepared.png"),
-  },
-];
-
 const Categories = ({ navigation, route }) => {
+  const [data, setData] = useState(categories);
+
   const { restName } = route.params;
   const [isLoading, setIsLoading] = useState(false);
 
@@ -260,7 +185,7 @@ const Categories = ({ navigation, route }) => {
                 />
               </CtgrView>
 
-              {categories.map((item) => {
+              {data.map((item) => {
                 return (
                   <CategoriesScreenCard
                     key={item.id}

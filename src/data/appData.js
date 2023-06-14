@@ -1,3 +1,6 @@
+import * as ROUTS from "../constants/Routs";
+
+//BasketsScreen
 export const basketsData = [
   {
     id: 0,
@@ -28,6 +31,8 @@ export const basketsData = [
     imgUrl: require("../components/Images/BasketsScreen/Rectangle20.png"),
   },
 ];
+
+//ConvenienceScreen
 export const ConvenienceData = [
   {
     id: 0,
@@ -121,6 +126,8 @@ export const ConvenienceStores = [
     time: "10:00",
   },
 ];
+
+//HomeScreen
 export const ctgryListItems = [
   {
     id: 0,
@@ -797,5 +804,849 @@ export const deliveryList = [
         price: "10.00",
       },
     ],
+  },
+];
+
+//CategoriesScreen
+export const categories = [
+  {
+    id: 0,
+    title: "Fruits & vegetables",
+    imgUrl: require("../components/Images/categoriesScreen/banana.png"),
+  },
+  {
+    id: 1,
+    title: "Beverages",
+    imgUrl: require("../components/Images/categoriesScreen/beverages.png"),
+  },
+  {
+    id: 2,
+    title: "Fruits & vegetables",
+    imgUrl: require("../components/Images/categoriesScreen/banana.png"),
+  },
+  {
+    id: 3,
+    title: "Pantry & Groceries",
+    imgUrl: require("../components/Images/categoriesScreen/pantry.png"),
+  },
+  {
+    id: 4,
+    title: "Snacks",
+    imgUrl: require("../components/Images/categoriesScreen/snack.png"),
+  },
+  {
+    id: 5,
+    title: "Meat, Seafood & Plant-Bas...",
+    imgUrl: require("../components/Images/categoriesScreen/meat.png"),
+  },
+  {
+    id: 6,
+    title: "Cheese",
+    imgUrl: require("../components/Images/categoriesScreen/cheese.png"),
+  },
+  {
+    id: 7,
+    title: "Bread",
+    imgUrl: require("../components/Images/categoriesScreen/bread.png"),
+  },
+  {
+    id: 8,
+    title: "Milk",
+    imgUrl: require("../components/Images/categoriesScreen/milk.png"),
+  },
+  {
+    id: 9,
+    title: "Canned Products",
+    imgUrl: require("../components/Images/categoriesScreen/canned.png"),
+  },
+  {
+    id: 10,
+    title: "Home",
+    imgUrl: require("../components/Images/categoriesScreen/home.png"),
+  },
+  {
+    id: 11,
+    title: "Breakfast",
+    imgUrl: require("../components/Images/categoriesScreen/breakfast.png"),
+  },
+  {
+    id: 12,
+    title: "Sweets & Chocolates",
+    imgUrl: require("../components/Images/categoriesScreen/sweets.png"),
+  },
+  {
+    id: 13,
+    title: "Yogurt",
+    imgUrl: require("../components/Images/categoriesScreen/yogurt.png"),
+  },
+  {
+    id: 14,
+    title: "Prepared Foods",
+    imgUrl: require("../components/Images/categoriesScreen/prepared.png"),
+  },
+];
+
+//DealsScreen
+export const offersList = [
+  {
+    id: 1,
+    url: require("../components/Images/mainCardImage.png"),
+    title: "Adenine Kitchen",
+    price: "0.29",
+    deliveryTime: "10-25",
+    rating: 4.3,
+    promoOrdersNum: "9",
+    promoOrdersPrice: "23",
+  },
+  {
+    id: 2,
+    url: require("../components/Images/mainCardImage1.png"),
+    title: "Cardinal Chips",
+    price: "0.49",
+    deliveryTime: "20-45",
+    rating: 4.6,
+  },
+  {
+    id: 3,
+    url: require("../components/Images/mainCardImage2.png"),
+    title: "Cardinal Chips",
+    price: "0.55",
+    deliveryTime: "20-45",
+    rating: 4.6,
+    promoOrdersNum: "3",
+    promoOrdersPrice: "7",
+  },
+  {
+    id: 4,
+    url: require("../components/Images/mainCardImage3.png"),
+    title: "Cardinal Chips",
+    price: "0.25",
+    deliveryTime: "20-45",
+    rating: 4.6,
+  },
+];
+export const rewardsList = [
+  {
+    id: 1,
+    url: require("../components/Images/mainCardImage1.png"),
+    title: "Adenine Kitchen",
+    price: "0.29",
+    deliveryTime: "10-25",
+    rating: 4.3,
+  },
+  {
+    id: 2,
+    url: require("../components/Images/mainCardImage2.png"),
+    title: "Cardinal Chips",
+    price: "0.49",
+    deliveryTime: "20-45",
+    rating: 4.6,
+  },
+  {
+    id: 3,
+    url: require("../components/Images/mainCardImage.png"),
+    title: "Cardinal Chips",
+    price: "0.55",
+    deliveryTime: "20-45",
+    rating: 4.6,
+  },
+  {
+    id: 4,
+    url: require("../components/Images/mainCardImage2.png"),
+    title: "Cardinal Chips",
+    price: "0.25",
+    deliveryTime: "20-45",
+    rating: 4.6,
+  },
+];
+
+//FeaturedScreen
+export const FeaturedList = [
+  {
+    title: "Fruits & Vegetables",
+    data: [
+      {
+        id: 0,
+        url: require("../components/Images/StoreScreen/Banana.png"),
+        title: "Organic Banana",
+        subTitle: "1 banana",
+        price: "0.27",
+      },
+      {
+        id: 1,
+        url: require("../components/Images/StoreScreen/avocado.png"),
+        title: "Meium Hass Avocado",
+        subTitle: "1 avocado",
+        price: "2.21",
+      },
+      {
+        id: 2,
+        url: require("../components/Images/StoreScreen/Banana.png"),
+        title: "Organic Banana",
+        subTitle: "1 banana",
+        price: "0.27",
+      },
+      {
+        id: 3,
+        url: require("../components/Images/StoreScreen/avocado.png"),
+        title: "Meium Hass Avocado",
+        subTitle: "1 avocado",
+        price: "2.21",
+      },
+    ],
+  },
+  {
+    title: "Beverages",
+    data: [
+      {
+        id: 3,
+        url: require("../components/Images/StoreScreen/cocacola.png"),
+        title: "Coca-Cola Zero Sugar Cola Soda",
+        subTitle: "12 x 12 fl oz",
+        price: "9.89",
+      },
+      {
+        id: 4,
+        url: require("../components/Images/StoreScreen/orangeJuice.png"),
+        title: "Simply Pulp Free Orange Juice",
+        subTitle: "52 fl oz",
+        price: "5.49",
+      },
+      {
+        id: 5,
+        url: require("../components/Images/StoreScreen/cocacola.png"),
+        title: "Coca-Cola Zero Sugar Cola Soda",
+        subTitle: "12 x 12 fl oz",
+        price: "9.89",
+      },
+      {
+        id: 6,
+        url: require("../components/Images/StoreScreen/orangeJuice.png"),
+        title: "Simply Pulp Free Orange Juice",
+        subTitle: "52 fl oz",
+        price: "5.49",
+      },
+    ],
+  },
+  {
+    title: "Frozen Foods",
+    data: [
+      {
+        id: 6,
+        url: require("../components/Images/StoreScreen/chickenBites.png"),
+        title: "T.G.I Friay's Boneless Chicken Bites",
+        subTitle: "15 oz",
+        price: "10.44",
+      },
+      {
+        id: 7,
+        url: require("../components/Images/StoreScreen/sousages.png"),
+        title: "Apple and Maple Froken Sausages",
+        subTitle: "55 fl oz",
+        price: "7.69",
+      },
+      {
+        id: 8,
+        url: require("../components/Images/StoreScreen/chickenBites.png"),
+        title: "T.G.I Friay's Boneless Chicken Bites",
+        subTitle: "15 oz",
+        price: "10.44",
+      },
+      {
+        id: 7,
+        url: require("../components/Images/StoreScreen/sousages.png"),
+        title: "Apple and Maple Froken Sausages",
+        subTitle: "55 fl oz",
+        price: "7.69",
+      },
+    ],
+  },
+  {
+    title: "Pantry & Groceries",
+    data: [
+      {
+        id: 9,
+        url: require("../components/Images/StoreScreen/doritos.png"),
+        title: "Doritos Nacho Cheese",
+        subTitle: "9.3 oz",
+        price: "6.15",
+      },
+      {
+        id: 10,
+        url: require("../components/Images/StoreScreen/sousages.png"),
+        title: "Wheat Sundried Tomato &...",
+        subTitle: "8.5 oz",
+        price: "5.49",
+      },
+      {
+        id: 11,
+        url: require("../components/Images/StoreScreen/doritos.png"),
+        title: "Doritos Nacho Cheese",
+        subTitle: "9.3 oz",
+        price: "6.15",
+      },
+      {
+        id: 10,
+        url: require("../components/Images/StoreScreen/sousages.png"),
+        title: "Wheat Sundried Tomato &...",
+        subTitle: "8.5 oz",
+        price: "5.49",
+      },
+    ],
+  },
+  {
+    title: "Meat Seafood & Plant-Based",
+    data: [
+      {
+        id: 12,
+        url: require("../components/Images/StoreScreen/skinlesschicken.png"),
+        title: "Signature Farms Boneless Skinless Chicke...",
+        subTitle: "approx 1.5 lbs; p...",
+        price: "11.54",
+      },
+      {
+        id: 13,
+        url: require("../components/Images/StoreScreen/turkey.png"),
+        title: "Boar's Head Turkey Honey Maple Glazed",
+        subTitle: "12 oz",
+        price: "7.69",
+      },
+      {
+        id: 14,
+        url: require("../components/Images/StoreScreen/skinlesschicken.png"),
+        title: "Signature Farms Boneless Skinless Chicke...",
+        subTitle: "approx 1.5 lbs; p...",
+        price: "11.54",
+      },
+      {
+        id: 13,
+        url: require("../components/Images/StoreScreen/turkey.png"),
+        title: "Boar's Head Turkey Honey Maple Glazed",
+        subTitle: "12 oz",
+        price: "7.69",
+      },
+    ],
+  },
+  {
+    title: "Cheese",
+    data: [
+      {
+        id: 15,
+        url: require("../components/Images/StoreScreen/veganCheese.png"),
+        title: "Open Nature Vegan non-Dairy",
+        subTitle: "8 oz",
+        price: "5.49",
+      },
+      {
+        id: 16,
+        url: require("../components/Images/StoreScreen/breecheese.png"),
+        title: "Prime Taglio Herb & Garlic Brie Cheese",
+        subTitle: "approx 0.5 lb",
+        price: "7.70",
+      },
+      {
+        id: 17,
+        url: require("../components/Images/StoreScreen/veganCheese.png"),
+        title: "Open Nature Vegan non-Dairy",
+        subTitle: "8 oz",
+        price: "5.49",
+      },
+      {
+        id: 16,
+        url: require("../components/Images/StoreScreen/breecheese.png"),
+        title: "Prime Taglio Herb & Garlic Brie Cheese",
+        subTitle: "approx 0.5 lb",
+        price: "7.70",
+      },
+    ],
+  },
+];
+
+//ItemDetailsScreen
+export const nutritionFacts = [
+  {
+    id: 0,
+    title: "Total Fat",
+    gr: "0g",
+    percent: "0%",
+  },
+  {
+    id: 1,
+    title: "Saturated Fat",
+    gr: "0g",
+    percent: "0%",
+  },
+  {
+    id: 2,
+    title: "Total carbohydrate",
+    gr: "30g",
+    percent: "10%",
+  },
+  {
+    id: 3,
+    title: "Dietary Fiber",
+    gr: "3g",
+    percent: "10%",
+  },
+  {
+    id: 4,
+    title: "Sugars",
+    gr: "19g",
+    percent: false,
+  },
+  {
+    id: 5,
+    title: "Protain",
+    gr: "1g",
+    percent: false,
+  },
+  {
+    id: 6,
+    title: "Potassium",
+    gr: false,
+    percent: "15%",
+  },
+  {
+    id: 7,
+    title: "Calcium",
+    gr: false,
+    percent: "0%",
+  },
+  {
+    id: 8,
+    title: "Iron",
+    gr: false,
+    percent: "2%",
+  },
+  {
+    id: 9,
+    title: "Vitamin A",
+    gr: false,
+    percent: "2%",
+  },
+  {
+    id: 10,
+    title: "Vitamin C",
+    gr: false,
+    percent: "15%",
+  },
+];
+
+//OrderSelectionScreen
+export const sauceList = [
+  {
+    id: 0,
+    value: 1,
+    label: "Mariana Sauce",
+    price: 0,
+  },
+  {
+    id: 1,
+    value: 2,
+    label: "Garlicky Sauce",
+    price: 0,
+  },
+  {
+    id: 2,
+    value: 3,
+    label: "Pesto Sauce",
+    price: 0,
+  },
+  {
+    id: 3,
+    value: 4,
+    label: "BBQ Sauce",
+    price: 0,
+  },
+  {
+    id: 4,
+    value: 5,
+    label: "Buffalo Sauce",
+    price: 0,
+  },
+];
+export const sizeList = [
+  {
+    id: 5,
+    value: 6,
+    label: "Small 10'' (6 Slices)",
+    price: 0,
+  },
+  {
+    id: 6,
+    value: 7,
+    label: "Medium 12'' (8 Slices)",
+    price: "4.00",
+  },
+  {
+    id: 7,
+    value: 8,
+    label: "Large 14'' (8 Slices)",
+    price: "10.00",
+  },
+  {
+    id: 8,
+    value: 9,
+    label: "Extra large 16'' (12 Slices)",
+    price: "15.00",
+  },
+  {
+    id: 9,
+    value: 10,
+    label: "Super 20'' (12 Slices)",
+    price: "18.00",
+  },
+  {
+    id: 10,
+    value: 11,
+    label: "24''",
+    price: "25.00",
+  },
+];
+export const crustList = [
+  {
+    id: 11,
+    value: 12,
+    label: "Regular Crust",
+    price: 0,
+  },
+  {
+    id: 12,
+    value: 13,
+    label: "Corn Skinny Crust",
+    price: "4.00",
+  },
+  {
+    id: 13,
+    value: 14,
+    label: "Thick Pun Crust",
+    price: "10.00",
+  },
+];
+export const sideList = [
+  {
+    id: 14,
+    value: 1,
+    label: "1 Side of Ranch Dressing",
+    price: "0.50",
+  },
+];
+export const addsList = [
+  {
+    id: 14,
+    value: 1,
+    label: "1 Side of Ranch Dressing",
+    price: "0.50",
+  },
+  {
+    id: 15,
+    value: 1,
+    label: "2 Side of Ranch Dressing",
+    price: "1.00",
+  },
+  {
+    id: 16,
+    value: 1,
+    label: "Side of Marinara Sauce",
+    price: "0.69",
+  },
+];
+export const broughtToList = [
+  {
+    id: 17,
+    value: 1,
+    label: "Soda",
+    price: "1.69",
+    subTitle: "Select options",
+  },
+  {
+    id: 18,
+    value: 1,
+    label: "Cheeze Pizza",
+    price: "12.99",
+    subTitle: "Select options",
+  },
+  {
+    id: 19,
+    value: 1,
+    label: "Amigos Hawaiana Pizza",
+    price: "16.99",
+    subTitle: "Select options",
+  },
+];
+
+//RestaurantDetailsScreen
+export const restDetailsData = {
+  restaurant: {
+    id: 0,
+    name: "Lanespan Pizza & Pub (Emerville)",
+    rating: 4.6,
+    ratingQuantity: 300,
+    category: "Pizza",
+    workingHours: "open until 3:00 am ",
+    deliveryTime: "25-35",
+    deliveryDistance: "1,7",
+    pickupTime: "5-15",
+    pickupDistance: "1,7",
+  },
+
+  bottomRestName: {
+    id: 1,
+    restTitle: "Alcohol - Beer (Must be 21 to Purchase)",
+    title: "Russian River Plinty Bottle",
+    price: "21.00",
+    desc: "Must be 21 to purchase ",
+  },
+
+  mostPopular: [
+    {
+      id: 2,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasasa dsa sadsa da sd asdasdasdas dasdas das das ",
+      img: require("../components/Images/pizza.png"),
+    },
+    {
+      id: 3,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasdasdas das das dasdasdas dasd asd asdsadsa ",
+      img: require("../components/Images/pizza.png"),
+    },
+    {
+      id: 4,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
+      img: require("../components/Images/pizza.png"),
+    },
+    {
+      id: 5,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
+      promo: true,
+    },
+  ],
+  pickedForYou: [
+    {
+      id: 6,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+    {
+      id: 7,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+    {
+      id: 8,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+    {
+      id: 9,
+      title: "Rus River Plinty Bottle",
+      price: "10.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+      itemQuantity: 12,
+    },
+  ],
+  ourSpecialPizaa: [
+    {
+      id: 10,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+    {
+      id: 11,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+    {
+      id: 12,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+    {
+      id: 13,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+  ],
+  starters: {
+    id: 14,
+    title: "Garlic knots",
+    desc: "Priced by add-ons",
+    popular: false,
+    img: require("../components/Images/starters-card-image.png"),
+  },
+  salads: [
+    {
+      id: 15,
+      title: "Little Cesar Salad",
+      price: "18.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+      popular: true,
+    },
+    {
+      id: 16,
+      title: "Rocket Salad",
+      price: "10.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas ",
+    },
+  ],
+  ourSpecialPizza: [
+    {
+      id: 17,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasasa dsa sadsa da sd asdasdasdas dasdas das das ",
+      img: require("../components/Images/pizza.png"),
+    },
+    {
+      id: 18,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasdasdas das das dasdasdas dasd asd asdsadsa ",
+      img: require("../components/Images/pizza.png"),
+    },
+    {
+      id: 19,
+      title: "McMshroom pizza",
+      price: "21.00",
+      desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
+      img: require("../components/Images/pizza.png"),
+    },
+    {
+      id: 20,
+      title: "Happy bithday Pizza",
+      price: "21.00",
+      desc: "dasdasdasdas dasd as da sd asd sadasdas da sdasdasdasdas das d asdasdasdas",
+      popular: true,
+    },
+  ],
+  mischelaneous: [
+    {
+      id: 21,
+      title: "Little Cesar Salad",
+      price: "18.00",
+      popular: true,
+    },
+    {
+      id: 22,
+      title: "Rocket Salad",
+      price: "10.00",
+      popular: true,
+    },
+    {
+      id: 23,
+      title: "Great Salad",
+      price: "10.00",
+    },
+  ],
+};
+
+//AccountScreen
+export const accounData = [
+  {
+    id: 0,
+    title: "Orders",
+    icon: require("../components/Images/accountScreen/OrdersIcon.png"),
+  },
+  {
+    id: 1,
+    title: "Your favourites",
+    icon: require("../components/Images/accountScreen/FavouritesIcon.png"),
+  },
+  {
+    id: 2,
+    title: "Restaurant Rewards",
+    icon: require("../components/Images/accountScreen/RewardsIcon.png"),
+    value: ROUTS.DEALS_SCREEN,
+  },
+  {
+    id: 3,
+    title: "Wallet",
+    icon: require("../components/Images/accountScreen/WalletIcon.png"),
+  },
+  {
+    id: 4,
+    title: "Send a gift",
+    icon: require("../components/Images/accountScreen/GiftIcon.png"),
+  },
+  {
+    id: 5,
+    title: "Help",
+    icon: require("../components/Images/accountScreen/HelpIcon.png"),
+  },
+  {
+    id: 6,
+    title: "Promotions",
+    icon: require("../components/Images/accountScreen/PromotionsIcon.png"),
+  },
+  {
+    id: 7,
+    title: "Deliver with Uber",
+    icon: require("../components/Images/accountScreen/Union.png"),
+  },
+  {
+    id: 8,
+    title: "Settings",
+    icon: require("../components/Images/accountScreen/SettingsIcon.png"),
+    value: ROUTS.SETTINGS_NAVIGATOR,
+  },
+];
+
+//GroceryScreen
+export const groceryStores = [
+  {
+    id: 0,
+    title: "Safeway",
+    logo: require("../components/Images/GroceryScreen/Safewaylogo.png"),
+    background: "#F60000",
+    time: 60,
+  },
+  {
+    id: 1,
+    title: "Andronico's",
+    logo: require("../components/Images/GroceryScreen/Andronico.png"),
+    background: "#77A240",
+    time: 60,
+  },
+  {
+    id: 2,
+    title: "5Elements",
+    logo: require("../components/Images/GroceryScreen/5elementlogo.png"),
+    background: "#E4AE3C",
+    time: 60,
+  },
+  {
+    id: 3,
+    title: "GroceryOutlet",
+    logo: require("../components/Images/GroceryScreen/Groceryoutletlogo.png"),
+    background: "#B71234",
+    time: 60,
+  },
+  {
+    id: 4,
+    title: "Cardenas",
+    logo: require("../components/Images/GroceryScreen/Cardenaslogo.png"),
+    background: "#AB0920",
+    time: 60,
+  },
+  {
+    id: 5,
+    title: "Smart&Finals",
+    logo: require("../components/Images/GroceryScreen/Andronico.png"),
+    background: "#D2202F",
+    time: false,
   },
 ];

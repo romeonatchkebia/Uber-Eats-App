@@ -41,26 +41,26 @@ const Password = styled(TextInput)`
   margin-bottom: 20px;
 `;
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, route }) => {
   const [userNameLogIn, setUserNameLogIn] = useState("");
   const [passwordLogIn, setPasswordLogIn] = useState("");
   const [showError, setShowError] = useState(false);
 
-  // function handleLogIn() {
-  //   if (!route.params) {
-  //     setShowError(true);
-  //   } else if (
-  //     userNameLogIn === route.params.nameOfUser &&
-  //     passwordLogIn === route.params.passwordOfUser
-  //   ) {
-  //     navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
-  //     setShowError(false);
-  //     setUserNameLogIn("");
-  //     setPasswordLogIn("");
-  //   } else {
-  //     setShowError(true);
-  //   }
-  // }
+  function handleLogIn() {
+    if (!route.params) {
+      setShowError(true);
+    } else if (
+      userNameLogIn === route.params.nameOfUser &&
+      passwordLogIn === route.params.passwordOfUser
+    ) {
+      navigation.navigate(ROUTES.DRAWER_NAVIGATOR);
+      setShowError(false);
+      setUserNameLogIn("");
+      setPasswordLogIn("");
+    } else {
+      setShowError(true);
+    }
+  }
 
   return (
     <Container>

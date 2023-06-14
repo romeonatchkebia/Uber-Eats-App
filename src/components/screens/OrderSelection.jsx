@@ -13,6 +13,14 @@ import CheckComponent from "../molecules/CheckComponent";
 import RadioComponent from "../molecules/RadioComponent";
 import BottomSheet from "../atoms/BottomSheet";
 import OrderScreenSheetCard from "../molecules/cards/OrderScreenSheetCard";
+import {
+  sauceList,
+  sizeList,
+  crustList,
+  sideList,
+  broughtToList,
+  addsList,
+} from "../../data/appData";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -215,149 +223,14 @@ const Right = styled.View`
   padding: ${height * 0.023}px;
 `;
 
-const sauce = [
-  {
-    id: 0,
-    value: 1,
-    label: "Mariana Sauce",
-    price: 0,
-  },
-  {
-    id: 1,
-    value: 2,
-    label: "Garlicky Sauce",
-    price: 0,
-  },
-  {
-    id: 2,
-    value: 3,
-    label: "Pesto Sauce",
-    price: 0,
-  },
-  {
-    id: 3,
-    value: 4,
-    label: "BBQ Sauce",
-    price: 0,
-  },
-  {
-    id: 4,
-    value: 5,
-    label: "Buffalo Sauce",
-    price: 0,
-  },
-];
-const size = [
-  {
-    id: 5,
-    value: 6,
-    label: "Small 10'' (6 Slices)",
-    price: 0,
-  },
-  {
-    id: 6,
-    value: 7,
-    label: "Medium 12'' (8 Slices)",
-    price: "4.00",
-  },
-  {
-    id: 7,
-    value: 8,
-    label: "Large 14'' (8 Slices)",
-    price: "10.00",
-  },
-  {
-    id: 8,
-    value: 9,
-    label: "Extra large 16'' (12 Slices)",
-    price: "15.00",
-  },
-  {
-    id: 9,
-    value: 10,
-    label: "Super 20'' (12 Slices)",
-    price: "18.00",
-  },
-  {
-    id: 10,
-    value: 11,
-    label: "24''",
-    price: "25.00",
-  },
-];
-const crust = [
-  {
-    id: 11,
-    value: 12,
-    label: "Regular Crust",
-    price: 0,
-  },
-  {
-    id: 12,
-    value: 13,
-    label: "Corn Skinny Crust",
-    price: "4.00",
-  },
-  {
-    id: 13,
-    value: 14,
-    label: "Thick Pun Crust",
-    price: "10.00",
-  },
-];
-const side = [
-  {
-    id: 14,
-    value: 1,
-    label: "1 Side of Ranch Dressing",
-    price: "0.50",
-  },
-];
-const adds = [
-  {
-    id: 14,
-    value: 1,
-    label: "1 Side of Ranch Dressing",
-    price: "0.50",
-  },
-  {
-    id: 15,
-    value: 1,
-    label: "2 Side of Ranch Dressing",
-    price: "1.00",
-  },
-  {
-    id: 16,
-    value: 1,
-    label: "Side of Marinara Sauce",
-    price: "0.69",
-  },
-];
-const freqBroughtTo = [
-  {
-    id: 17,
-    value: 1,
-    label: "Soda",
-    price: "1.69",
-    subTitle: "Select options",
-  },
-  {
-    id: 18,
-    value: 1,
-    label: "Cheeze Pizza",
-    price: "12.99",
-    subTitle: "Select options",
-  },
-  {
-    id: 19,
-    value: 1,
-    label: "Amigos Hawaiana Pizza",
-    price: "16.99",
-    subTitle: "Select options",
-  },
-];
-
 const OrderSelection = ({ navigation, route }) => {
+  const [sauce, setSauce] = useState(sauceList);
+  const [size, setSize] = useState(sizeList);
+  const [crust, setCrust] = useState(crustList);
+  const [side, setSide] = useState(sideList);
+  const [adds, setAdds] = useState(addsList);
+  const [broughtTo, setBroughtTo] = useState(broughtToList);
+
   const [count, setCount] = useState(1);
   const [sum, setSum] = useState(0);
   const [itemPrice, setItemPrice] = useState(0);
@@ -570,13 +443,13 @@ const OrderSelection = ({ navigation, route }) => {
           </TitleView>
 
           <RadioView>
-            {freqBroughtTo.map((item) => {
+            {broughtTo.map((item) => {
               return (
                 <CheckComponent
                   key={item.id}
                   label={item.label}
                   price={item.price}
-                  arr={freqBroughtTo}
+                  arr={broughtTo}
                   subTitle={item.subTitle}
                   setItemPrice={setItemPrice}
                   setSelectedItem={setSelectedItem}

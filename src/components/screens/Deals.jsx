@@ -12,12 +12,12 @@ import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 
 import * as COLORS from "../../constants/Colors";
-import * as ROUTES from "../../constants/Routs";
 
 import Screen from "../atoms/Screen";
 import SectionDevider from "../atoms/SectionDevider";
 import NewText from "../atoms/NewText";
 import MainCard from "../molecules/cards/MainCard";
+import { offersList, rewardsList } from "../../data/appData";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -86,80 +86,11 @@ const SectionTitle = styled(NewText)`
   height: ${height * 0.0422}px;
 `;
 
-const offersList = [
-  {
-    id: 1,
-    url: require("../Images/mainCardImage.png"),
-    title: "Adenine Kitchen",
-    price: "0.29",
-    deliveryTime: "10-25",
-    rating: 4.3,
-    promoOrdersNum: "9",
-    promoOrdersPrice: "23",
-  },
-  {
-    id: 2,
-    url: require("../Images/mainCardImage1.png"),
-    title: "Cardinal Chips",
-    price: "0.49",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-  {
-    id: 3,
-    url: require("../Images/mainCardImage2.png"),
-    title: "Cardinal Chips",
-    price: "0.55",
-    deliveryTime: "20-45",
-    rating: 4.6,
-    promoOrdersNum: "3",
-    promoOrdersPrice: "7",
-  },
-  {
-    id: 4,
-    url: require("../Images/mainCardImage3.png"),
-    title: "Cardinal Chips",
-    price: "0.25",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-];
-const rewardsList = [
-  {
-    id: 1,
-    url: require("../Images/mainCardImage1.png"),
-    title: "Adenine Kitchen",
-    price: "0.29",
-    deliveryTime: "10-25",
-    rating: 4.3,
-  },
-  {
-    id: 2,
-    url: require("../Images/mainCardImage2.png"),
-    title: "Cardinal Chips",
-    price: "0.49",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-  {
-    id: 3,
-    url: require("../Images/mainCardImage.png"),
-    title: "Cardinal Chips",
-    price: "0.55",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-  {
-    id: 4,
-    url: require("../Images/mainCardImage2.png"),
-    title: "Cardinal Chips",
-    price: "0.25",
-    deliveryTime: "20-45",
-    rating: 4.6,
-  },
-];
-
 const Deals = ({ navigation, route }) => {
+  const [offers, serOffers] = useState(offersList);
+
+  const [rewards, serrewards] = useState(rewardsList);
+
   const params = route.params;
 
   const [type, setType] = useState(params.offer ? 0 : 1);
@@ -231,7 +162,7 @@ const Deals = ({ navigation, route }) => {
 
         <BodyContainer>
           <FlatList
-            data={type === 0 ? offersList : rewardsList}
+            data={type === 0 ? offers : rewards}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => {
               return (
