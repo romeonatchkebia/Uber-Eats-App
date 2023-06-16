@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import NewText from "../../atoms/NewText";
 import SectionDivider from "../../atoms/SectionDevider";
 
-const { height, width } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 
 const Container = styled.View`
   margin: ${width * 0.025}px 0;
@@ -15,7 +15,8 @@ const Container = styled.View`
 const Wrapper = styled.View`
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: ${({ icon }) => (icon ? "" : "space-between")};
+  gap: ${({ icon }) => (icon ? width * 0.06 : "")}px;
   margin-bottom: ${width * 0.025}px;
 `;
 
@@ -29,23 +30,26 @@ const Devider = styled(SectionDivider)`
   height: 1px;
 `;
 
-const CategoriesScreenCard = ({ imgUrl, title }) => {
+const CategoriesScreenCard = ({ imgUrl, title, icon }) => {
   return (
     <Container>
-      <Wrapper>
-        <Left>
-          <Image source={imgUrl} />
-        </Left>
+      {title && (
+        <Wrapper icon={icon}>
+          <Left>{!icon ? <Image source={imgUrl} /> : icon}</Left>
 
-        <Middle>
-          <NewText size="medium">{title}</NewText>
-        </Middle>
+          <Middle>
+            <NewText size="medium">{title}</NewText>
+          </Middle>
 
-        <Right>
-          <Ionicons name="chevron-forward" size={width >= 350 ? 26 : 18} />
-        </Right>
-      </Wrapper>
-      <Devider />
+          {imgUrl && (
+            <Right>
+              <Ionicons name="chevron-forward" size={width >= 350 ? 26 : 18} />
+            </Right>
+          )}
+        </Wrapper>
+      )}
+
+      {title && <Devider />}
     </Container>
   );
 };

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Octicons } from "@expo/vector-icons";
-import { ScrollView, Dimensions } from "react-native";
-
+import { ScrollView, Dimensions, TextInput, Pressable } from "react-native";
 import styled from "styled-components";
+import { Feather } from "@expo/vector-icons";
+
 import Screen from "../atoms/Screen";
 import BrowseCard from "../molecules/cards/BrowseCard";
 import NewText from "../atoms/NewText";
+import CategoriesScreenCard from "../molecules/cards/CategoriesScreenCard";
 import * as ROUTES from "../../constants/Routs";
 
 const { height, width } = Dimensions.get("screen");
@@ -14,6 +16,7 @@ const Container = styled(Screen)``;
 
 const Wrapper = styled.View`
   margin: ${width * 0.038}px;
+  padding-bottom: 15%;
 `;
 
 // searchbar
@@ -28,7 +31,7 @@ const SearchContainer = styled.View`
   padding-left: ${height * 0.023}px;
 `;
 
-const InputText = styled.TextInput`
+const InputText = styled(TextInput)`
   font-style: normal;
   font-weight: 400;
   font-size: ${width * 0.041}px;
@@ -60,9 +63,32 @@ const AllCategories = styled(NewText)`
   margin-bottom: ${height * 0.019}px;
 `;
 
+//Search=true
+
+const RecentView = styled.View`
+  margin-top: ${height * 0.014}px;
+  margin-bottom: ${height * 0.014}px;
+`;
+
+const RecentSearch = styled(NewText)`
+  margin-top: ${height * 0.014}px;
+  margin-bottom: ${height * 0.014}px;
+`;
+
+const TopCatView = styled.View`
+  margin-top: ${height * 0.014}px;
+  margin-bottom: ${height * 0.014}px;
+`;
+
+const TopCatTitle = styled(NewText)`
+  margin-top: ${height * 0.014}px;
+  margin-bottom: ${height * 0.014}px;
+`;
+
 const SearchComponentView = styled.View``;
 
 const Browse = ({ navigation }) => {
+  // browseScreen
   const topCategoriesList = [
     {
       id: 0,
@@ -101,72 +127,72 @@ const Browse = ({ navigation }) => {
   ];
   const allCategoriesList = [
     {
-      id: 0,
+      id: 6,
       title: "Mexican",
       imgUrl: require("../Images/browseScreen/allCategories/Mexican.png"),
     },
     {
-      id: 1,
+      id: 7,
       title: "Fast Food",
       imgUrl: require("../Images/browseScreen/allCategories/Fastfood.png"),
     },
     {
-      id: 2,
+      id: 8,
       title: "Healthy",
       imgUrl: require("../Images/browseScreen/allCategories/Healthy.png"),
     },
     {
-      id: 3,
+      id: 9,
       title: "Pizza",
       imgUrl: require("../Images/browseScreen/allCategories/Pizza.png"),
     },
     {
-      id: 4,
+      id: 10,
       title: "Asian",
       imgUrl: require("../Images/browseScreen/allCategories/Asian.png"),
     },
     {
-      id: 5,
+      id: 11,
       title: "Bakery",
       imgUrl: require("../Images/browseScreen/allCategories/Bakery.png"),
     },
     {
-      id: 6,
+      id: 12,
       title: "Sandwich",
       imgUrl: require("../Images/browseScreen/allCategories/Sandwich.png"),
     },
     {
-      id: 7,
+      id: 13,
       title: "Sushi",
       imgUrl: require("../Images/browseScreen/allCategories/Sushi.png"),
     },
     {
-      id: 8,
+      id: 14,
       title: "Korean",
       imgUrl: require("../Images/browseScreen/allCategories/korean.png"),
     },
     {
-      id: 9,
+      id: 15,
       title: "Vietnamese",
       imgUrl: require("../Images/browseScreen/allCategories/Vietnamese.png"),
     },
     {
-      id: 10,
+      id: 16,
       title: "Vegan",
       imgUrl: require("../Images/browseScreen/allCategories/Vegan.png"),
     },
     {
-      id: 11,
+      id: 17,
       title: "Bubble Tea",
       imgUrl: require("../Images/browseScreen/allCategories/BubbleTea.png"),
     },
     {
-      id: 12,
+      id: 18,
       title: "Juice & Smothies",
       imgUrl: require("../Images/browseScreen/allCategories/Juice.png"),
     },
     {
-      id: 13,
+      id: 19,
       title: "Fast Food",
       imgUrl: require("../Images/browseScreen/allCategories/Burgers.png"),
     },
@@ -181,6 +207,26 @@ const Browse = ({ navigation }) => {
 
   const holeList = [...topTitles, ...allTitles];
 
+  // searchScreen
+  const [search, setSearch] = useState(false);
+  const [recentSearch, setRecentSearch] = useState([""]);
+  const textInputRef = useRef(null);
+
+  const handleBlur = () => {
+    textInputRef.current.blur();
+  };
+
+  const handleRecentSearch = () => {
+    if (recentSearch.length === 6) {
+      setSearchResult([...recentSearch.pop(), input]);
+    }
+
+    if (!recentSearch.includes(input)) {
+      setRecentSearch([...recentSearch, input]);
+    }
+  };
+
+  // browseScreen
   useEffect(() => {
     const item = holeList.filter(
       (item) =>
@@ -207,17 +253,32 @@ const Browse = ({ navigation }) => {
         <Wrapper>
           <SearchComponentView>
             <SearchContainer>
-              <Octicons
-                name="search"
-                size={height >= 700 ? 20 : 14}
-                color="black"
-              />
+              {search ? (
+                <Feather
+                  name="arrow-left"
+                  size={height >= 700 ? 20 : 14}
+                  color="black"
+                  onPress={() => {
+                    setSearch(false);
+                    handleBlur();
+                  }}
+                />
+              ) : (
+                <Octicons
+                  name="search"
+                  size={height >= 700 ? 20 : 14}
+                  color="black"
+                />
+              )}
 
               <InputText
+                ref={textInputRef}
                 placeholder="Food, shopping, drinks, etc"
                 value={input}
+                onBlur={handleRecentSearch}
                 onChangeText={handleInputChange}
-              ></InputText>
+                onFocus={() => setSearch(true)}
+              />
             </SearchContainer>
 
             <BrowseCardView>
@@ -235,38 +296,89 @@ const Browse = ({ navigation }) => {
             </BrowseCardView>
           </SearchComponentView>
 
-          <TopCategories font="medium" size="xlarge">
-            Top Categories
-          </TopCategories>
-          <InnerContainer>
-            {topCategoriesList.map((item) => {
-              return (
-                <BrowseCard
-                  title={item.title}
-                  imgUrl={item.imgUrl}
-                  key={item.id}
-                  onPress={item.onPress}
-                />
-              );
-            })}
-          </InnerContainer>
+          {search ? (
+            <Pressable onPress={() => handleBlur()}>
+              {recentSearch.length !== 1 && (
+                <RecentView>
+                  <RecentSearch color="grey">Recent searches</RecentSearch>
 
-          <AllCategories font="medium" size="xlarge">
-            All Categories
-          </AllCategories>
+                  {recentSearch.map((item, id) => {
+                    return (
+                      <CategoriesScreenCard
+                        title={item}
+                        key={id}
+                        icon={
+                          <Octicons
+                            name="search"
+                            size={height >= 700 ? 20 : 14}
+                            color="black"
+                          />
+                        }
+                        onPress={() => console.log(item.title)}
+                      />
+                    );
+                  })}
+                </RecentView>
+              )}
 
-          <InnerContainer style={{ paddingBottom: 80 }}>
-            {allCategoriesList.map((item) => {
-              return (
-                <BrowseCard
-                  title={item.title}
-                  imgUrl={item.imgUrl}
-                  key={item.id}
-                  onPress={() => console.log(item.title)}
-                />
-              );
-            })}
-          </InnerContainer>
+              <TopCatView>
+                <TopCatTitle color="grey">Top Categories</TopCatTitle>
+
+                {holeList.map((item) => {
+                  return (
+                    <CategoriesScreenCard
+                      title={item.title}
+                      key={item.id}
+                      icon={
+                        <Octicons
+                          name="search"
+                          size={height >= 700 ? 20 : 14}
+                          color="black"
+                        />
+                      }
+                      onPress={() => console.log(item.title)}
+                    />
+                  );
+                })}
+              </TopCatView>
+            </Pressable>
+          ) : (
+            <Pressable onPress={() => handleBlur()}>
+              <TopCategories font="medium" size="xlarge">
+                Top Categories
+              </TopCategories>
+
+              <InnerContainer>
+                {topCategoriesList.map((item) => {
+                  return (
+                    <BrowseCard
+                      title={item.title}
+                      imgUrl={item.imgUrl}
+                      key={item.id}
+                      onPress={item.onPress}
+                    />
+                  );
+                })}
+              </InnerContainer>
+
+              <AllCategories font="medium" size="xlarge">
+                All Categories
+              </AllCategories>
+
+              <InnerContainer style={{ paddingBottom: width * 0.2 }}>
+                {allCategoriesList.map((item) => {
+                  return (
+                    <BrowseCard
+                      title={item.title}
+                      imgUrl={item.imgUrl}
+                      key={item.id}
+                      onPress={() => console.log(item.title)}
+                    />
+                  );
+                })}
+              </InnerContainer>
+            </Pressable>
+          )}
         </Wrapper>
       </ScrollView>
     </Container>
