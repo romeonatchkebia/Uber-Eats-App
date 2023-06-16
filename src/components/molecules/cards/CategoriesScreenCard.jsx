@@ -15,7 +15,7 @@ const Container = styled.View`
 const Wrapper = styled.View`
   align-items: center;
   flex-direction: row;
-  justify-content: ${({ icon }) => (icon ? "" : "space-between")};
+  justify-content: ${({ icon }) => (icon ? "flex-start" : "space-between")};
   gap: ${({ icon }) => (icon ? width * 0.06 : "")}px;
   margin-bottom: ${width * 0.025}px;
 `;

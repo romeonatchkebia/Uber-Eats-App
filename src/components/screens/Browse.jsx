@@ -314,7 +314,7 @@ const Browse = ({ navigation }) => {
                             color="black"
                           />
                         }
-                        onPress={() => console.log(item.title)}
+                        onPress={() => console.log(item)}
                       />
                     );
                   })}
