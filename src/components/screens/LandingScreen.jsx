@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, Pressable } from "react-native";
+import { Dimensions, Pressable, ScrollView } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
 import Screen from "../atoms/Screen";
 import styled from "styled-components";
 import ImageViewer from "../atoms/ImageViewer";
 import NewText from "../atoms/NewText";
+import SnackBarAtom from "../atoms/SnackBarAtom";
 import * as IMAGES from "../../constants/Images";
 
 import { UserInfo } from "../helpers/UserInfo";
@@ -30,7 +31,7 @@ const DropInput = styled.View`
   align-items: center;
   background: #eeeeee;
   flex-direction: row;
-  gap: 20px;
+  gap: ${width * 0.05}px;
   margin-top: ${height >= 700 ? `${height * 0.02}px` : `${height * 0.0002}px`};
   padding-left: 8%;
   position: relative;
@@ -50,8 +51,14 @@ const Flag = styled(ImageViewer)`
   position: absolute;
 `;
 
+const SnackBar = styled.View`
+  position: relative;
+  bottom: 85%;
+`;
+
 const LandingScreen = ({ navigation }) => {
   const [input, setInput] = useState([]);
+  const [error, setError] = useState(false);
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("United Kindom");
@@ -79,16 +86,16 @@ const LandingScreen = ({ navigation }) => {
     if (res) {
       updateUser(res);
 
-      navigation.navigate("PhoneInput");
-    } else {
-      alert("wrong number");
+      if (input == res.mobileNumber) {
+        navigation.navigate("PhoneInput");
+      } else if (input.length >= 9 && input !== res.mobileNumber) {
+        setError(true);
+      }
     }
   };
 
   useEffect(() => {
-    if (input.length == 9) {
-      userLogin();
-    }
+    userLogin();
   }, [input]);
 
   const handleInputChange = (text) => {
@@ -99,6 +106,15 @@ const LandingScreen = ({ navigation }) => {
     <Container>
       <Pressable onPress={() => navigation.navigate("BottomTabNav")}>
         <LandImage source={require("../Images/landingScreen.png")} />
+
+        <SnackBar>
+          <SnackBarAtom
+            visible={error}
+            textMessage="Mobile Number is not correct"
+            actionText="Ok"
+            actionHandler={() => setError(false)}
+          />
+        </SnackBar>
       </Pressable>
 
       <LandText size="xlarge" font="medium">

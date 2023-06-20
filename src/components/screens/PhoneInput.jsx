@@ -1,5 +1,5 @@
 import { Image, Dimensions } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import DropDownPicker from "react-native-dropdown-picker";
 
@@ -8,6 +8,10 @@ import NewText from "../atoms/NewText";
 import * as IMAGES from "../../constants/Images";
 import BigBlackGreyBtn from "../atoms/BigBlackGreyBtn";
 import SectionDevider from "../atoms/SectionDevider";
+import SnackBarAtom from "../atoms/SnackBarAtom";
+
+import { UserInfo } from "../helpers/UserInfo";
+import { UpdateUser } from "../helpers/UserProvider";
 
 const { width } = Dimensions.get("screen");
 
@@ -75,8 +79,14 @@ const Google = styled.View`
 
 const GoogleText = styled(NewText)``;
 
+const SnackBar = styled.View`
+  position: relative;
+  top: 12%;
+`;
+
 const PhoneInput = ({ navigation }) => {
   const [input, setInput] = useState([]);
+  const [error, setError] = useState(false);
 
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("United Kindom");
@@ -96,6 +106,22 @@ const PhoneInput = ({ navigation }) => {
     }
   };
 
+  const updateUser = UpdateUser();
+
+  const userLogin = async () => {
+    const res = await UserInfo();
+
+    if (res) {
+      updateUser(res);
+
+      if (input == res.mobileNumber) {
+        navigation.navigate("PassInput");
+      } else if (input !== res.mobileNumber) {
+        setError(true);
+      }
+    }
+  };
+
   const handleInputChange = (text) => {
     setInput(text);
   };
@@ -103,6 +129,15 @@ const PhoneInput = ({ navigation }) => {
   return (
     <Container>
       <Wrapper>
+        <SnackBar>
+          <SnackBarAtom
+            visible={error}
+            textMessage="Mobile Number is not correct"
+            actionText="Ok"
+            actionHandler={() => setError(false)}
+          />
+        </SnackBar>
+
         <Title font="medium" size="xlarge">
           Enter your mobile number
         </Title>
@@ -134,11 +169,7 @@ const PhoneInput = ({ navigation }) => {
           ></InputText>
         </DropInput>
 
-        <BigBlackGreyBtn
-          black
-          title="Next"
-          onPress={() => navigation.navigate("PassInput")}
-        />
+        <BigBlackGreyBtn black title="Next" onPress={() => userLogin()} />
 
         <DescText font="medium" color="grey">
           By proceeding, you consent to get calls, Whatsapp or SMS messages,
