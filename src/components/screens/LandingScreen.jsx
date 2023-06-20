@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dimensions, Pressable, ScrollView } from "react-native";
+import { Dimensions, Pressable } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
 import Screen from "../atoms/Screen";

@@ -19,7 +19,7 @@ const SnackBarAtom = ({
       <SnackBar
         visible={visible}
         textMessage={textMessage}
-        actionHandler={() => actionHandler()}
+        actionHandler={actionHandler}
         actionText={actionText}
         accentColor="black"
         backgroundColor="lightgrey"

@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import * as IMAGES from "../../constants/Images";
-
 import Screen from "../atoms/Screen";
 import NewText from "../atoms/NewText";
+import SnackBarAtom from "../atoms/SnackBarAtom";
+import { UserInfo } from "../helpers/UserInfo";
+import { UpdateUser } from "../helpers/UserProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -75,9 +77,30 @@ const Forward = styled.Pressable`
   padding: ${height * 0.0259}px;
 `;
 
+const SnackBar = styled.View`
+  top: 15%;
+`;
+
 const PassInput = ({ navigation }) => {
   const [input, setInput] = useState([]);
   const [show, setShow] = useState(false);
+  const [error, setError] = useState(false);
+
+  const updateUser = UpdateUser();
+
+  const userLogin = async () => {
+    const res = await UserInfo();
+
+    if (res) {
+      updateUser(res);
+
+      if (input == res.password) {
+        navigation.navigate("PhoneVerification");
+      } else if (input.length >= 6 && input !== res.password) {
+        setError(true);
+      }
+    }
+  };
 
   const handleInputChange = (text) => {
     setInput(text);
@@ -87,6 +110,15 @@ const PassInput = ({ navigation }) => {
     <Container>
       <Wrapper>
         <View>
+          <SnackBar>
+            <SnackBarAtom
+              visible={error}
+              textMessage="Password is not correct"
+              actionText="Ok"
+              actionHandler={() => setError(false)}
+            />
+          </SnackBar>
+
           <Title font="medium" size="xlarge">
             Welcome back, John
           </Title>
@@ -121,11 +153,7 @@ const PassInput = ({ navigation }) => {
             <Image source={IMAGES.LeftArrow} />
           </Back>
 
-          <Forward
-            onPress={() =>
-              input.length > 0 && navigation.navigate("PhoneVerification")
-            }
-          >
+          <Forward onPress={() => userLogin()}>
             <NewText
               size="large"
               font="medium"
