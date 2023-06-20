@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Dimensions } from "react-native";
 import styled from "styled-components";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import ImageViewer from "../../atoms/ImageViewer";
 import NewText from "../../atoms/NewText";
-import * as IMAGES from "../../../constants/Images";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -68,11 +69,6 @@ const LikeBtnPress = styled.Pressable`
   top: ${width * 0.091}px;
 `;
 
-const LikeBtn = styled(ImageViewer)`
-  width: ${width * 0.056}px;
-  height: ${width * 0.051}px;
-`;
-
 const MainCard = ({
   title,
   source,
@@ -98,14 +94,17 @@ const MainCard = ({
     }
   }
 
-  const likeImage = isLike ? IMAGES.HeartFilled : IMAGES.Heart;
-
   return (
     <CardView {...props} onPress={onPress}>
       <CardImage source={source} />
 
-      <LikeBtnPress onPress={handleLike}>
-        <LikeBtn source={likeImage} />
+      <LikeBtnPress>
+        <MaterialCommunityIcons
+          name={isLike ? "heart" : "heart-outline"}
+          size={width >= 350 ? 26 : 18}
+          color={isLike ? "red" : "white"}
+          onPress={handleLike}
+        />
       </LikeBtnPress>
 
       <TitleRatingView>

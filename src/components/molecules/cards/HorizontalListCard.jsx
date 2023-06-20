@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { Dimensions } from "react-native";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styled from "styled-components";
-import ImageViewer from "../../atoms/ImageViewer";
+
 import * as IMAGES from "../../../constants/Images";
+import ImageViewer from "../../atoms/ImageViewer";
 import NewText from "../../atoms/NewText";
 
 const { height, width } = Dimensions.get("screen");
 
 const CardView = styled.Pressable`
   background: #f6f6f6;
-  padding: 15px;
+  padding: ${width * 0.038}px;
   position: relative;
 `;
 
@@ -32,7 +33,7 @@ const CardTitle = styled(NewText)`
 const CardRatingView = styled.View`
   align-items: center;
   background: #eeeeee;
-  border-radius: 20px;
+  border-radius: ${width * 0.05}px;
   height: ${width * 0.08}px;
   justify-content: center;
   margin-top: 5px;
@@ -50,11 +51,11 @@ const PromotionView = styled.View`
   border-top-right-radius: 75px;
   border-bottom-right-radius: 75px;
   background: #34a853;
-  height: 25px;
+  height: ${height * 0.03}px;
   width: 66%;
   position: absolute;
-  top: 33px;
-  left: 12px;
+  top: ${height * 0.0387}px;
+  left: ${width * 0.03}px;
 `;
 
 const PromotionText = styled(NewText)``;
@@ -64,8 +65,6 @@ const LikeBtnPress = styled.Pressable`
   right: ${width * 0.07}px;
   top: ${width * 0.09}px;
 `;
-
-const LikeBtn = styled(ImageViewer)``;
 
 const HorizontalListCard = ({
   title,
@@ -97,8 +96,14 @@ const HorizontalListCard = ({
   return (
     <CardView {...props} onPress={onPress}>
       <CardImage source={source} />
-      <LikeBtnPress onPress={handleLike}>
-        <LikeBtn source={likeImage} />
+
+      <LikeBtnPress>
+        <MaterialCommunityIcons
+          name={isLike ? "heart" : "heart-outline"}
+          size={width >= 350 ? 26 : 18}
+          color={isLike ? "red" : "white"}
+          onPress={handleLike}
+        />
       </LikeBtnPress>
 
       <TitleRatingView>

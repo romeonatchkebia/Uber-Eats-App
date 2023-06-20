@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Dimensions } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -31,6 +31,15 @@ const SubTitle = styled(NewText)``;
 const Desc = styled(NewText)``;
 
 const ConvenienceCard = ({ title, price, desc, imgUrl, time, ...props }) => {
+  const [isLike, setIsLike] = useState(false);
+
+  function handleLike() {
+    if (isLike) {
+      setIsLike(false);
+    } else if (!isLike) {
+      setIsLike(true);
+    }
+  }
   return (
     <Container {...props}>
       <CardImage source={imgUrl} />
@@ -48,9 +57,10 @@ const ConvenienceCard = ({ title, price, desc, imgUrl, time, ...props }) => {
       </TextCont>
 
       <MaterialCommunityIcons
-        name="heart-outline"
+        name={isLike ? "heart" : "heart-outline"}
         size={width >= 350 ? 26 : 18}
         color="black"
+        onPress={handleLike}
       />
     </Container>
   );
