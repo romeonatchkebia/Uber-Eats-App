@@ -6,6 +6,7 @@ import "react-native-get-random-values";
 
 import MainNavigator from "./navigators/MainNavigator";
 import UserProvider from "./src/components/helpers/UserProvider";
+import ItemsProvider from "./src/components/helpers/ItemsProvider";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -30,7 +31,9 @@ export default function App() {
 
   return (
     <UserProvider>
-      <MainNavigator />
+      <ItemsProvider>
+        <MainNavigator />
+      </ItemsProvider>
     </UserProvider>
   );
 }

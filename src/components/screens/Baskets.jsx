@@ -8,7 +8,7 @@ import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 import CtgrButton from "../atoms/CtgrButton";
 import BasketsCard from "../molecules/cards/BasketsCard";
 import NewText from "../atoms/NewText";
-import { basketsData } from "../../data/appData";
+import { Item } from "../helpers/ItemsProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -44,9 +44,16 @@ const StartShopBtn = styled(CtgrButton)`
   height: ${height * 0.053}px;
 `;
 
+const pizzaImg = require("../Images/pizza.png");
+
 const Baskets = () => {
-  const [data, setData] = useState(basketsData);
-  const [addItems, setAddItems] = useState(false);
+  const [data, setData] = useState([]);
+
+  let item = Item();
+
+  setTimeout(() => {
+    setData(item);
+  }, 1000);
 
   return (
     <Container>
@@ -58,11 +65,7 @@ const Baskets = () => {
             padding: width * 0.038,
           }}
         >
-          <OrderBtn
-            title="Orders"
-            img={IMAGES.OrderBtnIcon}
-            onPress={() => setAddItems(!addItems)}
-          />
+          <OrderBtn title="Orders" img={IMAGES.OrderBtnIcon} />
         </View>
 
         <View
@@ -78,19 +81,7 @@ const Baskets = () => {
         </View>
 
         <View>
-          {addItems ? (
-            data.map((item) => {
-              return (
-                <BasketsCard
-                  title={item.title}
-                  imgUrl={item.imgUrl}
-                  price={item.price}
-                  desc={item.desc}
-                  key={item.id}
-                />
-              );
-            })
-          ) : (
+          {data.length == 0 ? (
             <View style={{ alignItems: "center" }}>
               <MainImage source={ImageSource} />
 
@@ -105,6 +96,18 @@ const Baskets = () => {
 
               <StartShopBtn title="Start Shopping" black />
             </View>
+          ) : (
+            data.map((item) => {
+              return (
+                <BasketsCard
+                  title={item.title}
+                  imgUrl={pizzaImg}
+                  price={item.price}
+                  desc={item.desc}
+                  key={item.id}
+                />
+              );
+            })
           )}
         </View>
       </ScrollView>

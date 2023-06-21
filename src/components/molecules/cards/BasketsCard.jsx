@@ -16,8 +16,9 @@ const Container = styled.View`
 `;
 
 const CardImage = styled.Image`
-  width: ${width * 0.18}px;
+  border-radius: ${width * 0.13}px;
   height: ${height * 0.082}px;
+  width: ${width * 0.18}px;
 `;
 
 const TextCont = styled.View`

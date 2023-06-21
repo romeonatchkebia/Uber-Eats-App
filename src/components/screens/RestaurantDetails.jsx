@@ -17,6 +17,7 @@ import RestDetailsPopularCard from "../molecules/cards/RestDetailsPopularCard";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 import GoogleMap from "../organisms/GoogleMap";
 import { restDetailsData } from "../../data/appData";
+import { ItemUpdate, Item } from "../helpers/ItemsProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -144,7 +145,7 @@ const SaveText = styled(NewText)`
   text-align: center;
 `;
 
-const RestaurantDetails = ({ navigation, route }) => {
+const RestaurantDetails = ({ navigation }) => {
   const [data, setData] = useState(restDetailsData);
 
   const [category, setCategory] = useState(0);
@@ -174,6 +175,23 @@ const RestaurantDetails = ({ navigation, route }) => {
       return num;
     }
   }
+
+  let itemArray = Item();
+
+  const itemUpdate = ItemUpdate();
+
+  const handleItemUpdate = (item) => {
+    if (itemArray.length === 0) {
+      itemUpdate(item);
+    } else {
+      const existingItem = itemArray.find(
+        (existingItem) => existingItem.id === item.id
+      );
+      if (!existingItem) {
+        itemUpdate(item);
+      }
+    }
+  };
 
   const rest = data.restaurant;
 
@@ -298,12 +316,13 @@ const RestaurantDetails = ({ navigation, route }) => {
                     desc={item.desc}
                     key={item.id}
                     promo={item.promo}
-                    onPress={() =>
+                    onPress={() => {
                       navigation.navigate(ROUTES.ORDER_SELECTION_SCREEN, {
                         ...item,
                         restName: data.restaurant.name,
-                      })
-                    }
+                      });
+                      handleItemUpdate(item);
+                    }}
                   />
                 );
               })}

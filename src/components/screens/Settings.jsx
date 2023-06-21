@@ -160,7 +160,9 @@ const Settings = ({ navigation, route }) => {
 
       <SavedPlacesView>
         <SavedPlaces size="large">Saved places</SavedPlaces>
+
         <SavedPlacesCard imgUrl={IMAGES.Home} title="Home" />
+
         <SavedPlacesCard imgUrl={IMAGES.Work} title="Work" />
       </SavedPlacesView>
 

@@ -7,7 +7,6 @@ import AccountCard from "../molecules/cards/AccountCard";
 import NewText from "../atoms/NewText";
 
 import * as IMAGES from "../../constants/Images";
-import * as ROUTES from "../../constants/Routs";
 import * as COLOR from "../../constants/Colors";
 import { User } from "../helpers/UserProvider";
 import { accounData } from "../../data/appData";

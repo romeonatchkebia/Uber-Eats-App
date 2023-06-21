@@ -1,37 +1,5 @@
 import * as ROUTS from "../constants/Routs";
 
-//BasketsScreen
-export const basketsData = [
-  {
-    id: 0,
-    title: "Begs & Megs",
-    price: "43.00",
-    desc: "Deliver to San Franciscao Bay Area, some more text here, add some text here also",
-    imgUrl: require("../components/Images/BasketsScreen/Rectangle19.png"),
-  },
-  {
-    id: 1,
-    title: "Taco Bell",
-    price: "45.00",
-    desc: "Deliver to California Area",
-    imgUrl: require("../components/Images/BasketsScreen/Rectangle20.png"),
-  },
-  {
-    id: 2,
-    title: "Chips",
-    price: "28.00",
-    desc: "Deliver to Georgia Area, some more text here tooo",
-    imgUrl: require("../components/Images/BasketsScreen/Rectangle19.png"),
-  },
-  {
-    id: 3,
-    title: "Cafe La Bondon",
-    price: "19.00",
-    desc: "Deliver to Los Angeles Bay Area",
-    imgUrl: require("../components/Images/BasketsScreen/Rectangle20.png"),
-  },
-];
-
 //ConvenienceScreen
 export const ConvenienceData = [
   {
@@ -1408,15 +1376,15 @@ export const restDetailsData = {
     },
     {
       id: 3,
-      title: "McMshroom pizza",
-      price: "21.00",
+      title: "Broken Mush pizza",
+      price: "18.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasdasdas das das dasdasdas dasd asd asdsadsa ",
       img: require("../components/Images/pizza.png"),
     },
     {
       id: 4,
-      title: "McMshroom pizza",
-      price: "21.00",
+      title: "Margarita pizza",
+      price: "15.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
       img: require("../components/Images/pizza.png"),
     },
