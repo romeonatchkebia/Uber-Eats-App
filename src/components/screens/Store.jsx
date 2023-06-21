@@ -12,7 +12,6 @@ import PastOrders from "./PastOrders";
 import NewText from "../atoms/NewText";
 import Featured from "./Featured";
 import CtgrButton from "../atoms/CtgrButton";
-import { FeaturedList } from "../../data/appData";
 
 const { height, width } = Dimensions.get("screen");
 
