@@ -46,10 +46,9 @@ const StartShopBtn = styled(CtgrButton)`
 
 const pizzaImg = require("../Images/pizza.png");
 
-const Baskets = () => {
-  const [data, setData] = useState([]);
-
+const Baskets = ({ navigation }) => {
   let item = Item();
+  const [data, setData] = useState([]);
 
   setTimeout(() => {
     setData(item);
@@ -94,7 +93,11 @@ const Baskets = () => {
                 appear here
               </Decription>
 
-              <StartShopBtn title="Start Shopping" black />
+              <StartShopBtn
+                title="Start Shopping"
+                black
+                onPress={() => navigation.navigate("RestaurantDetails")}
+              />
             </View>
           ) : (
             data.map((item) => {

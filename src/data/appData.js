@@ -1390,8 +1390,8 @@ export const restDetailsData = {
     },
     {
       id: 5,
-      title: "McMshroom pizza",
-      price: "21.00",
+      title: "Carbonara pizza",
+      price: "25.00",
       desc: "Description text  sortss, dadas sadasda, asdas, dasdasdas dasdasd asd asd asdasdasdasd sad as dsa d sad sadsadas ",
       promo: true,
     },

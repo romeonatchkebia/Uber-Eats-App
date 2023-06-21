@@ -19,7 +19,6 @@ import TrackOrder from "../src/components/screens/TrackOrder";
 import Delivered from "../src/components/screens/Delivered";
 import BottomTabNav from "./BottomTabNav";
 import ItemDetails from "../src/components/screens/ItemDetails";
-import Featured from "../src/components/screens/Featured";
 import Categories from "../src/components/screens/Categories";
 import PastOrders from "../src/components/screens/PastOrders";
 import Note from "../src/components/screens/Note";
@@ -35,6 +34,8 @@ import Filters from "../src/components/screens/Filters";
 import Convenience from "../src/components/screens/Convenience";
 import ChangeAddress from "../src/components/screens/ChangeAddress";
 import Promotions from "../src/components/screens/Promotions";
+import Store from "../src/components/screens/Store";
+import Featured from "../src/components/screens/Featured";
 
 const Stack = createNativeStackNavigator();
 
@@ -150,9 +151,14 @@ function MainNavigator() {
             options={{ title: "Note" }}
           />
           <Stack.Screen
+            name={ROUTES.STORE_SCREEN}
+            component={Store}
+            options={{ title: "Store" }}
+          />
+          <Stack.Screen
             name={ROUTES.FEATURED_SCREEN}
             component={Featured}
-            options={{ title: "Featured" }}
+            options={{ title: "Feature" }}
           />
           <Stack.Screen
             name={ROUTES.CATEGORIES_SCREEN}

@@ -140,7 +140,7 @@ const Grocery = ({ navigation }) => {
               time={item.time}
               logo={item.logo}
               onPress={() =>
-                navigation.navigate(ROUTS.FEATURED_SCREEN, {
+                navigation.navigate(ROUTS.STORE_SCREEN, {
                   restName: item.title,
                 })
               }
