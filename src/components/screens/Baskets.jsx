@@ -1,5 +1,5 @@
 import { View, Dimensions, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Screen from "../atoms/Screen";
@@ -8,7 +8,7 @@ import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 import CtgrButton from "../atoms/CtgrButton";
 import BasketsCard from "../molecules/cards/BasketsCard";
 import NewText from "../atoms/NewText";
-import { Item } from "../helpers/ItemsProvider";
+import { Item, ItemDelete } from "../helpers/ItemsProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -47,12 +47,14 @@ const StartShopBtn = styled(CtgrButton)`
 const pizzaImg = require("../Images/pizza.png");
 
 const Baskets = ({ navigation }) => {
-  let item = Item();
+  let itemArr = Item();
+  let deleteItem = ItemDelete();
+
   const [data, setData] = useState([]);
 
-  setTimeout(() => {
-    setData(item);
-  }, 1000);
+  useEffect(() => {
+    setData(itemArr);
+  }, [itemArr]);
 
   return (
     <Container>
@@ -108,6 +110,7 @@ const Baskets = ({ navigation }) => {
                   price={item.price}
                   desc={item.desc}
                   key={item.id}
+                  onPress={() => deleteItem(item.id)}
                 />
               );
             })

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Dimensions } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import NewText from "../../atoms/NewText";
 
 const { height, width } = Dimensions.get("screen");
 
-const Container = styled.View`
+const Container = styled.Pressable`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
@@ -31,7 +31,7 @@ const SubTitle = styled(NewText)``;
 
 const Desc = styled(NewText)``;
 
-const BasketsCard = ({ title, price, desc, imgUrl, ...props }) => {
+const BasketsCard = ({ title, price, desc, imgUrl, onPress, ...props }) => {
   return (
     <Container {...props}>
       <CardImage source={imgUrl} />
@@ -48,7 +48,12 @@ const BasketsCard = ({ title, price, desc, imgUrl, ...props }) => {
         </Desc>
       </TextCont>
 
-      <Ionicons name="chevron-forward" size={width >= 350 ? 26 : 18} />
+      <MaterialIcons
+        name="delete"
+        size={width >= 350 ? 30 : 22}
+        color="orange"
+        onPress={onPress}
+      />
     </Container>
   );
 };

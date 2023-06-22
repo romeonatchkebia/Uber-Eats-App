@@ -17,7 +17,7 @@ import RestDetailsPopularCard from "../molecules/cards/RestDetailsPopularCard";
 import GreyBtnWithIcon from "../atoms/GreyBtnWithIcon";
 import GoogleMap from "../organisms/GoogleMap";
 import { restDetailsData } from "../../data/appData";
-import { ItemUpdate, Item } from "../helpers/ItemsProvider";
+import { Item, ItemAdd } from "../helpers/ItemsProvider";
 
 const { height, width } = Dimensions.get("screen");
 
@@ -178,17 +178,17 @@ const RestaurantDetails = ({ navigation }) => {
 
   let itemArray = Item();
 
-  const itemUpdate = ItemUpdate();
+  const itemAdd = ItemAdd();
 
   const handleItemUpdate = (item) => {
     if (itemArray.length === 0) {
-      itemUpdate(item);
+      itemAdd(item);
     } else {
       const existingItem = itemArray.find(
         (existingItem) => existingItem.id === item.id
       );
       if (!existingItem) {
-        itemUpdate(item);
+        itemAdd(item);
       }
     }
   };
