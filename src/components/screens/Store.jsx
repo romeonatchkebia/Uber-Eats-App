@@ -93,7 +93,6 @@ const CtgrView = styled.View`
 const Store = ({ navigation, route }) => {
   const { restName } = route.params;
 
-  const [isLoading, setIsLoading] = useState(false);
   const [category, setCategory] = useState(0);
 
   function handlePress(value) {
@@ -106,94 +105,76 @@ const Store = ({ navigation, route }) => {
     { title: "Orders", value: 2 },
   ];
 
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, [category]);
-
   return (
     <Container>
-      {isLoading ? (
-        <SpinnerView>
-          <Progress.CircleSnail
-            size={height >= 700 ? 80 : 50}
-            color={["red", "green", "blue"]}
-          />
-        </SpinnerView>
-      ) : (
-        <>
-          <ScrollView>
-            <Wrapper>
-              <Header>
-                <Left>
-                  <Pressable onPress={() => navigation.goBack()}>
-                    <Feather
-                      name="arrow-left"
-                      size={width >= 350 ? 26 : 18}
-                      color="black"
-                    />
-                  </Pressable>
-
-                  <NewText font="medium" size="xlarge">
-                    {restName}
-                  </NewText>
-                </Left>
-
-                <Right>
-                  <Ionicons name="person" size={width >= 350 ? 24 : 16} />
-
-                  <Pressable>
-                    <Ionicons name="cart" size={width >= 350 ? 26 : 18} />
-                  </Pressable>
-                </Right>
-              </Header>
-
-              <SearchContainer>
-                <Octicons
-                  name="search"
-                  size={height >= 700 ? 20 : 14}
+      <ScrollView>
+        <Wrapper>
+          <Header>
+            <Left>
+              <Pressable onPress={() => navigation.goBack()}>
+                <Feather
+                  name="arrow-left"
+                  size={width >= 350 ? 26 : 18}
                   color="black"
                 />
+              </Pressable>
 
-                <InputText placeholder="Search stores and produ..."></InputText>
-              </SearchContainer>
+              <NewText font="medium" size="xlarge">
+                {restName}
+              </NewText>
+            </Left>
 
-              <TimePrice>
-                <Time>
-                  <Ionicons name="time" size={width >= 350 ? 26 : 18} />
+            <Right>
+              <Ionicons name="person" size={width >= 350 ? 24 : 16} />
 
-                  <NewText size="medium">In 60 minutes</NewText>
-                </Time>
+              <Pressable>
+                <Ionicons name="cart" size={width >= 350 ? 26 : 18} />
+              </Pressable>
+            </Right>
+          </Header>
 
-                <Price>
-                  <Ionicons name="logo-bitcoin" size={width >= 350 ? 26 : 18} />
+          <SearchContainer>
+            <Octicons
+              name="search"
+              size={height >= 700 ? 20 : 14}
+              color="black"
+            />
 
-                  <NewText size="medium">Pricing and Fees</NewText>
-                </Price>
-              </TimePrice>
+            <InputText placeholder="Search stores and produ..."></InputText>
+          </SearchContainer>
 
-              <CtgrView>
-                {btns.map((btn) => {
-                  return (
-                    <CtgrButton
-                      title={btn.title}
-                      onPress={() => handlePress(btn.value)}
-                      key={btn.value}
-                      black={btn.value === category ? true : false}
-                    />
-                  );
-                })}
-              </CtgrView>
+          <TimePrice>
+            <Time>
+              <Ionicons name="time" size={width >= 350 ? 26 : 18} />
 
-              {category === 1 && <Categories />}
-              {category === 2 && <PastOrders />}
-              {category === 0 && <Featured navigation={navigation} />}
-            </Wrapper>
-          </ScrollView>
-        </>
-      )}
+              <NewText size="medium">In 60 minutes</NewText>
+            </Time>
+
+            <Price>
+              <Ionicons name="logo-bitcoin" size={width >= 350 ? 26 : 18} />
+
+              <NewText size="medium">Pricing and Fees</NewText>
+            </Price>
+          </TimePrice>
+
+          <CtgrView>
+            {btns.map((btn) => {
+              return (
+                <CtgrButton
+                  title={btn.title}
+                  onPress={() => handlePress(btn.value)}
+                  key={btn.value}
+                  black={btn.value === category ? true : false}
+                />
+              );
+            })}
+          </CtgrView>
+
+          {category === 1 && <Categories />}
+          {category === 2 && <PastOrders />}
+          {category === 0 && <Featured navigation={navigation} />}
+        </Wrapper>
+      </ScrollView>
     </Container>
   );
 };

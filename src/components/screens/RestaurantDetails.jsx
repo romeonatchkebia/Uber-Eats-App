@@ -149,14 +149,6 @@ const RestaurantDetails = ({ navigation }) => {
   const [data, setData] = useState(restDetailsData);
 
   const [category, setCategory] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, [category]);
 
   function handlePress(value) {
     setCategory(value);
@@ -197,247 +189,233 @@ const RestaurantDetails = ({ navigation }) => {
 
   return (
     <Container>
-      {isLoading ? (
-        <SpinnerView>
-          <Progress.CircleSnail
-            size={height >= 700 ? 80 : 50}
-            color={["red", "green", "blue"]}
-          />
-        </SpinnerView>
-      ) : (
-        <ScrollView>
-          <MainImageView>
-            <Pizza source={IMAGES.RestaurantDetailsPizza} />
+      <ScrollView>
+        <MainImageView>
+          <Pizza source={IMAGES.RestaurantDetailsPizza} />
 
-            <Navigation>
-              <BackArrow onPress={() => navigation.goBack()}>
-                <Feather
-                  name="arrow-left"
+          <Navigation>
+            <BackArrow onPress={() => navigation.goBack()}>
+              <Feather
+                name="arrow-left"
+                size={width >= 350 ? 26 : 18}
+                color="black"
+              />
+            </BackArrow>
+
+            <View style={{ flexDirection: "row", gap: width * 0.038 }}>
+              <Heart>
+                <Ionicons
+                  name="heart-outline"
                   size={width >= 350 ? 26 : 18}
                   color="black"
                 />
-              </BackArrow>
+              </Heart>
 
-              <View style={{ flexDirection: "row", gap: width * 0.038 }}>
-                <Heart>
-                  <Ionicons
-                    name="heart-outline"
-                    size={width >= 350 ? 26 : 18}
-                    color="black"
-                  />
-                </Heart>
-
-                <Dots>
-                  <MaterialCommunityIcons
-                    name="dots-horizontal"
-                    size={width >= 350 ? 26 : 18}
-                    color="black"
-                  />
-                </Dots>
-              </View>
-            </Navigation>
-          </MainImageView>
-
-          <Map />
-
-          <Wrapper>
-            <HeaderContainer>
-              <InfoContainer>
-                <RestTiTle
-                  font="bold"
-                  size="xlarge"
-                  style={{ marginTop: height * 0.035 }}
-                >
-                  {rest.name}
-                </RestTiTle>
-
-                <RestInfoView>
-                  <View style={{ marginRight: width * 0.0076 }}>
-                    <Ionicons name="star" size={width >= 350 ? 26 : 18} />
-                  </View>
-
-                  <RestInfo font="medium" size="medium">
-                    {rest.rating}({calcRating(rest.ratingQuantity)}) •{" "}
-                    {rest.category} • $$
-                  </RestInfo>
-                </RestInfoView>
-
-                <WorkingInfo color="grey">{rest.workingHours}</WorkingInfo>
-
-                <WorkingInfo color="grey">
-                  Tap for hours info and more{" "}
-                </WorkingInfo>
-              </InfoContainer>
-
-              <RightContainer>
-                <Ionicons
-                  name="chevron-forward"
+              <Dots>
+                <MaterialCommunityIcons
+                  name="dots-horizontal"
                   size={width >= 350 ? 26 : 18}
+                  color="black"
                 />
-              </RightContainer>
-            </HeaderContainer>
+              </Dots>
+            </View>
+          </Navigation>
+        </MainImageView>
 
-            <ButtonsViewContainer>
-              <GreyBtnWithIcon title="Group order" img={IMAGES.GroupImage} />
+        <Map />
 
-              <SwitcherContainer>
-                {btns.map((btn) => {
-                  return (
-                    <DeliveryPickupBtns
-                      Time={
-                        btn.value === 0 ? rest.deliveryTime : rest.pickupTime
-                      }
-                      Distance={
-                        btn.value === 0
-                          ? rest.deliveryDistance
-                          : rest.pickupDistance
-                      }
-                      title={btn.title}
-                      onPress={() => handlePress(btn.value)}
-                      key={btn.title}
-                      black={btn.value === category ? true : false}
-                    />
-                  );
-                })}
-              </SwitcherContainer>
-            </ButtonsViewContainer>
-
-            <SectionContainer>
-              <SectionTitle font="bold" size="xlarge">
-                Most Popular
-              </SectionTitle>
-
-              {data.mostPopular.map((item) => {
-                return (
-                  <RestDetailsCard
-                    title={item.title}
-                    price={item.price}
-                    img={item.img}
-                    desc={item.desc}
-                    key={item.id}
-                    promo={item.promo}
-                    onPress={() => {
-                      navigation.navigate(ROUTES.ORDER_SELECTION_SCREEN, {
-                        ...item,
-                        restName: data.restaurant.name,
-                      });
-                      handleItemUpdate(item);
-                    }}
-                  />
-                );
-              })}
-            </SectionContainer>
-
-            <SectionContainer>
-              <SectionTitle font="bold" size="xlarge">
-                Picked for you
-              </SectionTitle>
-
-              {data.pickedForYou.map((item) => {
-                return (
-                  <RestDetailsCard
-                    title={item.title}
-                    price={item.price}
-                    desc={item.desc}
-                    key={item.id}
-                    itemQuantity={item.itemQuantity}
-                  />
-                );
-              })}
-            </SectionContainer>
-
-            <SectionContainer>
-              <SectionTitle font="bold" size="xlarge">
-                Starters
-              </SectionTitle>
-              {
-                <RestDetailsPopularCard
-                  title={data.starters.title}
-                  desc={data.starters.desc}
-                  img={data.starters.img}
-                  popular={data.starters.popular}
-                  key={data.starters.id}
-                />
-              }
-            </SectionContainer>
-
-            <SectionContainer>
-              <SectionTitle font="bold" size="xlarge">
-                Salads
-              </SectionTitle>
-
-              {data.salads.map((item) => {
-                return (
-                  <RestDetailsPopularCard
-                    title={item.title}
-                    price={item.price}
-                    desc={item.desc}
-                    key={item.id}
-                    popular={item.popular}
-                  />
-                );
-              })}
-            </SectionContainer>
-
-            <SectionContainer>
-              <SectionTitle font="bold" size="xlarge">
-                Our Special Pizza
-              </SectionTitle>
-
-              {data.ourSpecialPizza.map((item) => {
-                return (
-                  <RestDetailsPopularCard
-                    title={item.title}
-                    price={item.price}
-                    img={item.img}
-                    desc={item.desc}
-                    key={item.id}
-                    popular={item.popular}
-                  />
-                );
-              })}
-            </SectionContainer>
-
-            <SectionContainer>
-              <SectionTitle font="bold" size="xlarge">
-                Miscellaneous{" "}
-              </SectionTitle>
-
-              {data.mischelaneous.map((item) => {
-                return (
-                  <RestDetailsPopularCard
-                    title={item.title}
-                    price={item.price}
-                    img={item.img}
-                    desc={item.desc}
-                    key={item.id}
-                    popular={item.popular}
-                  />
-                );
-              })}
-            </SectionContainer>
-
+        <Wrapper>
+          <HeaderContainer>
             <InfoContainer>
-              <RestTiTle style={{ marginBottom: 20 }} font="bold" size="xlarge">
-                {data.bottomRestName.restTitle}
+              <RestTiTle
+                font="bold"
+                size="xlarge"
+                style={{ marginTop: height * 0.035 }}
+              >
+                {rest.name}
               </RestTiTle>
 
-              <RestDetailsCard
-                title={data.bottomRestName.title}
-                price={data.bottomRestName.price}
-                desc={data.bottomRestName.desc}
-                key={data.bottomRestName.id}
-              />
+              <RestInfoView>
+                <View style={{ marginRight: width * 0.0076 }}>
+                  <Ionicons name="star" size={width >= 350 ? 26 : 18} />
+                </View>
+
+                <RestInfo font="medium" size="medium">
+                  {rest.rating}({calcRating(rest.ratingQuantity)}) •{" "}
+                  {rest.category} • $$
+                </RestInfo>
+              </RestInfoView>
+
+              <WorkingInfo color="grey">{rest.workingHours}</WorkingInfo>
+
+              <WorkingInfo color="grey">
+                Tap for hours info and more{" "}
+              </WorkingInfo>
             </InfoContainer>
 
-            <BottomSaveView onPress={() => navigation.navigate("Promotions")}>
-              <SaveText font="medium" size="medium" color="green">
-                Save US$25. Conditions Applay.
-              </SaveText>
-            </BottomSaveView>
-          </Wrapper>
-        </ScrollView>
-      )}
+            <RightContainer>
+              <Ionicons name="chevron-forward" size={width >= 350 ? 26 : 18} />
+            </RightContainer>
+          </HeaderContainer>
+
+          <ButtonsViewContainer>
+            <GreyBtnWithIcon title="Group order" img={IMAGES.GroupImage} />
+
+            <SwitcherContainer>
+              {btns.map((btn) => {
+                return (
+                  <DeliveryPickupBtns
+                    Time={btn.value === 0 ? rest.deliveryTime : rest.pickupTime}
+                    Distance={
+                      btn.value === 0
+                        ? rest.deliveryDistance
+                        : rest.pickupDistance
+                    }
+                    title={btn.title}
+                    onPress={() => handlePress(btn.value)}
+                    key={btn.title}
+                    black={btn.value === category ? true : false}
+                  />
+                );
+              })}
+            </SwitcherContainer>
+          </ButtonsViewContainer>
+
+          <SectionContainer>
+            <SectionTitle font="bold" size="xlarge">
+              Most Popular
+            </SectionTitle>
+
+            {data.mostPopular.map((item) => {
+              return (
+                <RestDetailsCard
+                  title={item.title}
+                  price={item.price}
+                  img={item.img}
+                  desc={item.desc}
+                  key={item.id}
+                  promo={item.promo}
+                  onPress={() => {
+                    navigation.navigate(ROUTES.ORDER_SELECTION_SCREEN, {
+                      ...item,
+                      restName: data.restaurant.name,
+                    });
+                    handleItemUpdate(item);
+                  }}
+                />
+              );
+            })}
+          </SectionContainer>
+
+          <SectionContainer>
+            <SectionTitle font="bold" size="xlarge">
+              Picked for you
+            </SectionTitle>
+
+            {data.pickedForYou.map((item) => {
+              return (
+                <RestDetailsCard
+                  title={item.title}
+                  price={item.price}
+                  desc={item.desc}
+                  key={item.id}
+                  itemQuantity={item.itemQuantity}
+                />
+              );
+            })}
+          </SectionContainer>
+
+          <SectionContainer>
+            <SectionTitle font="bold" size="xlarge">
+              Starters
+            </SectionTitle>
+            {
+              <RestDetailsPopularCard
+                title={data.starters.title}
+                desc={data.starters.desc}
+                img={data.starters.img}
+                popular={data.starters.popular}
+                key={data.starters.id}
+              />
+            }
+          </SectionContainer>
+
+          <SectionContainer>
+            <SectionTitle font="bold" size="xlarge">
+              Salads
+            </SectionTitle>
+
+            {data.salads.map((item) => {
+              return (
+                <RestDetailsPopularCard
+                  title={item.title}
+                  price={item.price}
+                  desc={item.desc}
+                  key={item.id}
+                  popular={item.popular}
+                />
+              );
+            })}
+          </SectionContainer>
+
+          <SectionContainer>
+            <SectionTitle font="bold" size="xlarge">
+              Our Special Pizza
+            </SectionTitle>
+
+            {data.ourSpecialPizza.map((item) => {
+              return (
+                <RestDetailsPopularCard
+                  title={item.title}
+                  price={item.price}
+                  img={item.img}
+                  desc={item.desc}
+                  key={item.id}
+                  popular={item.popular}
+                />
+              );
+            })}
+          </SectionContainer>
+
+          <SectionContainer>
+            <SectionTitle font="bold" size="xlarge">
+              Miscellaneous{" "}
+            </SectionTitle>
+
+            {data.mischelaneous.map((item) => {
+              return (
+                <RestDetailsPopularCard
+                  title={item.title}
+                  price={item.price}
+                  img={item.img}
+                  desc={item.desc}
+                  key={item.id}
+                  popular={item.popular}
+                />
+              );
+            })}
+          </SectionContainer>
+
+          <InfoContainer>
+            <RestTiTle style={{ marginBottom: 20 }} font="bold" size="xlarge">
+              {data.bottomRestName.restTitle}
+            </RestTiTle>
+
+            <RestDetailsCard
+              title={data.bottomRestName.title}
+              price={data.bottomRestName.price}
+              desc={data.bottomRestName.desc}
+              key={data.bottomRestName.id}
+            />
+          </InfoContainer>
+
+          <BottomSaveView onPress={() => navigation.navigate("Promotions")}>
+            <SaveText font="medium" size="medium" color="green">
+              Save US$25. Conditions Applay.
+            </SaveText>
+          </BottomSaveView>
+        </Wrapper>
+      </ScrollView>
     </Container>
   );
 };

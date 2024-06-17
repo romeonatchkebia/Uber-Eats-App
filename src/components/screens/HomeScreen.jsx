@@ -192,16 +192,13 @@ function HomeScreen({ navigation }) {
 
   const [dinIn, setDineIn] = useState(dineInList);
 
-  const [isLoading, setIsLoading] = useState(false);
   const [alldata, setAllData] = useState([]);
   const [category, setCategory] = useState(0);
 
   const categorySheetRef = useRef();
 
   useEffect(() => {
-    setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
       fetchData();
     }, 1000);
   }, [category]);
@@ -228,271 +225,257 @@ function HomeScreen({ navigation }) {
 
   return (
     <Container>
-      {isLoading ? (
-        <SpinnerView>
-          <Progress.CircleSnail
-            size={height >= 700 ? 80 : 50}
-            color={["red", "green", "blue"]}
-          />
-        </SpinnerView>
-      ) : (
-        <>
-          <ScrollView>
-            <CtgrFilterBtnView>
-              <CtgrView>
-                {btns.map((btn) => {
-                  return (
-                    <CtgrButton
-                      title={btn.title}
-                      onPress={() => handlePress(btn.value)}
-                      key={btn.value}
-                      black={btn.value === category ? true : false}
-                    />
-                  );
-                })}
-              </CtgrView>
-
-              <FilterView>
-                <FilterTextPress
-                  onPress={() => navigation.navigate("ChangeAddress")}
-                >
-                  <FilterText font="medium" size="large">
-                    Now • London Hall
-                  </FilterText>
-
-                  <IconView>
-                    <FilterIcon source={IMAGES.FilterTextIcon} />
-                  </IconView>
-                </FilterTextPress>
-
-                <FilterBtnPress onPress={() => navigation.navigate("Filters")}>
-                  <FilterBtn source={IMAGES.Slider} />
-                </FilterBtnPress>
-              </FilterView>
-            </CtgrFilterBtnView>
-
-            <View style={{ alignItems: "center" }}>
-              {category === 1 && <GoogleMap />}
-            </View>
-
-            <CategoryContainer>
-              <WrapCat>
-                <OuterDiv>
-                  <CategoryCard
-                    imgUrl={IMAGES.Convenience}
-                    onPress={() => navigation.navigate("Convenience")}
-                  />
-                </OuterDiv>
-
-                <CardTitle font="medium">Convenience</CardTitle>
-              </WrapCat>
-
-              <WrapCat>
-                <OuterDiv>
-                  <CategoryCard imgUrl={IMAGES.Alcohol} />
-                </OuterDiv>
-
-                <CardTitle font="medium">Alcohol</CardTitle>
-              </WrapCat>
-
-              <WrapCat>
-                <OuterDiv>
-                  <CategoryCard imgUrl={IMAGES.PetSupplies} />
-                </OuterDiv>
-
-                <CardTitle font="medium">Pet Supplies</CardTitle>
-              </WrapCat>
-
-              {category === 0 ? (
-                <WrapCat>
-                  <More onPress={() => categorySheetRef.current.open()}>
-                    <NewText size="xxlarge" font="bold">
-                      ...
-                    </NewText>
-                  </More>
-
-                  <CardTitle font="medium">More</CardTitle>
-                </WrapCat>
-              ) : (
-                <WrapCat>
-                  <OuterDiv>
-                    <CategoryCard imgUrl={IMAGES.Convenience} />
-                  </OuterDiv>
-
-                  <CardTitle font="medium">Grocery</CardTitle>
-                </WrapCat>
-              )}
-            </CategoryContainer>
-
-            <SectionList
-              sections={alldata}
-              keyExtractor={(item) => item.id}
-              SectionSeparatorComponent={Devider}
-              stickySectionHeadersEnabled={false}
-              scrollEnabled={false}
-              renderSectionHeader={({ section }) => (
-                <>
-                  {section.sectionTitle && (
-                    <SectionTitleView>
-                      <SectionTitle size="xlarge" font="bold">
-                        {section.sectionTitle}
-                      </SectionTitle>
-
-                      <SeeAllBtnView>
-                        {section.sectionTitle && (
-                          <SeeAllBtn
-                            font="medium"
-                            size="medium"
-                            secTitle={section.sectionTitle}
-                          >
-                            See All
-                          </SeeAllBtn>
-                        )}
-                      </SeeAllBtnView>
-                    </SectionTitleView>
-                  )}
-
-                  {category !== 1 && (
-                    <FlatList
-                      data={section.horizontalData}
-                      keyExtractor={(item) => item.id}
-                      renderItem={({ item }) => {
-                        return (
-                          <HorizontalListCard
-                            title={item.title}
-                            source={item.url}
-                            price={category === 0 ? item.price : ""}
-                            deliveryTime={item.deliveryTime}
-                            rating={item.rating}
-                            promoOrdersNum={
-                              category === 0 ? item.promoOrdersNum : ""
-                            }
-                            promoOrdersPrice={item.promoOrdersPrice}
-                            distance={item.distance}
-                            sectionTitle={item.sectionTitle}
-                            onPress={() => console.log("works")}
-                          />
-                        );
-                      }}
-                      horizontal
-                      showsHorizontalScrollIndicator={false}
-                    />
-                  )}
-                </>
-              )}
-              renderItem={({ item }) => {
-                return (
-                  item.rating && (
-                    <MainCard
-                      title={item.title}
-                      source={item.url}
-                      price={category === 0 ? item.price : ""}
-                      deliveryTime={item.deliveryTime}
-                      rating={item.rating}
-                      promoOrdersNum={category === 0 ? item.promoOrdersNum : ""}
-                      promoOrdersPrice={item.promoOrdersPrice}
-                      distance={item.distance}
-                      sectionTitle={item.sectionTitle}
-                      onPress={() =>
-                        navigation.navigate(
-                          ROUTES.RESTAURANT_DETAILS_SCREEN,
-                          item
-                        )
-                      }
-                    />
-                  )
-                );
-              }}
-              renderSectionFooter={({ section }) => (
-                <FooterCategoryView>
-                  <FlatList
-                    data={section.categoryData}
-                    horizontal={false}
-                    numColumns={2}
-                    renderItem={({ item }) => {
-                      return (
-                        !item.price && (
-                          <CategoryCardForFooter
-                            title={item.title}
-                            imgUrl={item.url}
-                            onPress={() => console.log("works")}
-                          />
-                        )
-                      );
-                    }}
-                  />
-                </FooterCategoryView>
-              )}
-            />
-
-            {category == 0 && (
-              <View>
-                <SectionTitleView>
-                  <SectionTitle size="xlarge" font="bold">
-                    {delivery[7].title}
-                  </SectionTitle>
-
-                  <SeeAllBtnView>
-                    <SeeAllBtn font="medium" size="medium">
-                      See All
-                    </SeeAllBtn>
-                  </SeeAllBtnView>
-                </SectionTitleView>
-
-                <View>
-                  <FlatList
-                    data={delivery[7].sweets}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item }) => (
-                      <ThreeObjectCardForHomeScreen
-                        title={item.title}
-                        subTitle={item.price}
-                        imgUrl={item.url}
-                      />
-                    )}
-                    scrollEnabled={false}
-                    numColumns={3}
-                  />
-                </View>
-              </View>
-            )}
-
-            {category == 0 && (
-              <View>
-                <SectionTitleView>
-                  <SectionTitle size="xlarge" font="bold">
-                    {delivery[6].title}
-                  </SectionTitle>
-
-                  <SeeAllBtnView>
-                    <SeeAllBtn font="medium" size="medium">
-                      See All
-                    </SeeAllBtn>
-                  </SeeAllBtnView>
-                </SectionTitleView>
-
-                <FlatList
-                  data={delivery[6].french}
-                  keyExtractor={(item) => item.id}
-                  renderItem={({ item }) => (
-                    <ThreeObjectCardForHomeScreen
-                      title={item.title}
-                      subTitle={item.price}
-                      imgUrl={item.url}
-                    />
-                  )}
-                  scrollEnabled={false}
-                  numColumns={3}
+      <ScrollView>
+        <CtgrFilterBtnView>
+          <CtgrView>
+            {btns.map((btn) => {
+              return (
+                <CtgrButton
+                  title={btn.title}
+                  onPress={() => handlePress(btn.value)}
+                  key={btn.value}
+                  black={btn.value === category ? true : false}
                 />
-              </View>
-            )}
+              );
+            })}
+          </CtgrView>
 
-            <Devider />
+          <FilterView>
+            <FilterTextPress
+              onPress={() => navigation.navigate("ChangeAddress")}
+            >
+              <FilterText font="medium" size="large">
+                Now • London Hall
+              </FilterText>
 
-            <HomeScreenBottomCard />
-          </ScrollView>
-        </>
-      )}
+              <IconView>
+                <FilterIcon source={IMAGES.FilterTextIcon} />
+              </IconView>
+            </FilterTextPress>
+
+            <FilterBtnPress onPress={() => navigation.navigate("Filters")}>
+              <FilterBtn source={IMAGES.Slider} />
+            </FilterBtnPress>
+          </FilterView>
+        </CtgrFilterBtnView>
+
+        <View style={{ alignItems: "center" }}>
+          {category === 1 && <GoogleMap />}
+        </View>
+
+        <CategoryContainer>
+          <WrapCat>
+            <OuterDiv>
+              <CategoryCard
+                imgUrl={IMAGES.Convenience}
+                onPress={() => navigation.navigate("Convenience")}
+              />
+            </OuterDiv>
+
+            <CardTitle font="medium">Convenience</CardTitle>
+          </WrapCat>
+
+          <WrapCat>
+            <OuterDiv>
+              <CategoryCard imgUrl={IMAGES.Alcohol} />
+            </OuterDiv>
+
+            <CardTitle font="medium">Alcohol</CardTitle>
+          </WrapCat>
+
+          <WrapCat>
+            <OuterDiv>
+              <CategoryCard imgUrl={IMAGES.PetSupplies} />
+            </OuterDiv>
+
+            <CardTitle font="medium">Pet Supplies</CardTitle>
+          </WrapCat>
+
+          {category === 0 ? (
+            <WrapCat>
+              <More onPress={() => categorySheetRef.current.open()}>
+                <NewText size="xxlarge" font="bold">
+                  ...
+                </NewText>
+              </More>
+
+              <CardTitle font="medium">More</CardTitle>
+            </WrapCat>
+          ) : (
+            <WrapCat>
+              <OuterDiv>
+                <CategoryCard imgUrl={IMAGES.Convenience} />
+              </OuterDiv>
+
+              <CardTitle font="medium">Grocery</CardTitle>
+            </WrapCat>
+          )}
+        </CategoryContainer>
+
+        <SectionList
+          sections={alldata}
+          keyExtractor={(item) => item.id}
+          SectionSeparatorComponent={Devider}
+          stickySectionHeadersEnabled={false}
+          scrollEnabled={false}
+          renderSectionHeader={({ section }) => (
+            <>
+              {section.sectionTitle && (
+                <SectionTitleView>
+                  <SectionTitle size="xlarge" font="bold">
+                    {section.sectionTitle}
+                  </SectionTitle>
+
+                  <SeeAllBtnView>
+                    {section.sectionTitle && (
+                      <SeeAllBtn
+                        font="medium"
+                        size="medium"
+                        secTitle={section.sectionTitle}
+                      >
+                        See All
+                      </SeeAllBtn>
+                    )}
+                  </SeeAllBtnView>
+                </SectionTitleView>
+              )}
+
+              {category !== 1 && (
+                <FlatList
+                  data={section.horizontalData}
+                  keyExtractor={(item) => item.id}
+                  renderItem={({ item }) => {
+                    return (
+                      <HorizontalListCard
+                        title={item.title}
+                        source={item.url}
+                        price={category === 0 ? item.price : ""}
+                        deliveryTime={item.deliveryTime}
+                        rating={item.rating}
+                        promoOrdersNum={
+                          category === 0 ? item.promoOrdersNum : ""
+                        }
+                        promoOrdersPrice={item.promoOrdersPrice}
+                        distance={item.distance}
+                        sectionTitle={item.sectionTitle}
+                        onPress={() => console.log("works")}
+                      />
+                    );
+                  }}
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                />
+              )}
+            </>
+          )}
+          renderItem={({ item }) => {
+            return (
+              item.rating && (
+                <MainCard
+                  title={item.title}
+                  source={item.url}
+                  price={category === 0 ? item.price : ""}
+                  deliveryTime={item.deliveryTime}
+                  rating={item.rating}
+                  promoOrdersNum={category === 0 ? item.promoOrdersNum : ""}
+                  promoOrdersPrice={item.promoOrdersPrice}
+                  distance={item.distance}
+                  sectionTitle={item.sectionTitle}
+                  onPress={() =>
+                    navigation.navigate(ROUTES.RESTAURANT_DETAILS_SCREEN, item)
+                  }
+                />
+              )
+            );
+          }}
+          renderSectionFooter={({ section }) => (
+            <FooterCategoryView>
+              <FlatList
+                data={section.categoryData}
+                horizontal={false}
+                numColumns={2}
+                renderItem={({ item }) => {
+                  return (
+                    !item.price && (
+                      <CategoryCardForFooter
+                        title={item.title}
+                        imgUrl={item.url}
+                        onPress={() => console.log("works")}
+                      />
+                    )
+                  );
+                }}
+              />
+            </FooterCategoryView>
+          )}
+        />
+
+        {category == 0 && (
+          <View>
+            <SectionTitleView>
+              <SectionTitle size="xlarge" font="bold">
+                {delivery[7].title}
+              </SectionTitle>
+
+              <SeeAllBtnView>
+                <SeeAllBtn font="medium" size="medium">
+                  See All
+                </SeeAllBtn>
+              </SeeAllBtnView>
+            </SectionTitleView>
+
+            <View>
+              <FlatList
+                data={delivery[7].sweets}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                  <ThreeObjectCardForHomeScreen
+                    title={item.title}
+                    subTitle={item.price}
+                    imgUrl={item.url}
+                  />
+                )}
+                scrollEnabled={false}
+                numColumns={3}
+              />
+            </View>
+          </View>
+        )}
+
+        {category == 0 && (
+          <View>
+            <SectionTitleView>
+              <SectionTitle size="xlarge" font="bold">
+                {delivery[6].title}
+              </SectionTitle>
+
+              <SeeAllBtnView>
+                <SeeAllBtn font="medium" size="medium">
+                  See All
+                </SeeAllBtn>
+              </SeeAllBtnView>
+            </SectionTitleView>
+
+            <FlatList
+              data={delivery[6].french}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => (
+                <ThreeObjectCardForHomeScreen
+                  title={item.title}
+                  subTitle={item.price}
+                  imgUrl={item.url}
+                />
+              )}
+              scrollEnabled={false}
+              numColumns={3}
+            />
+          </View>
+        )}
+
+        <Devider />
+
+        <HomeScreenBottomCard />
+      </ScrollView>
 
       <Portal>
         <BottomSheet
